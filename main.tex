@@ -1,0 +1,60 @@
+\documentclass[fontsize=12pt, paper=a4, titlepage=on, BCOR=8mm, DIV=15, twoside, openany]{scrbook}
+
+\input{config}
+
+\begin{document}
+ %Einstellungen für den Frontmatterteil##################################################
+    \frontmatter                                        %Beginn des Frontmatters, vor dem Hauptteil
+    \pagenumbering{Roman}                               %Seitenzahlen in römischen Zahlen in Großbuchstaben
+%#######################################################################################
+
+    %Titelseite-----------------------------------------------------------------------------
+    
+    \KOMAoptions{parskip=false}
+    \input{chapters/frontmatter/Deckblatt}
+    \KOMAoptions{parskip=half}         
+    \newpage
+
+    %Abstarct-------------------------------------------------------------------------------
+    \cleardoublepage
+    \setcounter{page}{1}
+    \input{chapters/frontmatter/Abstract}                  %Abstract in englischer Sprache
+    \input{chapters/frontmatter/Zusammenfassung}           %Abstract in deutscher Sprache
+    \newpage
+
+    %Selbstständigkeitserklärung------------------------------------------------------------
+    \input{chapters/frontmatter/Selbstständigkeitserklärung}
+    \newpage
+
+    %Abbildungsverzeichnis-----------------------------------------------------------------------
+    %\listoffigures
+
+    %Verzeichnis von Codeauszügen------------------------------------------------------------
+    %\listofcode
+
+    %Inhaltsverzeichnis----------------------------------------------------------------------
+    \tableofcontents
+    \newpage
+
+%Einstellungen für den Hauptteil#########################################################
+    \mainmatter
+    \setcounter{figure}{0}
+%######################################################################################## 
+
+    %Einleitung------------------------------------------------------------------------------
+    \input{chapters/einleitung/Einleitung}
+    \blindtext
+
+%Einstellungen für den Schlussteil#########################################################
+    \backmatter
+%##########################################################################################
+
+    %Quellenverzeichnis--------------------------------------------------------------------------
+    \addcontentsline{toc}{chapter}{Literatur}   %Das Literaturverzeichnis dem Inhaltsverzeichniss hinzufügen
+    \bibliography{bib/bib_v0.1}
+
+    %Anhang------------------------------------------------------------------------------------
+    \addcontentsline{toc}{chapter}{Anhang}      %Den Anhang dem Inhaltsverzeichniss hinzufügen
+    \chapter*{Anhang}
+    
+\end{document}

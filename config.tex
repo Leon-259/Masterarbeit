@@ -1,0 +1,100 @@
+\usepackage{graphicx} % Required for inserting images
+\usepackage[T1]{fontenc} %Notwendig um Umlaute benutzen zu können 
+\usepackage[ngerman]{babel} %import vom deutschen Sprachpaket
+\usepackage{microtype} %Kleine Variationen im Textabstand um Silbentrennung zu reduzieren
+\usepackage{lmodern}
+\usepackage{hyphenat} %Für manuelle Silbentrennung
+\usepackage[headsepline, plainheadsepline, markcase=used]{scrlayer-scrpage}     %Seitendesign einstellungen
+\usepackage{ziffer} %deutsche dezimaltrennung als ,
+\usepackage{listings} %Für Code auszüge
+\usepackage{xcolor} %Für Farbgebungen
+\usepackage{scrhack}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{bookmark}
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage{blindtext}
+\usepackage{layout}
+
+\captionsetup{skip=10pt}
+
+\renewcommand{\familydefault}{\sfdefault}       %Font übernehmen für das ganze Dokument
+
+\graphicspath{{img/}} % Ordner für Bilder Festlegen
+\bibliographystyle{ieeetr}
+
+\pagestyle{scrheadings} %Seitenstil preset
+\clearpairofpagestyles  %Seitenzahlen aus der Fußzeile löschen
+\chead{\headmark}       %Kapitelüberschriften außen in der Kopfzeile
+\ohead*[\pagemark]{\pagemark}   
+
+\geometry{
+  inner=2.5cm, % Größerer innerer Rand für die Bindung
+  outer=1.5cm, % Kleinerer äußerer Rand
+  top=1cm,
+  bottom=3cm,
+  headsep=2pt,
+  includehead
+}
+
+% Umgebungsfarben für Codeausschnitte
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+%Neudefinition des \mainmatter befehls, um bei Aufruf die letze Seitenzahl des 
+%Frontmatters zu speichern, um beim Backmatter wieder drauf zurückgreifen zu können
+\makeatletter
+\newcounter{savedfrontmatterpage}
+\renewcommand{\mainmatter}{%
+  \cleardoublepage
+  \setcounter{savedfrontmatterpage}{\value{page}}%
+  \@mainmattertrue
+  \pagenumbering{arabic}%
+  \clearpairofpagestyles
+  \chead{\headmark}
+  \ofoot*[\pagemark]{\pagemark}
+}
+
+%Neudefiniton des backmatter-Befehls, um bei AUfruf die Seitenzahl auf die letzte Seitenzahl des Frontmatters zurückzugreifen
+\renewcommand\backmatter{%
+  % Prüft, ob die Seite ungerade ist (rechte Seite)
+  \ifodd\value{page}%
+    \cleardoublepage % Wechselt zur nächsten rechten Seite, wenn aktuell auf einer rechten Seite
+  \else
+    \clearpage % Nur ein einfacher Seitenumbruch, wenn auf einer linken Seite
+  \fi
+  \@mainmatterfalse
+  \pagenumbering{Roman}%
+  \setcounter{page}{\value{savedfrontmatterpage}}%
+  \clearpairofpagestyles
+  \chead{\headmark}                                                               %Kapitelüberschriften außen in der Kopfzeile
+  \ohead*[\pagemark]{\pagemark}                                                    %Seitenzahlen innen in der Kopfzeile
+}
+\makeatother
+
+\newcommand{\theauthor}{Leon Grude}
+\newcommand{\thetitle}{Entwicklung eines Moduls zur automatischen Klassifikation von Verhaltensweisen von Mastputen mittels Machine-Learning-Methoden}
+\newcommand{\thedate}{02.02.2024}
