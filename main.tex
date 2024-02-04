@@ -1,6 +1,7 @@
 \documentclass[fontsize=12pt, paper=a4, titlepage=on, BCOR=8mm, DIV=15, twoside, openany]{scrbook}
 
 \input{config}
+\input{glossar}
 
 \begin{document}
  %Einstellungen für den Frontmatterteil##################################################
@@ -32,6 +33,9 @@
     %Verzeichnis von Codeauszügen------------------------------------------------------------
     %\listofcode
 
+    %Abbkürzungsverzeichnis
+    \printglossary[type=\acronymtype]
+
     %Inhaltsverzeichnis----------------------------------------------------------------------
     \tableofcontents
     \newpage
@@ -43,7 +47,8 @@
 
     %Einleitung------------------------------------------------------------------------------
     \input{chapters/einleitung/Einleitung}
-    \blindtext
+
+    \input{chapters/theoretischer rahmen/Theoretischer Rahmen}
 
 %Einstellungen für den Schlussteil#########################################################
     \backmatter
