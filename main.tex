@@ -55,11 +55,18 @@
 %##########################################################################################
 
     %Quellenverzeichnis--------------------------------------------------------------------------
+    \printbibliography 
     \addcontentsline{toc}{chapter}{Literatur}   %Das Literaturverzeichnis dem Inhaltsverzeichniss hinzufügen
-    \bibliography{bib/bib_v0.1}
+    %\bibliography{bib/bib_v0.1}
+
+    %Glossar
+    \printglossary
+    \addcontentsline{toc}{chapter}{Glossar}
 
     %Anhang------------------------------------------------------------------------------------
-    \addcontentsline{toc}{chapter}{Anhang}      %Den Anhang dem Inhaltsverzeichniss hinzufügen
     \chapter*{Anhang}
+    \addcontentsline{toc}{chapter}{Anhang}      %Den Anhang dem Inhaltsverzeichniss hinzufügen
+
+    \listoftodos
     
 \end{document}

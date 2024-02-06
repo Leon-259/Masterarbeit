@@ -16,6 +16,11 @@
 \usepackage{geometry}
 \usepackage{blindtext}
 \usepackage[acronym]{glossaries}
+\usepackage[backend=biber, sortcites, citestyle=numeric]{biblatex}
+\usepackage[autostyle]{csquotes}
+\usepackage{todonotes}
+
+\addbibresource{bib/bib_v0.1.bib}
 
 \captionsetup{skip=10pt}
 
@@ -23,7 +28,7 @@
 
 \graphicspath{{img/}} % Ordner für Bilder Festlegen
 
-\bibliographystyle{ieeetr}
+%\bibliographystyle{ieeetr}
 
 \makeglossaries
 
@@ -35,9 +40,9 @@
 \geometry{
   inner=2.5cm, % Größerer innerer Rand für die Bindung
   outer=1.5cm, % Kleinerer äußerer Rand
-  top=1cm,
+  top=0.6cm,
   bottom=3cm,
-  headsep=2pt,
+  headsep=15pt,
   includehead
 }
 
@@ -77,7 +82,7 @@
   \@mainmattertrue
   \pagenumbering{arabic}%
   \clearpairofpagestyles
-  \chead{\headmark}
+  \ohead{\headmark}
   \ofoot*[\pagemark]{\pagemark}
 }
 
@@ -101,3 +106,23 @@
 \newcommand{\theauthor}{Leon Grude}
 \newcommand{\thetitle}{Entwicklung eines Moduls zur automatischen Klassifikation von Verhaltensweisen von Mastputen mittels Machine-Learning-Methoden}
 \newcommand{\thedate}{02.02.2024}
+
+\newcommand{\emptyFigure}[2]{
+    \begin{figure}[h]
+        \centering
+        \frame{\includegraphics[width=\textwidth, height=3cm]{img/EMPTY.png}}
+        \caption{#1}
+        \label{#2}
+    \end{figure}
+}
+
+
+\begin{filecontents}{emptybib}
+@article{EMPTYCITE,
+ author = {None, None},
+ year = {0000},
+ title = {None},
+}
+\end{filecontents}
+
+\addbibresource{emptybib}

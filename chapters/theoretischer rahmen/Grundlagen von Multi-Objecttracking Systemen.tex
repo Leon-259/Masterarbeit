@@ -1,5 +1,28 @@
 \section{Grundlagen von Multi-Object Tracking Systemen}
-Teilfeld der Computer Vison (Deutsches Wort suchen)
-Teilt sich in Detektion, Lokalisation und Assoziation 
-Vielfältige Anwendungsgebiete
-Ist als Mid-Level Task eingestuft auf dem Unterschiedliche High-Level Tasks aufbauen
+Die fundamentale Aufgabe eines \gls{Multi-Object Tracking} (\acrshort{MOT}) Systems besteht darin in einem Video mehrere Objekte zu \glsdisp{Detektion}{detektieren} und die Identitäten der Objekte über alle \gls{Frame}[s] aufrecht zu erhalten. Das Ergebnis sind die \gls{Trajektorie}[n] der Objekte \cite{CLEAR.2008, HOTA, Luo.2022}. \gls{Multi-Object Tracking} zählt zu der Wissenschaft des maschinellen Sehens. Es ist ein recht junges Forschungsgebiet, weshalb bisher wenig verallgemeinernde Theorie existiert. Es gibt jedoch Bestrebungen grundlegende Theorie aus den zahlreichen Ansätzen in der Literatur zu extrahieren \cite{Luo.2022}. Im Fokus der Forschung liegt besonders das Tracking von Fußgängern, aufgrund von großem kommerziellen Potential \cite{Luo.2022}. Dort ist \acrshort{MOT} anwendbar in Bereichen der Überwachung, des autonomen Fahrens und der Gestenerkennung. Aber auch in anderen Anwendungsfeldern wir an \acrshort{MOT} geforscht, wie zum Beispiel am \gls{Tracking} von Fahrzeugen, Partikeln, Zellen und Tieren \cite{Luo.2022, CLEAR.2008, Crocker.1996}. Die vielzahl an Anwendungsmöglichkeiten zeigt, dass \gls{Multi-Object Tracking} als \gls{Mid-Level Aufgabe} zu verordnen ist, auf welche weiterreichende Anwendungen aufbauen können \cite{Luo.2022}.\par
+
+Ein ideales \gls{Multi-Object Tracking} System ist in der Lage zu jedem Zeitpunkt die korrekte Anzahl an Objekt zu \glsdisp{Detektion}{detektieren} und dessen Position exakt zu bestimmen. Den Objekten wird eine Identifikationsnummer (\acrshort{ID}) zugeordnet, welche über alle Zeitpunkte hinweg konstant bleibt \cite{CLEAR.2008}. Der verbreitetste Ansatz, um diese Aufgaben zu erfüllen sind \glsdisp{Detektionsbasiertes Tracking}{detetkionsbasierte Tracking} Systeme. Diese Systeme  Arbeiten mit einem \glsdisp{Detektion}{Detektionsmodul}, welches die Objekte in den einzelnen \gls{Frame}[s] erkennt und deren Positionen bestimmt. Anschließend folgt ein \glsdisp{Assoziation}{Assoziationsmodul}, dieses verknüpft die \gls{Detektion}[en] und ordnet ihnen die \acrshort{ID}s zu\cite{Luo.2022}. Die Abbildung \ref{fig:DetBasedTrackSys} zeigt den Aufbau eines \glsdisp{Detektionsbasiertes Tracking}{detetkionsbasierten Tracking} Systems. \todo{Bild fehlt}
+
+\emptyFigure{Aufbau eines \glsdisp{Detektionsbasiertes Tracking}{detetkionsbasierten Tracking} Systems}{fig:DetBasedTrackSys}
+
+Die Aufgaben, die ein \acrshort{MOT} System erfüllen muss lassen sich somit unterteilen in \gls{Detektion}, \gls{Lokalisation} und \gls{Assoziation}. Ziel der \gls{Detektion} ist die Erkennung der Objekte im \gls{Frame}. Die \gls{Lokalisation} ist dafür zuständig die Position der der Objekt im \gls{Frame} zu bestimmen. Aufgabe der \gls{Assoziation} ist es die \gls{Detektion}[en] über alle \gls{Frame}[s] zu verknüpfen, so dass sie konstant einem Objekt zugeordnet sind \cite{CLEAR.2008, HOTA}. In der Abbildung \ref{fig:DetBasedTrackSys} sind diese Aufgaben mit dargestellt. Ist nicht explizit von der \gls{Lokalisation} die Rede, so wird im folgenden der Begriff \textit{\gls{Detektion}} so verwendet, dass eine \gls{Detektion} die Information der Erkennung, sowie der Positionsbestimmung bündelt. \par
+
+In der Praxis existieren Herausforderungen, welche die Umsetzung von \acrshort{MOT} Systemen erschweren. Dazu gehören Verdeckungen von Objekten, große Ähnlichkeiten zwischen den zu \glsdisp{Assoziation}{assoziierenden} Objekten, dem Verlassen und Betreten des Kamerabereichs von Objekten und die Bidlfrequenz des Videos \cite{EMPTYCITE}. \todo{näher auf die Fehler und die Auswirkungen eingehen?} \todo{Quelle fehlt} Diese Aspekte wirken sich negativ auf die \gls{Detektion}, die \gls{Lokalisation} und die \gls{Assoziation} aus. Dadurch kommt es bei diesen Aufgaben zu Fehlern. Bei der \gls{Detektion} gibt es zwei Fehlertypen zwischen denen unterschieden wird. 
+
+\begin{itemize}
+    \item \textbf{Falsch negative \gls{Detektion}[en]:} Objekte, die erkannt werden sollten, werden nicht \glsdisp{Detektion}{detektiert}.
+    \item \textbf{Falsch positive \gls{Detektion}[en]:} Bildbereiche, bei denen es sich nicht um Objekte handelt, werden als solche \glsdisp{Detektion}{detektiert}.
+\end{itemize}
+
+Bei der \gls{Assoziation} existieren ebenfalls zwei Fehlerarten zwischen den unterschieden wird.
+
+\begin{itemize}
+    \item \textbf{Fragmentation:} Eine Menge von \gls{Detektion}[en], welche zu einer \gls{Trajektorie} \glsdisp{Assoziation}{assoziiert} werden müssten, wird in mehrere Teilmengen \glsdisp{Assoziation}{assoziiert}.
+    \item \textbf{Merger:}\todo{ist deutscheres wort besser?} Mehrere Mengen von \gls{Detektion}[en], welche zu unterschiedlichen \gls{Trajektorie}[n] \glsdisp{Assoziation}{assoziiert} werden müssten, werden zu einer gemeinsamen \gls{Trajektorie} \glsdisp{Assoziation}{assoziiert}.
+\end{itemize}
+
+Bei der \gls{Lokalisation} liegt der Fehler in der Abweichung von der genauen Position des Objekts \cite{EMPTYCITE}. \todo{Quelle Leichter.2013} In der Abbildung \ref{fig:ErrorTypesMOT} sind die unterschiedlichen Fehlerarten illustriert. \todo{Bild fehlt}
+
+\emptyFigure{Fehlerarten eines \acrshort{MOT} Systems}{fig:ErrorTypesMOT}
+
+Bei \acrshort{MOT} Systemen existieren zwei Verarbeitungsverfahren zwischen denen unterschieden wird: Das \gls{Offline Tracking} und das \gls{Online Tracking}. Beim \gls{Online Tracking} werden die \gls{Frame}[s] eines Videos sequentiell verarbeitet. Das bedeutet für die \gls{Assoziation} im \gls{Frame} des Zeitpunkts \(t=n\) stehen nur die \gls{Detektion}[en] der Zeitpunkte \(t \leq n\)  zur Verfügung. Zukünftige \gls{Detektion}[en] werden nicht Berücksichtigt \cite{Luo.2022}. Aus diesem Grund eignen sich \gls{Online Tracking} Systeme besonders für Echtzeitanwendungen \cite{Bewley.2016}. \gls{Offline Tracking} Systeme verarbeiten die \gls{Frame}[s] gebündelt. Bei der \gls{Assoziation} stehen alle \gls{Detektion}[en] aus allen \gls{Frame}[s] zur Verfügung \cite{Luo.2022}. Dadurch ist es möglich, dass mittels globaler Optimierung der \gls{Assoziation} über die \gls{Frame}[s] qualitativ besonders gute \gls{Trajektorie}[n] generiert werden können. Für eine Echtzeitverarbeitung eignen sich \gls{Offline Tracking} Systeme nicht \cite{EMPTYCITE}. \todo{Quelle raussuchen} \par
