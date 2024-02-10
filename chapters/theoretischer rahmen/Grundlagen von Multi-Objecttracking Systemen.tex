@@ -26,3 +26,6 @@ Bei der \gls{Lokalisation} liegt der Fehler in der Abweichung von der genauen Po
 \emptyFigure{Fehlerarten eines \acrshort{MOT} Systems}{fig:ErrorTypesMOT}
 
 Bei \acrshort{MOT} Systemen existieren zwei Verarbeitungsverfahren zwischen denen unterschieden wird: Das \gls{Offline Tracking} und das \gls{Online Tracking}. Beim \gls{Online Tracking} werden die \gls{Frame}[s] eines Videos sequentiell verarbeitet. Das bedeutet für die \gls{Assoziation} im \gls{Frame} des Zeitpunkts \(t=n\) stehen nur die \gls{Detektion}[en] der Zeitpunkte \(t \leq n\)  zur Verfügung. Zukünftige \gls{Detektion}[en] werden nicht Berücksichtigt \cite{Luo.2022}. Aus diesem Grund eignen sich \gls{Online Tracking} Systeme besonders für Echtzeitanwendungen \cite{Bewley.2016}. \gls{Offline Tracking} Systeme verarbeiten die \gls{Frame}[s] gebündelt. Bei der \gls{Assoziation} stehen alle \gls{Detektion}[en] aus allen \gls{Frame}[s] zur Verfügung \cite{Luo.2022}. Dadurch ist es möglich, dass mittels globaler Optimierung der \gls{Assoziation} über die \gls{Frame}[s] qualitativ besonders gute \gls{Trajektorie}[n] generiert werden können. Für eine Echtzeitverarbeitung eignen sich \gls{Offline Tracking} Systeme nicht \cite{EMPTYCITE}. \todo{Quelle raussuchen} \par
+
+\todo{Schreib: Wie Sehen die Detektionen aus -> Rechtecke}
+\todo{Schreib: MOT Systeme hängen stark von den Dets ab}
