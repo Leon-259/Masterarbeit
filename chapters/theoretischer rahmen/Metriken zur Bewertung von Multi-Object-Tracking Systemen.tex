@@ -1,1 +1,47 @@
 \section{Metriken zur Bewertung von Multi-Object-Tracking Systemen}
+So wie \gls{MOT} selbst ist auch die Bewertung von \gls{MOT}-Systemen ein recht junges Feld. In den letzten Jahren wurden einige Verfahren und Metriken für diesen Zweck entwickelt, jedoch hat sich davon keine deutlich gegenüber den anderen durchgesetzt, weshalb in Veröffentlichungen oftmals mehrere Metriken angegeben werden. Aus diesem Grund werden auch hier 3 Metriken vorgestellt. Geordnet sind sie in ihrer historischen Reihenfolge. Während die \acrshort{CLEAR} Metriken \cite{CLEAR.2008} und die IDF1 Metrik \cite{IDF1} sich inzwischen etabliert haben, ist die Higher Order Tracking Accuracy (\acrshort{HOTA}) \cite{HOTA} der neuste Ansatz von den dreien und noch weniger etabliert. Bevor die einzelnen Metriken im Detail vorgestellt werden, wird auf einige Grundlagen der Evaluation von \gls{MOT}-Systemen eingegangen.
+
+\subsection{Grundlagen der Bewertung von Multi-Object-Tracking Systemen}
+Die Evaluation von \gls{MOT}-Systemen funktioniert über ein \glsdisp{Ereignis}{Referenzereignis}. Diese Referenz beinhaltet alle korrekten \gls{Detektion}[en], \gls{Lokalisation}[en] und \gls{Assoziation}[en]. Diese Referenz wird als \gls{Ground Truth} bezeichnet \todo{Quelle def GT} \cite{EMPTYCITE}. Das \gls{MOT}-System wird auf das \glsdisp{Ereignis}{Referenzereignis} angewendet und gibt ein Ergebnis zurück. Dieses Ergebnis wird mit der \gls{Ground Truth} verglichen. Der Grad der Übereinstimmung ist das Evaluationsergebnis für das \gls{MOT}-System. Die verschiedenen Metriken unterscheiden sich in ihrer Berechnung des Übereinstimmungsgrads. Dadurch kommt es zu unterschieden in der Gewichtung des Einflusses der Fehlertypen (\ref{sec:Grundlagen von MOT}) und der \gls{Modul}[e] von \gls{MOT}-Systemen \cite{HOTA, IDF1, CLEAR.2008}.\par
+
+Für eine Aussagekräftige Evaluation wird eine qualitativ hochwertige \gls{Ground Truth} benötigt. Diese zu erstellen ist jedoch eine herausfordernde Aufgabe. Die Erstellung einer \gls{Ground Truth} erfolgt manuell und ist oftmals Zeitaufwendig. Ebenfalls kommt es bei \gls{MOT} Problemen häufig zu Mehrdeutigkeiten, welche selbst für einen Menschen nicht lösbar sind. Beispiele hierfür sind Spiegelungen in Fensterscheiben. Die Frage die in dieser Situation zu beantworten ist, wäre ob eine Spiegelung vom \gls{MOT}-System als Objekt erkannt werden soll, oder ob es ein Fehler ist wenn es das tut. Auch der Umgang mit teilweisen Verdeckungen ist nicht eindeutig zu lösen. Solche Probleme treten oft in den Randbereichen des Kameraausschnitts auf, da hier beim Verlassen oder Eintreten in das Bild das Objekt nur teilweise sichtbar ist. Ab wann bzw. bis wann in diesem Fall ein Objekt zu \glsdisp{Detektion}{detektieren} ist, ist nicht eindeutig lösbar. Auch bei der manuellen \gls{Lokalisation} kommt es zu Abweichungen durch menschliche Fehler \cite{MOT15, Milan.2013}.  \par
+
+\todo{Vielleicht ein Bild mit GT Herausf.}
+
+Aus diesen Gründen ist es nicht möglich eine ideale \gls{Ground Truth} ohne Fehler und Varianz zu erstellen. Um dennoch ein Aussagekräftige Evaluation zu erhalten, wird empfohlen mehrere \glsdisp{Ereignis}{Referenzereignis} zu erstellen und die Ergebnisse zu mitteln \cite{Milan.2013}. Ebenfalls hilft es vor der \gls{Ground Truth} Erstellung klare Regeln zu definieren, wie mit Mehrdeutigkeiten und anderen Herausforderungen umzugehen ist. Solche definiert auch die \textit{MOTChallenge} \cite{MOT16, MOT20}. Die \textit{MOTChallenge} ist ein Regelmäßiger Wettbewerb für \gls{MOT}-Systeme und hat sich zur Aufgabe gemacht eine Benchmark für diese zu schaffen. Für das Benchmarking stehen mehrere \gls{Ground Truth} Datensätze zur Verfügung, welche alle nach den gleichen Regeln erstellt worden sind. Für das \gls{Detektion}[s]- und das \gls{Lokalisation}[s]\glsdisp{Modul}{modul} eines \gls{MOT}-System werden oftmals Trainigsdaten benötigt. Die \textit{MOTChallenge} stellt dazu Trainingsdaten zur Verfügung die nach den gleichen Regeln geschaffen wurden, wie die \gls{Ground Truth} \cite{MOT16, MOT20}. Dies ermöglicht eine faire Bewertung für das \gls{Detektion}[s]- und das \gls{Lokalisation}[s]\glsdisp{Modul}{modul}. Wäre dies nicht der Fall, kann es sein, dass das System einen anderen Umgang mit den Herausforderungen und Mehrdeutigkeiten gelernt hat, als es die \gls{Ground Truth} erwartet. Dadurch können Ergebnisse verzerrt werden. \par
+
+Der Fokus der \textit{MOTChallenge} liegt vor allem auf dem \gls{Tracking} von Fußgängern. Dafür stellt der Wettbewerb Trainings- und Testdatensätze zur Verfügung, um diese Prozesse bei allen teilnehmenden Systemen zu vereinheitlichen. Dies zeigt jedoch, dass ein aussagekräftiger Vergleich von \gls{MOT}-Systemen, bezogen auf eine konkrete Anwendung, nur mit einheitlichen Trainings- und Testdatensätzen möglich ist. Werden für einen Anwendungsfall, wie z.B. das \gls{Tracking} von Fahrzeugen im Straßenverkehr, unterschiedliche Systeme mit unterschiedlichen Datensätzen beurteilt, dann sorgen die Herausforderungen der \gls{Ground Truth} Erstellung dafür, dass die Vergleichbarkeit der Ergebnisse nur eingeschränkt gegeben ist. \todo{viellicht noch ne Quelle hier}
+
+\subsection{Die CLEAR MOT Metriken}
+Die \textit{\acrshort{CLEAR} \gls{MOT}} Metriken sind einer der ersten Versuche einheitliche und allgemeine Metriken für die Bewertung von \gls{MOT}-Systemen zu schaffen. Vor ihrer Veröffentlichung gab es keine Methode die sich für diese Aufgabe durchsetzen konnte. Bis heute ist sie eine der verbreitetsten Metriken für \gls{MOT}-Systemen. In \cite{CLEAR.2008} werden 2 Metriken vorgestellt. In \cite{Kasturi.2009} werden diese um weitere Metriken ergänzt. \par
+
+Um die \textit{\acrshort{CLEAR} \gls{MOT}} Metriken berechnen zu können wird eine \gls{Ground Truth} benötigt und das \gls{Tracking}[ergebnis] eines \gls{MOT}-Systems. Die \gls{Detektion}[en] des \gls{Tracking}[ergebnisses] \(sysDet\) müssen den korrekten \gls{Detektion}[en] aus der \gls{Ground Truth} \(gtDet\) zugeordnet werden, um die Korrektheit des \gls{Tracking}[ergebnisses] beurteilen zu können. Dies erfolgt \glsdisp{Frame}{frameweise}. Um in einem \gls{Frame} eine \(gtDet\) zu einer \(sysDet\) zuzuordnen wird eine minimale Ähnlichkeit \(\alpha\) zwischen den möglichen Zuordnungen verlangt. Bei \gls{Bounding Box}[en] lässt sich die Ähnlichkeit durch die \gls{IoU} ausdrücken. Die Schwelle \(\alpha\) ist vom Anwender festzulegen, da die Ähnlichkeitsanforderung für eine korrekte Zuordnung Anwendungsspezifisch seien kann. Dies ist jedoch der einzige nicht allgemeine Parameter der \textit{\acrshort{CLEAR} \gls{MOT}} Metriken. Für die Zuordnung einer \(sysDet\) zu einer \(gtDet\) kommen alle \(sysDet\) in Frage die ein Ähnlichkeit \(S \geq \alpha\) besitzen. Aus diesen \(sysDet\) wird die bevorzugt, welche die \acrshort{ID} für das Objekt aus den vorherigen \gls{Frame}[s] konstant hält. Die Zuordnungen der \(sysDet\) zu den  \(gtDet\), für welche keine Zuordnungsoptionen bestehen, welche die \acrshort{ID}[s] konstant halten, werden global gelöst. Die globale Lösung versucht die Anzahl der \gls{Detektion}[sfehler] (\ref{sec:Grundlagen von MOT}) zu minimieren und die Ähnlichkeit zu maximieren. Dies geschieht mit der ungarischen Methode \cite{Kuhn.1955}. Dieses Verfahren wirkt sich so auf die Metriken aus, dass diese Maximal werden. \cite{CLEAR.2008, HOTA}. \par
+
+Alle \(sysDet\), welche einer \(gtDet\) zugeordnet werden können gelten als \gls{EP} \(Det_{\gls{EP}}\). Alle \(gtDet\), welche keine Zuordnung erhalten haben sind \gls{FN} \(Det_{\gls{FN}}\) und alle \(sysDet\), welche keine Zuordnung erhalten haben sind \gls{FP} \(Det_{\gls{FP}}\). Jedes mal, wenn ein Objekt seine \acrshort{ID} wechselt, wird ein \gls{IDSW} gezählt. \par
+
+Auf Basis der Zuordnung von \gls{Ground Truth} und \gls{Tracking}[ergebnis] definiert \cite{CLEAR.2008} zwei Metriken: \gls{MOTP} und \gls{MOTA}. Im gleichen Zuge wird oftmals auch \gls{MODA} genannt \cite{Kasturi.2009}. 
+
+\begin{equation}
+    \label{eq:MOTA}
+    MOTA = 1-\frac{\sum_{t}Det_{\gls{FN}_{t}}+Det_{\gls{FP}_{t}}+IDSW_{t}}{\sum_{t}gtDet_t}
+\end{equation}
+
+Die Gleichung \ref{eq:MOTA} zeigt die Berechnung der \gls{MOTA} Wertung. Die Anzahl der \gls{Detektion}[sfehler] und die \gls{IDSW} werden über alle \gls{Frame}[s] \(t\) aufsummiert. Das gleiche geschieht mit allen \(gtDet\). \gls{MOTA} bewertet somit kombiniert die \gls{Modul}[e] für die \gls{Assoziation} und die \gls{Detektion}. 
+
+\begin{equation}
+    \label{eq:MOTP}
+    MOTP = \frac{\sum_{\gls{EP}}S_{\gls{EP}}}{\sum Det_{\gls{EP}}}
+\end{equation}
+
+Mittels der Gleichung \ref{eq:MOTP} lässt sich der \gls{MOTP} Wert berechnen. Dies erfolgt über die Aufsummierung der Ähnlichkeit aller \gls{EP}-Paarungen und der Division durch die Anzahl der \gls{EP}-Paarungen. Somit entspricht \gls{MOTP} dem arithmetischen Mittelwert der Ähnlichkeit. Es ist ein Maß für die Genauigkeit der \gls{Lokalisation}.
+
+\begin{equation}
+    \label{eq:MODA}
+    MODA =  1-\frac{\sum_{t}Det_{\gls{FN}_{t}}+Det_{\gls{FP}_{t}}}{\sum_{t}gtDet_t}
+\end{equation}
+
+Wie die Gleichung \ref{eq:MODA} zeigt handelt es sich um die gleiche Formel wie \ref{eq:MOTA} nur ohne Berücksichtigung der \gls{IDSW}[s]. Somit hat das \gls{Assoziation}[s]\glsdisp{Modul}{modul} keinen Einfluss auf die \ref{eq:MODA} Wertung. Somit handelt es sich bei \ref{eq:MODA} um eine reine Bewertung des \gls{Detektion}[s]\glsdisp{Modul}{moduls} \cite{CLEAR.2008, HOTA, Kasturi.2009}.
+
+\subsection{Die IDF1 Metrik}
+
+\subsection{Higher Order Tracking Accuracy}

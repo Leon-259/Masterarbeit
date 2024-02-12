@@ -5,6 +5,18 @@
 }
 
 
+@misc{Allan.2023,
+ abstract = {trackpy v0.6.1 is functionally equivalent to v0.6.0. It is being released to fix an issue with Zenodo, so that this trackpy release has a citable DOI.
+
+See the {\textless}a href={\textquotedbl}http://soft-matter.github.io/trackpy/v0.6.0/whatsnew.html{\textquotedbl}{\textgreater}release notes for v0.6.0 for more information.},
+ author = {Allan, Daniel B. and Caswell, Thomas and Keim, Nathan C. and {van der Wel}, Casper M. and Verweij, Ruben W.},
+ year = {2023},
+ title = {soft-matter/trackpy: v0.6.1},
+ publisher = {Zenodo},
+ doi = {10.5281/zenodo.7670439}
+}
+
+
 @article{Bewley.2016,
  abstract = {This paper explores a pragmatic approach to multiple object tracking where the main focus is to associate objects efficiently for online and realtime applications. To this end, detection quality is identified as a key factor influencing tracking performance, where changing the detector can improve tracking by up to 18.9{\%}. Despite only using a rudimentary combination of familiar techniques such as the Kalman Filter and Hungarian algorithm for the tracking components, this approach achieves an accuracy comparable to state-of-the-art online trackers. Furthermore, due to the simplicity of our tracking method, the tracker updates at a rate of 260 Hz which is over 20x faster than other state-of-the-art trackers.},
  author = {Bewley, Alex and Ge, Zongyuan and Ott, Lionel and Ramos, Fabio and Upcroft, Ben},
@@ -81,6 +93,21 @@
 }
 
 
+@article{Chen.2023,
+ abstract = {Chicken is a major source of dietary protein worldwide. The dispersion and movement of chickens constitute vital indicators of their health and status. This is especially evident in Taiwanese native chickens (TNCs), a local variety which is high in physical activity when healthy. Conventionally, the dispersion and movement of chicken flocks are observed in patrols. However, manual patrolling is laborious and time-consuming. Moreover, frequent patrols increase the risk of carrying pathogens into chicken farms. To address these issues, this study proposes an approach to develop an automatic warning system for anomalous dispersion and movement of chicken flocks in commercial chicken farms. Embendded systems were developed to acquire videos of chickens from overhead view in a chicken house, in which approximately 20,000 TNCs were raised for a period of 10 wk. Each video was 5-min in length. The videos were transmitted to a remote cloud server and were converted into images. A You Only Look Once-version 7 tiny (YOLOv7-tiny) object detection model was trained to detect chickens in the images. The dispersion of the chicken flocks in a 5-min long video was calculated using nearest neighbor index (NNI). The movement of the chicken flocks in a 5-min long video was quantified using simple online and real-time tracking algorithm (SORT). The normal ranges (i.e., 95{\%} confidence intervals) of chicken dispersion and movement were established using an autoregressive integrated moving average (ARIMA) model and a seasonal autoregressive integrated moving average with exogenous factors (SARIMAX) model, respectively. The system allows farmers to check up on the chicken farm only when the dispersion or movement values were not in the normal ranges. Thus, labor time can be saved and the risk of carrying pathogens into chicken farms can be reduced. The trained YOLOv7-tiny model achieved an average precision of 98.2{\%} in chicken detection. SORT achieved a multiple object tracking accuracy of 95.3{\%}. The ARIMA and SARIMAX achieved a mean absolute percentage error 3.71{\%} and 13.39{\%}, respectively, in forecasting dispersion and movement. The proposed approach can serve as a solution for automatic monitoring of anomalous chicken dispersion and movement in chicken farming, alerting farmers of potential health risks and environmental hazards in chicken farms.},
+ author = {Chen, Bo-Lin and Cheng, Ting-Hui and Huang, Yi-Che and Hsieh, Yu-Lun and Hsu, Hao-Chun and Lu, Chen-Yi and Huang, Mao-Hsiang and Nien, Shu-Yao and Kuo, Yan-Fu},
+ year = {2023},
+ title = {Developing an automatic warning system for anomalous chicken dispersion and movement using deep learning and machine learning},
+ keywords = {Animals;Chickens;Convolutional neural network (CNN);Deep Learning;Embedded system;Farmers;Farms;Humans;Simple online and real-time tracking (SORT);Taiwanese native chickens (TNCs);You only look once (YOLO)},
+ pages = {103040},
+ volume = {102},
+ number = {12},
+ journal = {Poultry science},
+ doi = {10.1016/j.psj.2023.103040},
+ file = {Developing an Automatic Warning System for Anomalous Chicken:Attachments/Developing an Automatic Warning System for Anomalous Chicken.pdf:application/pdf}
+}
+
+
 @article{CLEAR.2008,
  author = {Bernardin, Keni and Stiefelhagen, Rainer},
  year = {2008},
@@ -110,20 +137,20 @@
 }
 
 
-@misc{DataFlair.27.09.2021,
+@misc{DataFlair.2021-09-27,
  abstract = {Python Hadoop Spark Tableau Data Science},
  author = {DataFlair},
- year = {27.09.2021},
+ year = {2021-09-27},
  title = {Blogs - DataFlair},
  url = {https://data-flair.training/blogs/},
- urldate = {25.09.2023}
+ urldate = {2023-09-25}
 }
 
 
-@misc{Dendorfer.15.10.2020,
+@misc{Dendorfer.2020-10-15,
  abstract = {Standardized benchmarks have been crucial in pushing the performance of computer vision algorithms, especially since the advent of deep learning. Although leaderboards should not be over-claimed, they often provide the most objective measure of performance and are therefore important guides for research. We present MOTChallenge, a benchmark for single-camera Multiple Object Tracking (MOT) launched in late 2014, to collect existing and new data, and create a framework for the standardized evaluation of multiple object tracking methods. The benchmark is focused on multiple people tracking, since pedestrians are by far the most studied object in the tracking community, with applications ranging from robot navigation to self-driving cars. This paper collects the first three releases of the benchmark: (i) MOT15, along with numerous state-of-the-art results that were submitted in the last years, (ii) MOT16, which contains new challenging videos, and (iii) MOT17, that extends MOT16 sequences with more precise labels and evaluates tracking performance on three different object detectors. The second and third release not only offers a significant increase in the number of labeled boxes but also provide labels for multiple object classes beside pedestrians, as well as the level of visibility for every single object of interest. We finally provide a categorization of state-of-the-art trackers and a broad error analysis. This will help newcomers understand the related work and research trends in the MOT community, and hopefully shed some light on potential future research directions.},
  author = {Dendorfer, Patrick and O{\v{s}}ep, Aljo{\v{s}}a and Milan, Anton and Schindler, Konrad and Cremers, Daniel and Reid, Ian and Roth, Stefan and Leal-Taix{\'e}, Laura},
- date = {15.10.2020},
+ date = {2020-10-15},
  title = {MOTChallenge: A Benchmark for Single-Camera Multiple Target Tracking},
  url = {http://arxiv.org/pdf/2010.07548v2},
  keywords = {Computer Science - Computer Vision and Pattern Recognition},
@@ -178,10 +205,20 @@
 @misc{IDF1,
  abstract = {To help accelerate progress in multi-target, multi-camera tracking systems, we present (i) a new pair of precision-recall measures of performance that treats errors of all types uniformly and emphasizes correct identification over sources of error; (ii) the largest fully-annotated and calibrated data set to date with more than 2 million frames of 1080p, 60fps video taken by 8 cameras observing more than 2,700 identities over 85 minutes; and (iii) a reference software system as a comparison baseline. We show that (i) our measures properly account for bottom-line identity match performance in the multi-camera setting; (ii) our data set poses realistic challenges to current trackers; and (iii) the performance of our system is comparable to the state of the art.},
  author = {Ristani, Ergys and Solera, Francesco and Zou, Roger S. and Cucchiara, Rita and Tomasi, Carlo},
- date = {06.09.2016},
+ date = {2016-09-06},
  title = {Performance Measures and a Data Set for Multi-Target, Multi-Camera  Tracking},
  url = {http://arxiv.org/pdf/1609.01775.pdf},
- file = {Ristani, Solera et al. 06.09.2016 - Performance Measures and a Data:Attachments/Ristani, Solera et al. 06.09.2016 - Performance Measures and a Data.pdf:application/pdf}
+ file = {Ristani, Solera et al. 2016-09-06 - Performance Measures and a Data:Attachments/Ristani, Solera et al. 2016-09-06 - Performance Measures and a Data.pdf:application/pdf}
+}
+
+
+@proceedings{InstituteofElectricalandElectronicsEngineers.2013,
+ year = {2013},
+ title = {2013 IEEE Conference on Computer Vision and Pattern Recognition workshops (CVPRW 2013): Portland, Oregon, USA, 23 - 28 June 2013 ; [proceedings},
+ address = {Piscataway, NJ},
+ publisher = {IEEE},
+ isbn = {978-0-7695-4990-3},
+ institution = {{Institute of Electrical and Electronics Engineers} and {IEEE Computer Society}}
 }
 
 
@@ -191,6 +228,44 @@
  url = {https://api.semanticscholar.org/CorpusID:130025156},
  year = {2006},
  file = {ClearEval{\_}Protocol{\_}v5:Attachments/ClearEval{\_}Protocol{\_}v5.pdf:application/pdf}
+}
+
+
+@article{Kalman.1960,
+ author = {Kalman, R. E.},
+ year = {1960},
+ title = {A New Approach to Linear Filtering and Prediction Problems},
+ pages = {35--45},
+ volume = {82},
+ number = {1},
+ issn = {0021-9223},
+ journal = {Journal of Basic Engineering},
+ doi = {10.1115/1.3662552}
+}
+
+
+@article{Kasturi.2009,
+ abstract = {Common benchmark data sets, standardized performance metrics, and baseline algorithms have demonstrated considerable impact on research and development in a variety of application domains. These resources provide both consumers and developers of technology with a common framework to objectively compare the performance of different algorithms and algorithmic improvements. In this paper, we present such a framework for evaluating object detection and tracking in video: specifically for face, text, and vehicle objects. This framework includes the source video data, ground-truth annotations (along with guidelines for annotation), performance metrics, evaluation protocols, and tools including scoring software and baseline algorithms. For each detection and tracking task and supported domain, we developed a 50-clip training set and a 50-clip test set. Each data clip is approximately 2.5 minutes long and has been completely spatially/temporally annotated at the I-frame level. Each task/domain, therefore, has an associated annotated corpus of approximately 450,000 frames. The scope of such annotation is unprecedented and was designed to begin to support the necessary quantities of data for robust machine learning approaches, as well as a statistically significant comparison of the performance of algorithms. The goal of this work was to systematically address the challenges of object detection and tracking through a common evaluation framework that permits a meaningful objective comparison of techniques, provides the research community with sufficient data for the exploration of automatic modeling techniques, encourages the incorporation of objective evaluation into the development process, and contributes useful lasting resources of a scale and magnitude that will prove to be extremely useful to the computer vision research community for years to come.},
+ author = {Kasturi, Rangachar and Goldgof, Dmitry and Soundararajan, Padmanabhan and Manohar, Vasant and Garofolo, John and Bowers, Rachel and Boonstra, Matthew and Korzhova, Valentina and Zhang, Jing},
+ year = {2009},
+ title = {Framework for performance evaluation of face, text, and vehicle detection and tracking in video: data, metrics, and protocol},
+ keywords = {Algorithms;Artificial intelligence;Electronic Data Processing;Face/anatomy {\&} histology;Humans;Image Enhancement/methods;Image Interpretation, Computer-Assisted/methods;Motor Vehicles/classification;Pattern Recognition, Automated/methods;Sensitivity and Specificity;Subtraction Technique;Video Recording/methods},
+ pages = {319--336},
+ volume = {31},
+ number = {2},
+ journal = {IEEE transactions on pattern analysis and machine intelligence},
+ doi = {10.1109/TPAMI.2008.57},
+ file = {Framework{\_}for{\_}Performance{\_}Evaluation{\_}of{\_}Face{\_}Text{\_}and{\_}Vehicle{\_}Detection{\_}and{\_}Tracking{\_}in{\_}Video{\_}Data{\_}Metrics{\_}and{\_}Protocol:Attachments/Framework{\_}for{\_}Performance{\_}Evaluation{\_}of{\_}Face{\_}Text{\_}and{\_}Vehicle{\_}Detection{\_}and{\_}Tracking{\_}in{\_}Video{\_}Data{\_}Metrics{\_}and{\_}Protocol.pdf:application/pdf}
+}
+
+
+@article{Kuhn.1955,
+ author = {Kuhn, Harold W.},
+ year = {1955},
+ title = {The Hungarian method for the assignment problem},
+ volume = {52},
+ journal = {Naval Research Logistics (NRL)},
+ file = {Kuhn-hungarian-assignment:Attachments/Kuhn-hungarian-assignment.pdf:application/pdf}
 }
 
 
@@ -216,6 +291,20 @@
  publisher = {{John Wiley {\&} Sons Incorporated}},
  isbn = {978-1-119-68236-3},
  file = {Machine Learning for Time Series Forecasting:Attachments/Machine Learning for Time Series Forecasting.pdf:application/pdf}
+}
+
+
+@article{Leichter.2013,
+ abstract = {There exists an abundance of systems and algorithms for multiple target detection and tracking in video, and many measures for evaluating the quality of their output have been proposed. The contribution of this paper lies in the following: first, it argues that such performance measures should have two fundamental properties--monotonicity and error type differentiability; second, it shows that the recently proposed measures do not have either of these properties and are, thus, less usable; third, it composes a set of simple measures, partly built on common practice, that does have these properties. The informativeness of the proposed set of performance measures is demonstrated through their application on face detection and tracking results.},
+ author = {Leichter, Ido and Krupka, Eyal},
+ year = {2013},
+ title = {Monotonicity and error type differentiability in performance measures for target detection and tracking in video},
+ pages = {2553--2560},
+ volume = {35},
+ number = {10},
+ journal = {IEEE transactions on pattern analysis and machine intelligence},
+ doi = {10.1109/TPAMI.2013.70},
+ file = {Monotonicity and Error Type Differentiability:Attachments/Monotonicity and Error Type Differentiability.pdf:application/pdf}
 }
 
 
@@ -245,10 +334,24 @@ Accepted by Artificial Intelligence},
 }
 
 
+@inproceedings{Milan.2013,
+ author = {Milan, Anton and Schindler, Konrad and Roth, Stefan},
+ title = {Challenges of Ground Truth Evaluation of Multi-target Tracking},
+ pages = {735--742},
+ publisher = {IEEE},
+ isbn = {978-0-7695-4990-3},
+ booktitle = {2013 IEEE Conference on Computer Vision and Pattern Recognition workshops (CVPRW 2013)},
+ year = {2013},
+ address = {Piscataway, NJ},
+ doi = {10.1109/CVPRW.2013.111},
+ file = {Challenges{\_}of{\_}Ground{\_}Truth{\_}Evaluation{\_}of{\_}Multi-target{\_}Tracking:Attachments/Challenges{\_}of{\_}Ground{\_}Truth{\_}Evaluation{\_}of{\_}Multi-target{\_}Tracking.pdf:application/pdf;Milan{\_}Challenges{\_}of{\_}Ground{\_}2013{\_}CVPR{\_}paper:Attachments/Milan{\_}Challenges{\_}of{\_}Ground{\_}2013{\_}CVPR{\_}paper.pdf:application/pdf}
+}
+
+
 @misc{MOT15,
  abstract = {In the recent past, the computer vision community has developed centralized benchmarks for the performance evaluation of a variety of tasks, including generic object and pedestrian detection, 3D reconstruction, optical flow, single-object short-term tracking, and stereo estimation. Despite potential pitfalls of such benchmarks, they have proved to be extremely helpful to advance the state of the art in the respective area. Interestingly, there has been rather limited work on the standardization of quantitative benchmarks for multiple target tracking. One of the few exceptions is the well-known PETS dataset, targeted primarily at surveillance applications. Despite being widely used, it is often applied inconsistently, for example involving using different subsets of the available data, different ways of training the models, or differing evaluation scripts. This paper describes our work toward a novel multiple object tracking benchmark aimed to address such issues. We discuss the challenges of creating such a framework, collecting existing and new data, gathering state-of-the-art methods to be tested on the datasets, and finally creating a unified evaluation system. With MOTChallenge we aim to pave the way toward a unified evaluation framework for a more meaningful quantification of multi-target tracking.},
  author = {Leal-Taix{\'e}, Laura and Milan, Anton and Reid, Ian and Roth, Stefan and Schindler, Konrad},
- date = {08.04.2015},
+ date = {2015-04-08},
  title = {MOTChallenge 2015: Towards a Benchmark for Multi-Target Tracking},
  url = {http://arxiv.org/pdf/1504.01942v1},
  keywords = {Computer Science - Computer Vision and Pattern Recognition},
@@ -259,7 +362,7 @@ Accepted by Artificial Intelligence},
 @misc{MOT16,
  abstract = {Standardized benchmarks are crucial for the majority of computer vision applications. Although leaderboards and ranking tables should not be over-claimed, benchmarks often provide the most objective measure of performance and are therefore important guides for reseach.  Recently, a new benchmark for Multiple Object Tracking, MOTChallenge, was launched with the goal of collecting existing and new data and creating a framework for the standardized evaluation of multiple object tracking methods. The first release of the benchmark focuses on multiple people tracking, since pedestrians are by far the most studied object in the tracking community. This paper accompanies a new release of the MOTChallenge benchmark. Unlike the initial release, all videos of MOT16 have been carefully annotated following a consistent protocol. Moreover, it not only offers a significant increase in the number of labeled boxes, but also provides multiple object classes beside pedestrians and the level of visibility for every single object of interest.},
  author = {Milan, Anton and Leal-Taixe, Laura and Reid, Ian and Roth, Stefan and Schindler, Konrad},
- date = {02.03.2016},
+ date = {2016-03-02},
  title = {MOT16: A Benchmark for Multi-Object Tracking},
  url = {http://arxiv.org/pdf/1603.00831v2},
  keywords = {Computer Science - Computer Vision and Pattern Recognition},
@@ -270,11 +373,23 @@ Accepted by Artificial Intelligence},
 @misc{MOT20,
  abstract = {Standardized benchmarks are crucial for the majority of computer vision applications. Although leaderboards and ranking tables should not be over-claimed, benchmarks often provide the most objective measure of performance and are therefore important guides for research. The benchmark for Multiple Object Tracking, MOTChallenge, was launched with the goal to establish a standardized evaluation of multiple object tracking methods. The challenge focuses on multiple people tracking, since pedestrians are well studied in the tracking community, and precise tracking and detection has high practical relevance. Since the first release, MOT15, MOT16, and MOT17 have tremendously contributed to the community by introducing a clean dataset and precise framework to benchmark multi-object trackers. In this paper, we present our MOT20benchmark, consisting of 8 new sequences depicting very crowded challenging scenes. The benchmark was presented first at the 4thBMTT MOT Challenge Workshop at the Computer Vision and Pattern Recognition Conference (CVPR) 2019, and gives to chance to evaluate state-of-the-art methods for multiple object tracking when handling extremely crowded scenarios.},
  author = {Dendorfer, Patrick and Rezatofighi, Hamid and Milan, Anton and Shi, Javen and Cremers, Daniel and Reid, Ian and Roth, Stefan and Schindler, Konrad and Leal-Taix{\'e}, Laura},
- date = {19.03.2020},
+ date = {2020-03-19},
  title = {MOT20: A benchmark for multi object tracking in crowded scenes},
  url = {http://arxiv.org/pdf/2003.09003v1},
  keywords = {Computer Science - Computer Vision and Pattern Recognition},
  file = {MOT20:Attachments/MOT20.pdf:application/pdf}
+}
+
+
+@book{Nelson.1972,
+ author = {Nelson, Edward},
+ year = {1972},
+ title = {Dynamical theories of Brownian motion},
+ address = {Princeton, NJ},
+ publisher = {{Princeton Univ. Pr}},
+ isbn = {9780691079509},
+ series = {Mathematical notes},
+ file = {bmotion:Attachments/bmotion.pdf:application/pdf}
 }
 
 
@@ -300,10 +415,10 @@ Accepted by Artificial Intelligence},
 }
 
 
-@misc{Ristani.06.09.2016b,
+@misc{Ristani.2016-09-06b,
  abstract = {To help accelerate progress in multi-target, multi-camera tracking systems, we present (i) a new pair of precision-recall measures of performance that treats errors of all types uniformly and emphasizes correct identification over sources of error; (ii) the largest fully-annotated and calibrated data set to date with more than 2 million frames of 1080p, 60fps video taken by 8 cameras observing more than 2,700 identities over 85 minutes; and (iii) a reference software system as a comparison baseline. We show that (i) our measures properly account for bottom-line identity match performance in the multi-camera setting; (ii) our data set poses realistic challenges to current trackers; and (iii) the performance of our system is comparable to the state of the art.},
  author = {Ristani, Ergys and Solera, Francesco and Zou, Roger S. and Cucchiara, Rita and Tomasi, Carlo},
- date = {06.09.2016},
+ date = {2016-09-06},
  title = {Performance Measures and a Data Set for Multi-Target, Multi-Camera  Tracking},
  url = {http://arxiv.org/pdf/1609.01775v2},
  keywords = {Computer Science - Computer Vision and Pattern Recognition},
@@ -324,23 +439,23 @@ Accepted by Artificial Intelligence},
 }
 
 
-@misc{scikitlearn.25.09.2023,
+@misc{scikitlearn.2023-09-25,
  abstract = {User Guide: Supervised learning- Linear Models- Ordinary Least Squares, Ridge regression and classification, Lasso, Multi-task Lasso, Elastic-Net, Multi-task Elastic-Net, Least Angle Regression, LA...},
  author = {scikit-learn},
- year = {25.09.2023},
+ year = {2023-09-25},
  title = {User guide: contents},
  url = {https://scikit-learn.org/stable/user_guide.html},
- urldate = {25.09.2023}
+ urldate = {2023-09-25}
 }
 
 
-@misc{scikitlearn.25.09.2023b,
+@misc{scikitlearn.2023-09-25b,
  abstract = {Often the hardest part of solving a machine learning problem can be finding the right estimator for the job. Different estimators are better suited for different types of data and different problem...},
  author = {scikit-learn},
- year = {25.09.2023},
+ year = {2023-09-25},
  title = {Choosing the right estimator},
  url = {https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html},
- urldate = {25.09.2023}
+ urldate = {2023-09-25}
 }
 
 
@@ -369,10 +484,10 @@ Accepted by Artificial Intelligence},
 }
 
 
-@misc{Sutton.17.11.2010,
+@misc{Sutton.2010-11-17,
  abstract = {Often we wish to predict a large number of variables that depend on each other as well as on other observed variables. Structured prediction methods are essentially a combination of classification and graphical modeling, combining the ability of graphical models to compactly model multivariate data with the ability of classification methods to perform prediction using large sets of input features. This tutorial describes conditional random fields, a popular probabilistic method for structured prediction. CRFs have seen wide application in natural language processing, computer vision, and bioinformatics. We describe methods for inference and parameter estimation for CRFs, including practical issues for implementing large scale CRFs. We do not assume previous knowledge of graphical modeling, so this tutorial is intended to be useful to practitioners in a wide variety of fields.},
  author = {Sutton, Charles and McCallum, Andrew},
- date = {17.11.2010},
+ date = {2010-11-17},
  title = {An Introduction to Conditional Random Fields},
  url = {http://arxiv.org/pdf/1011.4088v1},
  keywords = {Statistics - Machine Learning},
@@ -397,13 +512,13 @@ Accepted by Artificial Intelligence},
 }
 
 
-@article{Tzini.03.12.2020,
+@article{Tzini.2020-12-03,
  abstract = {This post is the second part of a blog series on Feature Selection. Have a look at Filter (part1) and Embedded (part3) Methods. In part 1, we talked about Filter methods, which help you select$\ldots$},
  author = {Tzini, Elli},
- year = {03.12.2020},
+ year = {2020-12-03},
  title = {Feature Selection: Wrapper Methods | Analytics Vidhya},
  url = {https://medium.com/analytics-vidhya/feature-selection-85539d6a2a88},
- urldate = {15.12.2023},
+ urldate = {2023-12-15},
  journal = {Analytics Vidhya}
 }
 
