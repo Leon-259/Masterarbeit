@@ -1,5 +1,5 @@
 \section{Metriken zur Bewertung von Multi-Object-Tracking Systemen}
-So wie \gls{MOT} selbst ist auch die Bewertung von \gls{MOT}-Systemen ein recht junges Feld. In den letzten Jahren wurden einige Verfahren und Metriken für diesen Zweck entwickelt, jedoch hat sich davon keine deutlich gegenüber den anderen durchgesetzt, weshalb in Veröffentlichungen oftmals mehrere Metriken angegeben werden. Aus diesem Grund werden auch hier 3 Metriken vorgestellt. Geordnet sind sie in ihrer historischen Reihenfolge. Während die \acrshort{CLEAR} Metriken \cite{CLEAR.2008} und die IDF1 Metrik \cite{IDF1} sich inzwischen etabliert haben, ist die Higher Order Tracking Accuracy (\acrshort{HOTA}) \cite{HOTA} der neuste Ansatz von den dreien und noch weniger etabliert. Bevor die einzelnen Metriken im Detail vorgestellt werden, wird auf einige Grundlagen der Evaluation von \gls{MOT}-Systemen eingegangen.
+So wie \gls{MOT} selbst ist auch die Bewertung von \gls{MOT}-Systemen ein recht junges Feld. In den letzten Jahren wurden einige Verfahren und Metriken für diesen Zweck entwickelt, jedoch hat sich davon keine deutlich gegenüber den anderen durchgesetzt, weshalb in Veröffentlichungen oftmals mehrere Metriken angegeben werden. Aus diesem Grund werden auch hier 3 Metriken vorgestellt. Geordnet sind sie in ihrer historischen Reihenfolge. Während die  \textit{\acrshort{CLEAR} \gls{MOT}} Metriken \cite{CLEAR.2008} und die \textit{\gls{IDF1}-Metrik} \cite{IDF1} sich inzwischen etabliert haben, ist die \gls{HOTA} \cite{HOTA} der neuste Ansatz von den dreien und noch weniger etabliert. Bevor die einzelnen Metriken im Detail vorgestellt werden, wird auf einige Grundlagen der Evaluation von \gls{MOT}-Systemen eingegangen.
 
 \subsection{Grundlagen der Bewertung von Multi-Object-Tracking Systemen}
 Die Evaluation von \gls{MOT}-Systemen funktioniert über ein \glsdisp{Ereignis}{Referenzereignis}. Diese Referenz beinhaltet alle korrekten \gls{Detektion}[en], \gls{Lokalisation}[en] und \gls{Assoziation}[en]. Diese Referenz wird als \gls{Ground Truth} bezeichnet \todo{Quelle def GT} \cite{EMPTYCITE}. Das \gls{MOT}-System wird auf das \glsdisp{Ereignis}{Referenzereignis} angewendet und gibt ein Ergebnis zurück. Dieses Ergebnis wird mit der \gls{Ground Truth} verglichen. Der Grad der Übereinstimmung ist das Evaluationsergebnis für das \gls{MOT}-System. Die verschiedenen Metriken unterscheiden sich in ihrer Berechnung des Übereinstimmungsgrads. Dadurch kommt es zu unterschieden in der Gewichtung des Einflusses der Fehlertypen (\ref{sec:Grundlagen von MOT}) und der \gls{Modul}[e] von \gls{MOT}-Systemen \cite{HOTA, IDF1, CLEAR.2008}.\par
@@ -15,7 +15,7 @@ Der Fokus der \textit{MOTChallenge} liegt vor allem auf dem \gls{Tracking} von F
 \subsection{Die CLEAR MOT Metriken}
 Die \textit{\acrshort{CLEAR} \gls{MOT}} Metriken sind einer der ersten Versuche einheitliche und allgemeine Metriken für die Bewertung von \gls{MOT}-Systemen zu schaffen. Vor ihrer Veröffentlichung gab es keine Methode die sich für diese Aufgabe durchsetzen konnte. Bis heute ist sie eine der verbreitetsten Metriken für \gls{MOT}-Systemen. In \cite{CLEAR.2008} werden 2 Metriken vorgestellt. In \cite{Kasturi.2009} werden diese um weitere Metriken ergänzt. \par
 
-Um die \textit{\acrshort{CLEAR} \gls{MOT}} Metriken berechnen zu können wird eine \gls{Ground Truth} benötigt und das \gls{Tracking}[ergebnis] eines \gls{MOT}-Systems. Die \gls{Detektion}[en] des \gls{Tracking}[ergebnisses] \(sysDet\) müssen den korrekten \gls{Detektion}[en] aus der \gls{Ground Truth} \(gtDet\) zugeordnet werden, um die Korrektheit des \gls{Tracking}[ergebnisses] beurteilen zu können. Dies erfolgt \glsdisp{Frame}{frameweise}. Um in einem \gls{Frame} eine \(gtDet\) zu einer \(sysDet\) zuzuordnen wird eine minimale Ähnlichkeit \(\alpha\) zwischen den möglichen Zuordnungen verlangt. Bei \gls{Bounding Box}[en] lässt sich die Ähnlichkeit durch die \gls{IoU} ausdrücken. Die Schwelle \(\alpha\) ist vom Anwender festzulegen, da die Ähnlichkeitsanforderung für eine korrekte Zuordnung Anwendungsspezifisch seien kann. Dies ist jedoch der einzige nicht allgemeine Parameter der \textit{\acrshort{CLEAR} \gls{MOT}} Metriken. Für die Zuordnung einer \(sysDet\) zu einer \(gtDet\) kommen alle \(sysDet\) in Frage die ein Ähnlichkeit \(S \geq \alpha\) besitzen. Aus diesen \(sysDet\) wird die bevorzugt, welche die \acrshort{ID} für das Objekt aus den vorherigen \gls{Frame}[s] konstant hält. Die Zuordnungen der \(sysDet\) zu den  \(gtDet\), für welche keine Zuordnungsoptionen bestehen, welche die \acrshort{ID}[s] konstant halten, werden global gelöst. Die globale Lösung versucht die Anzahl der \gls{Detektion}[sfehler] (\ref{sec:Grundlagen von MOT}) zu minimieren und die Ähnlichkeit zu maximieren. Dies geschieht mit der ungarischen Methode \cite{Kuhn.1955}. Dieses Verfahren wirkt sich so auf die Metriken aus, dass diese Maximal werden. \cite{CLEAR.2008, HOTA}. \par
+Um die \textit{\acrshort{CLEAR} \gls{MOT}} Metriken berechnen zu können wird eine \gls{Ground Truth} benötigt und das \gls{Tracking}[ergebnis] eines \gls{MOT}-Systems. Die \gls{Detektion}[en] des \gls{Tracking}[ergebnisses] \(sysDet\) müssen den korrekten \gls{Detektion}[en] aus der \gls{Ground Truth} \(gtDet\) zugeordnet werden, um die Korrektheit des \gls{Tracking}[ergebnisses] beurteilen zu können. Dabei erfolgt die Zuordnung eins zu eins. Das bedeutet jeder \(gtDet\) wird maximal eine \(sysDet\) zugeordnet und in die andere Richtung genau so. Die Zuordnung erfolgt \glsdisp{Frame}{frameweise}. Um in einem \gls{Frame} eine \(gtDet\) zu einer \(sysDet\) zuzuordnen wird eine minimale Ähnlichkeit \(\alpha\) zwischen den möglichen Zuordnungen verlangt. Bei \gls{Bounding Box}[en] lässt sich die Ähnlichkeit durch die \gls{IoU} ausdrücken. Die Schwelle \(\alpha\) ist vom Anwender festzulegen, da die Ähnlichkeitsanforderung für eine korrekte Zuordnung Anwendungsspezifisch seien kann. Dies ist jedoch der einzige nicht allgemeine Parameter der \textit{\acrshort{CLEAR} \gls{MOT}} Metriken. Für die Zuordnung einer \(sysDet\) zu einer \(gtDet\) kommen alle \(sysDet\) in Frage die ein Ähnlichkeit \(S \geq \alpha\) besitzen. Aus diesen \(sysDet\) wird die bevorzugt, welche die \acrshort{ID} für das Objekt aus den vorherigen \gls{Frame}[s] konstant hält. Die Zuordnungen der \(sysDet\) zu den  \(gtDet\), für welche keine Zuordnungsoptionen bestehen, welche die \acrshort{ID}[s] konstant halten, werden global gelöst. Die globale Lösung versucht die Anzahl der \gls{Detektion}[sfehler] (\ref{sec:Grundlagen von MOT}) zu minimieren und die Ähnlichkeit zu maximieren. Dies geschieht mit der ungarischen Methode \cite{Kuhn.1955}. Dieses Verfahren wirkt sich so auf die Metriken aus, dass diese Maximal werden. \cite{CLEAR.2008, HOTA}. \par
 
 Alle \(sysDet\), welche einer \(gtDet\) zugeordnet werden können gelten als \glsdisp{EP}{echt positive} \gls{Detektion}[en] des Systems. \(Det_{\gls{EP}_t}\) sind alle \glsdisp{EP}{echt positiven} \gls{Detektion}[en] zum Zeitpunkt \(t\). Alle \(gtDet\), welche keine Zuordnung erhalten haben sind \glsdisp{FN}{falsch negativ} \(Det_{\gls{FN}_t}\) und alle \(sysDet\), welche keine Zuordnung erhalten haben sind \glsdisp{FP}{falsch positiv} \(Det_{\gls{FP}_t}\). Jedes mal, wenn ein Objekt der \gls{Ground Truth} vom System eine andere \acrshort{ID} erhält als in den \gls{Frame}[s] zuvor, wird dies als ein ein \gls{IDSW} gezählt. \(\gls{IDSW}_t\) sind alle \gls{IDSW}[s] im Zeitpunkt t. \(N\) ist die Menge der \gls{Frame}[s] im \gls{Ereignis} und für die Zeitpunkte gilt \(t \in N\). \cite{CLEAR.2008, IDF1}. \par
 
@@ -44,23 +44,23 @@ Wie die Gleichung \ref{eq:MODA} zeigt handelt es sich um die gleiche Formel wie 
 
 
 \subsection{Die Identifikationsmetrik: IDF1}
-Die Motivation hinter der \textit{IDF1-Metrik} ist, dass vorausgegangene Metriken, wie die \textit{\acrshort{CLEAR} \gls{MOT}} Metriken ein verzerrtes Bild entstehen lassen können, wenn es darum geht, welches \gls{MOT}-System am besten für eine Aufgabe geeignet ist. Dies lässt sich an einem Beispiel demonstrieren. In einem Überwachungsszenario soll eine Person verfolgt werden. Ein \gls{MOT}-System A weist der verfolgten Person die \acrshort{ID} \(a1\) zu und ist in der Lage die Identität über zehn \gls{Frame}[s] konstant zu halten. Danach macht es einen \gls{IDSW} und die Person erhält die \acrshort{ID} \(a2\). Ein \gls{MOT}-System B gibt der Person die \acrshort{ID} \(b1\) und hält diese ebenfalls für zehn \gls{Frame}[s] konstant. Anschließend wechselt das System die \acrshort{ID} der Person zwischen \(b1\) und \(b2\) hin und her. Die Abbildung \ref{fig:bspIDF1vsMOTA} veranschaulicht das Beispiel.
+Die Motivation hinter der \textit{\gls{IDF1}-Metrik} ist, dass vorausgegangene Metriken, wie die \textit{\acrshort{CLEAR} \gls{MOT}} Metriken ein verzerrtes Bild entstehen lassen können, wenn es darum geht, welches \gls{MOT}-System am besten für eine Aufgabe geeignet ist. Dies lässt sich an einem Beispiel demonstrieren. In einem Überwachungsszenario soll eine Person verfolgt werden. Ein \gls{MOT}-System A weist der verfolgten Person die \acrshort{ID} \(a1\) zu und ist in der Lage die Identität über zehn \gls{Frame}[s] konstant zu halten. Danach macht es einen \gls{IDSW} und die Person erhält die \acrshort{ID} \(a2\). Ein \gls{MOT}-System B gibt der Person die \acrshort{ID} \(b1\) und hält diese ebenfalls für zehn \gls{Frame}[s] konstant. Anschließend wechselt das System die \acrshort{ID} der Person zwischen \(b1\) und \(b2\) hin und her. Die Abbildung \ref{fig:bspIDF1vsMOTA} veranschaulicht das Beispiel.
 
 \emptyFigure{Fehlt}{fig:bspIDF1vsMOTA}
 \todo{Fig Beschreibung Fehlt} 
 
-Wenn nun für diesen Anwendungsfall eins der beiden \gls{MOT}-Systeme auszuwählen ist, dann würde die Wahl auf B fallen, da die verfolgte Person auch nach den ersten zehn \gls{Frame}[s] auffindbar ist, wenn auch nicht konstant. \gls{MOTA} würde jedoch das \gls{MOT}-System A höher bewerten, da es nur einen \gls{IDSW} macht. Die \textit{IDF1-Metrik} hält es für sinnvoller, zu Bewerten wie gut ein \gls{MOT}-System darin ist Identitäten korrekt zuzuweisen \cite{IDF1}. \par
+Wenn nun für diesen Anwendungsfall eins der beiden \gls{MOT}-Systeme auszuwählen ist, dann würde die Wahl auf B fallen, da die verfolgte Person auch nach den ersten zehn \gls{Frame}[s] auffindbar ist, wenn auch nicht konstant. \gls{MOTA} würde jedoch das \gls{MOT}-System A höher bewerten, da es nur einen \gls{IDSW} macht. Die \textit{\gls{IDF1}-Metrik} hält es für sinnvoller, zu Bewerten wie gut ein \gls{MOT}-System darin ist Identitäten korrekt zuzuweisen \cite{IDF1}. \par
 
-Für die Berechnung der \textit{IDF1-Metrik} findet die Zuordnung zwischen \gls{Ground Truth} und \gls{Tracking}[ergebnis] auf \gls{Trajektorie}[nebene] statt und nicht auf \gls{Detektion}[sebene] wie bei den \textit{\acrshort{CLEAR} \gls{MOT}} Metriken. Jeder \gls{Ground Truth} \gls{Trajektorie} \(gtTraj\) wird eine \gls{Trajektorie} aus dem \gls{Tracking}[ergebnis] \(sysTraj\) zugeordnet. Für die Zuordnung wird vergleichen wie gut die \gls{Detektion}[en] innerhalb von \(sysTraj\) und \(gtTraj\) übereinstimmen. Dies geschieht, wie bei den \textit{\acrshort{CLEAR} \gls{MOT}} Metriken, über die \gls{IoU} als Maß für die Ähnlichkeit \(S\) und einen Schwellwert \(\alpha\). Ist \(S \geq \alpha\) nicht erreicht liegt ein \gls{Assoziation}[sfehler] vor (\ref{sec:Grundlagen von MOT}). Ist im \gls{Frame} in dem der Fehler auftritt eine \(gtDet\) vorhanden, aber keine \(sysDet\), wird dies als \glsdisp{FN}{falsch negative} \gls{Assoziation} gewertet. Umgekehrt handelt es sich um eine \glsdisp{FP}{falsch positive} \gls{Assoziation}. Sind sowohl \(gtDet\), sowie \(sysDet\) vorhanden wird eine \glsdisp{FN}{falsch negative} und \glsdisp{FP}{falsch positive} \gls{Assoziation} gewertet. Das Zuordnungsproblem wird gelöst indem die Gesamtzahl dieser Fehler minimiert wird. Dabei kann die optimale Lösung dazu führen, dass nicht alle \gls{Trajektorie}[n] eine Zuordnung erhalten \cite{IDF1}. \par
+Für die Berechnung der \textit{\gls{IDF1}-Metrik} findet die Zuordnung zwischen \gls{Ground Truth} und \gls{Tracking}[ergebnis] auf \gls{Trajektorie}[nebene] statt und nicht auf \gls{Detektion}[sebene] wie bei den \textit{\acrshort{CLEAR} \gls{MOT}} Metriken. Jeder \gls{Ground Truth} \gls{Trajektorie} \(gtTraj\) wird eine \gls{Trajektorie} aus dem \gls{Tracking}[ergebnis] \(sysTraj\) zugeordnet. Für die Zuordnung wird vergleichen wie gut die \gls{Detektion}[en] innerhalb von \(sysTraj\) und \(gtTraj\) übereinstimmen. Dies geschieht, wie bei den \textit{\acrshort{CLEAR} \gls{MOT}} Metriken, über die \gls{IoU} als Maß für die Ähnlichkeit \(S\) und einen Schwellwert \(\alpha\). Ist \(S \geq \alpha\) nicht erreicht liegt ein \gls{Assoziation}[sfehler] vor (\ref{sec:Grundlagen von MOT}). Ist im \gls{Frame} in dem der Fehler auftritt eine \(gtDet\) vorhanden, aber keine \(sysDet\), wird dies als \glsdisp{FN}{falsch negative} \gls{Assoziation} gewertet. Umgekehrt handelt es sich um eine \glsdisp{FP}{falsch positive} \gls{Assoziation}. Sind sowohl \(gtDet\), sowie \(sysDet\) vorhanden wird eine \glsdisp{FN}{falsch negative} und \glsdisp{FP}{falsch positive} \gls{Assoziation} gewertet. Das Zuordnungsproblem wird gelöst indem die Gesamtzahl dieser Fehler minimiert wird. Dabei kann die optimale Lösung dazu führen, dass nicht alle \gls{Trajektorie}[n] eine Zuordnung erhalten \cite{IDF1}. \par
 
-Über alle Paare von \(gtTraj\) und \(sysTraj\) werden die Fehler aufsummiert. \(IDFN\) ist die Summer aller \glsdisp{FN}{falsch negative} \gls{Assoziation}[en], \(IDFP\) ist die der \glsdisp{FP}{falsch positive} und \(IDEP\) ist die Summe der echt positiven \gls{Assoziation}[en]. Mit diesen Definitionen lässt sich dann die \textit{IDF1-Metrik} berechnen. 
+Über alle Paare von \(gtTraj\) und \(sysTraj\) wird die Anzahl der Fehler aufsummiert. \(IDFN\) ist die Anzahl aller \glsdisp{FN}{falsch negative} \gls{Assoziation}[en], \(IDFP\) ist die der \glsdisp{FP}{falsch positive} und \(IDEP\) ist die Anzahl der echt positiven \gls{Assoziation}[en]. Mit diesen Definitionen lässt sich dann die \textit{\gls{IDF1}-Metrik} berechnen. 
 
 \begin{equation}
     \label{eq:IDF1}
     IDF_1 = \frac{2 IDEP}{2 IDEP+IDFP+IDFN}
 \end{equation}
 
-Die Gleichung \ref{eq:IDF1} zeigt die Berechnungsvorschrift der finalen Wertung der \textit{IDF1-Metrik}. Sie setzt sich über den harmonischen Mittelwert der ID-Präzision (\(IDP\)) \ref{eq:IDP} und der ID-Erkennungsrate (\(IDR\)) \ref{eq:IDR} zusammen \cite{IDF1, Kroschel.2011}.
+Die Gleichung \ref{eq:IDF1} zeigt die Berechnungsvorschrift der finalen Wertung der \textit{\gls{IDF1}-Metrik}. Sie setzt sich über den harmonischen Mittelwert der ID-Präzision (\(IDP\)) \ref{eq:IDP} und der ID-Erkennungsrate (\(IDR\)) \ref{eq:IDR} zusammen \cite{IDF1, Kroschel.2011}.
 
 \begin{equation}
     \label{eq:IDP}
@@ -72,6 +72,124 @@ Die Gleichung \ref{eq:IDF1} zeigt die Berechnungsvorschrift der finalen Wertung 
     IDR = \frac{IDEP}{IDEP+IDNP}
 \end{equation}
 
-Über die ID-Präzision \ref{eq:IDP} und die ID-Erkennungsrate \ref{eq:IDR} ermöglicht es die \textit{IDF1-Metrik} zu analysieren, welche Fehler ein \gls{MOT}-System bei der \gls{Assoziation} macht. Dafür ist mit der Metrik keine Beurteilung des \gls{Assoziation}\glsdisp{Modul}{smoduls} möglich \cite{IDF1, HOTA}. 
+Über die ID-Präzision \ref{eq:IDP} und die ID-Erkennungsrate \ref{eq:IDR} ermöglicht es die \textit{\gls{IDF1}-Metrik} zu analysieren, welche Fehler ein \gls{MOT}-System bei der \gls{Assoziation} macht. Dafür ist mit der Metrik keine Beurteilung des \gls{Assoziation}\glsdisp{Modul}{smoduls} möglich \cite{IDF1, HOTA}. 
 
 \subsection{Higher Order Tracking Accuracy}
+Von den hier vorgestellten Metriken ist \textit{\gls{HOTA}} die neuste. Aus diesem Grund ist sie bisher noch weniger etabliert als die \textit{\acrshort{CLEAR} \gls{MOT}} Metriken oder die \textit{\gls{IDF1}-Metrik}. Die Motivation eine neue \gls{MOT}-Metrik zu entwerfen, erklärt die Veröffentlichung von \textit{\gls{HOTA}} \cite{HOTA} mit einer Sammlung vieler Kritikpunkte der Forschung an den Vorgängermetriken. Anschließend wird beschrieben wie \textit{\gls{HOTA}} viele dieser Kritikpunkte überwindet. \par
+
+Neben den Kritikpunkten, welche die \textit{\gls{IDF1}-Metrik} bereits an den \textit{\acrshort{CLEAR} \gls{MOT}} Metriken äußert, wird kritisiert, dass die \gls{MOTA} Wertung den Einfluss des \gls{Detektion}\glsdisp{Modul}{smoduls} deutlich stärker gewichtet, als den des \gls{Assoziation}\glsdisp{Modul}{smoduls}. Es wird aufgezeigt, dass der Einfluss der \gls{Detektion} 100 mal größer ist, als der Einfluss der \gls{Assoziation}. Ebenfalls fließen nicht alle Fehlerarten in \gls{MOTA} ein (\ref{sec:Grundlagen von MOT}). Merger Fehler werden nicht ermittelt. Der \gls{MOTA} Wert hat keine untere Grenze. Das obere Limit ist 1, jedoch kann der Wert bis in das negativ Unendliche fallen. Dies macht die Interpretierbarkeit schwieriger. Ein Wert von 0 könnte nicht so schlecht sein wie es auf den ersten Blick scheint. Abschließend ist ein weiterer Nachteil der \textit{\acrshort{CLEAR} \gls{MOT}} Metriken, dass mindestens 2 Metriken benötigt werden, um  alle \gls{Modul}[e] eines \gls{MOT}-Systems zu beurteilen. Für die Vergleichbarkeit verschiedener \gls{MOT}-Systeme wäre eine einzelne Metrik anzustreben, welche die Beurteilung aller \gls{Modul}[e] fair zusammenführt \cite{HOTA}.\par
+
+An der \textit{\gls{IDF1}-Metrik} wird kritisiert, dass sie keine Aussage über die \gls{Lokalisation} beinhaltet. Generell lässt sich mit der Metrik wenig über das Systemverhalten aussagen. Analysen über die Stärken und Schwächen eines \gls{MOT}-Systems sind im Detail nicht möglich. Ebenfalls wird das \gls{Detektion}\glsdisp{Modul}{smodul} nicht fair bewertet. \(sysTraj\), welche keiner \(gtTraj\) zugeordnet werden konnten, werden von der Metrik als Fehler gewertet. Somit kann eine Verbesserung im \gls{Detektion}\glsdisp{Modul}{smodul}, dazu führen, dass sich der \gls{IDF1} Wert verschlechtert. Werden mehr Objekte von der \gls{Detektion} erkannt, aber diese befinden sich in nicht zugeordneten \(sysTraj\), dann wirkt sich die Verbesserung negativ aus. Zusätzlich bedeutet eine fehlende Zuordnung für eine \(sysTraj\) nicht, dass diese Falsch ist. Die \(sysTraj\) kann korrekte Fragmente beinhalten, doch das System hat beispielsweise der passenden \(gtTraj\) ein größeres Fragment einer anderen \(sysTraj\) zugeordnet. Diese korrekten Fragmente wirken sich ebenfalls negativ auf den \gls{IDF1} Wert aus. Für eine sinnvolle Metrik müssen sich Verbesserungen und korrekte Ergebnisse in den \gls{Modul}[e] eines \gls{MOT}-Systems immer positiv auswirken \cite{HOTA}. \par
+
+\gls{HOTA} bewertet alle \gls{Modul}[e] fair und führt diese in einer einzelnen Metrik zusammen. Diese Metrik lässt sich in Submetriken zerlegen, welche eine detaillierte Analyse des Systems ermöglichen. Wie bei der \textit{\gls{IDF1}-Metrik} wird dabei die Fähigkeit bewertet lange konstante \gls{Trajektorie}[n] zu generieren, jedoch mit einem Konzept, welches alle Fragmente und \gls{Detektion}[en] des Systems fair berücksichtigt \cite{HOTA}. \par
+
+Die Zuordnung des \gls{Tracking}[ergebnisses] zur \gls{Ground Truth} funktioniert auf der \gls{Detektion}[sebene], ähnlich wie bei den \textit{\acrshort{CLEAR} \gls{MOT}} Metriken. Mit einem Ähnlichkeitsschwellwert \(\alpha\) werden die Zuordnungsoptionen gefiltert. Die Zuordnung findet 1 zu 1 statt. Gelöst wird das Zuordnungsproblem mit der ungarischen Methode \cite{Kuhn.1955}, jedoch ist das Optimierungskriterium anders als bei den \textit{\acrshort{CLEAR} \gls{MOT}} Metriken. Dieses wird später erläutert \cite{HOTA}. \par
+
+Die \gls{Detektion}[en] lassen sich anschließend einteilen in echt positive \(Det_{EP}\), falsch positive \(Det_{FP}\) und falsch negative \gls{Detektion}[en] \(Det_{EP}\). \(EP\) ist die Menge aller \(Det_{EP}\), \(FP\) ist die Menge aller \(Det_{FP}\) und \(FN\) die der \(Det_{FN}\). Für die Evaluation der \gls{Assoziation} wird ein neues Konzept eingeführt: Echt positive \gls{Assoziation}[en] \(Ass_{EP}\), falsch positive \gls{Assoziation}[en] \(Ass_{FP}\) und falsch negative \gls{Assoziation}[en] \(Ass_{FN}\). Diese sind für jede \(Det_{EP}\) definiert. Ist \(e\) eine echt positive \gls{Detektion}, so gilt
+
+\begin{itemize}
+    \item \(Ass_{EP}\): Menge aller \(Det_{EP}\), welche die gleiche \acrshort{ID} wie \(e\) besitzen.
+    \item \(Ass_{FP}\): Menge aller \(sysDet\), welche die gleiche \acrshort{ID} wie \(e\) besitzen, wo jedoch die \acrshort{ID} der \(gtDet\) eine andere ist.
+    \item \(Ass_{FN}\): Menge aller \(gtDet\), welche die gleiche \acrshort{ID} wie \(e\) besitzen, wo jedoch die \acrshort{ID} der \(sysDet\) eine andere ist.
+\end{itemize}
+
+Die Abbildung \ref{fig:KonzeptAssHOTA} veranschaulicht dieses Konzept. Äquivalent zu ded \gls{Detektion}[en] gilt \(EPA\) ist die Menge aller \(Ass_{EP}\), \(FPA\) ist die Menge aller \(Ass_{FP}\) und \(FNA\) die der \(Ass_{FN}\).
+    
+\emptyFigure{Fehlt}{fig:KonzeptAssHOTA}
+\todo{Fig Beschreibung Fehlt} 
+
+Mit diesen Definitionen lässt sich die \gls{HOTA} Metrik berechnen. Für eine \(Det_{EP}\) \(e\) lässt sich ein \gls{Assoziation}[s]wert \(A(e)\) ermitteln. Über diesen und das \gls{Detektion}[sergebnis] lässt sich die \gls{HOTA} Wertung ermitteln. Dies zeigen die Formeln \ref{eq:HOTAalpha} und \ref{eq:AssScore}.
+
+\begin{equation}
+    \label{eq:HOTAalpha}
+    HOTA_{\alpha} = \sqrt{\frac{\sum_{e \in EP} A(e)}{|EP| + |FN| + |FP|}}
+\end{equation}
+
+\begin{equation}
+    \label{eq:AssScore}
+    A(e) = \frac{|EPA(e)|}{|EPA(e)| + |FNA(e)| + |FPA(e)|}
+\end{equation}
+
+Da die Zuordnung mit einer Anforderung \(\alpha\) an die \gls{Lokalisation} stattfindet, wird diese Abhängigkeit der \(\gls{HOTA}_{\alpha}\) Wertung in \ref{eq:HOTAalpha} über den Index verdeutlicht. Um die \gls{Lokalisation} mit in eine Gesamtwertung zu integrieren, wird die Ähnlichkeitsanforderung \(\alpha\) von 0 bis 1 variiert. Anschließend wird über diesen Verlauf der \(\gls{HOTA}_{\alpha}\) Werte integriert, um eine \(\alpha\) unabhängige \(\gls{HOTA}\) Wertung zu erhalten. In der Praxis wird \(\gls{HOTA}_{\alpha}\) für \(0.05 \leq \alpha \leq 0.95\) berechnet und über die Anzahl der Inkrement gemittelt. Dabei wird \(\alpha\) in Schritten von 0.05 inkrementiert. Die Gleichung \ref{eq:HOTA} zeigt die Berechnung der \(\gls{HOTA}\) Wertung.
+
+\begin{equation}
+    \label{eq:HOTA}
+    HOTA = \int_{0}^{1} HOTA_{\alpha} d\alpha \approx \frac{1}{19} \sum_{\alpha \in (0,05, 0,1, \dots, 0,9, 0,95)} HOTA_{\alpha}
+\end{equation}
+
+Die Zuordnung von des \gls{Tracking}[ergebnisses] zur \gls{Ground Truth} wird so Optimiert, dass der \(\gls{HOTA}\) Wert maximal wird. Dies erfolgt so, dass die ungarische Methode als erstes Kriterium die Anzahl der \({Det_{EP}}\) maximiert. Als zweites Kriterium wird der Mittelwert von \(A\) über alle \({Det_{EP}}\) maximiert. Das dritte Kriterium maximiert die mittlere Ähnlichkeit \(S\) über alle \({Det_{EP}}\).\par
+
+Der \(\gls{HOTA}\) Wert lässt sich in Submetriken zerlegen. Dies ermöglicht ein Ausführliche Einsicht in die unterschiedlichen \gls{Modul}[e] eines \gls{MOT}-Systems. Die Abbildung \ref{fig:HOTASubmetrikPyram} zeigt den Zusammenhang von \(\gls{HOTA}\) und seinen Submetriken. 
+
+\emptyFigure{Fehlt}{fig:HOTASubmetrikPyram}
+\todo{Fig Beschreibung Fehlt} 
+
+Die Genauigkeit der \gls{Lokalisation} lässt sich über die \gls{LocA} beurteilen. Dies wird nach Formel \ref{eq:LocA} berechnet.
+
+\begin{equation}
+    \label{eq:LocA}
+    LocA = \int_{0}^{1} \frac{1}{|EP_{\alpha}|} \sum_{e \in (EP_{\alpha})} S(e) d\alpha
+\end{equation}
+
+Die Genauigkeit der \gls{Detektion} ist beurteilbar über die \gls{DetA}. Die Rechenvorschrift zeigt die Formel \ref{eq:DetA}.
+
+\begin{equation}
+    \label{eq:DetA}
+    DetA = \int_{0}^{1} \frac{|EP_{\alpha}|}{|FP_{\alpha}| + |FN_{\alpha}| + |EP_{\alpha}| d\alpha}
+\end{equation}
+
+Die Formel \ref{eq:AssA} zeigt die Berechnung der Genauigkeit der \gls{Assoziation}. Sie wir Ausgedrückt über die \gls{AssA}. 
+
+\begin{equation}
+    \label{eq:AssA}
+    AssA = \int_{0}^{1} \frac{1}{|EP_{\alpha}|} \sum_{e \in (EP_{\alpha})} A(e) d\alpha
+\end{equation}
+
+Wie man an den Formel \ref{eq:DetA} und \ref{eq:AssA} sieht, setzt sich die Berechnung von \(\gls{HOTA}_{\alpha}\) (\ref{eq:HOTAalpha}) aus dem geometrischen Mittelwert von \gls{DetA} und \gls{AssA} zusammen. Dies zeigt Formel \ref{eq:HOTAalphaGeoMean}.
+
+\begin{equation}
+\begin{split}
+    \label{eq:HOTAalphaGeoMean}
+    HOTA_{\alpha} &= \sqrt{\frac{\sum_{e \in EP} A(e)}{|EP| + |FN| + |FP|}} \\ 
+    &= \sqrt{\frac{|EP_{\alpha}|}{|FP_{\alpha}| + |FN_{\alpha}| + |EP_{\alpha}|} \cdot \frac{1}{|EP_{\alpha}|} \sum_{e \in (EP_{\alpha})} A(e)} \\ 
+    &= \sqrt{DetA_{\alpha} \cdot AssA_{\alpha}}
+\end{split}
+\end{equation}
+
+Dies gewährleistet, dass die \gls{Detektion} und die \gls{Assoziation} gleichwertig in das Ergebnis einfließen. \par
+
+Die \gls{DetA} Wertung lässt sich weiter zerlegen in Präzision \gls{DetPr} und Erkenungsrate \gls{DetRe}. Mit dem \gls{DetPr} Wert lässt sich beurteilen wie viele falsch positive \gls{Detektion}[en] im \gls{Tracking}[ergebnis] vorhanden sind und mit dem \gls{DetRe} Wert lässt ist die Anzahl der falsch negativen \gls{Detektion}[en] zu evaluieren. Die Formeln \ref{eq:DetPr} und \ref{eq:DetRe} zeigen die Berechnung von \gls{DetPr} und \gls{DetRe}. Die Formel \ref{eq:DetAfromPrRe} zeigt wie sich \gls{DetA} daraus zusammensetzt \cite{HOTA}.
+
+\begin{equation}
+    \label{eq:DetPr}
+    DetPr_{\alpha} = \frac{|EP|}{|EP| + |FP|}
+\end{equation}
+
+\begin{equation}
+    \label{eq:DetRe}
+    DetRe_{\alpha} = \frac{|EP|}{|EP| + |FN|}
+\end{equation}
+
+\begin{equation}
+    \label{eq:DetAfromPrRe}
+    DetA_{\alpha} = \frac{DetRe_{\alpha} \cdot DetPr_{\alpha} }{DetRe_{\alpha} + DetPr_{\alpha} - DetRe_{\alpha} \cdot DetPr_{\alpha}}
+\end{equation}
+
+Ähnliches gilt für die \gls{AssA} Wertung. Diese lässt sich ebenfalls in einen  Präzisionswert \gls{AssPr} und eine Erkenungsrate \gls{AssRe} zerlegen. Der \gls{AssPr} Wert lässt Rückschlüsse auf die Menge an Merger-Fehler zu, die das \gls{MOT}-System macht. Der \gls{AssRe} Wert ermögliche eine Beurteilung der Menge an Framentationsfehlern \ref{sec:Grundlagen von MOT}. Die Formeln \ref{eq:AssPr} und \ref{eq:AssRe} zeigen die Berechnung von \gls{AssPr} und \gls{AssRe}. Die Formel \ref{eq:AssAfromPrRe} zeigt wie sich \gls{AssA} daraus zusammensetzt \cite{HOTA}. 
+
+\begin{equation}
+    \label{eq:AssPr}
+    AssPr_{\alpha} =  \frac{1}{|EP_{\alpha}|} \sum_{e \in (EP)} \frac{|EPA(e)|}{|EPA(e)| + |FPA(e)|}
+\end{equation}
+
+\begin{equation}
+    \label{eq:AssRe}
+    AssRe_{\alpha} = \frac{1}{|EP_{\alpha}|} \sum_{e \in (EP)} \frac{|EPA(e)|}{|EPA(e)| + |FNA|(e)}
+\end{equation}
+
+\begin{equation}
+    \label{eq:AssAfromPrRe}
+    AssA_{\alpha} = \frac{AssRe_{\alpha} \cdot AssPr_{\alpha} }{AssRe_{\alpha} + AssPr_{\alpha} - AssRe_{\alpha} \cdot AssPr_{\alpha}}
+\end{equation}
+
+Die \textit{\gls{HOTA}} Metrik ist ein mächtiges Werkzeug, um \gls{MOT}-Systeme zu vergleichen, da alle Aspekte in einem Gesamtwert berücksichtigt werden. Ebenfalls ermöglicht die Metrik ausführlichen Einblick in die Fehler von \gls{MOT}-Systemen. Damit lassen sich stärken und schwächen von Systemen besser analysieren, als mit den \textit{\acrshort{CLEAR} \gls{MOT}} Metriken oder mit der \textit{\gls{IDF1}-Metrik} \cite{HOTA}. 
