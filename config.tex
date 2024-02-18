@@ -19,6 +19,7 @@
 \usepackage[backend=biber, sortcites, citestyle=numeric]{biblatex}
 \usepackage[autostyle]{csquotes}
 \usepackage{todonotes}
+\usepackage{nomencl}
 
 \addbibresource{bib/bibF.bib}
 
@@ -31,6 +32,16 @@
 %\bibliographystyle{ieeetr}
 
 \makeglossaries
+
+\makenomenclature
+\renewcommand{\nomname}{Mathematische Notation}
+\setlength{\nomlabelwidth}{3cm}
+% Befehle für unterschiedliche Formatierungen
+%\newcommand{\nomupbold}[1]{\mathrm{\mathbf{#1}}} % Tensoren fett und gerade
+\newcommand{\nomvec}[1]{\vec{#1}} % Spaltenvektor
+\newcommand{\nomvecT}[1]{\vec{#1}^\mathrm{T}} % Zeilenvektor
+\newcommand{\nommat}[1]{\boldsymbol{#1}} % Matrix
+
 
 \pagestyle{scrheadings} %Seitenstil preset
 \clearpairofpagestyles  %Seitenzahlen aus der Fußzeile löschen
