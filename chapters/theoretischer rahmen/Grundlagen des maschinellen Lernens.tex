@@ -32,4 +32,51 @@ Damit ist die Aufgabe \(A\) und die Erfahrung \(E\) für das Beispiel definiert.
 
 \emptyFigure{Beispiel einer \glsdisp{ML}{maschinellen Lernaufgabe}. Schätzung vom Verkaufswerten von Autos. Auf der y-Achse sind ist der \glsdisp{Zielvektor}{Zielwert} dargestellt. Auf der y-Achse ist das \gls{Feature} \textit{Anzahl der gefahrenen Kilometer} abgebildet. Die Werte der Achsen sind Normiert.}{fig:BspMLAuto}
 
-Die Abbildung \ref{fig:BspMLAuto} zeigt die die Punkte in \(D\) für den \glsdisp{Zielvektor}{Zielwert} und das \gls{Feature} \textit{Anzahl der gefahrenen Kilometer}. Um ein Lernfähiges Programm zu erhalten muss eine mathematische Repräsentation für die Bewältigung der Aufgabe \(A\) gefunden werden. Durch diese mathematische Repräsentation, ist die Performance \(P\) des Programms bewertbar \cite{Mitchell.1997}. Für das Beispiel des Autohändlers wird eine Lineare Regression durchgeführt. 
+Die Abbildung \ref{fig:BspMLAuto} zeigt die die Punkte in \(D\) für den \glsdisp{Zielvektor}{Zielwert} und das \gls{Feature} \textit{Anzahl der gefahrenen Kilometer}. Um ein Lernfähiges Programm zu erhalten muss eine mathematische Repräsentation für die Bewältigung der Aufgabe \(A\) gefunden werden. Durch diese mathematische Repräsentation, ist die Performance \(P\) des Programms bewertbar \cite{Mitchell.1997}. Ein einfacher Algorithmus für \gls{ML} ist die lineare Regression. Diese wird für das Problem des Autohändlers durchgeführt. Für eine linearen Regression wird die Repräsentation aus \ref{eq:linReg} für die Lösung von \(A\) gewählt.
+
+\begin{equation}
+    \label{eq:linReg}
+    \hat{y}(\nomvec{w}, \nomvec{x}) =  \nomvecT{w}\nomvec{x}
+\end{equation}
+
+Der vom Programm geschätzte Wert eines Autos ist \(\hat{y}(\nomvec{w}, \nomvec{x})\). Der Vektor \(\nomvec{x}\) beinhaltet die Werte der \gls{Feature}[s] zu einem Auto. Der Vektor \(\nomvecT{w}\) beinhaltet Gewichte für die \gls{Feature}[s]. Für die Schätzung von \(\hat{y}(\nomvec{w}, \nomvec{x})\) wird somit jeder \gls{Feature}[wert] \(\nomvec{x}_i\) mit einem Parameter \(\nomvecT{w}_i\) gewichtet, welcher den Einfluss des \gls{Feature}[s] \(\nomvec{x}_i\) beschreibt \cite{Goodfellow.2016}. Die Gewichte \(\nomvecT{w}\) werden \gls{Modellparameter} genannt. Allgemein ausgedrückt sind \gls{Modellparameter} das, was ein Programm bei einem \gls{Modelltraining}{Trainingsprozess} versucht zu lernen \cite{Zheng.2015}. \par
+
+Mit dieser mathematischen Repräsentation lässt sich eine Formulierung zur Beurteilung der Performance \(P\) finden. Diese ist mit Hilfe der Erfahrung \(E\) zu ermitteln. Für eine Probe \(\nommat{X}_{i:}\) aus \(\nommat{X}\) lässt sich mit der linearen Regression ein Schätzwert \(\hat{y}(\nomvec{w}, \nommat{X}_{i:})\) berechnen. Der Fehler des Programms ist über die Differenz zum echten Wert \(\nomvec{y}_i\) bestimmbar. Um die Performance \(P\) des Modells zu bewerten wird der  \glsdisp{MSE}{mittlere quadratische Fehler (MSE)} von allen Proben \(N\) im Datensatz \(D\) berechnet. Die Berechnung des \gls{MSE} ist in \ref{eq:MSE} zu sehen \cite{Goodfellow.2016, Burkov.2019}.
+
+\begin{equation}
+    \label{eq:MSE}
+    MSE = \frac{1}{N} \sum_{i=1}^{N} (\hat{y}_i(\nomvec{w}, \nommat{X}_{i:}) - \nomvec{y}_i)_i^2
+\end{equation}
+
+Die Formulierung \((\hat{y}_i(\nomvec{w}, \nommat{X}_{i:}) - \nomvec{y}_i)^2\) wird als \gls{Verlustfunktion} bezeichnet. Jedes Modell des \glsdisp{ML}{maschinellen Lernens} besitzt ein \gls{Verlustfunktion}. Die in \ref{eq:MSE} verwendete \gls{Verlustfunktion} wird als quadratische \gls{Verlustfunktion} bezeichnet. Der \gls{MSE} ist hier eine \gls{Zielfunktion} für ein Optimierungsproblem. Der \gls{MSE} soll minimal werden. Dies ist in \ref{eq:minMSE} formuliert \cite{Goodfellow.2016, Burkov.2019}.
+
+\begin{equation}
+    \label{eq:minMSE}
+    \underset{w}{\arg\min} \frac{1}{N} \sum_{i=1}^{N} (\hat{y}_i(\nomvec{w}, \nommat{X}_{i:}) - \nomvec{y}_i)_i^2
+\end{equation}
+
+Die Lösung von \ref{eq:minMSE} resultiert in optimalen Gewichten \(\nomvec{w}\), um \(\hat{y}(\nomvec{w}, \nomvec{x})\) möglichst genau zu Schätzen. Das Lösen von \ref{eq:minMSE} ist der \glsdisp{ML}{Lernprozess} des Programms. Dieser wird mit einer Optimierungsroutine umgesetzt. Häufig verwendet wird das \gls{Gradientenverfahren}. Bei diesem wird wie folgt vorgegangen. Alle Parameter \(\nomvec{w}^{(t)}\) erhalten einen initial Wert für den Startzeitpunkt \(t=1\), bspw. \(\nomvec{w}_i^{(1)}=0 \forall i\). Für die \gls{Zielfunktion} wird der Gradient berechnet \(\nabla MSE(\nomvec{w}^{(t)})\). Iterativ wird nun in Richtung des steilsten Abstieges des Gradienten gegangen. Da der Gradient in Richtung des steilsten Anstieges zeigt, wird in die negative Richtung des Gradienten gegangen. Die Werte von \(\nomvec{w}\) werden bei jedem Schritt aktualisiert \cite{Mitchell.1997, Goodfellow.2016, ShalevShwartz.2014}. Dies zeigt die Formulierung \ref{eq:GradDecentUpdateW}.
+
+\begin{equation}
+    \label{eq:GradDecentUpdateW}
+    \nomvec{w}^{(t+1)} \leftarrow \nomvec{w}^{(t)} - \eta\nabla MSE(\nomvec{w}^{(t)})
+\end{equation}
+
+Der Parameter \(\eta\) wird dabei als Lernrate bezeichnet. Die Lernrate bestimmt die Schrittgröße, welche bei jeder Iteration in Richtung des steilsten Abstiegs gegangen wird \cite{Mitchell.1997}. Die Lernrate ist vom Anwender einzustellen. Parameter, welche vom Anwender festzulegen sind werden \gls{Hyperparameter} gennant. Sie sind nicht zu verwechseln mit den \gls{Modellparameter}[n] \cite{Zheng.2015}. Bei einem Minimum gilt \(\nabla MSE(\nomvec{w}^{(t)}) = 0\). Verändern sich die Werte von \(\nomvec{w}^{(t)}\) durch weiterer Iterationen nicht mehr, wurde ein Minimum gefunden \cite{Goodfellow.2016, Burkov.2019}. Die Abbildung \ref{fig:GradDecentBsp} veranschaulicht die Suche des Minimums durch das \gls{Gradientenverfahren}.
+
+\emptyFigure{Fehlt. }{fig:GradDecentBsp}
+\todo{Abbildung fehlt}
+
+Mit diesem vorgehen ist auch das Beispiel des Autohändlers lösbar. Um das Beispiel anschaulich zu halten, wird das Modell der lineare Regression aus \ref{eq:linReg} nur mit dem \gls{Feature} der Anzahl der gefahrenen Kilometer trainiert. Die Abbildung \ref{fig:BspMLAutoMitReg} zeigt die gleichen Datenpunkte dar, wie die Abbildung \ref{fig:BspMLAuto}, jedoch ist nun die resultierende Gerade \(\hat{y}(x)\) eingezeichnet. 
+
+\emptyFigure{Die Abbildung zeigt Datenpunkte von verkauften Autos. Auf der y-Achse sind die Verkaufspreise dargestellt. Auf der x-Achse ist die Anzahl der gefahrenen Kilometer zu sehen. Beide Achsen sind Normiert. Eingezeichnet ist eine Gerade. Die Gerade wurde durch eine lineare Regression ermittelt.}{fig:BspMLAutoMitReg}
+\todo{Abbildung fehlt}
+
+Das Beispiel der linearen Regression zeigt, dass sich die Bestandteile eines Algorithmus für \gls{ML} allgemein wie folgt zusammenfassen lassen \cite{Burkov.2019, Mitchell.1997, Goodfellow.2016}.
+
+\begin{enumerate}
+    \item \textbf{Definition einer Aufgabe:} Eine Aufgabe muss definiert werden, welche durch \gls{ML} gelöst werden soll. Für diese Aufgabe muss eine mathematische Repräsentation gefunden werden.
+    \item \textbf{Definition einer \gls{Verlustfunktion}:} Um die Performance des Algorithmus zu bewerten, muss eine \gls{Verlustfunktion} definiert werden.
+    \item \textbf{Definition einer \gls{Zielfunktion}:} Die \gls{Verlustfunktion} ist in ein Optimierungsproblem zu überführen, für welches eine \gls{Zielfunktion} zu formulieren ist.
+    \item \textbf{Definition einer Optimierungsroutine:} Um das Optimierungsproblem der \gls{Zielfunktion} zu lösen wird ein Algorithmus benötigt, welcher das gesuchte Optimum findet. Für die Berechnung wird Erfahrung benötigt in Form eines Datensatzes.
+\end{enumerate}
