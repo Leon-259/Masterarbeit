@@ -1,4 +1,4 @@
-\section{Machine Learning Workflow}
+\section{Machine Learning Workflow} \label{sec:MLWF}
 Als \gls{Machine Learning Workflow} wird der systematisch Prozess zur entwicklung, Evaluierung und Anwendung von Algorithmen des \glsdisp{ML}{maschinellen Lernens} bezeichnet. In der Literatur werden auch Bezeichnungen wie \textit{Machine Learning Pipeline} oder \textit{Data Science Pipline} verwendet. Die Strukturierung eines Workflows sorgt für Übersichtlichkeit, Effizienz, Reproduzierbarkeit und Skalierbarkeit von Anwendungen des \glsdisp{ML}{maschinellen Lernens}. Die Komponenten des \gls{Machine Learning Workflow}[s] sind nicht immer einheitlich. Nicht alle Prozessschritte sind für jedes Projekt notwendig. In \cite{Biswas.2022} wird versucht die üblichen Prozessschritte zu definieren. In diesem Kapitel werden die Komponenten vorgestellt, welche Relevanz für diese Arbeit besitzen. Die Abbildung \ref{fig:MLWorkflow} stellt den \gls{Machine Learning Workflow} grafisch dar.
 
 \emptyFigure{Der \gls{Machine Learning Workflow} und seine Prozessschritte. Die XX Pfeile zeigen den Datenfluss auf. Mögliche Rückführungen sind mit XX Pfeilen dargestellt.}{fig:MLWorkflow}
@@ -9,7 +9,7 @@ In der Grafik \ref{fig:MLWorkflow} sind Rückführungen zu früheren Prozessschr
 \subsection{Problemdefinition}
 Ziel des \gls{Machine Learning Workflow}[s] ist es, eine Anwendung zu erstellen, welche ein spezifisches Problem löst. Das die klare Definition einer Aufgabe, ein elementarer Schritt ist von Algorithmen des \glsdisp{ML}{maschinellen Lernens}, ist in \ref{sec:Grundlagen ML} verdeutlicht. Die klare Definition ist auch hilfreich für den Erwerb von Fachwissen im Bereich der Aufgabe. Dies kann für den weiteren verlauf des Workflows nützlich sein \cite{Biswas.2022, Zheng.2018, Nielsen.2020}.
 
-\subsection{Sammeln von Daten}
+\subsection{Sammeln von Daten} \label{sec:Worflow DatSam}
 Ein Modell benötigt Daten für das Training. In diesem Schritt geht es darum Rohdaten zu Sammeln, die Relevant sind für die Aufgabe, um diese weiterzuverarbeiten. Je nach Aufgabe ist dieser Prozess unterschiedlich Aufwendig \cite{Biswas.2022, Elshawi.2019}.
 
 \subsection{Vorverarbeitung der Daten}
@@ -21,7 +21,7 @@ Frühzeitige Überlegungen zur Speicherung der Rohdaten sind vorteilhaft für de
 \subsection{Labeln der Daten}
 Wenn eine \glsdisp{überwachtes Lernen}{überwachte Lernmethode} verwendet werden soll, dann wird ein \gls{Zielvektor} benötigt. Dieser ist i.d.R. manuell zu erstellen. Das kann je nach Datenmenge und Datenart unterschiedlich Aufwendig sein \cite{Biswas.2022}. Ein Beispiel aus der Bildverarbeitung ist eine Anwendung, welche Ampeln erkennen soll. In diesem Prozessschritt müssen alle Bilder, die für das Training verwendet werden sollen mit einem \gls{Label} \textit{Ampel} oder \textit{keine Ampel} versehen werden. 
 
-\subsection{Extraktion und Konstruktion der Features}
+\subsection{Extraktion und Konstruktion der Features} \label{sec:ML FeatExtr}
 Aus den Rohdaten müssen \gls{Feature}[s] kreiert werden mit denen das Modell lernen kann. Dazu sind Überlegungen anzustellen, welche \gls{Feature}[s] sich aus den Rohdaten extrahieren lassen. Hierbei ist Fachwissen über die Aufgabe und die Rohdaten von großem Vorteil. Dadurch ist es möglich die Nützlichkeit möglicher \gls{Feature}[s] zu beurteilen und auch selbst kreative \gls{Feature}[s] zu entwerfen. Fachwissen wird auch benötigt, um gezielten \gls{Bias} in das Modell einzuführen. Auch ungewollter \gls{Bias} ist mit Fachwissen in manchen Fällen identifizierbar (\ref{sec:Herausforderungen ML}). Generell ist in diesem Prozessschritt viel Achtsamkeit in Bezug auf \gls{Bias} sinnvoll \cite{Zheng.2018, Geron.2019}. \par
 
 Auch auf \gls{Leakage} ist zu achten. Ein Beispiel wie \gls{Leakage} entstehen kann ist die Komprimierung von Zeitreihen zu \gls{Feature}[s] (\ref{sec:sequenzen ML}). Aus der Zeitreihe \(A\) sind komprimierte  \gls{Feature}[s] zu extrahieren, genau so wie aus der Zeitreihe \(B\). Was nicht bemerkt wird ist, dass diese eine zeitliche Überlappung haben. Dadurch sind die komprimierten Datenpunkte zu \(A\) und \(B\) nicht unabhängig von einander. Das kann dazu führen, dass die Proben im Datensatz zu wenig Varianz aufweisen und das Modell lernt nicht zu \glsdisp{Generalisierung}{generalisieren}. Auch für die Evaluation kann das zu Problemen führen \cite{Zheng.2018, Geron.2019}. \par
@@ -57,7 +57,7 @@ Auch können aus bestehenden \gls{Feature}[s] neue kreiert werden. Ein Beispiel 
 
 Wird mit Sequenzen gearbeitet, dann findet in dem Prozessschritt der \gls{Feature} Extraktion und Konstruktion ebenfalls die Konstruktion von \gls{Feature}[s] statt, welche versuchen die Information der Sequenz zu komprimieren (\ref{sec:sequenzen ML}) \cite{Nielsen.2020}. 
 
-\subsection{Feature Analyse und Auswahl}
+\subsection{Feature Analyse und Auswahl} \label{sec:ML FeatSelect}
 Aus der Menge der \gls{Feature}[s] sind diejenigen Auszuwählen, welche dem Modell übergeben werden sollen. Eine sorgfältige Auswahl der \gls{Feature}[s] ist wichtig, um ein zuverlässiges Modell zu erstellen. Hauptziel ist es die \gls{Feature}[s] auszuwählen, mir welchen die Performance des Modells maximal wird. Ein weiteres Ziel ist die Minimierung der \gls{Feature}[anzahl], um den Rechenaufwand zu reduzieren. Eine kleinere Anzahl an \gls{Feature}[s] macht das Modell effizienter \cite{Kuhn.2013, Guyon.2003}. Wie in \ref{sec:Herausforderungen ML} beschrieben, können \gls{Feature}[s], welche keine Information zur Erfüllung der Aufgabe besitzen, \gls{Underfitting} verursachen. Ebenfalls sind die \gls{Feature}[s] auf ungewollten \gls{Bias} zu überprüfen Die Identifikation von ungewollten \gls{Bias} ist nicht einfach. Fachwissen und Wissen über typische Quellen von \gls{Bias} können dabei helfen \cite{Mehrabi.2019, Nielsen.2020}. In der Praxis wird zwischen drei Methoden für die Selektion von \gls{Feature}[s] unterschieden \cite{Guyon.2003}. \dubpar
 
 \textbf{\gls{Filter Methoden}}\par
@@ -114,7 +114,7 @@ Bei den \gls{Wrapper Methoden} wird zwischen zwei Verfahren unterschieden. Der V
  Für die Aufteilung der Daten auf die drei Datensätze gibt es keine allgemein gültige Regel. Eine gute Daumen-regel ist 70 \% Trainingsdaten, 15 \% Validierungsdaten und 15 \% Testdaten. Es gibt Validierungsmethoden durch die kein Validierungsdatensatz notwendig ist. Dies ist besonders praktisch, wenn die Datenmenge klein ist. Dadurch stehen mehr Daten für das Training zur Verfügung \cite{Burkov.2019}. Darauf wird später näher eingegangen. 
 
 
- \subsection{Auswahl des Algorithmus}
+ \subsection{Auswahl des Algorithmus} \label{sec:ML ModellSelect}
  Die Auswahl des richtigen Algorithmus ist oftmals nicht einfach. Ist ausreichend Zeit, dann ist es sinnvoll mehrere Algorithmen auszuprobieren, um zu prüfen, welcher am die beste Performance erzielt. Ebenfalls kann es hilfreich sein die Auswahl anhand Kriterien einzuschränken. Die Auswahl der Kriterien geschieht anhand der Anforderungen und Randbedingung die zum Zeitpunkt der Modellauswahl bekannt sind. Beispiele für solche Kriterien sind
 
  \begin{itemize}
@@ -196,6 +196,35 @@ Zu Beginn wird ein konstanter Entscheidungsbaum initialisiert. Dieser ist die Au
 Ist eine unbekannte Probe zu schätzen, weis das Modell nach dem Training, wie es die Fehler in den Bäumen korrigieren muss. Ein wichtiger \gls{Hyperparameter} im Gradient Boosting ist die Lernrate. Diese bestimmt die Stärker der Korrektur für jede Stufe in der Sequenz. Ist bspw. laute Entscheidungsbaum die Schätzung um den Wert \(a\) zu korrigieren, sorgt die Lernrate \(\alpha\) dafür, dass die Schätzung nur um \(\alpha \cdot a\) korrigiert wird. Dies kann Overfitting vermeiden \cite{Burkov.2019}. \dubpar
 
 
+\textbf{Long Short-Term Memory (\acrshort{LSTM})} \par
+\acrshort{LSTM}[s] sind Modelle des \gls{Deep Learning}. Sie sind eine spezielle Form von rekurrenten neuronalen Netzwerken (\acrshort{RNN}[s]). \acrshort{RNN}[s] sind darauf ausgelegt Sequenzen verstehen zu können. Dies wird durch Rückführungen erreicht. Die Einheiten in den Schichten eines \acrshort{RNN}[s] besitzen einen Zustandsspeicher. Als Eingabe erhält eine Einheit die Ausgabe der vorherigen Schicht, und die Rückführung des eigenen Zustandsspeichers. Das Ergebnis aktualisiert den Zustandsspeicher. Somit wirken frühere Zeitschritte in den Daten auf spätere, wodurch Mustererkennung in Sequenzen möglich wird.\par
+
+Es existieren jedoch einige Komplikationen klassische \acrshort{RNN}[s] anzuwenden. Aus diesem Grund haben sich sogenannte \textit{Gated \acrshort{RNN}[s]} für die Realisierung durchgesetzt. Ein solches \acrshort{RNN} ist das \acrshort{LSTM}. Die Kernidee von \acrshort{LSTM}[s] ist eine Regulierung des Zustandsspeichers der Einheiten. Der Zustandsspeicher wird durch drei Arten von Toren reguliert. Einem Eingangstor, einem Vergesstor und einem Ausgangstor. Diese Struktur ermöglicht es, Informationen über lange Zeiträume zu speichern, irrelevant gewordene Informationen zu vergessen und den Informationsfluss innerhalb der Zelle zu regulieren.
+
+\begin{itemize}
+    \item Das Eingangstor steuert, welche neuen Informationen zu einem Zeitpunkt in den Zustansspeicher aufgenommen werden.
+    \item  Das Vergesstor entscheidet, welche Teile des aktuellen Zustands erhalten bleiben oder verworfen werden.
+    \item Das Ausgangstor bestimmt, welche Informationen aus dem Zustansspeicher an den Ausgang weitergegeben werden.
+\end{itemize}
+
+Diese Mechanismen erlauben es \acrshort{LSTM}[s]s, sowohl kurzfristige als auch langfristige Datenabhängigkeiten zu lernen und effektiv zwischen relevanten und irrelevanten Informationen zu unterscheiden \cite{Burkov.2019, Goodfellow.2016}. Die Abbildung \ref{fig:LSTMNet} veranschaulicht die Idee des \acrshort{LSTM}[s] und den Toren.
+
+\emptyFigure{Illustration eines LSTM-Netzwerks.}{fig:LSTMNet}
+\todo{Abbildung fehlt}
+
+\par
+\textbf{Gated Recurrent Unit (\acrshort{GRU})}
+Die \acrshort{GRU} lässt sich als vereinfachte Form eines \acrshort{LSTM}[s] betrachten. Sie verwendet ebenfalls Tore für die Handhabung langfristiger und kurzfristiger Abhängigkeiten in sequentiellen Daten. \acrshort{GRU}[s] vereinfachen die Struktur von \acrshort{LSTM}[s], indem sie nur zwei Tore verwenden. Ein Update-Tor und Ein Reset-Tor. \par
+
+\begin{itemize}
+    \item Das Update-Tor entscheidet, inwieweit der aktuelle Zustandsspeicher durch den neuen Zustand ersetzt werden soll. Es ermöglicht die Dauer zu bestimmen wie lange Information bewahrt wird.
+    \item Das Reset-Tor ermöglicht es zu entscheiden, wie viel vom aktuelle Zustandsspeicher verwendet werden soll, um den neuen Zustand zu berechnen.
+\end{itemize}
+
+\acrshort{GRU}[s] sind einfacherer zu trainieren als \acrshort{LSTM}[s] und sie können ähnlich gut in ihrer Performance sein \cite{Lazzeri.2021, Goodfellow.2016}. 
+
+
+
 \subsection{Training und Validierung des Modells} \label{sec:ML Metriken, Valid}
 Das Modell wird mit der \gls{Trainingsdatensatz} trainiert. Dieser Prozess ist modellabhängig. Die meisten \gls{Bibliothek}[en], die Algorithmen für \gls{ML} implementieren, haben automatische Routinen um die Modelle zu trainieren. Nach dem Training wird die Performance mit dem Validierungsdatensatz beurteilt \cite{Burkov.2019, Geron.2019, Zheng.2015}. Für die Performancebewertung existieren verschiedene Methoden. Hier werden zwei vorgestellt. \dubpar
 
@@ -231,7 +260,7 @@ Wie bereits in \ref{sec:Datensätze ML} erwähnt, ist es möglich den Validierun
 \emptyFigure{Verfahren der \gls{Cross-Validation}. Der \gls{Trainingsdatensatz} wird in 5 Teile zerteilt, wovon jedes einmal als Validierungsdatensatz verwendet wird.}{fig:CrossVal}
 \todo{Abbildung fehlt}
 
-\subsection{Einstellung der Hyperparameter}
+\subsection{Einstellung der Hyperparameter} \label{sec:ML HyperPara}
 \gls{Hyperparameter} ermöglichen es Einfluss auf den Trainingsprozess eines Modells zu nehmen. Sie sind vor dem Training vom Anwender einzustellen. Ein Beispiel ist ein \gls{Regularisierung}[stherm]. Die Einstellung der \gls{Hyperparameter} ist sehr aufgabenspezifisch. Es gibt keine allgemeine Regel für optimale \gls{Hyperparameter}. Es ist ein Optimierungsproblem, welches sich mittels Algorithmen lösen lässt. Ziel der Optimierung ist die Maximierung des Validierungsergebnisses \cite{Zheng.2015}.\dubpar
 
 
