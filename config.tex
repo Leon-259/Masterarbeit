@@ -21,6 +21,10 @@
 \usepackage[autostyle]{csquotes}
 \usepackage{todonotes}
 \usepackage{nomencl}
+\usepackage{booktabs} % Für schönere Tabellen
+\usepackage{siunitx} % Ermöglicht die Ausrichtung von Zahlen in der Tabelle
+\usepackage{adjustbox} % Für die Ausrichtung der rotierten Boxen
+\usepackage{rotating}
 
 \addbibresource{bib/bibF.bib}
 
@@ -57,6 +61,13 @@
   headsep=15pt,
   includehead
 }
+
+\sisetup{
+  output-decimal-marker = {,}, % Komma als Dezimaltrennzeichen
+  table-format = 2.2, % Zwei Ziffern vor und zwei nach dem Dezimaltrennzeichen
+  table-space-text-post = {,} % Reserve space for the comma in decimals
+}
+
 
 % Umgebungsfarben für Codeausschnitte
 \definecolor{codegreen}{rgb}{0,0.6,0}

@@ -5,8 +5,6 @@ Für die Evaluation des \gls{MOT} Systems ist eine \gls{Ground Truth} notwendig.
 
 Für das \glsdisp{Assoziation}{Assoziationsmodul} ist ein Algorithmus auszuwählen. Zur Auswahl steht der \acrshort{SORT} Algorithmus (\ref{sec:MOT SORT}) und eine modifizierte Variante des Crocker-Grier Linking Algorithmus (\ref{sec:MOT CrockGrier}). Die Modifikationen werden in \ref{sec:Meth CrockGrieMods} erläutert. Für das Gesamtsystem ist zu Bewerten, welcher der Algorithmen die besten \gls{Feature}[s] gewährleisten kann. \par
 
-Ebenfalls wird überprüft, ob die Dauer der Ereignisse, mit welchen das \gls{MOT} System bewertet wird Einfluss auf die Performance hat.
-
 
 \subsection{Diskussion der Ground Truth Qualität} \label{sec:Meth GT Quali}
 Noch vor dieser Arbeit sind zu zwei Ereignissen \gls{Ground Truth}[s] erstellt worden. Ein Kampfereignis und ein Kontrollgangereignis. Die Ereignisse sind jeweils eine Minute lang. Das Kampfereignis umfasst 91 \gls{Frame}[s], das Kontrollgangereignis umfasst 98 \gls{Frame}[s]. Dadurch ergiebt sich eine durchschnittliche \gls{Frame}[rate] von 1,6 \gls{Frame}[s] pro Sekunde. Die Ereignisse wurden von unterschiedlichen Personen bearbeitet.  \par
@@ -64,4 +62,13 @@ Die Die Verifikationskriterien der unterschiedlichen Stufen sind dynamisch. Da i
 
 
 \subsection{Methodisches Vorgehen der MOT Evaluationen}
-Für die Evaluation stehen zwei \gls{Ground Truth} Ereignisse zur Verfügung. Ein Kampfereignis und ein Kontrollgangereignis (\ref{sec:Meth GT Quali}). Die Algorithmen, zwischen denen Auszuwählen ist sind der \acrshort{SORT} Algorithmus (\ref{sec:MOT SORT}) und die modifizierte Variante des Crocker-Grier Linking Algorithmus (\ref{sec:Meth CrockGrieMods}). Die Evaluation wird mittels der \gls{HOTA} Metrik (\ref{sec:MOT HOTA}) durchgeführt. 
+Für die Evaluation stehen zwei \gls{Ground Truth} Ereignisse zur Verfügung. Ein Kampfereignis und ein Kontrollgangereignis (\ref{sec:Meth GT Quali}). Die Algorithmen, zwischen denen Auszuwählen ist sind der \acrshort{SORT} Algorithmus (\ref{sec:MOT SORT}) und die modifizierte Variante des Crocker-Grier Linking Algorithmus (\ref{sec:Meth CrockGrieMods}). Die Evaluation wird mittels der \gls{HOTA} Metrik (\ref{sec:MOT HOTA}) durchgeführt, da mit dieser Metrik die fairste Bewertung zu erwarten ist und die genausten Fehleranalysen. Die \textit{\gls{IDF1}-Metrik} und die \textit{\acrshort{CLEAR} \gls{MOT}} Metriken werden jedoch angegeben, da sie etablierter sind als \gls{HOTA}. Für die Berechnung der Metriken wird die Software \textit{TrackEval} benutzt \cite{TrackEval.2020}. Diese ist die offizielle Evaluationsoftware der \textit{MOTChallenge} und steht als Open-Source Code zur Verfügung. Mit der Nutzung von \textit{TrackEval} wird sichergestellt, dass die Metriken korrekt berechnet werden. \par
+
+Als erstes wird für beide Algorithmen die Gesamtperformance bewertet. Dazu werden die beiden Algorithmen auf die Ereignisse angewendet zu denen \gls{Ground Truth}[s] vorhanden sind. Für jeden \gls{Assoziation}[salgorithmus] ist anschließend ein Trackingergebnis vorhanden. Dieses beinhaltet die \gls{Trajektorie}[n]. Gespeichert werden die Trackingergebnisse als txt-Datei. Die Formatierung erfolgt angepasst an \textit{TrackEval}, gemäß \cite{MOT15}. Anschließend werden die Metriken berechnet. Wie \textit{TrackEval} auf eigene \gls{MOT} Systeme und mit eigenen \gls{Ground Truth}[s] anzuwenden ist, ist in der Dokumentation erläutert \cite{TrackEval.2020}. Die Evaluation der beiden Ereignisse wird gemittelt. Die Ergebnisse der beiden Algorithmen lassen sich vergleichen. Neben den Wertungen der \gls{HOTA} Metrik, erstellt \textit{TrackEval} einen Plot. Dieser zeigt den Verlauf der Wertungen über \(\alpha\). Die Abbildung \ref{fig:MPNTrack} zeigt einen solchen Plot. Dieser ist einem \gls{MOT} System namens \textit{MPNTrack} entnommen, welcher bei der \textit{MOTChallenge} 2016 und 2017 angetreten ist. Dieser ist hier zu Beispielzwecken angeführt. 
+
+\emptyFigure{MPNTrack MOT17 bsp}{fig:MPNTrack}
+\todo{Abbildung fehlt}
+
+Als nächstes ist zu überprüfen, ob die \gls{Assoziation}[salgorithmen] alle Verhaltensweisen 
+gleich gut \glsdisp{Assoziation}{assoziiert} bekommen. Dazu wird jedes Ereignis unabhängig von
+einander evaluiert.\par
