@@ -5,6 +5,8 @@ Für die Evaluation des \gls{MOT} Systems ist eine \gls{Ground Truth} notwendig.
 
 Für das \glsdisp{Assoziation}{Assoziationsmodul} ist ein Algorithmus auszuwählen. Zur Auswahl steht der \acrshort{SORT} Algorithmus (\ref{sec:MOT SORT}) und eine modifizierte Variante des Crocker-Grier Linking Algorithmus (\ref{sec:MOT CrockGrier}). Die Modifikationen werden in \ref{sec:Meth CrockGrieMods} erläutert. Für das Gesamtsystem ist zu Bewerten, welcher der Algorithmen die besten \gls{Feature}[s] gewährleisten kann. \par
 
+Während der Versuche werden die Laufzeiten der Algorithmen gemessen, da diese relevant sind im Bezug auf die Echtzeitfähigkeit des Moduls. 
+
 
 \subsection{Diskussion der Ground Truth Qualität} \label{sec:Meth GT Quali}
 Noch vor dieser Arbeit sind zu zwei Ereignissen \gls{Ground Truth}[s] erstellt worden. Ein Kampfereignis und ein Kontrollgangereignis. Die Ereignisse sind jeweils eine Minute lang. Das Kampfereignis umfasst 91 \gls{Frame}[s], das Kontrollgangereignis umfasst 98 \gls{Frame}[s]. Dadurch ergiebt sich eine durchschnittliche \gls{Frame}[rate] von 1,6 \gls{Frame}[s] pro Sekunde. Die Ereignisse wurden von unterschiedlichen Personen bearbeitet.  \par
@@ -69,6 +71,7 @@ Als erstes wird für beide Algorithmen die Gesamtperformance bewertet. Dazu werd
 \emptyFigure{MPNTrack MOT17 bsp}{fig:MPNTrack}
 \todo{Abbildung fehlt}
 
+Während der Generation der Trajektorien werden die Laufzeiten der Algorithmen gemessen. Ebenfalls werden weitere Laufzeitmessungen durchgeführt, bei denen die Länge der Ereignisse stärker zu variieren sind. Dadurch ist ein Vergleich der Laufzeiten möglich und auch wie die Laufzeiten im Bezug auf die Ereignisslänge Skalieren.\par 
+
 Als nächstes ist zu überprüfen, ob die \gls{Assoziation}[salgorithmen] alle Verhaltensweisen 
-gleich gut \glsdisp{Assoziation}{assoziiert} bekommen. Dazu wird jedes Ereignis unabhängig von
-einander evaluiert.\par
+gleich gut \glsdisp{Assoziation}{assoziiert} bekommen. Dazu wird jedes Ereignis unabhängig von einander evaluiert.\par
