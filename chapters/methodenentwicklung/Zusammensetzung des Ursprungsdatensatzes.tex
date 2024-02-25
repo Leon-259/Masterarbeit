@@ -154,7 +154,7 @@ Mit diesen Überlegungen können die Ereignisse zerteil werden. In der Tabelle \
     \label{tab:DatasetSplit}
 \end{table}
 
-Bei der Feature Extraktion und Konstruktion viel auf, dass die Detektion im Stall erst ab dem 19.04.2021 stabil lief. Die Detektionsdatensätze davor beinhalten viele Einträge in denen nichts detektiert wurde. Aus den Ereignissen in diesem Zeitraum sind keine Features extrahierbar, weshalb sie nicht für den Aufbau des Modells verwendet werden können. Die Tabelle \ref{tab:DatasetFeatExtr} zeigt die Auswirkungen auf die Datenmenge.
+Bei der Feature-Extraktion und Konstruktion viel auf, dass die Detektion im Stall erst ab dem 19.04.2021 stabil lief. Die Detektionsdatensätze davor beinhalten viele Einträge in denen nichts detektiert wurde. Aus den Ereignissen in diesem Zeitraum sind keine Features extrahierbar, weshalb sie nicht für den Aufbau des Modells verwendet werden können. Die Tabelle \ref{tab:DatasetFeatExtr} zeigt die Auswirkungen auf die Datenmenge.
 
 \begin{table}[ht]
     \centering
@@ -198,6 +198,6 @@ Vorteilhaft ist, dass sich durch die Aufteilung gemäß der Intervalle die Anzah
 
 Für maschinelles Lernen ist dies eine sehr geringe Datenmenge. Bei dem Aufbau des Modells besteht große Gefahr für Overfitting. Durch die Verifizierung der Ereignisse besteht jedoch die Hoffnung, dass die Qualität der Daten hoch ist. Das erhöht die Chancen ein funktionierendes Modell aufzubauen. \par
 
-Der Datensatz besitzt einen Bias durch geringe Varianz. Die Daten stammen aus einem sehr begrenzten Zeitraum, aus nur einem Mastdurchlauf. Die Daten entstammen einem Zeitraum von zwei Monaten vom 19.04.2021 bis zum 18.06.2021. Es sind nur zwei Kameras ausgewertet worden, die Kameras mit den IDs 3 und 5. Dadurch besteht auch hier ein Bias in Bezug auf den Stallbereich. Diese Voreingenommenheiten können dafür sorgen, dass das Modell schlecht anwendbar auf beliebige Stallbereiche ist. \par
+Der Datensatz besitzt einen Bias durch geringe Varianz. Die Daten stammen aus einem sehr begrenzten Zeitraum, aus nur einem Mastdurchlauf. Die Daten entstammen einem Zeitraum von zwei Monaten vom 19.04.2021 bis zum 18.06.2021 \todo{Daten kontrollieren}. Es sind nur zwei Kameras ausgewertet worden, die Kameras mit den IDs 3 und 5. Dadurch besteht auch hier ein Bias in Bezug auf den Stallbereich. Diese Voreingenommenheiten können dafür sorgen, dass das Modell schlecht anwendbar auf beliebige Stallbereiche ist. \par
 
 Zusammenfassend lässt sich sagen, dass die Datenlage unvorteilhaft ist, um ein Modell aufzubauen, welches gut generalisieren soll. Die Datenqualität kann dem möglicherweise Entgegenwirken. Das bewusst machen der Schwächen der Datengrundlage, kann dazu genutzt werden, um im Featureengineering und der Modellkonfiguration Gegenmaßnahmen zu ergreifen. Gerade im Bezug auf die Vermeidung von Overfitting.

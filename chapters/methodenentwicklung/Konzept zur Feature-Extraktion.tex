@@ -1,1 +1,26 @@
-\section{Konzept zur Feature-Extraktion}
+\section{Konzept zur Feature-Extraktion} \label{sec:Meth FeatExtr}
+Für die Feature-Extraktion stehen Detektionsdatensätze, und die Videos zur Verfügung. Mittels dem Assoziationsmodul lassen sich Trajektorien generieren, aus denen sich ebenfalls Features extrahieren lassen. Grundlage für die Feature-Extraktion ist der Ereignisdatensatz auf den sich die Tabelle \ref{tab:DatasetFeatExtr} bezieht. Ziel des Konzepts zur Feature-Extraktion ist es einen Trainigsdatensatz zu generieren. Ebenfalls ist das Konzept so zu entwerfen, dass es sich modular in die Vorverarbeitung des Gesamtkonzepts integrieren lässt (\ref{sec:Meth gesamtkonzept}). Das Konzept zur Generierung des Trainigsdatensatzes ist als Blockdiagramm in der Abbildung \ref{fig:KonzeptFeatExtr} zu sehen. Anschließend werden die einzelnen Module im Detail beschrieben.
+
+\emptyFigure{Blockdiagramm des Konzepts zur Generierung des Trainingsdatensatzes. Das Konzept lässt sich in 5 Module unterteilen. Die Datenbeschaffung, die Datenzuordnung, eine Vorverarbeitung, die Feature-Extraktion und die Datensicherung. Als Input erhalten die Module den Ereignisdatensatz.}{fig:KonzeptFeatExtr}
+\todo{Abbildung fehlt}
+
+\begin{quote}
+\par
+\textbf{Datenbeschaffung}\par
+Die Aufgabe der Datenbeschaffung ist es die passenden Dateien zu einem Ereignis herauszusuchen. Es ist das gleiche Hilfsmodul wie in der Ereignisverifizierung (\ref{sec:Meth Labeling}) verwendet wird. Als Eingabe erhält es den Startzeitpunkt eines Ereignisses. Als Ausgabe gibt es den Dateipfad zu der Videodatei, und dem Detektionsdatensatz zurück, die zu dem Zeitpunkt passen. \dubpar
+
+\textbf{Zuordnung der Daten zu dem Ereignis}\par
+In der Zuordnung werden aus Dateien, welche in der Datenbeschaffung herausgesucht wurden, die passenden Einträge herausgesucht. Der Detektionsdatei werden basierend auf den Zeitstempeln die Einträge herausgesucht, welche zu dem Zeitraum des Ereignisses passen. In diesen Einträgen findet sich die ID der Frames zum dazugehörigen Video. Darüber lassen sich die passenden Frames identifizieren. Als Eingabe benötigt das Modul den Dateipfad zu einer Videodatei, den Dateipfad zu einem Detektionsdatensatz, einen Startzeitpunkt und einen Endzeitpunkt eines Ereignisses. Die Ausgabe der Zuordnung sind die zum Ereignis passenden Detektionseinträge und Frames. \dubpar
+
+\textbf{Vorverarbeitung}\par
+Die Vorverarbeitung ist für die Extraktion der Features aus den Detektionen und den Trajektorien notwendig. Zunächst sind die Detektionen zu Formatieren. Im Detektionsdatensatz sind die Detektionen frameweise abgespeichert. Damit ist gemeint, dass jeder Eintrag im Detektionsdatensatz sich auf ein Frame im Video bezieht. Für die Weiterverarbeitung ist jedoch eine detektionsweise Formatierung praktischer. Also jede Detektion erhält einen eigenen Eintrag. Diese formatierten Detektionen werden dem Assoziationsmodul übergeben. Dieses generiert die Trajektorien zum Ereignis. Als Eingabe erhält die Vorverarbeitung die Detektionen aus einer Detektionsdatei. Die Ausgabe sind die Trajektorien und die formatierten Detektionen. \dubpar
+
+\textbf{Feature-Extraktion}\par
+In der Feature-Extraktion werden die Features berechnet. Sie ist aufgebaut aus drei Programmen, welche sich jeweils um eine andere Datenquelle kümmern. Ein Programm erhält die Frames des Videos und extrahiert Features aus dem Bildmaterial. Ein weiteres Programm erhält die formatierten Detektionsdaten und extrahiert daraus Features. Das letzte Programm ist für die Trajektorien zuständig. Dieses bekommt die Trajektorien übergeben und berechnet daraus Features. Jedes der Programme gibt die jeweilgen Features aus. Diese laufen im Featurevektor zusammen. \dubpar
+
+\textbf{Datensicherung}\par
+In der Datensicherung wird der Featurevektor aus der Feature-Extraktion entgegengenommen und mit dem Label des Ereignisses versehen. Label und Features werden in einem Datensatz abgelegt. 
+
+\end{quote}
+
+Der Prozess ist Automatisiert. Wird dem Konzept ein Ereignisdatensatz übergeben, wird automatisch durch die Ereignisse iteriert. Der Datensatz in dem Labels und Features zusammenlaufen kann für das Modelltraining verwendet werden, oder für die Konstruktion weiterer Features.
