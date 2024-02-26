@@ -1,0 +1,160 @@
+\section*{Beschreibungen der Basis-Features}
+
+\begin{longtable}{>{\bfseries}p{0.3\textwidth} p{0.65\textwidth}}
+% Kopfzeile auf der ersten Seite
+\label{tab:FeatDiscr}
+\textbf{Feature} & \textbf{Beschreibung} \\
+\hline
+\endfirsthead
+
+% Kopfzeile auf den folgenden Seiten
+\textbf{Feature} & \textbf{Beschreibung} \\
+\hline
+\endhead
+
+% Fußzeile auf allen Seiten außer der letzten
+\multicolumn{2}{r}{Fortsetzung auf der nächsten Seite...} \\
+\endfoot
+
+% Fußzeile auf der letzten Seite
+\hline
+\endlastfoot
+
+% Subüberschriften für die Feature-Kategorien
+\multicolumn{2}{>{\bfseries}l}{Features der Trajektorien} \\
+\hline
+% Hier fügen Sie Ihre Feature-Beschreibungen ein
+Uhrzeit & Die Uhrzeit des Startzeitpunkts des Ereignisses. Darüber sollen Zeitabhängigkeiten erfasst werden. Kontrollgägne finden bspw. i.d.R. Vormittags statt. \\
+\addlinespace[0.7em] % Fügt 0.7em zusätzlichen Platz ein
+
+Mittlere Geschwindigkeit & Die Geschwindigkeit, gemittelt über alle Trajektorien. Das Feature zielt auf Gruppendynamiken ab. Sind alle Tiere ruhig, ist auch die mittlere Geschwindigkeit niedrig. Einzelne Tiere wirken hierauf wenig. \\
+\addlinespace[0.7em] % Fügt 0.7em zusätzlichen Platz ein
+
+Standardabweichung der Geschwindigkeiten & Die Standardabweichung von der mittleren Geschwindigkeit. Hiermit sollen lokale Dynamiken erfasst werden. Finden stark unterschiedliche Bewegungen statt, steigt die Standardabweichung. \\
+\addlinespace[0.7em] % Fügt 0.7em zusätzlichen Platz ein
+
+Maximale Geschwindigkeit & Die Geschwindigkeit der schnellsten Trajektorie. Ähnlich wie die mittlere Geschwindigkeit, sollen hiermit hohe Dynamiken von Niedrigen unterscheidbar gemacht werden. In Kombination mit anderen Features sind jedoch auch individuelle hohe Dynamiken identifizierbar. Ist die mittlere Geschwindigkeit bspw. eher niedrig, aber die maximale Geschwindigkeit hoch, kann das ein Indiz für lokale hohe Dynamik sein. \\
+\addlinespace[0.7em] % Fügt 0.7em zusätzlichen Platz ein
+
+Minimale Geschwindigkeit & Die Geschwindigkeit der langsamsten Trajektorie. Die Idee ist vor allem, dass in Kombination mit der maximalen Geschwindigkeit die Spanne der Geschwindigkeiten ermittelt ist. Wodurch Dynamikunterschiede innerhalb eines Ereignisses erkannt werden sollen.  \\
+\addlinespace[0.7em] % Fügt 0.7em zusätzlichen Platz ein
+
+Driftgeschwindigkeit & Die Geschwindigkeit der kollektiven Bewegung. Darüber soll die Intensität einer Gruppenbewegung erfasst werden. Bewegen sich alle Tiere in die gleiche Richtung, wie bei einem Kontrollgang, dann ist die Driftgeschwindigkeit hoch. Bewegen sich die Tiere nicht gemeinschaftlich in eine Richtung ist sie niedrig.\\
+\addlinespace[0.7em] % Fügt 0.7em zusätzlichen Platz ein
+
+Mittlere Beschleunigung & Die mittlere Beschleunigung aller Trajektorien. Kollektive explosive Geschwindigkeitsanstiege sollen darüber erfasst werden. \\
+\addlinespace[0.7em] % Fügt 0.7em zusätzlichen Platz ein
+
+Standardabweichung der Beschleunigungen & Die Standardabweichung der mittleren Beschleunigung. Ähnlich wie bei der Abweichung der Geschwindigkeiten, zielt das Feature auf unterschiede der Dynamiken innerhalb eines Ereignisses ab. \\
+\addlinespace[0.7em] % Fügt 0.7em zusätzlichen Platz ein
+
+Maximale Beschleunigung & Die Beschleunigung der Trajektorie mit der stärksten Änderung der Geschwindigkeit. Dient der Identifikation individueller, besonders explosiver Bewegungen.  \\
+\addlinespace[0.7em] % Fügt 0.7em zusätzlichen Platz ein
+
+Minimale Beschleunigung & Die Beschleunigung der Trajektorie mit der geringsten Änderung der Geschwindigkeit. Ählich wie die minimale Geschwindigkeit, wird vor allem auf die Spanne von Maximum und Minimum abgezielt, um starke Unterschiede zu erkennen. \\
+\addlinespace[0.7em] % Fügt 0.7em zusätzlichen Platz ein
+
+Mittlere normierte Schrittanzahl & Die Anzahl der Frames, die die Trajektorien im mittel durchlaufen. Normiert wird auf die Gesamtanzahl der Frames im Ereignis, da diese variieren kann. Wie in \ref{sec:Ergebnisse MOT} dargestellt wird, häufen sich Fragmentationsfehler in der Assoziation bei Ereignissen mit hoher Dynamik. Dies Erkenntnis wird sich hier zu nutze gemacht. Eine kürzere Schrittanzahl kann durch Fragmentationen entstehen, was auf höhere Dynamik hindeutet. \\
+\addlinespace[0.7em] % Fügt 0.7em zusätzlichen Platz ein
+
+Standardabweichung der normierten Schrittanzahl &  Auch hier sollen sich die Fragmentationsfehler zu nutze gemacht werden, jedoch um lokale Auffälligkeiten zu identifizieren. Ist die Schrittanzahl sehr unterschiedlich, dann kann das auf Fragmentation in vereinzelten Bildbereichen hindeuten, was auf hohe lokale Dynamiken hinweist. \\
+\addlinespace[0.7em] % Fügt 0.7em zusätzlichen Platz ein
+
+Maximale normierte Schrittanzahl & Die Schrittanzahl der kontinuierlichsten Trajektorie. Kann vor allem durch die Kombination mir der mittleren Schrittanzahl, oder die Spanne zum Minimum Informationen über Dynamikunterschiede beinhalten. \\
+\addlinespace[0.7em] % Fügt 0.7em zusätzlichen Platz ein
+
+Minimale normierte Schrittanzahl &  Die Schrittanzahl der am wenigsten kontinuierlichen Trajektorie. Die Idee hinter dem Feature ist die gleich wie beim Maximum. \\
+\addlinespace[0.7em] % Fügt 0.7em zusätzlichen Platz ein
+
+Mittlere zurückgelegte Entfernung & Die Entfernung wird definiert als die Distanz zwischen dem Startpunkt und dem Endpunkt einer Trajektorie. Die mittlere zurückgelegte Entfernung bezieht sich auf alle Trajektorien im Ereignis. Werden große Distanzen zurückgelegt, ist das Ereignis tendenziell dynamischer. \\
+\addlinespace[0.7em] % Fügt 0.7em zusätzlichen Platz ein
+
+Standardabweichung der zurückgelegten Entfernungen & Mit diesem Feature sollen Unterschiede in den Entfernungen erkennbar werden. Es zielt auf hohe lokale Dynamiken ab, wie bei einem Kampfereignis. \\
+\addlinespace[0.7em] % Fügt 0.7em zusätzlichen Platz ein
+
+Maximale zurückgelegte Entfernung & Das Feature kann in Kombination mit anderen Features auf Dynamikunterschiede hinweisen.  \\
+\addlinespace[0.7em] % Fügt 0.7em zusätzlichen Platz ein
+
+Minimale zurückgelegte Entfernung & Die Idee hinter dem Feature ist die gleiche wie beim Maximum. \\
+\addlinespace[0.7em] % Fügt 0.7em zusätzlichen Platz ein
+
+Mittlere zurückgelegte Strecke & Die zurückgelegte Strecke bezieht sich auf die Bewegungskurve der Trajektorie. Sie ist nicht mit der zurückgelegten Entfernung zu verwechseln. Das Ziel ist jedoch das gleiche wie bei der mittleren Entfernung.\\
+\addlinespace[0.7em] % Fügt 0.7em zusätzlichen Platz ein
+
+Standardabweichung der zurückgelegten Strecken & Unterschiede in den Dynamiken sollen verdeutlicht werden. \\
+\addlinespace[0.7em] % Fügt 0.7em zusätzlichen Platz ein
+
+Maximale zurückgelegte Strecke & Das Feature kann in Kombination mit anderen Features auf Dynamikunterschiede hinweisen. \\
+\addlinespace[0.7em] % Fügt 0.7em zusätzlichen Platz ein
+
+Minimale zurückgelegte Strecke & Das Feature kann in Kombination mit anderen Features auf Dynamikunterschiede hinweisen. \\
+\addlinespace[0.7em] % Fügt 0.7em zusätzlichen Platz ein
+
+Kumulierte Strecke & Bei diesem Feature werden die individuellen Strecken der einzelnen Features aufkumuliert. Es kann auf Gruppendynamik hinweisen. \\
+\addlinespace[0.7em] % Fügt 0.7em zusätzlichen Platz ein
+
+Mittlere Kurvigkeit & Die Kurvigkeit einer Kurve wird definiert als Verhältnis der Strecke zur Entfernung. Ist die Strecke sehr lang, aber die Entfernung kurz, deutet dies auf eine sehr Kurvige Bewegung hin. Bei stationären Tieren kann es durch Lokalisationsschwankungen dazu kommen, dass die Kurvigkeit sehr hoch ist, damit ist ein Umgang zu definieren. Das Feature zielt auf Rotationsbewegungen ab, wie sie bei Kämpfen vorkommen.  \\
+\addlinespace[0.7em] % Fügt 0.7em zusätzlichen Platz ein
+
+Standardabweichung der Kurvigkeit & Sind die Kurvigkeiten sehr unterschiedlich kann das auf wenige Kämpfende Tiere hinweisen. \\
+\addlinespace[0.7em] % Fügt 0.7em zusätzlichen Platz ein
+
+Maximale Kurvigkeit & Bei Kämpfen wird erhofft, dass sich dieser Wert auf eins der Kämpfenden Tiere bezieht, wodurch der Wert bei Kampfereignissen heraussticht im Vergleich zu den anderen Verhaltensweisen. \\
+\addlinespace[0.7em] % Fügt 0.7em zusätzlichen Platz ein
+
+Minimale Kurvigkeit & Die minimale Kurvigkeit kann in Kombination mit Features informativ sein.   \\
+\addlinespace[0.7em] % Fügt 0.7em zusätzlichen Platz ein
+
+Anzahl der Trajektorien & Wie bei der Schrittanzahl nutzt dieses Feature die Schwächen in der Assoziation aus, um Dynamiken zu erkennen. Ist ein Ereignis dynamisch häufen sich Fragmentationen, wodurch die Anzahl der Trajektorien steigt.  \\
+\addlinespace[0.7em] % Fügt 0.7em zusätzlichen Platz ein
+
+
+% Subüberschriften für die Feature-Kategorien
+\hline
+\multicolumn{2}{>{\bfseries}l}{Features der Videos} \\
+\hline
+% Hier fügen Sie Ihre Feature-Beschreibungen ein
+Mittlere Pixelveränderung & Die Pixelveränderung wird genauso berechnet wie in \ref{sec:Meth CrockGrieMods} beschrieben. Vorallem globale Dynamiken sorgen für viel Veränderung im Bild. Das ist durch das Feature erkennbar.\\
+\addlinespace[0.7em] % Fügt 0.7em zusätzlichen Platz ein
+
+Standardabweichung der Pixelveränderung & Die Schwankungen in der Pixelveränderung können auf inkonstante Dynamiken hinweisen. Solche Fälle treten i.d.R nicht bei Kämpfen und Kontrollgängen auf, jedoch kann es helfen, um Sonderfälle im Normalverhalten von Kämpfen und Kontrollgängen zu unterscheiden. \\
+\addlinespace[0.7em] % Fügt 0.7em zusätzlichen Platz ein
+
+Maximale Pixelveränderung & Die maximale Pixelveränderung ist der Veränderungspeak im Ereignis. Das Feature kann Informationen in Bezug auf Sonderfälle beinhalten, jedoch auch Informationen über hohe Gruppendynamiken beinhalten. Der informationsgehalt wird vermutlich erst in Kombination mit anderen Features deutlich.\\
+\addlinespace[0.7em] % Fügt 0.7em zusätzlichen Platz ein
+
+Minimale Pixelveränderung & Die Funktion des Features ist ähnlich wie bei der maximalen Pixelveränderung. \\
+\addlinespace[0.7em] % Fügt 0.7em zusätzlichen Platz ein
+
+
+% Subüberschriften für die Feature-Kategorien
+\hline
+\multicolumn{2}{>{\bfseries}l}{Features der Detektionen} \\
+\hline
+% Hier fügen Sie Ihre Feature-Beschreibungen ein
+Mittlere Objektanzahl & Pro Frame bestimmt die Detektion die Anzahl der Objekte. Das Feature beinhaltet die mittlere Objektanzahl pro Frame im Bezug auf das Ereignis. Bei Kontrollgängen drängen die Tiere, wodurch die Objektanzahl höher zu erwarten ist, als bei anderen Ereignissen. \\
+\addlinespace[0.7em] % Fügt 0.7em zusätzlichen Platz ein
+
+Standardabweichung der Objektanzahl & Auch die Abweichung der Objektanzahl kann auf Kontrollgänge hindeuten, da die Anzahl steigt, während Tier aus anderen Stallbereichen in das Kamerabild drängen. \\
+\addlinespace[0.7em] % Fügt 0.7em zusätzlichen Platz ein
+
+Maximale Objektanzahl & Sie kann auf besonders Dichte Ereignisse hindeuten. Es kann in der Kombination mit anderen Features Informativ sein. \\
+\addlinespace[0.7em] % Fügt 0.7em zusätzlichen Platz ein
+
+Minimale Objektanzahl & Wie die maximale Objektanzahl kann das Feature in der Kombination mit anderen Features Informativ sein. \\
+\addlinespace[0.7em] % Fügt 0.7em zusätzlichen Platz ein
+
+Mittlere freie Fläche & Die freie Fläche wird berechnet über die Auflösung der Kameras und die Bounding Boxen. Beides ist in Pixel angegeben. Die über die Bildfläche und die Vereinigungsfläche der Bounding Boxen lässt sich für jedes Frame prozentual die Bildfläche berechnen, die nicht von Bounding Boxen bedeckt ist. Dies wird gemittelt über das Ereignis. Es ist ein Indiz für die Tierdichte in einem Ereignis.\\
+\addlinespace[0.7em] % Fügt 0.7em zusätzlichen Platz ein
+
+Standardabweichung der freie Fläche & Die Standardabweichung der freien Fläche zielt auf die Erfassung von Flächen ab, die in einem Ereignis spontan entstehen. Wie bei einem Traktor, der durch den Kamerabereich fährt, oder \gfuss{Trauben} die bei Kämpfen und Kontrollgängen entstehen. \\
+\addlinespace[0.7em] % Fügt 0.7em zusätzlichen Platz ein
+
+Maximale freie Fläche & Das Feature kann helfen sehr Starke Veränderungen deutlich zu machen. Ein Traktor hinterlässt eine deutlich größere freie Fläche, als ein regulärer Kontrollgang. \\
+\addlinespace[0.7em] % Fügt 0.7em zusätzlichen Platz ein
+
+Minimale freie Fläche & Es kann in Kombination auf Veränderungen in der Tierdichte hinweisen. \\
+\addlinespace[0.7em] % Fügt 0.7em zusätzlichen Platz ein
+
+% ... und so weiter für alle Ihre Features
+\end{longtable}

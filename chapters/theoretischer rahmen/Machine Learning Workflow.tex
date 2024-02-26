@@ -26,7 +26,7 @@ Aus den Rohdaten müssen \gls{Feature}[s] kreiert werden mit denen das Modell le
 
 Auch auf \gls{Leakage} ist zu achten. Ein Beispiel wie \gls{Leakage} entstehen kann ist die Komprimierung von Zeitreihen zu \gls{Feature}[s] (\ref{sec:sequenzen ML}). Aus der Zeitreihe \(A\) sind komprimierte  \gls{Feature}[s] zu extrahieren, genau so wie aus der Zeitreihe \(B\). Was nicht bemerkt wird ist, dass diese eine zeitliche Überlappung haben. Dadurch sind die komprimierten Datenpunkte zu \(A\) und \(B\) nicht unabhängig von einander. Das kann dazu führen, dass die Proben im Datensatz zu wenig Varianz aufweisen und das Modell lernt nicht zu \glsdisp{Generalisierung}{generalisieren}. Auch für die Evaluation kann das zu Problemen führen \cite{Zheng.2018, Geron.2019}. \par
 
-Extrahierten \gls{Feature}[s] lassen sich Transformieren. Solche Transformationen zielen meistens auf eine Veränderung der Verteilung ab. Dies kann Modellen helfen aus \gls{Feature}[s] besser zu lernen. \dubpar
+Extrahierte \gls{Feature}[s] lassen sich Transformieren. Solche Transformationen zielen meistens auf eine Veränderung der Verteilung ab. Dies kann Modellen helfen aus \gls{Feature}[s] besser zu lernen. \dubpar
 
 \textbf{Gruppierung}\\
 Die Werte in einem \gls{Feature} werden in Gruppen eingeteilt. Dies kann durch vom Ersteller gewählte Wertebereiche erfolgen, oder nach statistischen Prinzipien, wie nach Quantilen. Dabei werden die Werte in gleichgroße Gruppen aufgeteilt. Z.B. werden die Werte bei einer Einteilung nach Perzentile in 100 Gruppen eingeteilt und in jeder befindet sich die gleiche Anzahl an Werten. Die Gruppen sind durchnummeriert. Die Nummer der Gruppe ist das neue konstruierte \gls{Feature} \cite{Zheng.2018}. \dubpar
@@ -195,7 +195,10 @@ Gradient Boosting gehört zu den \glsdisp{überwachtes Lernen}{überwachten Lern
 
 Zu Beginn wird ein konstanter Entscheidungsbaum initialisiert. Dieser ist die Ausgangssituation für die Modellierung mit Entscheidungsbäumen. Es existiert ein einziger Knoten, welcher auf jede Eingabe identisch bewertet. Mit diesem konstanten Entscheidungsbaum werden alle Proben im \gls{Trainingsdatensatz} bewertet. Anschließend wird die Abweichung gemessen. Diese Abweichung wird für den nächsten Entscheidungsbaum als \gls{Label} für die Daten verwendet. Der folgende Baum lernt somit die Fehler seines vorausgegangenen Baumes zu schätzen. Sequentiell lernen die folgenden Bäume den verbleibenden Fehler zu schätzen. \par
 
-Ist eine unbekannte Probe zu schätzen, weis das Modell nach dem Training, wie es die Fehler in den Bäumen korrigieren muss. Ein wichtiger \gls{Hyperparameter} im Gradient Boosting ist die Lernrate. Diese bestimmt die Stärker der Korrektur für jede Stufe in der Sequenz. Ist bspw. laute Entscheidungsbaum die Schätzung um den Wert \(a\) zu korrigieren, sorgt die Lernrate \(\alpha\) dafür, dass die Schätzung nur um \(\alpha \cdot a\) korrigiert wird. Dies kann Overfitting vermeiden \cite{Burkov.2019}. \dubpar
+Ist eine unbekannte Probe zu schätzen, weis das Modell nach dem Training, wie es die Fehler in den Bäumen korrigieren muss. Ein wichtiger \gls{Hyperparameter} im Gradient Boosting ist die Lernrate. Diese bestimmt die Stärker der Korrektur für jede Stufe in der Sequenz. Ist bspw. laut Entscheidungsbaum die Schätzung um den Wert \(a\) zu korrigieren, sorgt die Lernrate \(\alpha\) dafür, dass die Schätzung nur um \(\alpha \cdot a\) korrigiert wird. Dies kann Overfitting vermeiden \cite{Burkov.2019}. \par
+
+Eine Variante des Gradient Boosting wird als Histogramm basiertes Gradient Boosting bezeichnet. Bei dieser werden die Features zuvor Gruppiert, ähnlich der Gruppierung bei der Feature-Konstruktion (\ref{sec:ML FeatExtr}). Dadurch Wird die Anzahl unterschiedlicher Werte reduziert. Das Gradient Boosting ist somit effizienter durchzuführen \cite{Ke.2017}. 
+\dubpar
 
 
 \textbf{Long Short-Term Memory (\acrshort{LSTM})} \par
