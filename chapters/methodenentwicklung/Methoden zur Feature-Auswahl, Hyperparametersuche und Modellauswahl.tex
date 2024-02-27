@@ -1,4 +1,4 @@
-\section{Methoden zur Feature-Auswahl, Hyperparametersuche und Modellauswahl}
+\section{Methoden zur Feature-Auswahl, Hyperparametersuche und Modellauswahl} \label{sec:Meth FeatHypModSelect}
 zwischen der Feature-Auswahl, dem Modellauswahl und der Hyperparamtersuche besteht ein enger Zusammenhang. Werden für die Feature-Auswahl modellabhängige Methoden verwendet, wie die Wrapper Methoden, muss ein Modell vorhanden sein, mit welchem sich die Methoden anwenden lassen. Um zwischen unterschiedlichen Modellen auszuwählen auf Basis ihrer Performance, ist eine Einstellung der Hyperparameter notwendig, damit die Modell auch fair bewertet werden. Ein Modell \(A\) wird beispielsweise mit einem Modell \(B\) verglichen. Die Hyperparameter sind noch nicht eingestellt. Modell \(A\) erzielt eine bessere Performance. Anschließend werden passende Hyperparameter gesucht. Anschließend zeigt ein weiterer Vergleich, dass nun Modell \(B\) die bessere Wahl ist. \par
 
 Um also ein möglichst effektives Modell zu erhalten, ist eine Grobe Voreinstellung der Hyperparameter durchzuführen der Modelle durchzuführen. Anschließend wird eine Methode für die Feature-Auswahl angewendet. Da die Modelle vorhanden und eingestellt sind, darf diese modellabhängig, oder modellunabhängig sein. Anschließend kann die Performance der Modelle verglichen werden. Das beste wird ausgewählt und eine Feineinstellung der Hyperparameter wird durchgeführt. Das finale wird mit dem Testdatensatz überprüft und kann anschließend angewendet werden.\par
@@ -25,7 +25,7 @@ Da die Datenmenge sehr begrenzt ist, wie in \ref{sec:Meth Datensatz} dargestellt
     \label{tab:TrainTestSplit}
 \end{table}
 
-\subsection{Vorauswahl der Features}
+\subsection{Vorauswahl der Features} \label{sec:Meth FeatVorSele}
 Zunächst werden die Filter-Methoden angewendet, da sie modellunabhängig Anwendbar sind. Dadurch entstehen  Feature Rangfolgen: eine für die Varianzanalyse und eine für die Gegenseitige Information. Jedoch ist die Qualität dieser Rangfolgen nicht überprüfbar ohne Modell. Aus diesem Grund wurde sich ein verfahren Überlegt, wie die Rangfolge der Filter-Methoden möglichst modellunabhängig evaluiert werden kann. \par
 
 Es wird ein Modell genommen, bspw. die logistische Regression. Dieses bleibt unkonfiguriert. Es wird mit den Standardeinstellungen der \gls{Bibliothek} verwendet. Dieses bekommt inkrementell die Features, nach ihrer Rangfolge übergeben. In jeder Inkrementation wird das Modell trainiert und validiert. In der ersten Inkrementation wird das Modell also nur mit dem höchstrangigen Feature aufgebaut. In der zweiten Inkrementation mit den beiden höchstrangigen Features und in der Dritten mit den drei höchstrangigen Features. Validiert werden die Modelle mit der Metrik Accuracy und Cross-Validation. Somit entsteht ein Verlauf, der sich zweidimensional visualisieren lässt. Auf der y-Achse wird die Accuracy dargestellt und auf der y-Achse die Feature-Anzahl mit welcher das jeweilige Modell trainiert wurde. Die Abbildung \ref{fig:bspSättAccu} zeigt beispielhaft einen Linienplot der Accuracy. 
@@ -91,7 +91,7 @@ Mit der resultierenden Rangfolge wird mit 29 Features die Sättigung der Accurac
 
 
 
-\subsection{Einstellung der Hyperparameter}
+\subsection{Einstellung der Hyperparameter} \label{sec:Meth HyperparaKonf}
 Für die zur Auswahl stehenden Modelle sind passende Hyperparameter zu finden. Dafür verwendet werden die 150 Features der Vorauswahl. Für die Hyperparametersuche wird eine Random Search durchgeführt (\ref{sec:ML HyperPara}). Versuche die Methode der Grid Search anzuwenden zeigten, dass diese zu viel Rechenzeit benötigt. Eingestellt werden die folgenden Modelle.
 
 \begin{enumerate}
@@ -116,7 +116,7 @@ Eine ausführliche Übersicht über die Hyperparameter der einzelnen Modelle und
 \todo{Features müsen Skaliert werden bei manchen Modellen unterbringen}
 
 
-\subsection{Auswahl des Modells und der Features}
+\subsection{Auswahl des Modells und der Features}\label{sec:Meth ModelSele}
 Da nun die Modelle eingestellt sind und eine Feature Vorauswahl vorhanden ist, ist die finale Entscheidung für ein Modell einfach. Für jedes eingestellte Modell wird der Verlauf der Accuracy im Bezug auf die Rangliste ermittelt, wir in \ref{fig:bspSättAccu} beispielhaft dargestellt. Anschließend können die Verläufe vergleichen werden. Das Modell, welches die beste Performance zeigt, wird ausgewählt. Über den Sättigungspunkt ist eine optimale Feature-Menge direkt ablesbar. Erzielen zwei Modelle die gleiche Performance, wird das Modell bevorzugt, welches diese mit der geringsten Feature-Menge erreicht. \par
 
 Es zeigt sich, dass eine polynomiale SVM das beste Modell ist. Die Entscheidungsebene ist mit einer Funktion zweiten Grades modellierbar. Der Sättigungspunkt wird laut Trendlinie mit 18 Features erreicht, um für mehr Stabilität tiefer in der Sättigung zu liegen, werden die besten 40 Features verwendet. Die polynomiale SVM implementiert keine Embedded-Methoden für die Feature-Auswahl, somit wird die Auswahl nicht weiter Optimiert. \par
