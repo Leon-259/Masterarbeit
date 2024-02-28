@@ -75,19 +75,19 @@
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
-\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{backcolour}{rgb}{0.97,0.97,1}
 \lstdefinestyle{mystyle}{
     backgroundcolor=\color{backcolour},   
     commentstyle=\color{codegreen},
     keywordstyle=\color{magenta},
     numberstyle=\tiny\color{codegray},
     stringstyle=\color{codepurple},
-    basicstyle=\ttfamily\footnotesize,
+    basicstyle=\ttfamily,
     breakatwhitespace=false,         
     breaklines=true,                 
     captionpos=b,                    
     keepspaces=true,                 
-    numbers=left,                    
+    %numbers=left,                    
     numbersep=5pt,                  
     showspaces=false,                
     showstringspaces=false,
@@ -96,6 +96,22 @@
 }
 
 \lstset{style=mystyle}
+\lstset{literate=%
+  {Ö}{{\"O}}1
+  {Ä}{{\"A}}1
+  {Ü}{{\"U}}1
+  {ß}{{\ss}}1
+  {ü}{{\"u}}1
+  {ä}{{\"a}}1
+  {ö}{{\"o}}1
+}
+
+\addto\captionsngerman{%
+  \renewcommand{\lstlistlistingname}{Codeauszugsverzeichnis}
+}
+\addto\captionsngerman{
+  \renewcommand{\lstlistingname}{Codeauszug}
+}
 
 %Neudefinition des \mainmatter befehls, um bei Aufruf die letze Seitenzahl des 
 %Frontmatters zu speichern, um beim Backmatter wieder drauf zurückgreifen zu können
@@ -130,7 +146,7 @@
 
 \newcommand{\theauthor}{Leon Grude}
 \newcommand{\thetitle}{Entwicklung eines Moduls zur automatischen Klassifikation von Verhaltensweisen von Mastputen mittels Machine-Learning-Methoden}
-\newcommand{\thedate}{02.02.2024}
+\newcommand{\thedate}{11.03.2024}
 
 \newcommand{\emptyFigure}[2]{
     \begin{figure}[htbp]
@@ -174,3 +190,13 @@
 \newcommand{\dubpar}{\vspace{1cm}}
 
 \newcommand{\gfuss}[1]{\glqq#1\grqq}
+
+\lstnewenvironment{pythoncode}[3][]{
+  \lstset{
+    language=Python,
+    caption=#2,
+    captionpos=b,
+    label=#3,
+    #1
+  }
+}{}
