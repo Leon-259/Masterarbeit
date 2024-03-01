@@ -1,4 +1,4 @@
- \section{Durchführung der Extraktion und Konstruktion der Features}
+ \section{Durchführung der Extraktion und Konstruktion der Features} \label{secc:Umsetz Featextr}
 Die Umsetzung der Feature-Extraktion erfolgt mit dem Wissen, dass sie zwei Funktionen Erfüllen muss. Zum Einen werden Features benötigt, als Prozessschritt im Machine Learning Workflow und zum Anderen benötigt das fertige Modul eine Vorverarbeitung. Die Durchführung der Extraktion wird deshalb direkt so Implementiert, dass sie sich einfach in das Modul zur Verhaltensklassifikation integrieren lässt. Nach der Feature-Auswahl sollen lediglich kleine Anpassungen notwendig sein, um die Extraktion in das Modul einfügen zu können. Ergebnis dieses Kapitels ist die Struktur für die komplette Vorverarbeitung des Moduls (\ref{sec:Meth FinalKonzept}).\par
 
 Im ersten Schritt sind jedoch die Features zu den Ereignisintervallen (\ref{sec:Meth Datensatz}) zu extrahieren, um mit diesen in die Feature-Konstruktion zu gehen und anschließend in die Feature-Auswahl. Nach der Verifizierung werden die Ereignisse in Intervalle zerteilt, wie in \ref{sec:Meth Datensatz} beschrieben. Aus diesem Grund wird sich in der Feature-Extraktion immer auf die Ereignisintervalle bezogen. Extrahiert werden zunächst die Basis-Features(\ref{sec:Meth KonstrFeatures}). In der Konstruktion werden die restlichen Feature-Kategorien generiert. Nach der Feature-Auswahl muss die Extraktion so angepasst werden, dass nicht nur die Basis-Features berechnet werden. Die notwendigen Konstruktionen der Features aus anderen Kategorien sind der Extraktion hinzuzufügen. \par
@@ -128,7 +128,6 @@ Nach der Extraktion werden aus jedem Submodul die Features entgegengenommen. Das
 Neben der \textit{uhrzeit}, werden den Features die Informationen zum Intervall beigefügt, um diese Später zuordnen zu können. Das ist für die Auswertung der Simulation (\ref{sec:Meth Sim}) wichtig und auch für die Erstellung des Feature-Datensatzes. Einige Features sind zu Normalisieren. Das erfolgt nach dem alle Features und Informationen zusammengeführt werden. Anschließend werden die Features zurückgegeben. Der Codeausschnitt \ref{lst:FE KombineNRet} zeigt dies.
 
 \begin{pythoncode}{Features zusammenführen und zurückgeben.}{lst:FE KombineNRet}
-
 #Vorheriger Code innerhalb der get_features Methode...
 
 #Allgemeine Features und Infos für die Zuordnung
@@ -155,7 +154,6 @@ Nach der Feature-Auswahl sind für das Modul Features aus den Basis-Features zu 
 Der Codeausschnitt \ref{lst:FE konstrRet} zeigt, dass zwei Methoden verwendet werden, um die benötigten Features aus der Auswahl zu konstruieren. 
 
 \begin{pythoncode}{Features vor der Rückgabe konstruieren.}{lst:FE konstrRet}
-
 #Vorheriger Code innerhalb der get_features Methode...
 
 #Nach der Feature-Auswahl zusätzlich zum Normalisieren
@@ -199,9 +197,8 @@ def extract_all_features(self):
 Die Extraktion aus den Detektionsdaten erfolgt ganz ähnlich. Zum einen wird der Verlauf der Objektanzahl erhoben und über die Methode \textit{get\_free\_area} wird der Verlauf der freien Fläche ermittelt. Anschließend werden über \textit{numpy} die Features berechnet und zurückgegeben. Das zeigt der Codeauschnit\ref{lst:FE ExtrDets}
 
 \begin{pythoncode}{Methode \textit{extract\_all\_features} der Feature-Extraktion aus den Detektionsdaten}{lst:FE ExtrDets}
-
 def extract_all_features(self):
-    
+
     #Objektanzahl Infos zum Ereignisintervall
     objCnt = self.detections['objectCount']
 
@@ -309,7 +306,6 @@ def assoziation(self):
 Da SORT ein Online-Tracking Algorithmus ist, erwartet dieser die Detektionen Frameweise. Es wird durch die einzelnen Frames iteriert. Die bounding Boxen der Detektionen werden dem Detektionsdatensatz entnommen und der Methode \textit{update} des SORT-Algorithmus übergeben. Die Methode \textit{update} initialisiert neue Trajektorien und aktualisiert die Zustandsschätzung von bekannten Trajektorien. Auch die Assoziation findet in dieser Methode statt. Zurückgeben tut sie die Assoziationen zum aktuellen Frame. Für eine übersichtlicher Verarbeitung werden die Assoziationen in einen \textit{DataFrame} überführt, eine Datenstruktur der Bibliothek \textit{pandas}. Das ist im Codeauszug \ref{lst:FE UseSORT} zu sehen.
 
 \begin{pythoncode}{Generieren der Trajektorien mit SORT.}{lst:FE UseSORT}
-
 #Vorheriger Code innerhalb der assoziation Methode...
 
 #Iteration durch jedes Frame im Intervall
