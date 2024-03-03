@@ -3,14 +3,16 @@ Um ein Gesamtkonzept für das \gls{Modul} zur automatischen Verhaltensklassifika
 
 \subsection{Anforderungen an das Modul} \label{sec:Meth Anforderungen}
 
-Die Anforderungen an das \gls{Modul} lassen sich sich aus der Zielsetzung (\ref{sec:Zielsetzung}) ableiten. 
+Die Anforderungen an das \gls{Modul} lassen sich unter anderem aus der Zielsetzung (\ref{sec:Zielsetzung}) ableiten. 
 
 \begin{itemize}
-    \item \textit{Echtzeitfähigkeit}: Das \gls{Modul} muss in der Lage sein einen Datenstrom in Echtzeit zu verarbeiten. Daraus ist die Anforderung einer kurzen Laufzeit abzuleiten.
-    \item \textit{Verhaltenserkennung}: Das Verhalten der Puten soll zuverlässig erkannt werden. Daraus ist abzuleiten, dass das \gls{Modul} ein \gls{Klassifikation}[sproblem] lösen muss.
-    \item \textit{Modularität}: Aus der Forderung nach \glsdisp{Modul}{Modularität} entsteht die Anforderung einer einfachen Integrierbarkeit.
+    \item \textit{Modularität}: Aus der Forderung nach \glsdisp{Modul}{Modularität} entsteht die Anforderung einer einfachen Integrierbarkeit in eine Datenverarbeitungskette.
+    \item \textit{Echtzeitfähigkeit}: Das \gls{Modul} muss in der Lage sein, einen Datenstrom in Echtzeit zu verarbeiten. Daraus ist die Anforderung einer kurzen Laufzeit abzuleiten.
+    \item \textit{Verhaltenserkennung}: Das Verhalten der Puten soll erkannt und klassifiziert werden. Daraus ist abzuleiten, dass das \gls{Modul} ein \gls{Klassifikation}[sproblem] lösen muss.
+    \item \textit{Automation}: Eine automatische Verarbeitung der Daten ist als Ziel definiert. Die Konzepterstellung muss auf eine automatische Verarbeitung ausgelegt werden. 
     \item \textit{Zeitrahmen}: Die Entwicklungsdauer des \gls{Modul}[s] darf den Zeitrahmen der Arbeit nicht überschreiten. Daraus ist abzuleiten, dass die Komplexität des Konzepts begrenzt seien sollte, um die Einhaltung des Zeitplans zu gewährleisten.
 \end{itemize}
+
 
 \subsection{Rohdatengrundlage und Voraussetzungen} \label{sec:Meth RohDat}
 Die Rohdaten sind fundamental für den Aufbau von Anwendungen des \glsdisp{ML}{maschinellen} Lernens. Im \gls{Machine Learning Workflow} wird sich ab dem zweiten Prozessschritt mit ihnen auseinander gesetzt (\ref{sec:Worflow DatSam}). Die frühe Position im Ablauf zeigt, dass sämtliche folgenden Prozesse auf den Rohdaten fußen. Eine frühzeitige Bestandsaufnahme der zur Verfügung stehenden Rohdaten kann einen erfolgreichen Verlauf des Workflows gewährleisten. \par
@@ -62,7 +64,7 @@ Während sich ein Kontrollgang durch eine globale hohe Dynamik auszeichnet und e
 
 Das Auftreten einer Verhaltensweise stellt für das geplante \gls{Modul} ein \gls{Ereignis} dar. Wie die Beschreibungen der Verhaltensweisen zeigen, basieren die charakterisierenden Merkmale vor allem auf der Bewegung der Tiere. Bewegung ist zeitabhängig. Die Merkmale der Verhaltensweise sind somit in einem Zeitraum zu beobachten und nicht zu einem Zeitpunkt. Ein \gls{Ereignis} wird also definiert durch einen Startzeitpunkt und einen Endzeitpunkt. Innerhalb dieser zeitlichen Grenzen sind die Merkmale der jeweiligen Verhaltensweise zu beobachten. \par
 
-Aus den Anforderungen (\ref{sec:Meth Anforderungen}) ist bekannt, dass ein \gls{Klassifikation}[sproblem] zu lösen ist. Durch die Erkenntnis, dass sich die zu \gls{Ereignis}[se] innerhalb eines Zeitraums abspielen und dem Fakt, dass auch die Rohdaten in Zeitreihen strukturiert sind (\ref{sec:Meth RohDat}) wird deutlich, dass es sich bei der Aufgabe um eine \gls{Klassifikation} von Zeitreihen handelt.\par
+Aus den Anforderungen (\ref{sec:Meth Anforderungen}) ist bekannt, dass ein \gls{Klassifikation}[sproblem] zu lösen ist. Durch die Erkenntnis, dass sich die \gls{Ereignis}[se] innerhalb eines Zeitraums abspielen und dem Fakt, dass auch die Rohdaten in Zeitreihen strukturiert sind (\ref{sec:Meth RohDat}) wird deutlich, dass es sich bei der Aufgabe um eine \gls{Klassifikation} von Zeitreihen handelt.\par
 
 \subsection{Aufbau des Gesamtkonzepts}
 Es ist bekannt, welche Aufgabe zu lösen ist, es ist bekannt, wie die zu erkennende \gls{Ereignis}[se] aussehen, die erkannt werden sollen und es ist bekannt, welche Rohdaten zur Verfügung stehen. Mit diesem Wissen und über die Anforderungen ist ein Gesamtkonzept für das \gls{Modul} entwickelbar. Die Abbildung \ref{fig:GesKonzpt} zeigt dieses Konzept.
