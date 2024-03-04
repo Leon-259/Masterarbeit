@@ -113,9 +113,6 @@ Informativ kann auch die Betrachtung der Hyperparameter der oberen Ränge sein, 
 
 Eine ausführliche Übersicht über die Hyperparameter der einzelnen Modelle und die Wahrscheinlichkeitsverteilungen, aus denen die Random Search die jeweilgen Paramterwerte zieht befindet sich im Anhang. 
 
-\todo{Features müsen Skaliert werden bei manchen Modellen unterbringen}
-
-
 \subsection{Auswahl des Modells und der Features}\label{sec:Meth ModelSele}
 Da nun die Modelle eingestellt sind und eine Feature Vorauswahl vorhanden ist, ist die finale Entscheidung für ein Modell einfach. Für jedes eingestellte Modell wird der Verlauf der Accuracy im Bezug auf die Rangliste ermittelt, wir in \ref{fig:bspSättAccu} beispielhaft dargestellt. Anschließend können die Verläufe vergleichen werden. Das Modell, welches die beste Performance zeigt, wird ausgewählt. Über den Sättigungspunkt ist eine optimale Feature-Menge direkt ablesbar. Erzielen zwei Modelle die gleiche Performance, wird das Modell bevorzugt, welches diese mit der geringsten Feature-Menge erreicht. \par
 
