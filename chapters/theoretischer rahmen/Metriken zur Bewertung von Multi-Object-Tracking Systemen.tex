@@ -6,8 +6,6 @@ Die Evaluation von \gls{MOT} Systemen funktioniert über ein \glsdisp{Ereignis}{
 
 Für eine Aussagekräftige Evaluation wird eine qualitativ hochwertige \gls{Ground Truth} benötigt. Diese zu erstellen ist jedoch eine herausfordernde Aufgabe. Die Erstellung einer \gls{Ground Truth} erfolgt manuell und ist oftmals Zeitaufwendig. Ebenfalls kommt es bei \gls{MOT} Problemen häufig zu Mehrdeutigkeiten, welche selbst für einen Menschen nicht lösbar sind. Beispiele hierfür sind Spiegelungen in Fensterscheiben. Die Frage die in dieser Situation zu beantworten ist, wäre ob eine Spiegelung vom \gls{MOT} System als Objekt erkannt werden soll, oder ob es ein Fehler ist wenn es das tut. Auch der Umgang mit teilweisen Verdeckungen ist nicht eindeutig zu lösen. Solche Probleme treten oft in den Randbereichen des Kameraausschnitts auf, da hier beim Verlassen oder Eintreten in das Bild das Objekt nur teilweise sichtbar ist. Ab wann bzw. bis wann in diesem Fall ein Objekt zu \glsdisp{Detektion}{detektieren} ist, ist nicht eindeutig lösbar. Auch bei der manuellen \gls{Lokalisation} kommt es zu Abweichungen durch menschliche Fehler \cite{MOT15, Milan.2013}.  \par
 
-\todo{Vielleicht ein Bild mit GT Herausf.}
-
 Aus diesen Gründen ist es nicht möglich eine ideale \gls{Ground Truth} ohne Fehler und Varianz zu erstellen. Um dennoch ein Aussagekräftige Evaluation zu erhalten, wird empfohlen mehrere \glsdisp{Ereignis}{Referenzereignis} zu erstellen und die Ergebnisse zu mitteln \cite{Milan.2013}. Ebenfalls hilft es vor der \gls{Ground Truth} Erstellung klare Regeln zu definieren, wie mit Mehrdeutigkeiten und anderen Herausforderungen umzugehen ist. Solche definiert auch die \textit{MOTChallenge} \cite{MOT16, MOT20}. Die \textit{MOTChallenge} ist ein Regelmäßiger Wettbewerb für \gls{MOT} Systeme und hat sich zur Aufgabe gemacht eine Benchmark für diese zu schaffen. Für das Benchmarking stehen mehrere \gls{Ground Truth} Datensätze zur Verfügung, welche alle nach den gleichen Regeln erstellt worden sind. Für das \gls{Detektion}[s]- und das \gls{Lokalisation}[s]\glsdisp{Modul}{modul} eines \gls{MOT} System werden oftmals Trainigsdaten benötigt. Die \textit{MOTChallenge} stellt dazu Trainingsdaten zur Verfügung die nach den gleichen Regeln geschaffen wurden, wie die \gls{Ground Truth} \cite{MOT16, MOT20}. Dies ermöglicht eine faire Bewertung für das \gls{Detektion}[s]- und das \gls{Lokalisation}[s]\glsdisp{Modul}{modul}. Wäre dies nicht der Fall, kann es sein, dass das System einen anderen Umgang mit den Herausforderungen und Mehrdeutigkeiten gelernt hat, als es die \gls{Ground Truth} erwartet. Dadurch können Ergebnisse verzerrt werden. \par
 
 Der Fokus der \textit{MOTChallenge} liegt vor allem auf dem \gls{Tracking} von Fußgängern. Dafür stellt der Wettbewerb Trainings- und Testdatensätze zur Verfügung, um diese Prozesse bei allen teilnehmenden Systemen zu vereinheitlichen. Dies zeigt jedoch, dass ein aussagekräftiger Vergleich von \gls{MOT} Systemen, bezogen auf eine konkrete Anwendung, nur mit einheitlichen Trainings- und Testdatensätzen möglich ist. Werden für einen Anwendungsfall, wie z.B. das \gls{Tracking} von Fahrzeugen im Straßenverkehr, unterschiedliche Systeme mit unterschiedlichen Datensätzen beurteilt, dann sorgen die Herausforderungen der \gls{Ground Truth} Erstellung dafür, dass die Vergleichbarkeit der Ergebnisse nur eingeschränkt gegeben ist \cite{MOT15}. 
@@ -46,8 +44,22 @@ Wie die Gleichung \ref{eq:MODA} zeigt handelt es sich um die gleiche Formel wie 
 \subsection{Die Identifikationsmetrik: IDF1} \label{sec:MOT F1}
 Die Motivation hinter der \textit{\gls{IDF1}-Metrik} ist, dass vorausgegangene Metriken, wie die \textit{\acrshort{CLEAR} \gls{MOT}} Metriken ein verzerrtes Bild entstehen lassen können, wenn es darum geht, welches \gls{MOT} System am besten für eine Aufgabe geeignet ist. Dies lässt sich an einem Beispiel demonstrieren. In einem Überwachungsszenario soll eine Person verfolgt werden. Ein \gls{MOT} System \(A\) weist der verfolgten Person die \acrshort{ID} \(a1\) zu und ist in der Lage die Identität über zehn \gls{Frame}[s] konstant zu halten. Danach macht es einen \gls{IDSW} und die Person erhält die \acrshort{ID} \(a2\). Ein \gls{MOT} System \(B\) gibt der Person die \acrshort{ID} \(b1\) und hält diese ebenfalls für zehn \gls{Frame}[s] konstant. Anschließend wechselt das System die \acrshort{ID} der Person zwischen \(b1\) und \(b2\) hin und her. Die Abbildung \ref{fig:bspIDF1vsMOTA} veranschaulicht das Beispiel.
 
-\emptyFigure{Fehlt}{fig:bspIDF1vsMOTA}
-\todo{Fig Beschreibung Fehlt} 
+\begin{figure}[htb]
+     \centering
+     \begin{subfigure}[b]{0.49\textwidth}
+         \centering
+         \includegraphics[width=\textwidth, height=3cm]{img/Grafiken/IDF1 bsp Motivation 1.png}
+         \caption{Tracking des MOT Systems \(A\)}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.49\textwidth}
+         \centering
+         \includegraphics[width=\textwidth, height=3cm]{img/Grafiken/IDF1 bsp Motivation 2.png}
+         \caption{Tracking des MOT Systems \(B\)}
+     \end{subfigure}
+     \caption[Beispiel zum Ansatz der \textit{\gls{IDF1}-Metrik}.]{Beispiel zum Ansatz der \textit{\gls{IDF1}-Metrik}. Vergleich zweier MOT System \cite{HOTA}.}
+     \label{fig:bspIDF1vsMOTA}
+\end{figure}
 
 Wenn nun für diesen Anwendungsfall eins der beiden \gls{MOT} Systeme auszuwählen ist, dann würde die Wahl auf \(B\) fallen, da die verfolgte Person auch nach den ersten zehn \gls{Frame}[s] auffindbar ist, wenn auch nicht konstant. \gls{MOTA} würde jedoch das \gls{MOT} System \(A\) höher bewerten, da es nur einen \gls{IDSW} macht. Die \textit{\gls{IDF1}-Metrik} hält es für sinnvoller, zu Bewerten wie gut ein \gls{MOT} System darin ist Identitäten korrekt zuzuweisen \cite{IDF1}. \par
 
@@ -95,8 +107,12 @@ Die \gls{Detektion}[en] lassen sich anschließend einteilen in echt positive \gl
 
 Die Abbildung \ref{fig:KonzeptAssHOTA} veranschaulicht dieses Konzept.
     
-\emptyFigure{Fehlt}{fig:KonzeptAssHOTA}
-\todo{Fig Beschreibung Fehlt} 
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=\textwidth]{img/Grafiken/HOTA Assoziationsfehlerkonzept.png}
+    \caption{Assoziationsfehlerkonzept der HOTA Metrik. \cite{HOTA}}
+    \label{fig:KonzeptAssHOTA}
+\end{figure}
 
 Mit diesen Definitionen lässt sich die \gls{HOTA} Metrik berechnen. Für ein Element \(e \in \gls{EP}\) lässt sich ein \gls{Assoziation}[s]wert \(A(e)\) ermitteln. Über diesen und das \gls{Detektion}[sergebnis] lässt sich die \gls{HOTA} Wertung ermitteln. Dies zeigen die Formeln \ref{eq:HOTAalpha} und \ref{eq:AssScore}.
 
@@ -117,12 +133,19 @@ Da die Zuordnung mit einer Anforderung \(\alpha\) an die \gls{Lokalisation} stat
     HOTA = \int_{0}^{1} HOTA_{\alpha} d\alpha \approx \frac{1}{19} \sum_{\alpha \in (0,05, 0,1, \dots, 0,9, 0,95)} HOTA_{\alpha}
 \end{equation}
 
-Die Zuordnung von des \gls{Tracking}[ergebnisses] zur \gls{Ground Truth} wird so Optimiert, dass der \gls{HOTA} Wert maximal wird. Dies erfolgt so, dass die ungarische Methode als erstes Kriterium  \(|\gls{EP}|\) maximiert. Als zweites Kriterium wird der Mittelwert von \(A\) maximiert für \(\forall e \in \gls{EP}, A(e)\). Das dritte Kriterium maximiert die mittlere Ähnlichkeit \(s\) über alle \(\forall e \in \gls{EP}, s(e)\).\par
+Die Zuordnung von des \gls{Tracking}[ergebnisses] zur \gls{Ground Truth} wird so Optimiert, dass der \gls{HOTA} Wert maximal wird. Dies erfolgt so, dass die ungarische Methode als erstes Kriterium  \(|\gls{EP}|\) maximiert. Als zweites Kriterium wird der Mittelwert von \(A\) maximiert für \(\forall e \in \gls{EP}, A(e)\). Das dritte Kriterium maximiert die mittlere Ähnlichkeit \(s\) über alle \(\forall e \in \gls{EP}, s(e)\). \par
+ 
+ \begin{wrapfigure}{l}{0.5\textwidth}
+    \begin{center}
+        \vspace*{-5mm}
+        \includegraphics[width=0.5\textwidth]{img/Grafiken/HOTA Submetriken Pyramide.png}
+        \vspace*{-10mm}
+        \caption{Übersicht über den Zusammenhang der HOTA Submetriken. \cite{HOTA}}
+        \label{fig:HOTASubmetrikPyram}
+    \end{center}
+\end{wrapfigure}
 
-Der \gls{HOTA} Wert lässt sich in Submetriken zerlegen. Dies ermöglicht ein Ausführliche Einsicht in die unterschiedlichen \gls{Modul}[e] eines \gls{MOT} Systems. Die Abbildung \ref{fig:HOTASubmetrikPyram} zeigt den Zusammenhang von \gls{HOTA} und seinen Submetriken. 
-
-\emptyFigure{Fehlt}{fig:HOTASubmetrikPyram}
-\todo{Fig Beschreibung Fehlt} 
+ Der \gls{HOTA} Wert lässt sich in Submetriken zerlegen. Dies ermöglicht ein Ausführliche Einsicht in die unterschiedlichen \gls{Modul}[e] eines \gls{MOT} Systems. Die Abbildung \ref{fig:HOTASubmetrikPyram} zeigt den Zusammenhang von \gls{HOTA} und seinen Submetriken. \par 
 
 Die Genauigkeit der \glsdisp{Lokalisationsfehler}{Lokalisation} lässt sich über die \gls{LocA} beurteilen. Dies wird nach Formel \ref{eq:LocA} berechnet.
 
@@ -130,7 +153,7 @@ Die Genauigkeit der \glsdisp{Lokalisationsfehler}{Lokalisation} lässt sich übe
     \label{eq:LocA}
     LocA = \int_{0}^{1} \frac{1}{|EP_{\alpha}|} \sum_{e \in (EP_{\alpha})} S(e) d\alpha
 \end{equation}
-
+\\
 Die Genauigkeit der \gls{Detektion} ist beurteilbar über die \gls{DetA}. Die Rechenvorschrift zeigt die Formel \ref{eq:DetA}.
 
 \begin{equation}

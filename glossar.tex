@@ -5,49 +5,54 @@
 \newglossaryentry{Modul}
 {
         name=Modul,
-        description={A mathematical expression}
+        description={In der Informationstechnik ist ein Modul ein Baustein eines Systems, welcher sich einfach austauschen lässt. Ein Modul kapselt Funktinoalität in einem eigenständigen Block. Systemelemente, welche in sich selbst Systeme sind}
+}
+
+\newglossaryentry{System}
+{
+        name=System,
+        description={Eine eindeutig abgegrenzte Einheit bestehend aus verschiedenen Subsystemen und Systemelementen sowie deren Verknüpfungen}
 }
 
 \newglossaryentry{Frame}
 {
         name=Frame,
-        description={A mathematical expression}
+        description={Im Kontext von Video bezieht sich Frame auf ein einzelnes Bild in einer Reihe von Bildern, die zusammen eine Video bilden.}
 }
 
 \newglossaryentry{Mid-Level Aufgabe}
 {
         name=Mid-Level Aufgabe,
-        description={A mathematical expression}
+        description={Mid-Level Aufgaben sind Tätigkeiten oder Prozesse, die zwischen Low-Level- und High-Level-Aufgaben notwendig sind. Mid-Level-Aufgaben fokussieren sich auf die Integration und Koordination zwischen diesen beiden Ebenen, um eine effiziente Ausführung von Anwendungen zu gewährleisten.}
 }
 
 \newglossaryentry{Ereignis}
 {
         name=Ereignis,
-        description={A mathematical expression}
+        description={Im Kontext dieser Arbeit bezieht sich ein Ereignis auf eine spezifische Verhaltensweise, die innerhalb eines definierten Zeitraums auftritt.}
 }
-
 
 \newglossaryentry{Brownsche Bewegung}
 {
         name=Brownsche Bewegung,
-        description={A mathematical expression}
+        description={Ist eine zufällige Bewegung von Teilchen in einer Flüssigkeit oder in einem Gas, die auf Stöße mit den Molekülen des Mediums zurückzuführen ist. Die Bewegungen sind Zufällig.}
 }
 
 \newglossaryentrywithacronym
 {IoU}
 {Intersection over Union}
-{Beschreibung folgt}
+{Das Verhältnis des Überlappungsbereichs zwischen der vorhergesagten Bounding-Box und der wahren Bounding-Box zum Gesamtvereinigungsbereich beider Boxen.}
 
 \newglossaryentry{Just-in-time}
 {
         name=Just-in-time Kompilierung,
-        description={A mathematical expression}
+        description={Bei einer Kompilierung wird ein Computerprogramm in maschinenlesbaren Code übersetzt. Dies geschieht üblicherweise vor der Programmausführung. Bei Just-in-time Kompilierung erfolgt die Kompilierung während der Ausführung, in dem Moment wo der zu kompilierende Programmabschnitt aufgerufen wird.}
 }
 
 \newglossaryentry{Overhead}
 {
         name=Overhead,
-        description={A mathematical expression}
+        description={Bezeichnet zusätzlichen Rechenaufwand, der durch die Ausführung einer bestimmten Aufgabe entsteht, welche nicht direkt zur eigentlichen Funktionalität beiträgt.}
 }
 
 
@@ -55,75 +60,69 @@
 %-----------------------MOT Allgemein-----------------------------------------
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newglossaryentry{Tracking}
-{
-        name=Tracking,
-        description={A mathematical expression}
-}
-
 \newglossaryentrywithacronym
 {MOT}
 {Multi-Object Tracking}
-{Beschreibung folgt}
+{Ein Teilbereich des maschinellen Sehens, das darauf abzielt, mehrere Objekte in einem Video zu detektieren, lokalisieren und über die Zeit so zu Assozieieren, dass die Identitäten konstant zugeordnet bleiben \cite{HOTA}.}
+
+\newglossaryentry{Tracking}
+{
+name=Tracking,
+description={Die Verfolgung und der Bewegung von Objekten über die Zeit.}
+}
 
 \newglossaryentry{Detektionsbasiertes Tracking}
 {
-        name=Detektionsbasiertes Tracking,
-        description={Synonyme: Tracking-by-Detection}
+name=Detektionsbasiertes Tracking,
+description={Ein Ansatz im Multi-Object Tracking, bei dem Objekte zunächst in jedem Frame detektiert und anschließend über die Zeit hinweg verfolgt werden.}
 }
 
 \newglossaryentry{Detektion}
 {
-        name=Detektion,
-        description={A mathematical expression}
+name=Detektion,
+description={Das erkennen und markieren von Objekten in Frames, vorallem im Kontext des Multi-Objekt Trackings.}
 }
 
 \newglossaryentry{Assoziation}
 {
-        name=Assoziation,
-        description={A mathematical expression}
+name=Assoziation,
+description={Die Zuordnung von erkannten Objekten über aufeinanderfolgende Frames, um die  Identitäten der Objekt konstant zu halten. Vorallem im Kontext des Multi-Objekt Trackings verwendet.}
 }
 
 \newglossaryentry{Lokalisation}
 {
-        name=Lokalisation,
-        description={A mathematical expression}
+name=Lokalisation,
+description={Die Bestimmung der genauen Position eines Objekts innerhalb eines Frames, oft ausgedrückt durch Koordinaten oder eine Bounding Box. Vorallem im Kontext des Multi-Objekt Trackings verwendet.}
 }
 
 \newglossaryentry{Offline Tracking}
 {
-        name=Offline Tracking,
-        description={A mathematical expression}
+name=Offline Tracking,
+description={Ein Tracking-Verfahren, bei dem alle Daten vor der Verarbeitung zur Verfügung stehen.}
 }
 
 \newglossaryentry{Online Tracking}
 {
-        name=Online Tracking,
-        description={A mathematical expression}
-}
-
-\newglossaryentry{Intersection over Union}
-{
-        name=Online Tracking,
-        description={A mathematical expression}
+name=Online Tracking,
+description={Ein Tracking-Verfahren, das die Daten sequenziell verarbeitet, ohne auf zukünftige Frames zuzugreifen, ideal für Echtzeitanwendungen.}
 }
 
 \newglossaryentry{Trajektorie}
 {
-        name=Trajektorie,
-        description={A mathematical expression}
+name=Trajektorie,
+description={Die Bewegungslinie, die ein Objekt über die Zeit in einem Raum durchläuft. Eine Trajektorie ist eine Sequenz von Positionen des Objekts.}
 }
 
 \newglossaryentry{Bounding Box}
 {
-        name=Bounding Box,
-        description={A mathematical expression}
+name=Bounding Box,
+description={Ein rechteckiger Rahmen, der verwendet wird, um die Position und die Größe eines Objekts zu definieren.}
 }
 
 \newglossaryentry{Ground Truth}
 {
-        name=Ground Truth,
-        description={A mathematical expression}
+name=Ground Truth,
+description={Die genauen Detektionen, Positionen und Assoziationen der Objekte in einem Ereignis. Die Ground Truth dient als Refernzen für die Evalutaion von Multi-Object Tracking Systemen.}
 }
 
 
@@ -131,43 +130,48 @@
 %-----------------------MOT Fehler-----------------------------------------
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newglossaryentrywithacronym
 {EP}
 {Echt positive Detektion}
-{Beschreibung folgt}
+{Eine Detektion, die korrekterweise ein tatsächliches Objekt im Bild oder Video identifiziert. Dies zeigt an, dass das Tracking-System erfolgreich ein Objekt erfasst hat, das tatsächlich vorhanden ist.}
 
 \newglossaryentrywithacronym
 {FP}
 {Falsch positive Detektion}
-{Beschreibung folgt}
+{Eine Detektion, bei der das Tracking-System irrtümlich ein Objekt identifiziert, das nicht vorhanden ist. Diese Art von Fehlern führt zu einer Überschätzung der tatsächlich vorhandenen Objekte.}
 
 \newglossaryentrywithacronym
 {FN}
 {Falsch negative Detektion}
-{Beschreibung folgt}
+{Ein Fall, in dem das Tracking-System ein tatsächlich vorhandenes Objekt nicht erkennt. Dies führt zu einer Unterschätzung der tatsächlich vorhandenen Objekte und kann die Genauigkeit der Objektverfolgung beeinträchtigen.}
 
 \newglossaryentry{Fragmentation}
 {
-        name=Fragmentation,
-        description={A mathematical expression}
+name=Fragmentation,
+description={Ein Phänomen im Multi-Object Tracking, bei dem die Trajektorie eines Objekts in mehrere unzusammenhängende Segmente aufgeteilt wird, was oft durch Verdeckungen oder Detektionsfehler verursacht wird.}
 }
 
 \newglossaryentry{Merging Fehler}
 {
-        name=Merging Fehler,
-        description={A mathematical expression}
+name=Merging Fehler,
+description={Ein Fehler, der auftritt, wenn das Tracking-System fälschlicherweise annimmt, dass zwei oder mehr separate Objekte ein einziges Objekt sind, was zu einer Verschmelzung ihrer Trajektorien führt.}
 }
 
 \newglossaryentry{Lokalisationsfehler}
 {
-        name=Lokalisationsfehler,
-        description={A mathematical expression}
+name=Lokalisationsfehler,
+description={Ein Fehler bei der Bestimmung der genauen Position eines Objekts. Lokalisationsfehler treten auf, wenn die vom Tracking-System bereitgestellte Position eines Objekts erheblich von seiner tatsächlichen Position abweicht.}
 }
 
 \newglossaryentrywithacronym
 {IDSW}
 {Identity Switch}
-{Beschreibung folgt}
+{Ein Fehler, der auftritt, wenn die Identität eines Objekts während der Verfolgung fälschlicherweise von einem Objekt auf ein anderes gewechselt wird. Identity Switches beeinträchtigen die Konsistenz der Objektverfolgung und können die Interpretation der Bewegungspfade erschweren.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %-----------------------MOT Metriken-----------------------------------------
@@ -175,79 +179,79 @@
 
 \newglossaryentrywithacronym
 {MOTP}
-{Multiple Object Tracking precision}
-{Beschreibung folgt}
+{Multiple Object Tracking Precision}
+{Ein Maß für die Präzision, mit der ein MOT-System die Positionen der verfolgten Objekte bestimmt. MOTP bewertet, wie genau die Lokalisierung der Objekte durch das System erfolgt, indem die durchschnittliche Distanz zwischen den vorhergesagten und den tatsächlichen Positionen der Objekte über alle Detektionen hinweg berechnet wird.}
 
 \newglossaryentrywithacronym
 {MOTA}
 {Multiple Object Tracking Accuracy}
-{Beschreibung folgt}
+{Ein Maß für die Gesamtgenauigkeit eines MOT-Systems, das die Anzahl der korrekten Detektionen (True Positives), die Fehldetektionen (False Negatives) und die Identitätswechsel (Identity Switches) berücksichtigt, um die Leistung des Systems in der Verfolgung mehrerer Objekte zu bewerten.}
 
 \newglossaryentrywithacronym
 {MODA}
 {Multiple Object Detection Accuracy}
-{Beschreibung folgt}
+{Eine Metrik, die die Genauigkeit der Objekterkennung innerhalb eines MOT-Systems bewertet. MODA berücksichtigt sowohl die Anzahl der korrekten Detektionen als auch die falsch positiven und falsch negativen Detektionen, um ein umfassendes Bild der Detektionsleistung zu geben.}
 
 \newglossaryentry{IDF1}
 {
-        name=IDF1,
-        description={A mathematical expression}
+name=IDF1,
+description={Eine Metrik zur Bewertung der Identifikationsgenauigkeit in Multi-Object Tracking-Systemen. Sie misst das Verhältnis der korrekt identifizierten Detektionen zur Gesamtzahl der Detektionen und zur Anzahl der Ground-Truth-Objekte, um die Genauigkeit der Identitätszuordnung zu quantifizieren.}
 }
 
 \newglossaryentrywithacronym
 {HOTA}
 {Higher Order Tracking Accuracy}
-{Beschreibung folgt}
+{Eine fortgeschrittene Metrik für die Bewertung von Multi-Object Tracking-Systemen, die sowohl die Detektions- als auch die Assoziationsleistung berücksichtigt. HOTA ist darauf ausgerichtet, ein ausgewogenes Maß für die Fähigkeit eines Systems zu bieten, Objekte korrekt zu detektieren und über Zeit korrekt zuzuordnen.}
 
 \newglossaryentrywithacronym
 {DetA}
 {Detection Accuracy}
-{Beschreibung folgt}
+{Die Genauigkeit, mit der ein System Objekte innerhalb eines Frames erkennt. DetA bewertet, wie effektiv das System in der Lage ist, relevante Objekte von nicht relevanten Hintergrundelementen zu unterscheiden.}
 
 \newglossaryentrywithacronym
 {AssA}
 {Association Accuracy}
-{Beschreibung folgt}
+{Die Genauigkeit der Zuordnung von Detektionen zu den richtigen Objektidentitäten über aufeinanderfolgende Frames hinweg in einem Multi-Object Tracking-System.}
 
 \newglossaryentrywithacronym
 {DetRe}
 {Detection Recall}
-{Beschreibung folgt}
+{Ein Maß für die Fähigkeit eines Systems, alle relevanten Objekte in einem Frame zu erfassen. DetRe bewertet den Anteil der korrekt detektierten Objekte im Verhältnis zur Gesamtzahl der tatsächlichen Objekte.}
 
 \newglossaryentrywithacronym
 {DetPr}
 {Detection Precision}
-{Beschreibung folgt}
+{Die Präzision, mit der ein System Objekte innerhalb eines Frames detektiert. DetPr gibt an, welcher Anteil der vom System als Objekte identifizierten Detektionen tatsächlich korrekt ist.}
 
 \newglossaryentrywithacronym
 {AssRe}
 {Association Recall}
-{Beschreibung folgt}
+{Ein Maß für die Fähigkeit eines MOT-Systems, über die Zeit korrekte Assoziationen zwischen den Detektionen und den tatsächlichen Objektidentitäten aufrechtzuerhalten.}
 
 \newglossaryentrywithacronym
 {AssPr}
 {Association Precision}
-{Beschreibung folgt}
+{Die Präzision der Zuordnung von Detektionen zu den korrekten Objektidentitäten über aufeinanderfolgende Frames hinweg in einem Multi-Object Tracking-System.}
 
 \newglossaryentrywithacronym
 {LocA}
-{Localisation Accuracy}
-{Beschreibung folgt}
+{Localization Accuracy}
+{Ein Maß für die Genauigkeit der Lokalisierung von Objekten durch ein MOT-System, das bewertet, wie genau die Positionen der detektierten Objekte mit ihren tatsächlichen Positionen übereinstimmen.}
 
 \newglossaryentrywithacronym
 {EPA}
 {Echt positive Assoziation}
-{Beschreibung folgt}
+{Eine korrekt hergestellte Verbindung zwischen einer Detektion und der entsprechenden Identität eines Objekts über aufeinanderfolgende Frames hinweg.}
 
 \newglossaryentrywithacronym
 {FPA}
 {Falsch positive Assoziation}
-{Beschreibung folgt}
+{Eine fälschlicherweise hergestellte Verbindung zwischen einer Detektion und einer Objektidentität, bei der das System irrtümlich annimmt, dass eine Detektion einem bestimmten Objekt zugeordnet ist.}
 
 \newglossaryentrywithacronym
 {FNA}
 {Falsch negative Assoziation}
-{Beschreibung folgt}
+{Ein Fall, in dem das System versäumt, eine korrekte Verbindung zwischen einer Detektion und der entsprechenden Objektidentität über aufeinanderfolgende Frames hinweg herzustellen.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %------------------Machine Learning---------------------------------
@@ -488,7 +492,7 @@
 
 \newacronym{SORT}{SORT}{Simple Online and Realtime Tracking}
 
-\newacronym{OptiLiMa}{OptiLiMa}{\todo{acronym}}
+\newacronym{OptiLiMa}{OptiLiMa}{Optimierung des Lichtmanagements für die Haltung von Mastputen}
 
 \newacronym{CLEAR}{CLEAR}{Classification of Events, Activities and Relationships}
 
@@ -501,3 +505,5 @@
 \newacronym{GRU}{GRU}{Gated recurrent Unit}
 
 \newacronym{FIFO}{FIFO}{First In - First Out}
+
+

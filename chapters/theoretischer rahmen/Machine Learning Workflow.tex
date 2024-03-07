@@ -1,22 +1,29 @@
 \section{Machine Learning Workflow} \label{sec:MLWF}
 Als \gls{Machine Learning Workflow} wird der systematisch Prozess zur entwicklung, Evaluierung und Anwendung von Algorithmen des \glsdisp{ML}{maschinellen Lernens} bezeichnet. In der Literatur werden auch Bezeichnungen wie \textit{Machine Learning Pipeline} oder \textit{Data Science Pipline} verwendet. Die Strukturierung eines Workflows sorgt für Übersichtlichkeit, Effizienz, Reproduzierbarkeit und Skalierbarkeit von Anwendungen des \glsdisp{ML}{maschinellen Lernens}. Die Komponenten des \gls{Machine Learning Workflow}[s] sind nicht immer einheitlich. Nicht alle Prozessschritte sind für jedes Projekt notwendig. In \cite{Biswas.2022} wird versucht die üblichen Prozessschritte zu definieren. In diesem Kapitel werden die Komponenten vorgestellt, welche Relevanz für diese Arbeit besitzen. Die Abbildung \ref{fig:MLWorkflow} stellt den \gls{Machine Learning Workflow} grafisch dar.
 
-\emptyFigure{Der \gls{Machine Learning Workflow} und seine Prozessschritte. Die XX Pfeile zeigen den Datenfluss auf. Mögliche Rückführungen sind mit XX Pfeilen dargestellt.}{fig:MLWorkflow}
-\todo{Abbildung fehlt}
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\textwidth]{img/Grafiken/Machine Learning Workflow.png}
+    \caption[Der Machine Learning Workflow]{Der \gls{Machine Learning Workflow} und seine Prozessschritte.}
+    \label{fig:MLWorkflow}
+\end{figure}
+
 
 In der Grafik \ref{fig:MLWorkflow} sind Rückführungen zu früheren Prozessschritten zu sehen. Dadurch entstehen Schleifen. Einige dieser Schleifen sind Optional und nur Notwendig, wenn bspw. Testergebnisse sehr unbefriedigend sind. Ein Beispiel hierfür ist die Rückkehr zur Problemdefinition. Andere Schleifen sind übliche Praxis bei der Erstellung von Anwendung mit \glsdisp{ML}{maschinellem Lernen}. Z.B. ist die Suche von \gls{Hyperparameter} immer mit der Rückkehr zum Training verbunden \cite{Biswas.2022, Zheng.2018, Zheng.2015, Elshawi.2019}. 
 
-\subsection{Problemdefinition}
-Ziel des \gls{Machine Learning Workflow}[s] ist es, eine Anwendung zu erstellen, welche ein spezifisches Problem löst. Das die klare Definition einer Aufgabe, ein elementarer Schritt ist von Algorithmen des \glsdisp{ML}{maschinellen Lernens}, ist in \ref{sec:Grundlagen ML} verdeutlicht. Die klare Definition ist auch hilfreich für den Erwerb von Fachwissen im Bereich der Aufgabe. Dies kann für den weiteren verlauf des Workflows nützlich sein \cite{Biswas.2022, Zheng.2018, Nielsen.2020}.
+\subsection{Problemdefinition und Vorverarbeitung}
 
-\subsection{Sammeln von Daten} \label{sec:Worflow DatSam}
-Ein Modell benötigt Daten für das Training. In diesem Schritt geht es darum Rohdaten zu Sammeln, die Relevant sind für die Aufgabe, um diese weiterzuverarbeiten. Je nach Aufgabe ist dieser Prozess unterschiedlich Aufwendig \cite{Biswas.2022, Elshawi.2019}.
+\textbf{Problemdefinition}\par
+Ziel des \gls{Machine Learning Workflow}[s] ist es, eine Anwendung zu erstellen, welche ein spezifisches Problem löst. Das die klare Definition einer Aufgabe, ein elementarer Schritt ist von Algorithmen des \glsdisp{ML}{maschinellen Lernens}, ist in \ref{sec:Grundlagen ML} verdeutlicht. Die klare Definition ist auch hilfreich für den Erwerb von Fachwissen im Bereich der Aufgabe. Dies kann für den weiteren verlauf des Workflows nützlich sein \cite{Biswas.2022, Zheng.2018, Nielsen.2020}. \dubpar
 
-\subsection{Vorverarbeitung der Daten}
-Die gesammelten Rohdaten können uneinheitlich sein. Sollen bspw. Daten aus mehreren Abteilungen einer Firma verwendet werden, um ein Modell zu erstellen, kann es sein das Abteilung \(A\) eine anderes Datumsformat benutze als Abteilung \(B\). Auch können Lücken in Daten vorhanden sein. Solche Probleme sind zu Filtern und zu bereinigen \cite{Biswas.2022, Elshawi.2019}. Ebenfalls kann es sinnvoll sein hier eine Verifikation der Daten vorzunehmen, um sicherzustellen, dass die Rohdaten auch die erwartete Information beinhalten \cite{Shearer.2000}.
+\textbf{Sammeln von Daten} \label{sec:Worflow DatSam}\par
+Ein Modell benötigt Daten für das Training. In diesem Schritt geht es darum Rohdaten zu Sammeln, die Relevant sind für die Aufgabe, um diese weiterzuverarbeiten. Je nach Aufgabe ist dieser Prozess unterschiedlich Aufwendig \cite{Biswas.2022, Elshawi.2019}. \dubpar
 
-\subsection{Speicherung der Daten}
-Frühzeitige Überlegungen zur Speicherung der Rohdaten sind vorteilhaft für den weiteren Verlauf des \gls{Machine Learning Workflow}[s]. Je nach Projekt sind andere Datenformate besser geeignet als Andere. Auch der Speicherort ist relevant. Solche überlegungen sorgen für einen effizienteren Ablauf des \gls{Machine Learning Workflow}[s] \cite{Biswas.2022}.
+\textbf{Vorverarbeitung der Daten}\par
+Die gesammelten Rohdaten können uneinheitlich sein. Sollen bspw. Daten aus mehreren Abteilungen einer Firma verwendet werden, um ein Modell zu erstellen, kann es sein das Abteilung \(A\) eine anderes Datumsformat benutze als Abteilung \(B\). Auch können Lücken in Daten vorhanden sein. Solche Probleme sind zu Filtern und zu bereinigen \cite{Biswas.2022, Elshawi.2019}. Ebenfalls kann es sinnvoll sein hier eine Verifikation der Daten vorzunehmen, um sicherzustellen, dass die Rohdaten auch die erwartete Information beinhalten \cite{Shearer.2000}. \dubpar
+
+\textbf{Speicherung der Daten}\par
+Frühzeitige Überlegungen zur Speicherung der Rohdaten sind vorteilhaft für den weiteren Verlauf des \gls{Machine Learning Workflow}[s]. Je nach Projekt sind andere Datenformate besser geeignet als Andere. Auch der Speicherort ist relevant. Solche überlegungen sorgen für einen effizienteren Ablauf des \gls{Machine Learning Workflow}[s] \cite{Biswas.2022}. 
 
 \subsection{Labeln der Daten}
 Wenn eine \glsdisp{überwachtes Lernen}{überwachte Lernmethode} verwendet werden soll, dann wird ein \gls{Zielvektor} benötigt. Dieser ist i.d.R. manuell zu erstellen. Das kann je nach Datenmenge und Datenart unterschiedlich Aufwendig sein \cite{Biswas.2022}. Ein Beispiel aus der Bildverarbeitung ist eine Anwendung, welche Ampeln erkennen soll. In diesem Prozessschritt müssen alle Bilder, die für das Training verwendet werden sollen mit einem \gls{Label} \textit{Ampel} oder \textit{keine Ampel} versehen werden. 
@@ -34,8 +41,12 @@ Die Werte in einem \gls{Feature} werden in Gruppen eingeteilt. Dies kann durch v
 \textbf{Power Transformationen}\\
 Power Transformationen zielen darauf ab, die Varianz innerhalb eines \gls{Feature}[s] zu stabilisieren. Ein Beispiel ist die logarithmische Transformation. \gls{Feature}[werte] die sich über mehrere Größenordnungen verteilen, besitzen eine sehr hohe Varianz. Die Anwendung eines Logarithmus auf diese Verteilung komprimiert den Wertebereich. Dies reduziert die Varianz und erhöht die Vergleichbarkeit der Daten. Die Abbildung \ref{fig:bspLogTrans} veranschaulicht die logarithmische Transformation \cite{Zheng.2018}. 
 
-\emptyFigure{Die Abbildung zeigt die Werte eines \gls{Feature}[s] die sich über mehrere Größenordnungen verteilen. Die Anwendung des Logarithmus verkleinert den Wertebereich erheblich.}{fig:bspLogTrans}
-\todo{Abbildung fehlt}
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/Plots/Log-Transfomation.png}
+    \caption[Beispielanwendung der logarithmischen Transformation.]{Beispielanwendung der logarithmischen Transformation. Werte eines \gls{Feature}[s], welche sich über mehrere Größenordnungen verteilen. Die Anwendung des Logarithmus verkleinert den Wertebereich erheblich.}
+    \label{fig:bspLogTrans}
+\end{figure}
 
 Eine weitere Power Transformation ist die Box-Cox-Transformation. Diese versucht eine Verteilung näher an eine Normalverteilung zu bringen. Dies kann hilfreich sein, da einige Modelle besser mit Normalverteilung umgehen können. Die Formel \ref{eq:BoxCox} zeigt die Rechenforschrift der Box-Cox-Transformation.
 
@@ -50,8 +61,12 @@ Eine weitere Power Transformation ist die Box-Cox-Transformation. Diese versucht
 
 Der Parameter \(\lambda\) ist über eine Optimierung zu ermitteln, so dass die resultierende Verteilung möglichst nah einer Normalverteilung ist. Die Abbildung \ref{fig:bspBoxCox} zeigt die Auswirkung der Box-Cox-Transformation auf ein \gls{Feature} \cite{Zheng.2018}. 
 
-\emptyFigure{Die Abbildung zeigt die Werte eines \gls{Feature}[s], welche nicht Normalverteilt sind. Die Anwendung der Box-Cox-Transformation sorgt für die Annäherung an eine Normalverteilung.}{fig:bspBoxCox}
-\todo{Abbildung fehlt}
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/Plots/Box-Cox-Transfomation.png}
+    \caption[Beispielanwendung der Box-Cox-Transformation.]{Beispielanwendung der Box-Cox-Transformation. Werte eines \gls{Feature}[s], welche sich nicht normal verteilen. Die Anwendung verkleinert den Wertebereich erheblich und nähert die Verteilung einer Normalverteilung an.}
+    \label{fig:bspBoxCox}
+\end{figure}
 
 Auch können aus bestehenden \gls{Feature}[s] neue kreiert werden. Ein Beispiel hierfür sind Interaktionsfeatures. Die einfachste Form ist die paarweise Multiplikation von \gls{Feature}[s]. Dies ist interpretierbar als eine Verknüpfung mit einem logischen UND. Dadurch entstehen neue \gls{Feature}[s] für das Modell, welche die Information von \gls{Feature}[s] enthalten, welche gerade in Kombination miteinander nützlich sind. Gerade einfachere Modell, die eigenständig nicht so gut darin sind komplexe Zusammenhänge zu erkennen können von dieser kombinierten Information profitieren \cite{Zheng.2018}.\par
 
@@ -99,8 +114,12 @@ Anders als die \gls{Filter Methoden} treffen \gls{Wrapper Methoden} ihre Auswahl
 
 Die \gls{Wrapper Methoden} betrachten ein Modell als Blackbox. Sie entscheiden über die Eingabe in die Blackbox und beurteilen die Ausgabe von dieser. Die Ausgabe ist die Wertung einer Performancemetrik. Auf Performancemetriken wird später genauer eingegangen. Aus der Menge an \gls{Feature}[s] wird eins entnommen. Damit wird das Modell trainiert und die Performance bewertet. Wirkt sich das \gls{Feature} positiv auf die Metrik aus, dann wird es in die Auswahl aufgenommen. Wenn nicht, dann wird es zurückgelegt. Anschließend wird ein weiteres \gls{Feature} aus der Menge entnommen und in Kombination mit der bestehenden Auswahl überprüft. Wieder wird ein Modell trainiert und Performance bewertet. Dieser Prozess wird wiederholt bis ein Abbruchkriterium erreicht ist. Dieses kann sich entweder auf die Performancemetrik beziehen, oder auf die \gls{Feature}[anzahl]. Z.B. kann das Vorgehen abgebrochen werden, wenn sich die Performance nicht mehr weiter verbessert, oder wenn eine gewünschte \gls{Feature}[anzahl] erreicht ist. Die Abbildung \ref{fig:WrapMeth} veranschaulicht das Vorgehen der \gls{Wrapper Methoden} \cite{Kuhn.2013, Guyon.2003}.
 
-\emptyFigure{Vorgehen der \gls{Wrapper Methoden}. Aus der \gls{Feature}[menge] werden iterativ \gls{Feature}[s] ausgewählt und in kombination mit der bestehenden \gls{Feature}[auswahl] evaluiert. Dazu wird das Modell in der Blackbox trainiert und die Performance bewertet.}{fig:WrapMeth}
-\todo{Abbildung fehlt}
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/Grafiken/Wrapper Methode bsp.png}
+    \caption[Vorgehen der Wrapper Methoden.]{Vorgehen der \gls{Wrapper Methoden}. Aus der \gls{Feature}[menge] werden iterativ \gls{Feature}[s] ausgewählt und in Kombination mit der bestehenden \gls{Feature}[auswahl] evaluiert. Dazu wird das Modell in der Blackbox trainiert und die Performance bewertet.}
+    \label{fig:WrapMeth}
+\end{figure}
 
 Bei den \gls{Wrapper Methoden} wird zwischen zwei Verfahren unterschieden. Der Vorwärtssuche und der Rückwärtssuche. Die Beschreibung von eben ist die der Vorwärtssuche. Bei der Rückwärtssuche befinden sich zu beginn alle \gls{Feature}[s] in der Auswahl. Iterativ werden \gls{Feature}[s] aus der Auswahl ausgeschlossen. Dies geschieht, indem Überprüft wird wie sich der Verzicht auf ein \gls{Feature} auf die Performance auswirkt. Wirkt sich der Verzicht positiv aus, oder zumindest nicht negativ, dann wird das \gls{Feature} ausgeschlossen. Dieses vorgehen, hat den Vorteil, dass Informationen die in der Kombination von \gls{Feature}[s] liegen auf jeden Fall erkannt werden, da von Beginn an alle \gls{Feature}[s] zusammen bewertet werden. \dubpar
 
@@ -138,11 +157,24 @@ k-Means ist ein Algorithmus der Clusteranalyse. Es ist eine \glsdisp{unüberwach
 \textbf{Hierarchisches Clustering} \par
 Hierarchisches Clustering umfasst ebenfalls Algorithmen der Clusteranalyse. Es sind \glsdisp{unüberwachtes Lernen}{unüberwachte Lernmethoden}. Anders als bei k-Means ist keine \gls{Hyperparameter}[einstellung] der Clusteranzahl notwendig. Ansatz von hierarchischen Clustering Methoden ist, dass sich viele Cluster in Subcluster unterteilen lassen, welche sich ebenfalls in Subcluster unterteilen lassen. Als Beispiel wird ein Cluster \textit{Tiere} genommen. Dieses lässt sich unterteilen in \textit{Säugetiere} und \textit{Reptilien}. Das Cluster \textit{Säugetiere} ist weiter unterteilbar in \textit{Fleischfresser} und \textit{Pflanzenfresser}. Hierarchisches Clustering versucht solche hierarchischen Strukturen zu modellieren. Dazu gibt es zwei Verfahren: agglomeratives Clustering und divisives Clustering. Bei agglomerativen Clustering startet jeder Datenpunkt als eigenes Cluster. Bei jeder Iteration werden die beiden Cluster die am nächsten zueinander liegen zu einem Cluster zusammengefasst. Dadurch entsteht eine Baumstruktur. Der Anwender kann entscheiden welche hierarchische Ebene die Aufgabe am besten modelliert und kann die Struktur an dieser stelle Auftrennen. Das Diversive Clustering funktioniert genau andersherum. Alle Daten starten in einem großen Cluster. Die Subcluster, welche sich am unähnlichsten sind, werden in der nächsten Stufe aufgeteilt \cite{Duda.2001}. Die Abbildung \ref{fig:HiraClust} zeigt die beim hierarchischen Clustering entstehende Baumstruktur beispielhaft. 
 
-\emptyFigure{Fehlt}{fig:HiraClust}
-\todo{Abbildung fehlt}
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/Plots/Dendogramm Hierachisches Clustering.png}
+    \caption[Dendrogramm zu einem Beispiel des Hierarchisches Clusterings.]{Dendrogramm zu einem Beispiel des Hierarchisches Clusterings. Die horizontalen Linien zeigen, dass über die Cluster-Anzahl entschieden werden kann, durch die Wahl der Trennebene.}
+    \label{fig:HiraClust}
+\end{figure}
 
 \dubpar
 \textbf{Logistische Regression} \par
+\begin{wrapfigure}{l}{0.4\textwidth}
+    \begin{center}
+        \vspace*{-7mm}
+        \includegraphics[width=0.4\textwidth, height=4cm]{img/Plots/Logistische Funktion.png}
+        \vspace*{-10.5mm}
+        \caption[Verlauf der logistischen Funktion.]{Verlauf der logistischen Funktion.}
+        \label{fig:LogiFunc}
+    \end{center}
+\end{wrapfigure}
 Die logistische Regression ist ein \gls{Klassifikation}[salgorithmus], auch wenn der Name anderes vermuten lässt. Es handelt sich um einen \glsdisp{überwachtes Lernen}{überwachten Algorithmus} für binäre \gls{Klassifikation} (\ref{sec:ML klass und Reg}). Die logistische Regression verwendet die logistische Funktion \ref{eq:LogiFunc} (einen Spezialfall der Sigmoidfunktion), um Daten binär \((0,1)\) zuzuordnen. Die Abbildung \ref{fig:LogiFunc} zeigt den Verlauf der logistische Funktion \cite{Burkov.2019}. 
 
 \begin{equation}
@@ -150,17 +182,14 @@ f(x) = \frac{1}{1 + e^{-x}}
 \label{eq:LogiFunc}
 \end{equation}
 
-\emptyFigure{Verlauf der logistische Funktion.}{fig:LogiFunc}
-\todo{Abbildung fehlt}
-
 Die logistische Regression trägt das Wort \textit{Regression} im Namen, da es verwand ist mit der linearen Regression. Die Modellformulierung ist so interpretierbar, dass ein lineares Regressionsmodell, auf einen Wertebereich von \((0,1)\) abgebildet wird. Die Modellformulierung ist in \ref{eq:LogiReg} zu sehen.
 
 \begin{equation}
-\hat{y}_{\nomvec{w},b}(\nomvec{x}) = \frac{1}{1 + e^{-(\nomvecT{w}\nomvec{x})+b)}}
+\hat{y}_{\nomvec{w},b}(\nomvec{x}) = \frac{1}{1 + e^{-(\nomvecT{w}\nomvec{x})+\nomvec{b})}}
 \label{eq:LogiReg}
 \end{equation}
 
-Wird eine Probe geschätzt und erhält einen Wert \(\hat{y}_{\nomvec{w},b}(\nomvec{x}) > 0,5\) dann wird die Probe der Klasse \(1\) zugeordnet. Ist \(\hat{y}_{\nomvec{w},b}(\nomvec{x}) < 0,5\), dann gehört die Probe in die Klasse \(0\) \cite{Burkov.2019, Goodfellow.2016}.
+Wird eine Probe geschätzt und erhält einen Wert \(\hat{y}_{\nomvec{w},\nomvec{b}}(\nomvec{x}) > 0,5\) dann wird die Probe der Klasse \(1\) zugeordnet. Ist \(\hat{y}_{\nomvec{w},\nomvec{b}}(\nomvec{x}) < 0,5\), dann gehört die Probe in die Klasse \(0\) \cite{Burkov.2019, Goodfellow.2016}.
 
 \dubpar
 \textbf{Support Vector Machine (\acrshort{SVM})} \par
@@ -172,14 +201,14 @@ Eine \acrshort{SVM} ist ein Modell des \glsdisp{überwachtes Lernen}{überwachte
 Definiert wird die Entscheidungsgrenze nach der Koordinatenform, wie die Gleichung \ref{eq:SVMdefHypEb} zeigt.
 
 \begin{equation}
-\nomvecT{w}\nomvec{x}+b=0
+\nomvecT{w}\nomvec{x}+\nomvec{b}=0
 \label{eq:SVMdefHypEb}
 \end{equation}
 
 Die Modellfunktion evaluiert die Klassenzugehörigkeit, indem sie überprüft, ob sich ein Datenpunkt überhalb, oder unterhalb der Entscheidungsebene befindet. Dies ist erfolgt indem der Datenpunkt in die Ebenengleichung eingesetzt wird. Anschließend gibt das Vorzeichen die Klassenzugehörigkeit an. Das ist in der Gleichung \ref{eq:SVMmodell} zu sehen. 
 
 \begin{equation}
-\hat{y}_{\nomvec{w},b}(\nomvec{x}) = sgn(\nomvecT{w}\nomvec{x}+b))
+\hat{y}_{\nomvec{w},\nomvec{b}}(\nomvec{x}) = sgn(\nomvecT{w}\nomvec{x}+\nomvec{b}b))
 \label{eq:SVMmodell}
 \end{equation}
 
@@ -212,12 +241,8 @@ Es existieren jedoch einige Komplikationen klassische \acrshort{RNN}[s] anzuwend
     \item Das Ausgangstor bestimmt, welche Informationen aus dem Zustansspeicher an den Ausgang weitergegeben werden.
 \end{itemize}
 
-Diese Mechanismen erlauben es \acrshort{LSTM}[s]s, sowohl kurzfristige als auch langfristige Datenabhängigkeiten zu lernen und effektiv zwischen relevanten und irrelevanten Informationen zu unterscheiden \cite{Burkov.2019, Goodfellow.2016}. Die Abbildung \ref{fig:LSTMNet} veranschaulicht die Idee des \acrshort{LSTM}[s] und den Toren.
+Diese Mechanismen erlauben es \acrshort{LSTM}[s]s, sowohl kurzfristige als auch langfristige Datenabhängigkeiten zu lernen und effektiv zwischen relevanten und irrelevanten Informationen zu unterscheiden \cite{Burkov.2019, Goodfellow.2016}. \par
 
-\emptyFigure{Illustration eines LSTM-Netzwerks.}{fig:LSTMNet}
-\todo{Abbildung fehlt}
-
-\par
 \textbf{Gated Recurrent Unit (\acrshort{GRU})}
 Die \acrshort{GRU} lässt sich als vereinfachte Form eines \acrshort{LSTM}[s] betrachten. Sie verwendet ebenfalls Tore für die Handhabung langfristiger und kurzfristiger Abhängigkeiten in sequentiellen Daten. \acrshort{GRU}[s] vereinfachen die Struktur von \acrshort{LSTM}[s], indem sie nur zwei Tore verwenden. Ein Update-Tor und Ein Reset-Tor. \par
 
@@ -262,7 +287,7 @@ Eine \gls{Konfusionsmatrix} bietet Einblick in die Fehler die das Modell macht. 
 
 Wie bereits in \ref{sec:Datensätze ML} erwähnt, ist es möglich den Validierungsdatensatz einzusparen. Das ist mit dem Verfahren \gls{Cross-Validation} möglich. Dabei wird der \gls{Trainingsdatensatz} in \(K\) gleichgroße Teile aufgeteilt. Anschließend werden \(K\) Modelle Trainiert, dabei wird immer ein anderes Teil des \gls{Trainingsdatensatz}[es] zurückgehalten und für die Validierung verwendet. Somit existieren \(K\) Beurteilungen der Performance. Die Gesamtperfromance ist der Mittelwert. Das Modell wird anschließend mit dem vollständigen \gls{Trainingsdatensatz} trainiert. Die Abbildung \ref{fig:CrossVal} veranschaulicht die \gls{Cross-Validation}.
 
-\emptyFigure{Verfahren der \gls{Cross-Validation}. Der \gls{Trainingsdatensatz} wird in 5 Teile zerteilt, wovon jedes einmal als Validierungsdatensatz verwendet wird.}{fig:CrossVal}
+\emptyFigure{Verfahren der \gls{Cross-Validation}. Der \gls{Trainingsdatensatz} wird in 4 Teile zerteilt, wovon jedes einmal als Validierungsdatensatz verwendet wird.}{fig:CrossVal}
 \todo{Abbildung fehlt}
 
 \subsection{Einstellung der Hyperparameter} \label{sec:ML HyperPara}
@@ -271,7 +296,7 @@ Wie bereits in \ref{sec:Datensätze ML} erwähnt, ist es möglich den Validierun
 
 \textbf{Grid Search}\par
 
-Für alle \gls{Hyperparameter} wird ein Raster angegeben, z.B. Für den \gls{Regularisierung}[stherm] \(C = {0,1,1,10,100,1000}\). Für jede Kombination von Werten der \gls{Hyperparameter} wird ein Modell trainiert und validiert. Am Ende werden die \gls{Hyperparameter} eingestellt, mit denen die beste Performance erzielt wurde. Diese Methode kann sehr rechenaufwändig sein, da jegliche Kombinationen zu prüfen sind. Gerade bei sehr feinen Rastern kann das Vorgehen viel Zeit in Anspruch nehmen \cite{Zheng.2015}.\dubpar
+Für alle \gls{Hyperparameter} wird ein Raster angegeben, z.B. Für den \gls{Regularisierung}[stherm] \(C = \{0,1,1,10,100,1000\}\). Für jede Kombination von Werten der \gls{Hyperparameter} wird ein Modell trainiert und validiert. Am Ende werden die \gls{Hyperparameter} eingestellt, mit denen die beste Performance erzielt wurde. Diese Methode kann sehr rechenaufwändig sein, da jegliche Kombinationen zu prüfen sind. Gerade bei sehr feinen Rastern kann das Vorgehen viel Zeit in Anspruch nehmen \cite{Zheng.2015}.\dubpar
 
 \textbf{Random Search}\par
 

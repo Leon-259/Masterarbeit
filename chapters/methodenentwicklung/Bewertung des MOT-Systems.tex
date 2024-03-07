@@ -47,7 +47,7 @@ Um solche Fehler zu vermeiden wurde ein Verifikatoinsmechanismus eingeführt, we
 Für die Verifikation wird das Video des Ereignisses mit herangezogen. Bei diesem wird ermittelt wie sich die Pixeln von \gls{Frame} zu \gls{Frame} verändern. Wenn \(\nommat{PIX}_t\) die Matrix aller Pixel in einem \gls{Frame} \(t\) ist, dann berechnet sich die Veränderung wie in \ref{eq:Pixelveränderung} dargestellt.
 
 \begin{equation}
-\text{Pixelveränderung} = \frac{abs(\nommat{PIX}_t - \nommat{PIX}_{t-1})}{\text{Pixelanzahl}}
+\text{Pixelveränderung} = \frac{\sum_i \sum_j |pix_{t_{i,j}} - pix_{{t-1}_{i,j}}|}{\text{Pixelanzahl}}
 \label{eq:Pixelveränderung}
 \end{equation}
 

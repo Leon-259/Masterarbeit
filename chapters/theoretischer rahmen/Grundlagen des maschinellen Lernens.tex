@@ -30,7 +30,13 @@ Damit ist die Aufgabe \(A\) und die Erfahrung \(E\) für das Beispiel definiert.
     \item E: Datensatz aus den \gls{Feature}[s] und den \glsdisp{Zielvektor}{Zielwerten}.
 \end{itemize}
 
-\emptyFigure{Beispiel einer \glsdisp{ML}{maschinellen Lernaufgabe}. Schätzung vom Verkaufswerten von Autos. Auf der y-Achse sind ist der \glsdisp{Zielvektor}{Zielwert} dargestellt. Auf der y-Achse ist das \gls{Feature} \textit{Anzahl der gefahrenen Kilometer} abgebildet. Die Werte der Achsen sind Normiert.}{fig:BspMLAuto}
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/Autohändlerbsp/Schätzung der Verkaufswerte.png}
+    \caption[Beispiel einer maschinellen Lernaufgabe.]{Beispiel einer \glsdisp{ML}{maschinellen Lernaufgabe}. Schätzung vom Verkaufswerten von Autos. Auf der y-Achse ist der \glsdisp{Zielvektor}{Zielwert} dargestellt. Auf der y-Achse ist die \gls{Feature} \textit{Anzahl der gefahrenen Kilometer} abgebildet. Die Werte der Achsen sind normiert.}
+    \label{fig:BspMLAuto}
+\end{figure}
+
 
 Die Abbildung \ref{fig:BspMLAuto} zeigt die die Punkte in \(D\) für den \glsdisp{Zielvektor}{Zielwert} und das \gls{Feature} \textit{Anzahl der gefahrenen Kilometer}. Um ein Lernfähiges Programm zu erhalten muss eine mathematische Repräsentation für die Bewältigung der Aufgabe \(A\) gefunden werden. Durch diese mathematische Repräsentation, ist die Performance \(P\) des Programms bewertbar \cite{Mitchell.1997}. Ein einfacher Algorithmus für \gls{ML} ist die lineare Regression. Diese wird für das Problem des Autohändlers durchgeführt. Für eine linearen Regression wird die Repräsentation aus \ref{eq:linReg} für die Lösung von \(A\) gewählt.
 
@@ -64,13 +70,21 @@ Die Lösung von \ref{eq:minMSE} resultiert in optimalen Gewichten \(\nomvec{w}\)
 
 Der Parameter \(\eta\) wird dabei als Lernrate bezeichnet. Die Lernrate bestimmt die Schrittgröße, welche bei jeder Iteration in Richtung des steilsten Abstiegs gegangen wird \cite{Mitchell.1997}. Die Lernrate ist vom Anwender einzustellen. Parameter, welche vom Anwender festzulegen sind werden \gls{Hyperparameter} gennant. Sie sind nicht zu verwechseln mit den \gls{Modellparameter}[n] \cite{Zheng.2015}. Bei einem Minimum gilt \(\nabla MSE(\nomvec{w}^{(t)}) = 0\). Verändern sich die Werte von \(\nomvec{w}^{(t)}\) durch weiterer Iterationen nicht mehr, wurde ein Minimum gefunden \cite{Goodfellow.2016, Burkov.2019}. Die Abbildung \ref{fig:GradDecentBsp} veranschaulicht die Suche des Minimums durch das \gls{Gradientenverfahren}.
 
-\emptyFigure{Fehlt. }{fig:GradDecentBsp}
-\todo{Abbildung fehlt}
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/Plots/Gradientverfahren.png}
+    \caption[Vorgehen des Gradientenverfahrens.]{Vorgehen des Gradientenverfahrens. Iterativ wird das Minimum des Optimierungsproblems gesucht. Gestartet wird bei einem Initialwert. Ändert sich das Minimum nur noch geringfügig, wird der Wert als Lösung genommen.}
+    \label{fig:GradDecentBsp}
+\end{figure}
 
 Mit diesem vorgehen ist auch das Beispiel des Autohändlers lösbar. Um das Beispiel anschaulich zu halten, wird das Modell der lineare Regression aus \ref{eq:linReg} nur mit dem \gls{Feature} der Anzahl der gefahrenen Kilometer trainiert. Die Abbildung \ref{fig:BspMLAutoMitReg} zeigt die gleichen Datenpunkte dar, wie die Abbildung \ref{fig:BspMLAuto}, jedoch ist nun die resultierende Gerade \(\hat{y}(x)\) eingezeichnet. 
 
-\emptyFigure{Die Abbildung zeigt Datenpunkte von verkauften Autos. Auf der y-Achse sind die Verkaufspreise dargestellt. Auf der x-Achse ist die Anzahl der gefahrenen Kilometer zu sehen. Beide Achsen sind Normiert. Eingezeichnet ist eine Gerade. Die Gerade wurde durch eine lineare Regression ermittelt.}{fig:BspMLAutoMitReg}
-\todo{Abbildung fehlt}
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/Autohändlerbsp/Lineares Regressionsmodell.png}
+    \caption[Beispiel einer linearen Regression von Autoverkaufswerten.]{Beispiel einer linearen Regression von Autoverkaufswerten. Die Datenpunkte stammen von verkauften Autos. Auf der y-Achse sind die Verkaufspreise dargestellt. Auf der x-Achse ist die Anzahl der gefahrenen Kilometer zu sehen. Beide Achsen sind normiert. Eingezeichnet ist eine Gerade. Die Gerade wurde durch eine lineare Regression ermittelt.}
+    \label{fig:BspMLAutoMitReg}
+\end{figure}
 
 Das Beispiel der linearen Regression zeigt, dass sich die Bestandteile eines Algorithmus für \gls{ML} allgemein wie folgt zusammenfassen lassen \cite{Burkov.2019, Mitchell.1997, Goodfellow.2016}.
 
@@ -128,15 +142,27 @@ Die meisten Algorithmen arbeiten modellbasiert. Das bedeutet durch einen Lernpro
 Beim instanzbasierten Lernen wird stattdessen der gesamte Datensatz gespeichert. Über die Position der Trainingsproben im \gls{Feature}[raum] lassen sich unbekannte Proben evaluieren. Ein Beispiel hierfür ist die \textit{Nächste Nachbarn Klassifikation}. Soll mittels diesem \glsdisp{Klassifikation}{Klassifikators} die Klassenzugehörigkeit einer unbekannten Probe bestimmt werden, dann betrachtet der Algorithmus die umliegenden Trainingsproben. Die Klasse, welche unter den umliegenden  Trainingsproben am häufigsten Auftritt ist auch die Klasse der unbekannten Probe \cite{Burkov.2019, Mitchell.1997}.\dubpar
 
 \textbf{\gls{Deep Learning} und \gls{ML}:}\\
-Die Begriffe \gls{ML} und \gls{Deep Learning} stehen in einem hierarchischen Zusammenhang. \Gls{ML} umfasst alle Lernalgorithmen. Dazu zählen einfache Algorithmen wie die lineare Regression, sowie Komplexe Modelle wie sie im Bereich des \gls{Deep Learning} zu finden sind. \gls{Deep Learning} ist somit eine spezielle Art des \glsdisp{ML}{maschinellen Lernens}. Diesen Zusammenhang visualisiert die Abbildung \ref{fig:zusammenhangDL_ML} \cite{Goodfellow.2016, Burkov.2019}.
+\begin{wrapfigure}{r}{0.45\textwidth}
+    \begin{center}
+        \vspace*{-9mm}
+        \includegraphics[width=0.45\textwidth]{img/Grafiken/Ki-ML und Deep Learning Ven.png}
+        \vspace*{-10mm}
+        \caption[Venn-Diagramm von KI, maschinellen Lernen und Deep Learning.]{Venn-Diagramm von KI, maschinellen Lernen und Deep Learning \cite{Goodfellow.2016}.}
+        \label{fig:zusammenhangDL_ML}
+    \end{center}
+\end{wrapfigure}
+Die Begriffe \gls{ML} und \gls{Deep Learning} stehen in einem hierarchischen Zusammenhang. \Gls{ML} umfasst alle Lernalgorithmen. Dazu zählen einfache Algorithmen wie die lineare Regression, sowie Komplexe Modelle wie sie im Bereich des \gls{Deep Learning} zu finden sind. \gls{Deep Learning} ist somit eine spezielle Art des \glsdisp{ML}{maschinellen Lernens}. Beide Teilgebiete sind in der Wissenschaft der künstlichen Intelligenz verordnet. Diesen Zusammenhang visualisiert die Abbildung \ref{fig:zusammenhangDL_ML} \cite{Goodfellow.2016, Burkov.2019}.
 
-\emptyFigure{Das Diagramm zeigt, dass \gls{Deep Learning} ein Teilgebiet des \glsdisp{ML}{maschinellen Lernens} ist. Sie sind in der Wissenschaft der künstlichen Intelligenz verordnet.}{fig:zusammenhangDL_ML}
-\todo{Abbildung fehlt}
+
 
 \gls{Deep Learning} Modelle sind aus mehreren Schichten aufgebaut. Die Schichten sind aus einfachen Algorithmen des \glsdisp{ML}{maschinellen Lernens} aufgebaut. Eine Schicht bekommt als Eingabe die Ausgabe der vorausgegangenen Schicht. Dadurch werden die meisten Modellparameter nicht durch den Datensatz direkt trainiert, sondern durch die Ausgabe der vorausgegangenen Schichten. Aus diesem Grund sind \gls{Deep Learning} Modelle auch deutlich besser in der Lage mit Rohdaten zu arbeiten, als einfachere Modell. Durch die Schichten sind sie in der Lage selbstständig \gls{Feature}[s] zu extrahieren. Eine Schicht ist aufgebaut aus Einheiten. Jede Einheit ist ein einfaches Modell, wie bspw. die lineare Regression. Durch die Schichtung solcher einfacher Modelle lassen sich sehr komplexe Muster in Daten finden. Die Abbildung \ref{fig:SimpleDL} zeigt den Aufbau eines einfachen \gls{Deep Learning} Netzwerks \cite{Burkov.2019, Goodfellow.2016}. 
 
-\emptyFigure{Fehlt.}{fig:SimpleDL}
-\todo{Abbildung fehlt}
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/Grafiken/Aufbau Neuronales Netz.png}
+    \caption[Beispielhafter Aufbaue eines neuronalen Netzes.]{Beispielhafter Aufbaue eines neuronalen Netzes. Zu sehen sind drei verbundene Schichten. In den Schichten befinden sich Einheiten, in welchen einfache Lern-Algorithmen verwendet werden \cite{Burkov.2019}.}
+    \label{fig:SimpleDL}
+\end{figure}
 
 \par
 \textbf{Weitere Unterscheidungsmerkmale:}\\
@@ -149,16 +175,24 @@ Ziel eines Modells für \gls{ML} ist es Proben zu schätzen, welche für das Mod
 \textbf{\gls{Overfitting}:}\\
 \gls{Overfitting} lässt sich als \textit{Überanpassung} übersetzen. Es tritt auf, wenn ein Modell beim training einen Datensatz zu gut lernt, so dass es nicht in der Lage ist unbekannte Proben zu schätzen. Es lernt die bekannten Proben auswendig, anstatt ein allgemeines Verständnis des Problems zu entwickeln. Für das Beispiel des Autohändlers aus \ref{sec:Grundlagen ML} wird anstatt einer linearen Regression eine polynomial Regression durchgeführt, um den Verkaufswert von Autos zu schätzen. Das resultierende Modell ist in der Abbildung \ref{fig:BspOverfitting} zu sehen.
 
-\emptyFigure{Das Modell lernt den Datensatz im Training auswendig. Es befindet sich im Overfitting. Es ist nicht in der Lage zuverlässig den Wert von unbekannten Autos zu schätzen.}{fig:BspOverfitting}
-\todo{Abbildung fehlt}
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/Autohändlerbsp/Overfitting.png}
+    \caption[Darstellung von Overfitting am Beispiel des Autohändlers.]{Darstellung von Overfitting am Beispiel des Autohändlers. Das Modell lernt den Datensatz im Training auswendig. Es befindet sich im Overfitting. Es ist nicht in der Lage, zuverlässig den Wert von unbekannten Autos zu schätzen.}
+    \label{fig:BspOverfitting}
+\end{figure}
 
 Die Autos des Datensatzes können mit dem Modell zuverlässig geschätzt werden, für unbekannte Autos ist dies nicht möglich. Das Modell \gls{Overfitting}{overfittet}. \gls{Overfitting} kann durch eine zu hohe Modellkomplexität entstehen. Dies ist in der Abbildung \ref{fig:BspOverfitting} zu sehen. Die polynomial Regression ist zu komplex, um den einfachen Zusammenhang der Aufgabe zu modellieren. Die lineare Regression ist besser geeignet. Ein weiterer Grund für \gls{Overfitting} kann eine zu kleiner Datensatz für das Training sein. In diesem Fall hat das Modell zu wenige Beispiele, um allgemein gültige Muster der Aufgabe zu erlernen \cite{Burkov.2019, Bishop.2006, Goodfellow.2016}.\dubpar
 
 \textbf{\gls{Underfitting}:}\\
 \gls{Underfitting} ist mit \textit{Unteranpassung} zu übersetzen. Es ist das gegenteil vom \gls{Overfitting}. Anstatt das, dass Modell im Training den Datensatz zu gut lernt, lernt das Modell diesen nicht gut genug. Dadurch sind weder gute Schätzungen für bekannte Proben möglich, noch für Unbekannte. Der Autohändlers aus \ref{sec:Grundlagen ML} macht für sein Modell die Annahme, dass jedes Auto gleich viel Wert ist unabhängig von der Anzahl der gefahrenen Kilometer. Das ist in der Abbildung \ref{fig:BspUnderfitting} zu sehen.
 
-\emptyFigure{Das Modell lernt den Datensatz im Training unzureichend. Es befindet sich im Underfitting. Es ist nicht in der Lage zuverlässig den Wert von bekannten und unbekannten Autos zu schätzen.}{fig:BspUnderfitting}
-\todo{Abbildung fehlt}
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/Autohändlerbsp/Underfitting.png}
+    \caption[Darstellung von Underfitting am Beispiel des Autohändlers.]{Darstellung von Overfitting am Beispiel des Autohändlers. Das Modell lernt den Datensatz im Training unzureichend. Es befindet sich im Underfitting. Es ist nicht in der Lage, zuverlässig den Wert von bekannten und unbekannten Autos zu schätzen.}
+    \label{fig:BspUnderfitting}
+\end{figure}
 
 In dem Beispiel ist das Modell zwar prinzipiell überflüssig, jedoch veranschaulicht es gut, dass mit diesem Vorgehen keine guten Schätzungen für Proben jeglicher Art möglich sind. In diesem Fall liegt der Grund für das \gls{Underfitting} in einer unzureichenden Modellkomplexität. Das Modell ist zu einfach, um die Aufgabe korrekt zu modellieren. Auch eine zu geringe Anzahl an \gls{Feature}[s] oder \gls{Feature}[s], welche keine Information zu der Aufgabe besitzen, können zu \gls{Underfitting} führen. In diesem Fall hat das Modell zu wenige Information erhalten, um die Komplexität der Aufgabe vollständig zu umfassen \cite{Burkov.2019, Bishop.2006, Goodfellow.2016}.  \dubpar
 
@@ -175,8 +209,12 @@ Der Term der L1 \gls{Regularisierung} ist über den \gls{Hyperparameter} \(C\) e
 \textbf{\gls{Bias}:}\\
 \gls{Bias} lässt sich als \textit{Voreingenommenheit} übersetzen und beschreibt ein Modell, welches voreingenommen ist, in eine bestimmte Richtung. Der Autohändler aus \ref{sec:Grundlagen ML} stellt fest, dass er mit seinem aktuellen Modell seine Autos fast immer unter Wert verkauft. Er sammelt neue Daten und vergleicht diese mir seinem Modell. In der Abbildung \ref{fig:BspBias} ist zu sehen, dass sein Modell einen \gls{Bias} in Richtung zu niedriger Verkaufswerte.
 
-\emptyFigure{Durch die neuen Daten fällt auf, dass das Modell die Verkaufswerte der Autos zu niedrig schätzt. Insgesamt scheint die lineare Regression ein \gls{Underfitting} zu verursachen.}{fig:BspBias}
-\todo{Abbildung fehlt}
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/Autohändlerbsp/Feststellung von Bias.png}
+    \caption[Darstellung von Bias am Beispiel des Autohändlers.]{Darstellung von Bias am Beispiel des Autohändlers. Durch die neuen Daten fällt auf, dass das Modell die Verkaufswerte der Autos zu niedrig schätzt. Insgesamt scheint die lineare Regression  \gls{Underfitting} zu verursachen.}
+    \label{fig:BspBias}
+\end{figure}
 
 Ein solcher \gls{Bias} kann verschieden Ursachen haben. Z.B. kann es sein, dass nicht alle Faktoren, welcher die Aufgabe beeinflussen mit in das Modell aufgenommen wurden. Der Verkaufswert von Autos kann bspw. von der jahreszeit abhängen. Der Autohändler berücksichtigt in seinem Modell keine saisonale Abhängigkeit. Auch fehlende Varianz im Datensatz kann \gls{Bias} verursachen. Der Autohändler stellt fest, dass in seinem Datensatz nur Autos von zwei Marken vorhanden sind. Andere Automarken erzielen höhere Verkaufswerte. Ihm fehlt es an Varianz in seinen Proben, um die Aufgabe korrekt zu modellieren. Von den beiden Automarken in seinem Datensatz stellt die ein preiswertere Autos her, die Andere ist für Luxusautos bekannt. Jedoch  befinden sich im Datensatz nur drei Proben von der Luxusmarke. Der Datensatz ist somit unbalanciert. Das kenn ebenfalls \gls{Bias} verursachen. Das Modell tendiert dazu, die Eigenschaften des preiswerten Herstellers zu lernen, da dieser deutlich stärker im Datensatz vertreten ist. Auch \gls{Regularisierung} kann einen \gls{Bias} verursachen, in dem durch die reduzierte Komplexität eine unbeabsichtigte Voreingenommenheit entsteht. \gls{Bias} kann die Schätzungen eines Modells verzerren, was die Zuverlässigkeit einschränkt. Es ist oftmals schwierig zu erkennen, wo \gls{Bias} in ein Modell eingeführt wird. Aufmerksamkeit beim Aufbau eines Modells bezüglich \gls{Bias} sollte stehst vorhanden sein. \gls{Bias} muss jedoch nicht nur negativ sein. Gezielt eingesetzt kann er nützlich sein, um Modelle zu vereinfachen und eine bessere \gls{Generalisierung} ermöglichen. Der Autohändler möchte sich z.B. auf SUVs spezialisieren. Aus diesem Grund benutzt er für sein neues Modell nur Proben von SUVs. Dadurch besitzt sein Datensatz einen \gls{Bias} durch geringe Varianz bezüglich der Bauart der Autos. Jedoch ist das Modell angepasster an seinen speziellen Fall und sollte für Verkaufswerte von SUVs gut \glsdisp{Generalisierung}{generalisieren} können \cite{Burkov.2019, Goodfellow.2016, Mehrabi.2019}. \dubpar
 

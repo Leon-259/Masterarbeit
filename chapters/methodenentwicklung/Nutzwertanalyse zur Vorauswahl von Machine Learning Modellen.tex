@@ -1,10 +1,32 @@
 \section{Nutzwertanalyse zur Vorauswahl von Machine Learning Modellen} \label{sec:Meth Nutzwert}
 Für das \gls{Modul} zur Verhaltensklassifizierung wird ein Algorithmus des \glsdisp{ML}{maschinellen Lernens} benötigt. Die Auswahl eines passenden Algorithmus ist oftmals nur durch ausprobieren verschiedener Algorithmen möglich. Um Zeit einzusparen ist es Sinnvoll die Auswahl einzugrenzen \ref{sec:ML ModellSelect}. Diese Eingrenzung wird hier mittels einer Nutzwertanalyse durchgeführt. \par
 
-Eine Nutzwertanalyse ist eine Methode zur Entscheidungsfindung, bei welcher Entscheidungsalternativen mittels einer Wertung verglichen werden \cite{Kuhnapfel.2021}. Sie ist jedoch anfällig für eine subjektive Bewertung der Entscheidungsalternativen. Aus diesem Grund wird sie hier nur für eine Eingrenzung der Auswahl verwendet und nicht für eine finale Entscheidung. Bei einer Nutzwertanalyse werden Kriterien ausgewählt, anhand derer die Alternativen bewertet werden. Diese Kriterien erhalten eine Gewichtung, welche ihre Wichtigkeit verdeutlicht. Die Gewichte werden in Prozent angegeben und ergeben kumuliert 100 \%. Für eine Alternative wird der Erfüllungsgrad in Bezug auf ein Kriterium angegeben. Für diesen Erfüllungsgrad ist eine Skala notwendig, bspw. \(\{1,2,\dots,10\}\). Diese Skala wird für alle Kriterien verwendet. Der Grad der Erfüllung wird für jede Alternative in Bezug auf alle Kriterien angegeben und Gewichtet. Die Summe der gewichteten Erfüllungswerte einer Alternative sind der Nutzwert dieser Alternative. Die Abbildung \ref{fig:bspNutzwertanalyse} zeigt beispielhaft eine Nutzwertanalyse.
+Eine Nutzwertanalyse ist eine Methode zur Entscheidungsfindung, bei welcher Entscheidungsalternativen mittels einer Wertung verglichen werden \cite{Kuhnapfel.2021}. Sie ist jedoch anfällig für eine subjektive Bewertung der Entscheidungsalternativen. Aus diesem Grund wird sie hier nur für eine Eingrenzung der Auswahl verwendet und nicht für eine finale Entscheidung. Bei einer Nutzwertanalyse werden Kriterien ausgewählt, anhand derer die Alternativen bewertet werden. Diese Kriterien erhalten eine Gewichtung, welche ihre Wichtigkeit verdeutlicht. Die Gewichte werden in Prozent angegeben und ergeben kumuliert 100 \%. Für eine Alternative wird der Erfüllungsgrad in Bezug auf ein Kriterium angegeben. Für diesen Erfüllungsgrad ist eine Skala notwendig, bspw. \(\{1,2,\dots,10\}\). Diese Skala wird für alle Kriterien verwendet. Der Grad der Erfüllung wird für jede Alternative in Bezug auf alle Kriterien angegeben und Gewichtet. Die Summe der gewichteten Erfüllungswerte einer Alternative sind der Nutzwert dieser Alternative. Die Tabelle \ref{tab:bspNutzwertanalyse} zeigt beispielhaft eine Nutzwertanalyse. Mit dieser solle eine Entscheidungsfindung zu einem Autokauf stattfinden.
 
-\emptyFigure{Nutzwertanalyse BSP}{fig:bspNutzwertanalyse}
-\todo{Abbildung fehlt}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Beispiel einer Nutzwertanalyse - Entscheidungsfindung zu einem Autokauf}
+  \label{tab:bspNutzwertanalyse}
+  \begin{tabular}{
+    l
+    S[table-format=2.0]
+    S[table-format=1.1]
+    S[table-format=1.1]
+    S[table-format=1.1]
+    S[table-format=1.1]
+  }
+    \toprule
+    {Kriterien} & {Gewichte} & {Auto A} & {Auto B} & {Auto C} \\
+    \midrule
+    Preis             & 50 \% & 10 & 6 & 4 \\
+    Kilometeranzahl   & 30 \% &  2 & 8 & 10 \\
+    Alter             & 20 \% &  4 & 8 & 8 \\
+    \midrule
+    Nutzwert          & {-}  & 6,4 & 7 & 6,6 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
 
 
 \subsection{Auswahl der Kriterien}

@@ -1,4 +1,5 @@
 \usepackage{graphicx} % Required for inserting images
+\usepackage{float}
 \usepackage[T1]{fontenc} %Notwendig um Umlaute benutzen zu können 
 \usepackage[ngerman]{babel} %import vom deutschen Sprachpaket
 \usepackage{microtype} %Kleine Variationen im Textabstand um Silbentrennung zu reduzieren
@@ -27,6 +28,12 @@
 \usepackage{adjustbox} % Für die Ausrichtung der rotierten Boxen
 \usepackage{longtable} % Lange Tabellen über mehrere Seiten erstellen 
 \usepackage{array}
+\usepackage[most]{tcolorbox}
+\usepackage{float}
+\usepackage{wrapfig}
+
+\restylefloat{figure}
+\captionsetup{format=plain,indention=0cm}
 
 \addbibresource{bib/bibF.bib}
 
