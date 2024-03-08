@@ -1,13 +1,19 @@
 \section{Implementation des Moduls zur Verhaltensklassifizierung} \label{sec:umse ModulKonzept}
-Für das Modul sind viele der bereits vorgestellten Umsetzungen übernehmbar. Die Feature-Extraktion lässt sich genau wie in \ref{secc:Umsetz Featextr} beschrieben in das Modul integrieren. Lediglich kleine Anpassungen werden vorgenommen. Z.b. anstatt, dass die Feature-Extraktion die Dateipfade übergeben bekommen, wie im Codeauszug \ref{lst:FE IterInterv} gezeigt, bekommt sie im Modul die Daten direkt übergeben. Auch die Formatierung und das Assoziationsmodul sind hier implementiert. Die Skalierung wird so integriert, wie in \ref{sec:umsetz FeatSelec}. Während des Modellaufbaus wird der Skalierer trainiert und gespeichert und kann anschließend in das Modul eingebaut werden. Die polynomiale SCM wird trainiert und getestet, wie in \ref{sec:umsetz FeatSelec} gezeigt wird und ist anschließend in das Modul zu laden. Bezogen auf das Konzept in \ref{sec:Meth Sim} ist somit die Implementation von allen Komponenten erläutert, bis auf die des Pufferspeichers und die des Ringpufferspeichers. Aus diesem Grund werden die bereits beschriebenen Komponenten in diesem Kapitel nicht mehr im Detail erläutert.\par
+Für das Modul sind viele der bereits vorgestellten Umsetzungen übernehmbar. Die Feature-Extraktion lässt sich genau wie in \autoref{secc:Umsetz Featextr} beschrieben in das Modul integrieren. Lediglich kleine Anpassungen werden vorgenommen. Z.b. anstatt, dass die Feature-Extraktion die Dateipfade übergeben bekommen, wie im Codeauszug \ref{lst:FE IterInterv} gezeigt, bekommt sie im Modul die Daten direkt übergeben. Auch die Formatierung und das Assoziationsmodul sind hier implementiert. Die Skalierung wird so integriert, wie in \autoref{sec:umsetz FeatSelec}. Während des Modellaufbaus wird der Skalierer trainiert und gespeichert und kann anschließend in das Modul eingebaut werden. Die polynomiale SCM wird trainiert und getestet, wie in \autoref{sec:umsetz FeatSelec} gezeigt wird und ist anschließend in das Modul zu laden. Bezogen auf das Konzept in \autoref{sec:Meth Sim} ist somit die Implementation von allen Komponenten erläutert, bis auf die des Pufferspeichers und die des Ringpufferspeichers. Aus diesem Grund werden die bereits beschriebenen Komponenten in diesem Kapitel nicht mehr im Detail erläutert.\par
 
 Um das Modul zu testen, ist eine Simulation geplant. Dazu wird eine Simulation des Rohdatenstroms benötigt. Das Kapitel wird vor dem Hintergrund der Simulation strukturiert. Zunächst wird die Umsetzung der Simulation des Rohdatenstroms beschreiben und anschließend die Implementation des Moduls.
 
 \subsection{Umsetzung der Simulation des Rohdatenstroms}
-Die Simulation des Rohdatenstroms lässt sich in drei Blöcke zerlegen. Einer Konfiguration, in welcher die notwendigen Vorbereitungen getroffen werden, dem Anknüpfen an den Pufferspeicher und dem Simulieren des Datenstroms. Im Flussdiagramm \ref{fig:FlussDia SimStream} sind diese drei Blöcke zusammen mit den Programmschritten zu sehen, welche in ihnen stattfinden. \par
 
-\emptyFigure{Flussdiagramm des Programmablaufs der Simulation des Rohdatenstroms.}{fig:FlussDia SimStream}
-\todo{Abbildung fehlt}
+\begin{figure}[p]
+    \centering
+    \includegraphics[height=0.9\textheight]{img/Grafiken/Flussdiagramm Simulation Rohdatenstrom.png}
+    \caption{Flussdiagramm des Programmablaufs der Simulation des Rohdatenstroms.}
+    \label{fig:FlussDia SimStream}
+\end{figure}
+
+Die Simulation des Rohdatenstroms lässt sich in drei Blöcke zerlegen. Einer Konfiguration, in welcher die notwendigen Vorbereitungen getroffen werden, dem Anknüpfen an den Pufferspeicher und dem Simulieren des Datenstroms. Im Flussdiagramm aus \autoref{fig:FlussDia SimStream} sind diese drei Blöcke zusammen mit den Programmschritten zu sehen, welche in ihnen stattfinden. \par
+
 
 Das Programm beginnt mit der Konfiguration der Dateipfade. der Einfachheit halber werden die Dateipfade nicht über bspw. das \textit{FileSearch} herausgesucht, sondern explizit in den Code geschrieben. Um die Framerate zu simulieren, wird der mittlere Zeitschrittweite zwischen zwei Frames ermittelt. Dazu wird der Detektionsdatensatz mit \textit{pandas} geladen. Über den Zeitstempel in Unixzeit und internen Methoden von \textit{pandas} ist die mittlere Zeitschrittweite in Sekunden zu berechnen. Das ist im Codeauszug \ref{lst:deltaTframrate} zu sehen.
 
@@ -117,12 +123,17 @@ if sleep_time > 0:
 
 
 \subsection{Umsetzung des Moduls}
-Der Ablauf des Programms des Moduls lässt sich unterteilen in eine Initalisierungsblock, den Verbindungsaufbau zum Pufferspeicher und einer Routine, bestehend aus der Erhebung der Daten im Pufferspeicher in den Ringpufferspeicher und der Verarbeitung eines Intervalls. Das Flussdiagramm \ref{fig:FlussDia Modul} zeigt den Programmablauf der Implementation des Moduls. 
 
-\emptyFigure{Flussdiagramm des Programmablaufs der Modul-Implementaion.}{fig:FlussDia Modul}
-\todo{Abbildung fehlt}
+\begin{figure}[p]
+    \centering
+    \includegraphics[height=0.9\textheight]{img/Grafiken/Flussdiagramm Modul.png}
+    \caption{Flussdiagramm des Programmablaufs der Modul-Implementaion.}
+    \label{fig:FlussDia Modul}
+\end{figure}
 
-In Bezug auf das Konzept in \ref{sec:Meth FinalKonzept} sind Flussdiagramm die Verbindungen der Speicher zu erkennen. Die Formatierung, die Assoziation und die Feature-Extraktion sind in dem Programmschritt der Feature-Extraktion implementiert, wie in \ref{secc:Umsetz Featextr} beschrieben. Die Skalierung der Features, sowie die Schätzung der Verhaltensweise durch das Modul sind klar im Flussdiagramm zu erkennen. \par
+Der Ablauf des Programms des Moduls lässt sich unterteilen in eine Initalisierungsblock, den Verbindungsaufbau zum Pufferspeicher und einer Routine, bestehend aus der Erhebung der Daten im Pufferspeicher in den Ringpufferspeicher und der Verarbeitung eines Intervalls. Das Flussdiagramm \autoref{fig:FlussDia Modul} zeigt den Programmablauf der Implementation des Moduls. \par
+
+In Bezug auf das Konzept in \autoref{sec:Meth FinalKonzept} sind Flussdiagramm die Verbindungen der Speicher zu erkennen. Die Formatierung, die Assoziation und die Feature-Extraktion sind in dem Programmschritt der Feature-Extraktion implementiert, wie in \autoref{secc:Umsetz Featextr} beschrieben. Die Skalierung der Features, sowie die Schätzung der Verhaltensweise durch das Modul sind klar im Flussdiagramm zu erkennen. \par
 
 Für die Modulimplementierung müssen einige Elemente aus dem Modellaufbau extrahiert werden, um sie anschließend einbinden zu können. Das beinhaltet die trainierte SVM, den Skalierer und die Intervalle für die Gruppierung der Quantil-Features. Das ist notwendig, damit nach der Implementation des Moduls die Trainingsdaten vollständig verworfen werden können. Im Codeauszug \ref{lst:saveElems} sind die wichtigsten Programmzeilen des Modellaufbaus zu sehen, um die notwendigen Informationen zu extrahieren.\par
 
@@ -193,7 +204,7 @@ if check_if_enough_data(data_list):
     dets = data.drop('frame', axis=1)
 \end{pythoncode}
 
-Im Codeauszug \ref{lst:startExtr} ist die Übergabe an die Feature-Extraktion zu sehen. Dies funktioniert wie in \ref{secc:Umsetz Featextr} dargestellt. Die Klasse \textit{detectionDataHandler} ist eine Hilfs-Klasse, welche die Informationen aus den Detektionen strukturierter zugänglich macht. 
+Im Codeauszug \ref{lst:startExtr} ist die Übergabe an die Feature-Extraktion zu sehen. Dies funktioniert wie in \autoref{secc:Umsetz Featextr} dargestellt. Die Klasse \textit{detectionDataHandler} ist eine Hilfs-Klasse, welche die Informationen aus den Detektionen strukturierter zugänglich macht. 
 
 \begin{pythoncode}{Übergabe der Daten an die Feature-Extraktion.}{lst:startExtr}
 #Extrahieren der Daten zum Intervall 

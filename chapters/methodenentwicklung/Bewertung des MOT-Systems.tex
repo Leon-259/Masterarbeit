@@ -3,7 +3,7 @@ Mit eine \gls{MOT} System sollen \gls{Trajektorie}[n] generiert werden um diese 
 
 Für die Evaluation des \gls{MOT} Systems ist eine \gls{Ground Truth} notwendig. Da die Evaluation Gültigkeit für einen sehr konkreten Anwendungsfall haben soll, ist es sinnvoll eine anwendungsbezogene \gls{Ground Truth} zu verwenden, anstatt Benchmarking Datensätze. \gls{Ground Truth}[s] für zwei Ereignisse wurden bereits vor dieser Arbeit erstellt. Wie in \ref{sec:MOT GT} dargestellt ist die Erstellung einer qualitativ hochwertigen \gls{Ground Truth} herausfordernd. Um die Aussagekraft der Evaluation beurteilen zu können, wird die Qualität der \gls{Ground Truth} diskutiert. \par
 
-Für das \glsdisp{Assoziation}{Assoziationsmodul} ist ein Algorithmus auszuwählen. Zur Auswahl steht der \acrshort{SORT} Algorithmus (\ref{sec:MOT SORT}) und eine modifizierte Variante des Crocker-Grier Linking Algorithmus (\ref{sec:MOT CrockGrier}). Die Modifikationen werden in \ref{sec:Meth CrockGrieMods} erläutert. Für das Gesamtsystem ist zu Bewerten, welcher der Algorithmen die besten \gls{Feature}[s] gewährleisten kann. \par
+Für das \glsdisp{Assoziation}{Assoziationsmodul} ist ein Algorithmus auszuwählen. Zur Auswahl steht der \acrshort{SORT} Algorithmus (\autoref{sec:MOT SORT}) und eine modifizierte Variante des Crocker-Grier Linking Algorithmus (\autoref{sec:MOT CrockGrier}). Die Modifikationen werden in \autoref{sec:Meth CrockGrieMods} erläutert. Für das Gesamtsystem ist zu Bewerten, welcher der Algorithmen die besten \gls{Feature}[s] gewährleisten kann. \par
 
 Während der Versuche werden die Laufzeiten der Algorithmen gemessen, da diese relevant sind im Bezug auf die Echtzeitfähigkeit des Moduls. 
 
@@ -13,7 +13,7 @@ Noch vor dieser Arbeit sind zu zwei Ereignissen \gls{Ground Truth}[s] erstellt w
 
 Die Herausforderungen, die die Erstellung einer qualitativ hochwertigen \gls{Ground Truth} mit sich bringt, waren zum Zeitpunkt der Erstellung nicht bewusst. Aus diesem Grund wurden keine klar definierten Regeln festgelegt, wie mit Mehrdeutigkeiten und anderen komplizieren Situationen umzugehen ist. Ganz ohne Regeln erfolgte die Erstellung jedoch nicht. Im Vorfeld wurde definiert, dass jedes Tier mit einer rechteckigen \gls{Bounding Box} zu \glsdisp{Detektion}{detektieren} ist. Die \gls{Bounding Box} soll das Tier möglichst eng, aber vollständig umschließen. Tiere sollen möglichst auch nach Verdeckungen korrekt \glsdisp{Assoziation}{assoziiert} werden. \par 
 
-Bei der Überprüfung der \gls{Ground Truth} viel auf, die \gls{Detektion} funktionierte relativ zuversichtlich. Auch die \gls{Lokalisation} ist zufriedenstellend, auch wenn Schwankungen zu erwarten sind. Schwächen sind vor allem bei Mehrdeutigkeiten vorhanden. Die \gls{Detektion} bei teilweisen Verdeckungen ist inkonstant. Auch haben die unterschiedlichen Bearbeiter mehrdeutige Situationen unterschiedlich gelöst. Dadurch ist zu erwarten, dass Unsicherheiten in der Bewertung des \gls{Detektion}[smoduls] entstehen. Die Überprüfung zeigte, dass die \gls{Ground Truth} tendenziell eher Übermäßig optimistische Erwartungen an die \gls{Detektion} stellt. Bei teilweisen Verdeckungen wurde ein Tier länger \glsdisp{Detektion}{detektiert}, als es das \gls{Detektion}[smodul] tat. Somit ist mit einer vermehrten Anzahl von falsch negativen \gls{Detektion}[en] (\ref{sec:MOT Fehlertypen}) zu rechnen. \par
+Bei der Überprüfung der \gls{Ground Truth} viel auf, die \gls{Detektion} funktionierte relativ zuversichtlich. Auch die \gls{Lokalisation} ist zufriedenstellend, auch wenn Schwankungen zu erwarten sind. Schwächen sind vor allem bei Mehrdeutigkeiten vorhanden. Die \gls{Detektion} bei teilweisen Verdeckungen ist inkonstant. Auch haben die unterschiedlichen Bearbeiter mehrdeutige Situationen unterschiedlich gelöst. Dadurch ist zu erwarten, dass Unsicherheiten in der Bewertung des \gls{Detektion}[smoduls] entstehen. Die Überprüfung zeigte, dass die \gls{Ground Truth} tendenziell eher Übermäßig optimistische Erwartungen an die \gls{Detektion} stellt. Bei teilweisen Verdeckungen wurde ein Tier länger \glsdisp{Detektion}{detektiert}, als es das \gls{Detektion}[smodul] tat. Somit ist mit einer vermehrten Anzahl von falsch negativen \gls{Detektion}[en] (\autoref{sec:MOT Fehlertypen}) zu rechnen. \par
 
 Die niedrige \gls{Frame}[rate], sowie die hohe Tierdichte im Stall, sorgten dafür das sich Tiere teilweise nur schwer auseinander halten ließen. Dadurch ist mit Unsicherheiten in der Evaluation des \gls{Assoziation}[smoduls] zu rechnen. 
 
@@ -23,28 +23,40 @@ Mit Fehlern in einer \gls{Ground Truth} ist zu rechnen. Um dennoch stabile Ergeb
 
 
 \subsection{Modifikation des Crocker-Grier Linking Algorithmus} \label{sec:Meth CrockGrieMods}
-Der grundlegende Aufbau des Crocker-Grier Linking Algorithmus ist in \ref{sec:MOT CrockGrier} erläutert. Die Modifikationen erfolgten bereits vor dieser Arbeit. Sie werden hier erläutert, um die Nachvollziehbarkeit der Arbeitsweise zu ermöglichen. \par
+Der grundlegende Aufbau des Crocker-Grier Linking Algorithmus ist in \autoref{sec:MOT CrockGrier} erläutert. Die Modifikationen erfolgten bereits vor dieser Arbeit. Sie werden hier erläutert, um die Nachvollziehbarkeit der Arbeitsweise zu ermöglichen. \par
 
-Bei der Anwendung der ursprünglichen Form des Crocker-Grier Linking Algorithmus auf Ereignisse im Putenmaststall, kam es zu Problemen. Die maximale Distanz \(l\) die ein Objekt zwischen zwei \gls{Frame}[s] zurücklegen darf, um korrekt \glsdisp{Assoziation}{assoziiert} werden zu können, wird von den Tieren oftmals nicht eingehalten. Gerade bei dynamischen Ereignissen legen die Puten in kürzerer Zeit, weitere Strecken zurück. Dies ist auch der niedrigen \gls{Frame}[rate] und hohen Tierdichte geschuldet. Durch die Verletzung von \(l\) entstehen \gls{Assoziation}[sfehler] (\ref{sec:MOT Fehlertypen}). Durch die Vergrößerung von \(l\) entstehen größere Netzwerke. In der Anwendung wurden die Netzwerke schnell so groß, dass die Rechenzeit unpraktikabel wurde.\par
+Bei der Anwendung der ursprünglichen Form des Crocker-Grier Linking Algorithmus auf Ereignisse im Putenmaststall, kam es zu Problemen. Die maximale Distanz \(l\) die ein Objekt zwischen zwei \gls{Frame}[s] zurücklegen darf, um korrekt \glsdisp{Assoziation}{assoziiert} werden zu können, wird von den Tieren oftmals nicht eingehalten. Gerade bei dynamischen Ereignissen legen die Puten in kürzerer Zeit, weitere Strecken zurück. Dies ist auch der niedrigen \gls{Frame}[rate] und hohen Tierdichte geschuldet. Durch die Verletzung von \(l\) entstehen \gls{Assoziation}[sfehler] (\autoref{sec:MOT Fehlertypen}). Durch die Vergrößerung von \(l\) entstehen größere Netzwerke. In der Anwendung wurden die Netzwerke schnell so groß, dass die Rechenzeit unpraktikabel wurde.\par
 
 Um diesen Problemen zu begegnen wurde eine iterative \gls{Assoziation} umgesetzt. Diese durchläuft mehrere Stufen, in denen die \gls{Assoziation} wiederholt wird. Bei jeder Iteration wird \(l\) vergrößert. Korrekte \gls{Assoziation}[en] werden in den folgenden Stufen nicht mehr betrachtet. Insgesamt werden drei Iterationen durchlaufen. Die Abbildung \ref{fig:funkCrockGrierMod} zeigt die Auswirkungen dieses Ansatzes. In der ersten Stufe werden vor allen stationäre Puten \glsdisp{Assoziation}{assoziiert}. Diese werden in den folgenden Stufen nicht mehr betrachtet. Dadurch wird der Abstand zwischen den zu \glsdisp{Assoziation}{assoziierenden} Objekten größer und korrekte \gls{Assoziation}[en] sind auch mit einem größeren \(l\) zu erwarten. Auch die Größen der entstehenden Netzwerke sind besser handhabbar. 
 
-\emptyFigure{Stufen des Trackings, aus BA nehmen}{fig:funkCrockGrierMod}
-\todo{Abbildung fehlt}
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/Grafiken/CrockGrierMod Funktionsprinzip.png}
+    \caption[Ansatz der Modifikationen des Crocker-Grier Linking Algorithmus.]{Ansatz der Modifikationen des Crocker-Grier Linking Algorithmus.}
+    \label{fig:funkCrockGrierMod}
+\end{figure}
 
 Gerade bei hoch dynamischen Ereignissen passiert es, dass in frühen Stufen nur wenige \gls{Assoziation}[en] getätigt werden können. Dadurch entstehen wieder mehr \gls{Assoziation}[sfehler]. Auch ist nicht mehr zu gewährleisten, dass der Rechenaufwand handhabbar bleibt. Aus diesem Grund wird in diesen Situationen das adaptive Verfahren angewendet, was in der \gls{Bibliothek} \textit{Trackpy} \cite{Allan.2023} implementiert ist. Dadurch wird sichergestellt, dass die Netzwerke eine Maximalgröße nicht überschreiten und der Rechenaufwand bleibt handhabbar. \par
 
 Ziel ist es konstante \gls{Trajektorie}[n] zu generieren. Durch die Iterationen der Stufen können jedoch \gls{Fragmentation}[sfehler] provoziert werden. Das ist in der Abbildung \ref{fig:bspCrockGrierFrag} dargestellt. Unterbricht ein aktives Tier seine dynamische Bewegung für Wenige \gls{Frame}[s] und verweilt auf einer Position, dann werden die \gls{Assoziation}[en] dieser wenigen \gls{Frame}[s] bereits in einer früheren Stufe getätigt. Die \gls{Detektion}[en] der dynamischen Bewegung werden erst in höheren Stufen \glsdisp{Assoziation}{assoziiert}. Eine konstante \gls{Trajektorie} ist dann nicht mehr möglich, da das Verweilen des Tieres bereits aus der weiteren Betrachtung herausgenommen wurde. 
 
-\emptyFigure{Fragmentation durch Stufen}{fig:bspCrockGrierFrag}
-\todo{Abbildung fehlt}
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/Grafiken/Fragmentation durch Stufen.png}
+    \caption[Fragmentation durch die Modifikationen des Crocker-Grier Linking Algorithmus.]{Fragmentation durch die Modifikationen des Crocker-Grier Linking Algorithmus. Durch Veränderungen in der Geschwindigkeit werden zusammengehörende Detektionen in anderen Stufen assoziiert.}
+    \label{fig:bspCrockGrierFrag}
+\end{figure}
 
 Um solche Fehler zu vermeiden wurde ein Verifikatoinsmechanismus eingeführt, welcher evaluiert, ob eine \gls{Trajektorie} in einer bestimmten Stufe plausibel ist, oder nicht. ist die \gls{Trajektorie} plausibel, gilt sie als verifiziert und sie wird in das Ergebnis des \gls{MOT} Systems aufgenommen. Kann die \gls{Trajektorie} nicht verifiziert werden, dann kommen ihrer \gls{Detektion}[en] in die nächste Stufe. \gls{Detektion}[en], welche sich am Ende nicht in einer verifizierten \gls{Trajektorie} befinden, werden verworfen. Die Abbildung \ref{fig:TreeCrockGrierVerif} zeigt den Verifkationsmechanismus in Form eines Baumdiagramms. 
 
-\emptyFigure{Verifikationsmechanismus}{fig:TreeCrockGrierVerif}
-\todo{Abbildung fehlt}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/Grafiken/Baumdiagramm Verifizierung der Trajektorien.png}
+    \caption[Baumdiagramm der Verifikation des modifizierten Crocker-Grier Algorithmus.]{Baumdiagramm des Verifikationsmechanismus des modifizierten Crocker-Grier Linking Algorithmus.}
+    \label{fig:TreeCrockGrierVerif}
+\end{figure}
 
-Für die Verifikation wird das Video des Ereignisses mit herangezogen. Bei diesem wird ermittelt wie sich die Pixeln von \gls{Frame} zu \gls{Frame} verändern. Wenn \(\nommat{PIX}_t\) die Matrix aller Pixel in einem \gls{Frame} \(t\) ist, dann berechnet sich die Veränderung wie in \ref{eq:Pixelveränderung} dargestellt.
+Für die Verifikation wird das Video des Ereignisses mit herangezogen. Bei diesem wird ermittelt wie sich die Pixeln von \gls{Frame} zu \gls{Frame} verändern. Wenn \(\nommat{PIX}_t\) die Matrix aller Pixel in einem \gls{Frame} \(t\) ist, dann berechnet sich die Veränderung wie in \autoref{eq:Pixelveränderung} dargestellt.
 
 \begin{equation}
 \text{Pixelveränderung} = \frac{\sum_i \sum_j |pix_{t_{i,j}} - pix_{{t-1}_{i,j}}|}{\text{Pixelanzahl}}
@@ -64,12 +76,16 @@ Die Die Verifikationskriterien der unterschiedlichen Stufen sind dynamisch. Da i
 
 
 \subsection{Methodisches Vorgehen der MOT Evaluationen}
-Für die Evaluation stehen zwei \gls{Ground Truth} Ereignisse zur Verfügung. Ein Kampfereignis und ein Kontrollgangereignis (\ref{sec:Meth GT Quali}). Die Algorithmen, zwischen denen Auszuwählen ist sind der \acrshort{SORT} Algorithmus (\ref{sec:MOT SORT}) und die modifizierte Variante des Crocker-Grier Linking Algorithmus (\ref{sec:Meth CrockGrieMods}). Die Evaluation wird mittels der \gls{HOTA} Metrik (\ref{sec:MOT HOTA}) durchgeführt, da mit dieser Metrik die fairste Bewertung zu erwarten ist und die genausten Fehleranalysen. Die \textit{\gls{IDF1}-Metrik} und die \textit{\acrshort{CLEAR} \gls{MOT}} Metriken werden jedoch angegeben, da sie etablierter sind als \gls{HOTA}. Für die Berechnung der Metriken wird die Software \textit{TrackEval} benutzt \cite{TrackEval.2020}. Diese ist die offizielle Evaluationsoftware der \textit{MOTChallenge} und steht als Open-Source Code zur Verfügung. Mit der Nutzung von \textit{TrackEval} wird sichergestellt, dass die Metriken korrekt berechnet werden. \par
+Für die Evaluation stehen zwei \gls{Ground Truth} Ereignisse zur Verfügung. Ein Kampfereignis und ein Kontrollgangereignis (\autoref{sec:Meth GT Quali}). Die Algorithmen, zwischen denen Auszuwählen ist sind der \acrshort{SORT} Algorithmus (\autoref{sec:MOT SORT}) und die modifizierte Variante des Crocker-Grier Linking Algorithmus (\autoref{sec:Meth CrockGrieMods}). Die Evaluation wird mittels der \gls{HOTA} Metrik (\autoref{sec:MOT HOTA}) durchgeführt, da mit dieser Metrik die fairste Bewertung zu erwarten ist und die genausten Fehleranalysen. Die \textit{\gls{IDF1}-Metrik} und die \textit{\acrshort{CLEAR} \gls{MOT}} Metriken werden jedoch angegeben, da sie etablierter sind als \gls{HOTA}. Für die Berechnung der Metriken wird die Software \textit{TrackEval} benutzt \cite{TrackEval.2020}. Diese ist die offizielle Evaluationsoftware der \textit{MOTChallenge} und steht als Open-Source Code zur Verfügung. Mit der Nutzung von \textit{TrackEval} wird sichergestellt, dass die Metriken korrekt berechnet werden. \par
 
 Als erstes wird für beide Algorithmen die Gesamtperformance bewertet. Dazu werden die beiden Algorithmen auf die Ereignisse angewendet zu denen \gls{Ground Truth}[s] vorhanden sind. Für jeden \gls{Assoziation}[salgorithmus] ist anschließend ein Trackingergebnis vorhanden. Dieses beinhaltet die \gls{Trajektorie}[n]. Gespeichert werden die Trackingergebnisse als txt-Datei. Die Formatierung erfolgt angepasst an \textit{TrackEval}, gemäß \cite{MOT15}. Anschließend werden die Metriken berechnet. Wie \textit{TrackEval} auf eigene \gls{MOT} Systeme und mit eigenen \gls{Ground Truth}[s] anzuwenden ist, ist in der Dokumentation erläutert \cite{TrackEval.2020}. Die Evaluation der beiden Ereignisse wird gemittelt. Die Ergebnisse der beiden Algorithmen lassen sich vergleichen. Neben den Wertungen der \gls{HOTA} Metrik, erstellt \textit{TrackEval} einen Plot. Dieser zeigt den Verlauf der Wertungen über \(\alpha\). Die Abbildung \ref{fig:MPNTrack} zeigt einen solchen Plot. Dieser ist einem \gls{MOT} System namens \textit{MPNTrack} entnommen, welcher bei der \textit{MOTChallenge} 2016 und 2017 angetreten ist. Dieser ist hier zu Beispielzwecken angeführt. 
 
-\emptyFigure{MPNTrack MOT17 bsp}{fig:MPNTrack}
-\todo{Abbildung fehlt}
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.9\textwidth, height=11cm]{img/Plots/MPNTrack MOT17.png}
+    \caption[Beispiel eines Evaluationsergebnisses eines MOT Systems mit der HOTA Metrik.]{Beispiel eines Evaluationsergebnisses eines MOT Systems mit der HOTA Metrik.}
+    \label{fig:MPNTrack}
+\end{figure}
 
 Während der Generation der Trajektorien werden die Laufzeiten der Algorithmen gemessen. Ebenfalls werden weitere Laufzeitmessungen durchgeführt, bei denen die Länge der Ereignisse stärker zu variieren sind. Dadurch ist ein Vergleich der Laufzeiten möglich und auch wie die Laufzeiten im Bezug auf die Ereignisslänge Skalieren.\par 
 

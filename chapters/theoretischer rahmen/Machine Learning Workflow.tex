@@ -14,7 +14,7 @@ In der Grafik \ref{fig:MLWorkflow} sind Rückführungen zu früheren Prozessschr
 \subsection{Problemdefinition und Vorverarbeitung}
 
 \textbf{Problemdefinition}\par
-Ziel des \gls{Machine Learning Workflow}[s] ist es, eine Anwendung zu erstellen, welche ein spezifisches Problem löst. Das die klare Definition einer Aufgabe, ein elementarer Schritt ist von Algorithmen des \glsdisp{ML}{maschinellen Lernens}, ist in \ref{sec:Grundlagen ML} verdeutlicht. Die klare Definition ist auch hilfreich für den Erwerb von Fachwissen im Bereich der Aufgabe. Dies kann für den weiteren verlauf des Workflows nützlich sein \cite{Biswas.2022, Zheng.2018, Nielsen.2020}. \dubpar
+Ziel des \gls{Machine Learning Workflow}[s] ist es, eine Anwendung zu erstellen, welche ein spezifisches Problem löst. Das die klare Definition einer Aufgabe, ein elementarer Schritt ist von Algorithmen des \glsdisp{ML}{maschinellen Lernens}, ist in \autoref{sec:Grundlagen ML} verdeutlicht. Die klare Definition ist auch hilfreich für den Erwerb von Fachwissen im Bereich der Aufgabe. Dies kann für den weiteren verlauf des Workflows nützlich sein \cite{Biswas.2022, Zheng.2018, Nielsen.2020}. \dubpar
 
 \textbf{Sammeln von Daten} \label{sec:Worflow DatSam}\par
 Ein Modell benötigt Daten für das Training. In diesem Schritt geht es darum Rohdaten zu Sammeln, die Relevant sind für die Aufgabe, um diese weiterzuverarbeiten. Je nach Aufgabe ist dieser Prozess unterschiedlich Aufwendig \cite{Biswas.2022, Elshawi.2019}. \dubpar
@@ -29,9 +29,9 @@ Frühzeitige Überlegungen zur Speicherung der Rohdaten sind vorteilhaft für de
 Wenn eine \glsdisp{überwachtes Lernen}{überwachte Lernmethode} verwendet werden soll, dann wird ein \gls{Zielvektor} benötigt. Dieser ist i.d.R. manuell zu erstellen. Das kann je nach Datenmenge und Datenart unterschiedlich Aufwendig sein \cite{Biswas.2022}. Ein Beispiel aus der Bildverarbeitung ist eine Anwendung, welche Ampeln erkennen soll. In diesem Prozessschritt müssen alle Bilder, die für das Training verwendet werden sollen mit einem \gls{Label} \textit{Ampel} oder \textit{keine Ampel} versehen werden. 
 
 \subsection{Extraktion und Konstruktion der Features} \label{sec:ML FeatExtr}
-Aus den Rohdaten müssen \gls{Feature}[s] kreiert werden mit denen das Modell lernen kann. Dazu sind Überlegungen anzustellen, welche \gls{Feature}[s] sich aus den Rohdaten extrahieren lassen. Hierbei ist Fachwissen über die Aufgabe und die Rohdaten von großem Vorteil. Dadurch ist es möglich die Nützlichkeit möglicher \gls{Feature}[s] zu beurteilen und auch selbst kreative \gls{Feature}[s] zu entwerfen. Fachwissen wird auch benötigt, um gezielten \gls{Bias} in das Modell einzuführen. Auch ungewollter \gls{Bias} ist mit Fachwissen in manchen Fällen identifizierbar (\ref{sec:Herausforderungen ML}). Generell ist in diesem Prozessschritt viel Achtsamkeit in Bezug auf \gls{Bias} sinnvoll \cite{Zheng.2018, Geron.2019}. \par
+Aus den Rohdaten müssen \gls{Feature}[s] kreiert werden mit denen das Modell lernen kann. Dazu sind Überlegungen anzustellen, welche \gls{Feature}[s] sich aus den Rohdaten extrahieren lassen. Hierbei ist Fachwissen über die Aufgabe und die Rohdaten von großem Vorteil. Dadurch ist es möglich die Nützlichkeit möglicher \gls{Feature}[s] zu beurteilen und auch selbst kreative \gls{Feature}[s] zu entwerfen. Fachwissen wird auch benötigt, um gezielten \gls{Bias} in das Modell einzuführen. Auch ungewollter \gls{Bias} ist mit Fachwissen in manchen Fällen identifizierbar (\autoref{sec:Herausforderungen ML}). Generell ist in diesem Prozessschritt viel Achtsamkeit in Bezug auf \gls{Bias} sinnvoll \cite{Zheng.2018, Geron.2019}. \par
 
-Auch auf \gls{Leakage} ist zu achten. Ein Beispiel wie \gls{Leakage} entstehen kann ist die Komprimierung von Zeitreihen zu \gls{Feature}[s] (\ref{sec:sequenzen ML}). Aus der Zeitreihe \(A\) sind komprimierte  \gls{Feature}[s] zu extrahieren, genau so wie aus der Zeitreihe \(B\). Was nicht bemerkt wird ist, dass diese eine zeitliche Überlappung haben. Dadurch sind die komprimierten Datenpunkte zu \(A\) und \(B\) nicht unabhängig von einander. Das kann dazu führen, dass die Proben im Datensatz zu wenig Varianz aufweisen und das Modell lernt nicht zu \glsdisp{Generalisierung}{generalisieren}. Auch für die Evaluation kann das zu Problemen führen \cite{Zheng.2018, Geron.2019}. \par
+Auch auf \gls{Leakage} ist zu achten. Ein Beispiel wie \gls{Leakage} entstehen kann ist die Komprimierung von Zeitreihen zu \gls{Feature}[s] (\autoref{sec:sequenzen ML}). Aus der Zeitreihe \(A\) sind komprimierte  \gls{Feature}[s] zu extrahieren, genau so wie aus der Zeitreihe \(B\). Was nicht bemerkt wird ist, dass diese eine zeitliche Überlappung haben. Dadurch sind die komprimierten Datenpunkte zu \(A\) und \(B\) nicht unabhängig von einander. Das kann dazu führen, dass die Proben im Datensatz zu wenig Varianz aufweisen und das Modell lernt nicht zu \glsdisp{Generalisierung}{generalisieren}. Auch für die Evaluation kann das zu Problemen führen \cite{Zheng.2018, Geron.2019}. \par
 
 Extrahierte \gls{Feature}[s] lassen sich Transformieren. Solche Transformationen zielen meistens auf eine Veränderung der Verteilung ab. Dies kann Modellen helfen aus \gls{Feature}[s] besser zu lernen. \dubpar
 
@@ -70,10 +70,10 @@ Der Parameter \(\lambda\) ist über eine Optimierung zu ermitteln, so dass die r
 
 Auch können aus bestehenden \gls{Feature}[s] neue kreiert werden. Ein Beispiel hierfür sind Interaktionsfeatures. Die einfachste Form ist die paarweise Multiplikation von \gls{Feature}[s]. Dies ist interpretierbar als eine Verknüpfung mit einem logischen UND. Dadurch entstehen neue \gls{Feature}[s] für das Modell, welche die Information von \gls{Feature}[s] enthalten, welche gerade in Kombination miteinander nützlich sind. Gerade einfachere Modell, die eigenständig nicht so gut darin sind komplexe Zusammenhänge zu erkennen können von dieser kombinierten Information profitieren \cite{Zheng.2018}.\par
 
-Wird mit Sequenzen gearbeitet, dann findet in dem Prozessschritt der \gls{Feature}-Extraktion und Konstruktion ebenfalls die Konstruktion von \gls{Feature}[s] statt, welche versuchen die Information der Sequenz zu komprimieren (\ref{sec:sequenzen ML}) \cite{Nielsen.2020}. 
+Wird mit Sequenzen gearbeitet, dann findet in dem Prozessschritt der \gls{Feature}-Extraktion und Konstruktion ebenfalls die Konstruktion von \gls{Feature}[s] statt, welche versuchen die Information der Sequenz zu komprimieren (\autoref{sec:sequenzen ML}) \cite{Nielsen.2020}. 
 
 \subsection{Feature Analyse und Auswahl} \label{sec:ML FeatSelect}
-Aus der Menge der \gls{Feature}[s] sind diejenigen Auszuwählen, welche dem Modell übergeben werden sollen. Eine sorgfältige Auswahl der \gls{Feature}[s] ist wichtig, um ein zuverlässiges Modell zu erstellen. Hauptziel ist es die \gls{Feature}[s] auszuwählen, mir welchen die Performance des Modells maximal wird. Ein weiteres Ziel ist die Minimierung der \gls{Feature}[anzahl], um den Rechenaufwand zu reduzieren. Eine kleinere Anzahl an \gls{Feature}[s] macht das Modell effizienter \cite{Kuhn.2013, Guyon.2003}. Wie in \ref{sec:Herausforderungen ML} beschrieben, können \gls{Feature}[s], welche keine Information zur Erfüllung der Aufgabe besitzen, \gls{Underfitting} verursachen. Ebenfalls sind die \gls{Feature}[s] auf ungewollten \gls{Bias} zu überprüfen Die Identifikation von ungewollten \gls{Bias} ist nicht einfach. Fachwissen und Wissen über typische Quellen von \gls{Bias} können dabei helfen \cite{Mehrabi.2019, Nielsen.2020}. In der Praxis wird zwischen drei Methoden für die Selektion von \gls{Feature}[s] unterschieden \cite{Guyon.2003}. \dubpar
+Aus der Menge der \gls{Feature}[s] sind diejenigen Auszuwählen, welche dem Modell übergeben werden sollen. Eine sorgfältige Auswahl der \gls{Feature}[s] ist wichtig, um ein zuverlässiges Modell zu erstellen. Hauptziel ist es die \gls{Feature}[s] auszuwählen, mir welchen die Performance des Modells maximal wird. Ein weiteres Ziel ist die Minimierung der \gls{Feature}[anzahl], um den Rechenaufwand zu reduzieren. Eine kleinere Anzahl an \gls{Feature}[s] macht das Modell effizienter \cite{Kuhn.2013, Guyon.2003}. Wie in \autoref{sec:Herausforderungen ML} beschrieben, können \gls{Feature}[s], welche keine Information zur Erfüllung der Aufgabe besitzen, \gls{Underfitting} verursachen. Ebenfalls sind die \gls{Feature}[s] auf ungewollten \gls{Bias} zu überprüfen Die Identifikation von ungewollten \gls{Bias} ist nicht einfach. Fachwissen und Wissen über typische Quellen von \gls{Bias} können dabei helfen \cite{Mehrabi.2019, Nielsen.2020}. In der Praxis wird zwischen drei Methoden für die Selektion von \gls{Feature}[s] unterschieden \cite{Guyon.2003}. \dubpar
 
 \textbf{\gls{Filter Methoden}}\par
 \gls{Filter Methoden} bewerten \gls{Feature}[s] Modell unabhängig und univariat. Das bedeutet sie bewerten jedes \gls{Feature}[s] für sich. Mögliche Informationen die durch die Kombination mehrerer \gls{Feature}[s] entstehen, werden nicht berücksichtigt. Sie vergeben für jedes \gls{Feature} eine Wertung, wodurch eine Rangfolge entsteht. Durch die univariate Bewertung können auch redundante \gls{Feature}[s] in die Auswahl aufgenommen werden, wenn sie individuell einen hohen Wert erzielen. Es gibt \gls{Filter Methoden} die auf Regressionsprobleme ausgelegt sind und Methoden die auf \gls{Klassifikation}[sprobleme] ausgelegt sind. Da für diese Arbeit die Methoden für \gls{Klassifikation}[sprobleme] relevant sind, werden nur diese hier vorgestellt.\par
@@ -128,11 +128,11 @@ Bei den \gls{Wrapper Methoden} wird zwischen zwei Verfahren unterschieden. Der V
  \gls{Embedded Methoden} beurteilen \gls{Feature}[s], wie die \gls{Wrapper Methoden}, multivariat. Diese Auswahlmethoden sind direkt in bestimmten Modellen Implementiert. Dadurch sind sie auch sehr abhängig vom Modell. Bei der linearen Regression können bspw. die gewichte der \gls{Feature}[s] als ein Indikator für die Wichtigkeit der \gls{Feature}[s] sein. Andere Modelle implementieren diese Verfahren jedoch deutlich Aussagekräftiger. Steht bereits fest, welches Modell verwendet werden soll, kann es sinnvoll sein \gls{Embedded Methoden} für die \gls{Feature}[selektion] zu verwenden, da sie eine Auswahl treffen die sehr auf das Modell zugeschnitten ist. Steht das Modell noch nicht fest, können \gls{Feature}[s] ausgewählt werden, welche mit anderen Modellen weniger gut Funktionieren \cite{Guyon.2003, Zheng.2018}.
 
  \subsection{Datensätze im maschinellen Lernen} \label{sec:Datensätze ML}
- Das Ergebnis der Feature-Extraktion, Konstruktion und Auswahl ist ein fertiger Datensatz, mit dem das Modell zu erstellen ist. Die Qualität und die Quantität der Daten hat dabei einen großen Einfluss auf die Performance des Modells (\ref{sec:Herausforderungen ML}). Ziel ist es ein Modell zu entwerfen was gut darin ist unbekannte Proben zu schätzen. Um diese Fähigkeit zu beurteilen werden einige Daten aus dem Datensatz zurückgehalten. Diese Daten werden nicht für das Training verwendet. Sie bleiben dem Modell unbekannt, um später die Performance auf unbekannten Daten zu beurteilen. Der Datensatz wird aufgeteilt in einen \gls{Trainingsdatensatz} und eine \gls{Testdatensatz}. Oftmals wird ein weiterer Datensatz mit Daten benötigt, die nicht für das Training verwendet werden. Dieser wird als Validierungsdatensatz bezeichnet. Der Validierungsdatensatz wird verwendet, um den Algorithmus auszuwählen und die \gls{Hyperparameter} einzustellen. Der Testdatensatz wird für den finalen Test verwendet, bevor das Modell angewendet wird \cite{Burkov.2019}. \par
+ Das Ergebnis der Feature-Extraktion, Konstruktion und Auswahl ist ein fertiger Datensatz, mit dem das Modell zu erstellen ist. Die Qualität und die Quantität der Daten hat dabei einen großen Einfluss auf die Performance des Modells (\autoref{sec:Herausforderungen ML}). Ziel ist es ein Modell zu entwerfen was gut darin ist unbekannte Proben zu schätzen. Um diese Fähigkeit zu beurteilen werden einige Daten aus dem Datensatz zurückgehalten. Diese Daten werden nicht für das Training verwendet. Sie bleiben dem Modell unbekannt, um später die Performance auf unbekannten Daten zu beurteilen. Der Datensatz wird aufgeteilt in einen \gls{Trainingsdatensatz} und eine \gls{Testdatensatz}. Oftmals wird ein weiterer Datensatz mit Daten benötigt, die nicht für das Training verwendet werden. Dieser wird als Validierungsdatensatz bezeichnet. Der Validierungsdatensatz wird verwendet, um den Algorithmus auszuwählen und die \gls{Hyperparameter} einzustellen. Der Testdatensatz wird für den finalen Test verwendet, bevor das Modell angewendet wird \cite{Burkov.2019}. \par
 
  Für die Aufteilung der Daten auf die drei Datensätze gibt es keine allgemein gültige Regel. Eine gute Daumen-regel ist 70 \% Trainingsdaten, 15 \% Validierungsdaten und 15 \% Testdaten. Es gibt Validierungsmethoden durch die kein Validierungsdatensatz notwendig ist. Dies ist besonders praktisch, wenn die Datenmenge klein ist. Dadurch stehen mehr Daten für das Training zur Verfügung \cite{Burkov.2019}. Darauf wird später näher eingegangen. \par
 
- Bei Mehrklassen Klassifikation ist darauf zu achten, dass die Anzahl der Proben aus jeder Klasse ungefähr ist. Ist das nicht der Fall handelt es sich um einen unbalancierten Datensatz. Dies kann Problematisch sein, wie in \ref{sec:Herausforderungen ML} im Bezug zu \gls{Bias} erläutert. Der Datensatz sollte balanciert werden. Eine Möglichkeit aus einen unbalancierten Datensatz auszubalancieren ist Undersampling. Dabei werden zufällig Proben aus den Mehrheitsklassen entfernt, bis alle Klassen ungefähr die gleiche Anzahl von Proben besitzen \cite{Burkov.2019}.
+ Bei Mehrklassen Klassifikation ist darauf zu achten, dass die Anzahl der Proben aus jeder Klasse ungefähr ist. Ist das nicht der Fall handelt es sich um einen unbalancierten Datensatz. Dies kann Problematisch sein, wie in \autoref{sec:Herausforderungen ML} im Bezug zu \gls{Bias} erläutert. Der Datensatz sollte balanciert werden. Eine Möglichkeit aus einen unbalancierten Datensatz auszubalancieren ist Undersampling. Dabei werden zufällig Proben aus den Mehrheitsklassen entfernt, bis alle Klassen ungefähr die gleiche Anzahl von Proben besitzen \cite{Burkov.2019}.
 
 
  \subsection{Auswahl des Algorithmus} \label{sec:ML ModellSelect}
@@ -175,14 +175,14 @@ Hierarchisches Clustering umfasst ebenfalls Algorithmen der Clusteranalyse. Es s
         \label{fig:LogiFunc}
     \end{center}
 \end{wrapfigure}
-Die logistische Regression ist ein \gls{Klassifikation}[salgorithmus], auch wenn der Name anderes vermuten lässt. Es handelt sich um einen \glsdisp{überwachtes Lernen}{überwachten Algorithmus} für binäre \gls{Klassifikation} (\ref{sec:ML klass und Reg}). Die logistische Regression verwendet die logistische Funktion \ref{eq:LogiFunc} (einen Spezialfall der Sigmoidfunktion), um Daten binär \((0,1)\) zuzuordnen. Die Abbildung \ref{fig:LogiFunc} zeigt den Verlauf der logistische Funktion \cite{Burkov.2019}. 
+Die logistische Regression ist ein \gls{Klassifikation}[salgorithmus], auch wenn der Name anderes vermuten lässt. Es handelt sich um einen \glsdisp{überwachtes Lernen}{überwachten Algorithmus} für binäre \gls{Klassifikation} (\autoref{sec:ML klass und Reg}). Die logistische Regression verwendet die logistische Funktion aus der \autoref{eq:LogiFunc} (einen Spezialfall der Sigmoidfunktion), um Daten binär \((0,1)\) zuzuordnen. Die Abbildung \ref{fig:LogiFunc} zeigt den Verlauf der logistische Funktion \cite{Burkov.2019}. 
 
 \begin{equation}
 f(x) = \frac{1}{1 + e^{-x}}
 \label{eq:LogiFunc}
 \end{equation}
 
-Die logistische Regression trägt das Wort \textit{Regression} im Namen, da es verwand ist mit der linearen Regression. Die Modellformulierung ist so interpretierbar, dass ein lineares Regressionsmodell, auf einen Wertebereich von \((0,1)\) abgebildet wird. Die Modellformulierung ist in \ref{eq:LogiReg} zu sehen.
+Die logistische Regression trägt das Wort \textit{Regression} im Namen, da es verwand ist mit der linearen Regression. Die Modellformulierung ist so interpretierbar, dass ein lineares Regressionsmodell, auf einen Wertebereich von \((0,1)\) abgebildet wird. Die Modellformulierung ist in \autoref{eq:LogiReg} zu sehen.
 
 \begin{equation}
 \hat{y}_{\nomvec{w},b}(\nomvec{x}) = \frac{1}{1 + e^{-(\nomvecT{w}\nomvec{x})+\nomvec{b})}}
@@ -195,8 +195,12 @@ Wird eine Probe geschätzt und erhält einen Wert \(\hat{y}_{\nomvec{w},\nomvec{
 \textbf{Support Vector Machine (\acrshort{SVM})} \par
 Eine \acrshort{SVM} ist ein Modell des \glsdisp{überwachtes Lernen}{überwachten Lernens} für binäre \gls{Klassifikation}. Es versucht die Datenpunkte im \gls{Feature}[raum] mittels einer Hyperebene zu separieren. Die Hyperebene wird als Entscheidungsgrenze bezeichnet. Die Punkte aus jeder Klasse, welche am nächsten zu der Entscheidungsgrenze liegen, werden als Support Vektoren bezeichnet. Mittels diesen wird die Entscheidungsgrenze so ausgerichtet, dass sie möglichst gleichweit entfernt von allen Support Vektoren verläuft. Im Trainingsprozess versucht die \acrshort{SVM} somit die maximale Abgrenzung zwischen den Klassen zu finden. Die Abbildung \ref{fig:bspLinSVM} veranschaulicht das Konzept der Entscheidungsgrenze und den Support Vektoren. 
 
-\emptyFigure{Fehlt}{fig:bspLinSVM}
-\todo{Abbildung fehlt}
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/Plots/SVM Beispiel.png}
+    \caption[Beispiel der Funktionsweise einer SVM.]{Beispiel der Funktionsweise einer SVM. Anhand der Support Vektoren wird die Entscheidungsgrenze so ausgerichtet, dass sie gleich weit von beiden Klassen entfernt verläuft.}
+    \label{fig:bspLinSVM}
+\end{figure}
 
 Definiert wird die Entscheidungsgrenze nach der Koordinatenform, wie die Gleichung \ref{eq:SVMdefHypEb} zeigt.
 
@@ -208,7 +212,7 @@ Definiert wird die Entscheidungsgrenze nach der Koordinatenform, wie die Gleichu
 Die Modellfunktion evaluiert die Klassenzugehörigkeit, indem sie überprüft, ob sich ein Datenpunkt überhalb, oder unterhalb der Entscheidungsebene befindet. Dies ist erfolgt indem der Datenpunkt in die Ebenengleichung eingesetzt wird. Anschließend gibt das Vorzeichen die Klassenzugehörigkeit an. Das ist in der Gleichung \ref{eq:SVMmodell} zu sehen. 
 
 \begin{equation}
-\hat{y}_{\nomvec{w},\nomvec{b}}(\nomvec{x}) = sgn(\nomvecT{w}\nomvec{x}+\nomvec{b}b))
+\hat{y}_{\nomvec{w},\nomvec{b}}(\nomvec{x}) = sgn(\nomvecT{w}\nomvec{x}+\nomvec{b}))
 \label{eq:SVMmodell}
 \end{equation}
 
@@ -226,7 +230,7 @@ Zu Beginn wird ein konstanter Entscheidungsbaum initialisiert. Dieser ist die Au
 
 Ist eine unbekannte Probe zu schätzen, weis das Modell nach dem Training, wie es die Fehler in den Bäumen korrigieren muss. Ein wichtiger \gls{Hyperparameter} im Gradient Boosting ist die Lernrate. Diese bestimmt die Stärker der Korrektur für jede Stufe in der Sequenz. Ist bspw. laut Entscheidungsbaum die Schätzung um den Wert \(a\) zu korrigieren, sorgt die Lernrate \(\alpha\) dafür, dass die Schätzung nur um \(\alpha \cdot a\) korrigiert wird. Dies kann Overfitting vermeiden \cite{Burkov.2019}. \par
 
-Eine Variante des Gradient Boosting wird als Histogramm basiertes Gradient Boosting bezeichnet. Bei dieser werden die Features zuvor Gruppiert, ähnlich der Gruppierung bei der Feature-Konstruktion (\ref{sec:ML FeatExtr}). Dadurch Wird die Anzahl unterschiedlicher Werte reduziert. Das Gradient Boosting ist somit effizienter durchzuführen \cite{Ke.2017}. 
+Eine Variante des Gradient Boosting wird als Histogramm basiertes Gradient Boosting bezeichnet. Bei dieser werden die Features zuvor Gruppiert, ähnlich der Gruppierung bei der Feature-Konstruktion (\autoref{sec:ML FeatExtr}). Dadurch Wird die Anzahl unterschiedlicher Werte reduziert. Das Gradient Boosting ist somit effizienter durchzuführen \cite{Ke.2017}. 
 \dubpar
 
 
@@ -285,10 +289,14 @@ Eine \gls{Konfusionsmatrix} bietet Einblick in die Fehler die das Modell macht. 
     \label{tab:bspConfMat}
 \end{table}
 
-Wie bereits in \ref{sec:Datensätze ML} erwähnt, ist es möglich den Validierungsdatensatz einzusparen. Das ist mit dem Verfahren \gls{Cross-Validation} möglich. Dabei wird der \gls{Trainingsdatensatz} in \(K\) gleichgroße Teile aufgeteilt. Anschließend werden \(K\) Modelle Trainiert, dabei wird immer ein anderes Teil des \gls{Trainingsdatensatz}[es] zurückgehalten und für die Validierung verwendet. Somit existieren \(K\) Beurteilungen der Performance. Die Gesamtperfromance ist der Mittelwert. Das Modell wird anschließend mit dem vollständigen \gls{Trainingsdatensatz} trainiert. Die Abbildung \ref{fig:CrossVal} veranschaulicht die \gls{Cross-Validation}.
+Wie bereits in \autoref{sec:Datensätze ML} erwähnt, ist es möglich den Validierungsdatensatz einzusparen. Das ist mit dem Verfahren \gls{Cross-Validation} möglich. Dabei wird der \gls{Trainingsdatensatz} in \(K\) gleichgroße Teile aufgeteilt. Anschließend werden \(K\) Modelle Trainiert, dabei wird immer ein anderes Teil des \gls{Trainingsdatensatz}[es] zurückgehalten und für die Validierung verwendet. Somit existieren \(K\) Beurteilungen der Performance. Die Gesamtperfromance ist der Mittelwert. Das Modell wird anschließend mit dem vollständigen \gls{Trainingsdatensatz} trainiert. Die Abbildung \ref{fig:CrossVal} veranschaulicht die \gls{Cross-Validation}.
 
-\emptyFigure{Verfahren der \gls{Cross-Validation}. Der \gls{Trainingsdatensatz} wird in 4 Teile zerteilt, wovon jedes einmal als Validierungsdatensatz verwendet wird.}{fig:CrossVal}
-\todo{Abbildung fehlt}
+\begin{figure}[htb]
+    \raggedright
+    \includegraphics[width=0.9\textwidth]{img/Grafiken/Cross Validation.png}
+    \caption[Verfahren der Cross-Validation.]{Verfahren der \gls{Cross-Validation}.  Der \gls{Trainingsdatensatz} wird in 4 Teile zerteilt, wovon jedes einmal als Validierungsdatensatz verwendet wird.}
+    \label{fig:CrossVal}
+\end{figure}
 
 \subsection{Einstellung der Hyperparameter} \label{sec:ML HyperPara}
 \gls{Hyperparameter} ermöglichen es Einfluss auf den Trainingsprozess eines Modells zu nehmen. Sie sind vor dem Training vom Anwender einzustellen. Ein Beispiel ist ein \gls{Regularisierung}[stherm]. Die Einstellung der \gls{Hyperparameter} ist sehr aufgabenspezifisch. Es gibt keine allgemeine Regel für optimale \gls{Hyperparameter}. Es ist ein Optimierungsproblem, welches sich mittels Algorithmen lösen lässt. Ziel der Optimierung ist die Maximierung des Validierungsergebnisses \cite{Zheng.2015}.\dubpar
@@ -304,4 +312,4 @@ Beim Random Search Verfahren bekommen die \gls{Hyperparameter} eine Wahrscheinli
 
 
 \subsection{Testen und Anwenden des Modells}
-Die finalen Prozessschritte im \gls{Machine Learning Workflow} sind das Testen mit dem \gls{Testdatensatz} und die Integration des Modells in die Anwendung. Für das Testen werden die gleichen Metriken verwendet wie bei der Validierung (\ref{sec:ML Metriken, Valid}). Ist der finale Test zufriedenstellend, kann das Modell in die Anwendung integriert werden. Ist dies nicht der Fall ist eine Rückkehr zu früheren Prozessschritten notwendig \cite{Zheng.2015, Burkov.2019}.
+Die finalen Prozessschritte im \gls{Machine Learning Workflow} sind das Testen mit dem \gls{Testdatensatz} und die Integration des Modells in die Anwendung. Für das Testen werden die gleichen Metriken verwendet wie bei der Validierung (\autoref{sec:ML Metriken, Valid}). Ist der finale Test zufriedenstellend, kann das Modell in die Anwendung integriert werden. Ist dies nicht der Fall ist eine Rückkehr zu früheren Prozessschritten notwendig \cite{Zheng.2015, Burkov.2019}.

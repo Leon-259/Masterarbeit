@@ -31,6 +31,8 @@
 \usepackage[most]{tcolorbox}
 \usepackage{float}
 \usepackage{wrapfig}
+\usepackage{multirow}
+\usepackage{rotating}
 
 \restylefloat{figure}
 \captionsetup{format=plain,indention=0cm}
@@ -180,9 +182,20 @@
         name={#1},
         description={#2},
         first={#2 (#1)\glsadd{#1_gls}},
-        see=[Glossary:]{#1_gls}
+        see=[Glossar:]{#1_gls}
     }
 }
+
+%gerade Inizes
+\makeatletter
+\begingroup
+\catcode`\_=\active
+\protected\gdef_{\@ifnextchar|\subtextit\subtextup }
+\endgroup
+\def\subtextit|#1|{\sb{#1}}
+\def\subtextup#1{\sb{\mathrm{#1}}}
+\AtBeginDocument{\catcode`\_=12 \mathcode`\_=32768}
+\makeatother
 
 \newcommand{\dubpar}{\vspace{1cm}}
 

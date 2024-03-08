@@ -6,16 +6,14 @@ Das Tool ist aus zwei Ebenen aufgebaut. Die Erste lässt sich als Interface für
 \subsection{Implementation der Interface-Ebene} \label{sec:Umsetz VeriInterfaceEbene}
 Die Interface-Eben lässt sich am besten anhand des Programmablaufs erklären. Dieser ist in der Abbildung \ref{fig:FlussDia IntefaceEbene} in Form eines Flussdiagramms dargestellt. Im folgenden wird auf die einzelnen Programmabschnitte im Detail eingegangen. 
 
-\emptyFigure{Flussdiagramm des Programmablaufs der Interface-Ebene.}{fig:FlussDia IntefaceEbene}
-\todo{Abbildung fehlt}
+\begin{figure}[p]
+    \centering
+    \includegraphics[height=0.9\textheight]{img/Grafiken/Flussdiagramm Interface-Ebene.png}
+    \caption[Flussdiagramm des Programmablaufs der Interface-Ebene.]{Flussdiagramm des Programmablaufs der Interface-Ebene.}
+    \label{fig:FlussDia IntefaceEbene}
+\end{figure}
 
-Die Ereignisse liegen als Liste in einer csv-Datei vor. Ein Ereignis ist angegeben mit Startzeitpunkt, Endzeitpunkt, Kamera ID und dem Label der Verhaltensweise. Der Aufbau der Ereignisliste ist beispielhaft in der Tabelle \ref{tab:bspUnvDataSet} dargestellt. Bei Programmstart öffnet sich ein Fenster des \textit{Datei-Explorers}, in welchem der Nutzer grafisch die Ereignisdatei suchen und auswählen kann. Das wird realisiert mit der \gls{Bibliothek} \textit{tkinter}. Eine Standardbibliothek in Python für die Erstellung von Benutzeroberflächen. In der Abbildung \ref{fig:Verif Explorer} ist die Dateiauswahl über den \textit{Datei-Explorer} zu sehen.
-
-
-\emptyFigure{Auswahl der Ereignisliste für die Verifizierung über den \textit{Datei-Explorer}.}{fig:Verif Explorer}
-\todo{Abbildung fehlt}
-
-Ist eine Datei mit einer Liste von Ereignissen ausgewählt wird diese eingelesen. Das erfolgt mit der Bibliothek \textit{Pandas}. Einer weit verbreiteten Bibliothek im Bereich der Datenwissenschaften. Der Codeauszug \ref{lst:getListnLoad} zeigt das Aufrufen des \textit{Datei-Explorers}, um die Ereignisliste auszuwählen und das Laden der Liste.
+Die Ereignisse liegen als Liste in einer csv-Datei vor. Ein Ereignis ist angegeben mit Startzeitpunkt, Endzeitpunkt, Kamera ID und dem Label der Verhaltensweise. Der Aufbau der Ereignisliste ist beispielhaft in der Tabelle \ref{tab:bspUnvDataSet} dargestellt. Bei Programmstart öffnet sich ein Fenster des \textit{Datei-Explorers}, in welchem der Nutzer grafisch die Ereignisdatei suchen und auswählen kann. Das wird realisiert mit der \gls{Bibliothek} \textit{tkinter}. Eine Standardbibliothek in Python für die Erstellung von Benutzeroberflächen. Ist eine Datei mit einer Liste von Ereignissen ausgewählt, wird diese eingelesen. Das erfolgt mit der Bibliothek \textit{Pandas}. Einer weit verbreiteten Bibliothek im Bereich der Datenwissenschaften. Der Codeauszug \ref{lst:getListnLoad} zeigt das Aufrufen des \textit{Datei-Explorers}, um die Ereignisliste auszuwählen und das Laden der Liste.
 
 \begin{pythoncode}{Auswählen der Ereignisliste über den \textit{Datei-Explorer} und Laden der Liste}{lst:getListnLoad}
 import tkinter as tk
@@ -49,7 +47,7 @@ for idx, row in Ereignisliste.iterrows():
     files = FileSearch(startTime, endTime, kameraID)
 \end{pythoncode}
 
-Wie in \ref{sec:Meth Labeling} beschrieben, müssen über den Detektionsdatensatz die passenden Frames zum Ereignis aus dem Video gesucht werden. Über das \textit{FileSearch}-Objekt lässt sich auf den Dateipfad zum Detektionsdatensatz zugreifen. Dieser wird mit dem gleichen Befehl geladen, wie der Ereignisdatensatz. Da es unwahrscheinlich ist, dass die Zeitangaben zu einem Ereignis exakt mit Einträgen im Detektionsdatensatz übereinstimmen, ist eine Methode notwendig, welche die Detektionseinträge sucht, die am nächsten gelegen sind zu den Zeitpunkten des Ereignisses. Ein Zeitpunkt eines Ereignisses liegt i.d.R. zwischen zwei Detektionseinträgen. Es gibt einen Eintrag der etwas früher liegt und einen der Späteren. Um sicherzustellen, das dass volle Ereignis erfasst ist, wird für den Startzeitpunkt der Frühere Eintrag gewählt und für den Endzeitpunkt der Spätere. Realisiert ist das in einer Funktion \textit{get\_closest\_timestamp}. Diese nimmt den Detetkionsdatensatz entgegen, einen Zeitpunkt und die Information, ob es sich um den Start- oder Endzeitpunkt des Ereignisses handelt. Sie sucht den passenden Detekionseintrag raus. In diesem ist die ID des Frames vermerkt, welche für die Zuordnung vom Video benötigt wird. Auch findet sich im Detektionseintrag ein Zeitstempel in Unixzeit. Vorteilhaft an der Unixzeit ist, dass sie ein eindeutiger Index für einen Detektionseintrag ist. \par
+Wie in \autoref{sec:Meth Labeling} beschrieben, müssen über den Detektionsdatensatz die passenden Frames zum Ereignis aus dem Video gesucht werden. Über das \textit{FileSearch}-Objekt lässt sich auf den Dateipfad zum Detektionsdatensatz zugreifen. Dieser wird mit dem gleichen Befehl geladen, wie der Ereignisdatensatz. Da es unwahrscheinlich ist, dass die Zeitangaben zu einem Ereignis exakt mit Einträgen im Detektionsdatensatz übereinstimmen, ist eine Methode notwendig, welche die Detektionseinträge sucht, die am nächsten gelegen sind zu den Zeitpunkten des Ereignisses. Ein Zeitpunkt eines Ereignisses liegt i.d.R. zwischen zwei Detektionseinträgen. Es gibt einen Eintrag der etwas früher liegt und einen der Späteren. Um sicherzustellen, das dass volle Ereignis erfasst ist, wird für den Startzeitpunkt der Frühere Eintrag gewählt und für den Endzeitpunkt der Spätere. Realisiert ist das in einer Funktion \textit{get\_closest\_timestamp}. Diese nimmt den Detetkionsdatensatz entgegen, einen Zeitpunkt und die Information, ob es sich um den Start- oder Endzeitpunkt des Ereignisses handelt. Sie sucht den passenden Detekionseintrag raus. In diesem ist die ID des Frames vermerkt, welche für die Zuordnung vom Video benötigt wird. Auch findet sich im Detektionseintrag ein Zeitstempel in Unixzeit. Vorteilhaft an der Unixzeit ist, dass sie ein eindeutiger Index für einen Detektionseintrag ist. \par
 
 Unixzeit ist ein Zeitformat, welches Zeit als Ganzzahl darstellt. Es zählt die Sekunden (oder Millisekunden) seit dem 01.01.1970 um 00:00:00 Uhr. Durch die Darstellung als Ganzzahl ist es geeignet, um Zeitpunkte miteinander zu vergleichen.  \par
 
@@ -70,13 +68,13 @@ for idx, row in Ereignisliste.iterrows():
     unixend, endframe = get_closest_timestamp(detektionen, endTime, 'end')
 \end{pythoncode}
 
-Im Codeauszug \ref{lst:startVerifygetRet} ist zu sehen, wie das Startframe, die Zeitpunkte in Unixzeit, das Ereignislabel und der Detektionsdatensatz der Verifikationsebene übergeben werden. Die Verarbeitung der Verifikationebene ist in \ref{sec:Umsetz VeriEbene} erläutert. Zurückgegeben wird eine Liste von verifizierten Ereignissen. In der Regel besitzt die Liste nur ein einziges Element, die Informationen zu dem Ereignis, welches verifiziert werden sollte. Es gibt jedoch auch Situationen, wo es hilfreich ist, wenn mehr als ein Ereignis zurückgegeben werden kann. \par
+Im Codeauszug \ref{lst:startVerifygetRet} ist zu sehen, wie das Startframe, die Zeitpunkte in Unixzeit, das Ereignislabel und der Detektionsdatensatz der Verifikationsebene übergeben werden. Die Verarbeitung der Verifikationebene ist in \autoref{sec:Umsetz VeriEbene} erläutert. Zurückgegeben wird eine Liste von verifizierten Ereignissen. In der Regel besitzt die Liste nur ein einziges Element, die Informationen zu dem Ereignis, welches verifiziert werden sollte. Es gibt jedoch auch Situationen, wo es hilfreich ist, wenn mehr als ein Ereignis zurückgegeben werden kann. \par
 
-Wie in \ref{sec:Meth DefAufgabe} beschrieben, kann ein Kontrollgang mehrere Phasen von Aktivität umfassen. Zwischen den Phasen kehrt Normalverhalten auf. Im Ereignisdatensatz sind diese Phasen nicht vermerkt. Dort sind nur die Zeiten angegeben wann der Tierhalter den Stall betreten hat und wann er diesen wieder verlassen hat. Das ist in \ref{sec:Meth Datensatz} erläutert. Deshalb ist implementiert, dass während eines Aufrufs der Verifikationsebene, mehrere Ereignisse verifiziert werden können. \par
+Wie in \autoref{sec:Meth DefAufgabe} beschrieben, kann ein Kontrollgang mehrere Phasen von Aktivität umfassen. Zwischen den Phasen kehrt Normalverhalten auf. Im Ereignisdatensatz sind diese Phasen nicht vermerkt. Dort sind nur die Zeiten angegeben wann der Tierhalter den Stall betreten hat und wann er diesen wieder verlassen hat. Das ist in \autoref{sec:Meth Datensatz} erläutert. Deshalb ist implementiert, dass während eines Aufrufs der Verifikationsebene, mehrere Ereignisse verifiziert werden können. \par
 
 Das Programm iteriert durch alle verifizierten Ereignisse und speichert diese in einer csv-Datei ab. Abgespeichert werden Start- und Endzeitpunkt, die Kamera ID und das Label. Die Zeitangaben werden von der Verifikationsebene in Unixzeit zurückgegeben. Diese werden zuvor in ein besser lesbares Zeitformat zurück konvertiert. 
 
-\begin{pythoncode}{Übergeben der Ereignisdaten an die Verifikation und abspeichern der verifizierten Ereignisse}{lst:startVerifygetRet}
+\begin{pythoncode}{Übergeben der Ereignisdaten an die Verifikation.}{lst:startVerifygetRet}
 #Iterration durch die Ereignisse in der Liste
 for idx, row in Ereignisliste.iterrows():  
 
@@ -104,29 +102,74 @@ for idx, row in Ereignisliste.iterrows():
             kameraID, label)
 \end{pythoncode}
 
-Nach der Verifizierung eines Ereignisses startet die nächste Iteration durch den Ereignisdatensatz. Die Verifizierung ist zeitaufwendig. Auch die Ereignisanzahl ist hoch für eine manuelle Verifizierung. Aus diesem Grund ist es unrealistisch, dass alle Ereignisse in einer Sitzung bearbeitet werden. Um Datenverlust zu vermeiden und ein sicheres Beenden des Programms möglichst einfach zu machen, wird der Nutzer vor dem Bearbeitungsbeginn des nächsten Ereignisses gefragt, ob er die Bearbeitung fortsetzen möchte. Ist das nicht der Fall, wird das Programm sicher beendet. Anderenfalls wird das nächste Ereignis aufgerufen. Was mit dem sicheren Beenden des Programms gemeint ist, wird in \ref{sec:Umsetz VeriZusatz} erläutert. Die Abbildung \ref{fig:verif BearbFortsetz} zeigt das Fenster mit dem der Nutzer abgefragt wird, ob die Bearbeitung fortzusetzen ist.
+\begin{wrapfigure}{l}{0.5\textwidth}
+    \begin{center}
+        \vspace*{-9mm}
+        \includegraphics[width=0.5\textwidth]{img/Verifikationstool/Verifikation Abfrage Bearbeitung fortsetzen.png}
+        \vspace*{-10mm}
+        \caption{Fenster des Verifizierungstools für die Bestätigung der Fortsetzung der Bearbeitung.}
+        \label{fig:verif BearbFortsetz}
+    \end{center}
+\end{wrapfigure}
+Nach der Verifizierung eines Ereignisses startet die nächste Iteration durch den Ereignisdatensatz. Die Verifizierung ist zeitaufwendig. Auch die Ereignisanzahl ist hoch für eine manuelle Verifizierung. Aus diesem Grund ist es unrealistisch, dass alle Ereignisse in einer Sitzung bearbeitet werden. Um Datenverlust zu vermeiden und ein sicheres Beenden des Programms möglichst einfach zu machen, wird der Nutzer vor dem Bearbeitungsbeginn des nächsten Ereignisses gefragt, ob er die Bearbeitung fortsetzen möchte. Ist das nicht der Fall, wird das Programm sicher beendet. Anderenfalls wird das nächste Ereignis aufgerufen. Was mit dem sicheren Beenden des Programms gemeint ist, wird in \autoref{sec:Umsetz VeriZusatz} erläutert. Die Abbildung \ref{fig:verif BearbFortsetz} zeigt das Fenster mit dem der Nutzer abgefragt wird, ob die Bearbeitung fortzusetzen ist.
 
-\emptyFigure{Fenster des Verifizierungstools für die Bestätigung das die Bearbeitung fortgesetzt werden soll.}{fig:verif BearbFortsetz}
-\todo{Abbildung fehlt}
 
 \subsection{Implementation der Verifizierungsebene} \label{sec:Umsetz VeriEbene}
-Wie in \ref{lst:startVerifygetRet} zu sehen ist, bekommt die Verifizierungsebene die notwendigen Informationen zu einem Ereignis, um dieses zu verifizieren. Die Zeitpunktangaben und das Label dienen der Identifikation des Ereignisses. Der Detektionsdatensatz wird für die Zuordnung von Frames und Zeitpunkten benötigt, über den Dateipfad zum Video wird das Video geladen und über das Startframe kann das Video an der korrekten Position geöffnet werden. Das Flussdiagramm in der Abbildung \ref{fig:FlussDia VerifyEbene} stellt den Programmablauf der Verifizierungsebene dar. 
 
-\emptyFigure{Flussdiagramm des Programmablaufs der Verifizierungsebene.}{fig:FlussDia VerifyEbene}
-\todo{Abbildung fehlt}
+\begin{figure}[p]
+    \centering
+    \includegraphics[height=0.9\textheight]{img/Grafiken/Flussdiagramm Verifikationsebene.png}
+    \caption{Flussdiagramm des Programmablaufs der Verifizierungsebene.}
+    \label{fig:FlussDia VerifyEbene}
+\end{figure}
 
-Wie in \ref{sec:Meth Labeling} erläutert, soll die Verifizierung grafisch über das Video erfolgen. Um diesen Prozess nutzerfreundlich zu gestalten wird ein Overlay auf das Video gelegt. Dieses zeigt dem Nutzer wichtige Informationen über das aktuelle Ereignis, den Stand der Bearbeitung und über die Bedienung der Verifizierung. Das Overlay ist in der Abbildung \ref{fig:VerifOverlay} zu sehen. In der Abbildung \ref{fig:VerifOverlay Elem} wird auf die einzelnen Elemente eingegangen.
+Wie in \autoref{lst:startVerifygetRet} zu sehen ist, bekommt die Verifizierungsebene die notwendigen Informationen zu einem Ereignis, um dieses zu verifizieren. Die Zeitpunktangaben und das Label dienen der Identifikation des Ereignisses. Der Detektionsdatensatz wird für die Zuordnung von Frames und Zeitpunkten benötigt, über den Dateipfad zum Video wird das Video geladen und über das Startframe kann das Video an der korrekten Position geöffnet werden. Das Flussdiagramm in der Abbildung \ref{fig:FlussDia VerifyEbene} stellt den Programmablauf der Verifizierungsebene dar. 
 
-\emptyFigure{Overlay der Verifizierung.}{fig:VerifOverlay}
-\todo{Abbildung fehlt}
+Wie in \autoref{sec:Meth Labeling} erläutert, soll die Verifizierung grafisch über das Video erfolgen. Um diesen Prozess nutzerfreundlich zu gestalten wird ein Overlay auf das Video gelegt. Dieses zeigt dem Nutzer wichtige Informationen über das aktuelle Ereignis, den Stand der Bearbeitung und über die Bedienung der Verifizierung. Das Overlay ist in der Abbildung \ref{fig:VerifOverlay} zu sehen. In der Abbildung \ref{fig:VerifOverlay Elem} wird auf die einzelnen Elemente eingegangen.
 
-\emptyFigure{Elemente des Overlays der Verifizierung.}{fig:VerifOverlay Elem}
-\todo{Abbildung fehlt}
+
+\begin{figure}[hp]
+     \centering
+     \begin{subfigure}[b]{0.9\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{img/Verifikationstool/Verifikation Video mit Maske.png}
+         \caption{Overlay des Verifizierungstools.}
+         \label{fig:VerifOverlay}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.9\textwidth}
+         \begin{subfigure}[b]{0.59\textwidth}
+             \centering
+             \includegraphics[width=\textwidth]{img/Verifikationstool/Verifikation Video mit Maske Uhrzeit und Label.png}
+             \caption{Label und Zeitstempel des Frames}
+         \end{subfigure}
+         \hfill
+         \begin{subfigure}[b]{0.4\textwidth}
+             \centering
+             \includegraphics[width=\textwidth, height=7cm]{img/Verifikationstool/Verifikation Video mit Maske Bedienung.png}
+             \caption{Bedienungshinweise}
+         \end{subfigure}
+     \end{subfigure}
+     \begin{subfigure}[b]{0.9\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{img/Verifikationstool/Verifikation Video mit Maske Ereignisinfos.png}
+         \caption{Übersicht über die Ereignismarkierung. Keine gesetzten Falggen.}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.9\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{img/Verifikationstool/Verifikation Video mit Maske Ereignisinfos set.png}
+         \caption{Übersicht über die Ereignismarkierung. Gesetzte Falggen.}
+     \end{subfigure}
+     \caption[Elemente des Overlays des Verifizierungstools.]{Elemente des Overlays des Verifizierungstools.}
+     \label{fig:VerifOverlay Elem}
+\end{figure}
 
 Der Nutzer erhält über das Overlay Informationen über den betrachteten Zeitpunkt. Die Anzeige wird mit jedem Frame aktualisiert, so dass immer der korrekte Zeitpunkt zum betrachteten Frame zu sehen ist. Ebenfalls wird das Label angezeigt. Der Nutzer weis dadurch immer, welche Verhaltensweise er in der Bearbeitung zu erwarten hat. Ebenfalls sind Start- und Endzeitpunkt des Ereignis angezeigt, damit der Nutzer den erwarteten Zeitraum jederzeit als Referenz hat. Mit den Flaggen wird das Ereignis markiert. Diese muss der Nutzer mittels Tastatureingabe setzen. Die Startflagge markiert den Beginn eines verifizierten Ereignis und die Endflagge das Ende. Sind diese gesetzt bekommt der Nutzer die Zeitpunkte der Flaggen im Overlay angezeigt. \par
 
 Im Overlay befindet sich eine Übersicht über die Bedienung der Verifizierung. Mit der Platzierung dieser Übersicht im Overlay soll die Bedienung für neue Nutzer besonders einfach gemacht werden. Aber auch für Nutzer, die mit der Anwendung bereits vertraut sind, kann diese Gedankenstütze hilfreich sein. In der Tabelle \ref{tab:VeriBedienElem} sind die Bedienelemente genauer beschrieben. Das Overlay wurde in einer Farbe mit eher geringem Kontrast zu den Puten gewählt, um nicht zu sehr vom Stallgeschehen abzulenken. 
 
+\clearpage
 \begin{longtable}{>{\bfseries} p{0.07\textwidth} p{0.15\textwidth} p{0.65\textwidth}}
 % Kopfzeile auf der ersten Seite
 \caption{Übersicht über die Bedienung der Verifizierung}\\
@@ -190,7 +233,7 @@ w & Put to List & Dient dem verifizieren mehrerer Ereignisse. Mit der Taste werd
 % ... und so weiter für alle Ihre Features
 \end{longtable}
 
-Als nächstes wird Code betrachtet, mit dem die Verifizierung Implementiert ist. Wie das Flussdiagramm in \ref{fig:FlussDia VerifyEbene} zeigt, beginnt der Programmablauf mit der Annahme der Informationen aus der Interface-Ebene und der Initalisierung. Im Codeauszug \ref{lst:VeriStartIni} ist die Umsetzung zu sehen. Es werden einige Variablen und Listen initialisiert die für den weiteren Programmablauf benötigt werden.
+Als nächstes wird Code betrachtet, mit dem die Verifizierung Implementiert ist. Wie das Flussdiagramm in \autoref{fig:FlussDia VerifyEbene} zeigt, beginnt der Programmablauf mit der Annahme der Informationen aus der Interface-Ebene und der Initalisierung. Im Codeauszug \ref{lst:VeriStartIni} ist die Umsetzung zu sehen. Es werden einige Variablen und Listen initialisiert die für den weiteren Programmablauf benötigt werden.
 
 \begin{pythoncode}{Starten der Verifizierung und Initialisierung.}{lst:VeriStartIni}
 def verify_frames(startframe, starttime, endtime, \ 
@@ -270,7 +313,7 @@ Nach dem Warten auf eine Nutzereingabe wird Evaluiert, ob ein Befehl aus der Tab
 
 Das setzen der Flaggen erfolgt über den Index des Starteintrags im Detektionsdatensatz, welcher bei der Initalisierung ermittelt wurde und dem Fakt, dass jedes Frame einen Eintrag im Detektionsdatensatz enthält. Da die Detektionsdaten chronologisch geordnet sind, ist auch dort die Reihenfolge der Frames erhalten und über den Index und der Schrittdifferenz vom aktuellen Frame zum Startframe lässt sich die ID des Eintrags ermitteln. Der direkte Weg über das aktuelle Frame auf den Detektionsdatensatz zuzugreifen wäre auch eine Option, jedoch ist die einfache numerische Operation deutlich effizienter. \par
 
-Das Label kann während der Verifizierung geändert werden. Das ist vor allem zum verifizieren von mehreren Ereignissen sinnvoll. Bei der Anwendung ist es z.B. passiert, dass laut Ereignissliste ein Normalverhalten zu verifizieren ist. Dabei wurde ein Kampf gesichtet. Um diesen mit in die Datenmenge aufzunehmen, kann einfach das Label geändert werden und das Ereignis wird in die Liste geschoben. Da das Normalverhalten zufällig, gleichverteilt auf den Zeitraum des Mastdurchlaufs verteilt wurde, wie in \ref{sec:Meth Datensatz} beschrieben, ist das Beispielszenario nicht unwahrscheinlich. \par
+Das Label kann während der Verifizierung geändert werden. Das ist vor allem zum verifizieren von mehreren Ereignissen sinnvoll. Bei der Anwendung ist es z.B. passiert, dass laut Ereignissliste ein Normalverhalten zu verifizieren ist. Dabei wurde ein Kampf gesichtet. Um diesen mit in die Datenmenge aufzunehmen, kann einfach das Label geändert werden und das Ereignis wird in die Liste geschoben. Da das Normalverhalten zufällig, gleichverteilt auf den Zeitraum des Mastdurchlaufs verteilt wurde, wie in \autoref{sec:Meth Datensatz} beschrieben, ist das Beispielszenario nicht unwahrscheinlich. \par
 
 Um die Verifizierungseben zu verlassen existieren drei Optionen. Bei der ersten wird die Verifikation abgebrochen. Die Interface-Ebene erhält dann ein leeres Ergebnis zurück und es werden keine Informationen gespeichert. Damit soll dem Nutzer das Beenden möglichst leicht gemacht werden. Das ist wichtig, um eine hohe Wahrscheinlichkeit für ein Ordnungsgemäßes schließen der Anwendung zu erreichen. Das Risiko für  Datenverlust wird Reduziert und die Wahrscheinlichkeit für korrekte Verifikationen steigt. Zu diesem Zweck existiert auch die Option ein Ereignis als nicht auffindbar zu markieren. Die letzte Option die Verifizierungsebene zu verlassen ist indem die verifizierten Ereignisse an die Interface-Ebene übergeben werden. 
 
@@ -321,16 +364,29 @@ while(cap.isOpened()):
 
 
 \subsection{Weitere Automatisierungen und Sicherheitsfunktionen} \label{sec:Umsetz VeriZusatz}
-zusätzlich zu den in \ref{sec:Umsetz VeriInterfaceEbene} und \ref{sec:Umsetz VeriEbene} beschriebenen Programmabläufen sind einige Methoden implementiert, welche ausschließlich dafür da sind um die Nutzerfreunldichkeit zu erhöhen, die Fehlerwahrscheilichkeit zu reduzieren und Zeitverlust zu vermeiden. \par
+zusätzlich zu den in \autoref{sec:Umsetz VeriInterfaceEbene} und \autoref{sec:Umsetz VeriEbene} beschriebenen Programmabläufen sind einige Methoden implementiert, welche ausschließlich dafür da sind um die Nutzerfreunldichkeit zu erhöhen, die Fehlerwahrscheilichkeit zu reduzieren und Zeitverlust zu vermeiden. \par
 
-Zunächst wird auf Zusatzmethoden in der Verifikationsebene eingegangen. Wenn verifizierte Ereignisse gespeichert werden, dann durchlaufen sie eine Kontrolle auf Korrektheit. Überprüft wird, ob beide Flaggen gesetzt sind, ob die Endflagge auf einen späteren Zeitpunkt gesetzt ist, als die Startflagge und ob ein Label ausgewählt ist. Drüber soll sichergestellt werden dass die gespeicherten verifizierten Ereignisse korrekt sind. Um ein ungewolltes Beenden zu verhindern wird der Nutzer beim  Speichern eines nicht gefundenen Ereignisses, oder bei drücken auf Abbruch, das Programm wirklich verlassen möchte. Das ist in der Abbildung \ref{fig:VerifOverlAbbruch} zu sehen. Dadurch soll verhindert werden, dass Ereignisse ungewollt nicht bearbeitet werden. Auf Grund der geringen Datenmenge ist der Verlust eines Ereignisses kritisch. 
 
-\emptyFigure{Abfrage des Nutzers, ob die Verifizierung wirklich abgebrochen werden soll.}{fig:VerifOverlAbbruch}
-\todo{Abbildung fehlt}
+\begin{wrapfigure}{l}{0.5\textwidth}
+    \begin{center}
+        \vspace*{-9mm}
+        \includegraphics[width=0.5\textwidth]{img/Verifikationstool/Verifikation Video mit Maske Abbruch Abfrage.png}
+        \vspace*{-10mm}
+        \caption{Abfrage des Nutzers, ob die Verifizierung wirklich abgebrochen werden soll.}
+        \label{fig:VerifOverlAbbruch}
+    \end{center}
+\end{wrapfigure}
+Zunächst wird auf Zusatzmethoden in der Verifikationsebene eingegangen. Wenn verifizierte Ereignisse gespeichert werden, dann durchlaufen sie eine Kontrolle auf Korrektheit. Überprüft wird, ob beide Flaggen gesetzt sind, ob die Endflagge auf einen späteren Zeitpunkt gesetzt ist, als die Startflagge und ob ein Label ausgewählt ist. Drüber soll sichergestellt werden dass die gespeicherten verifizierten Ereignisse korrekt sind. Um ein ungewolltes Beenden zu verhindern wird der Nutzer beim  Speichern eines nicht gefundenen Ereignisses, oder bei drücken auf Abbruch, das Programm wirklich verlassen möchte. Das ist in der Abbildung \ref{fig:VerifOverlAbbruch} zu sehen. Dadurch soll verhindert werden, dass Ereignisse ungewollt nicht bearbeitet werden. Auf Grund der geringen Datenmenge ist der Verlust eines Ereignisses kritisch. \par
 
-Da die Verifizierung der Ereignisse zeitaufwendig ist, wird erwartet, dass mehrere sitzungen notwendig sind, um alle Ereignisse zu bearbeiten. Es soll sichergestellt werden, dass jedes Ereignis bearbeitet wird und auch das kein Ereignis doppelt bearbeitet wird. Aus diesem Grund wird in der Interface-Ebene, dass Abspeichern eines Zwischenstands implementiert. Es wird eine Kopie der Ereignisliste angefertigt, die der Nutzer bei Programmbeginn auswählt. Während der Verifizierung, werden die bearbeiteten Ereignisse aus dieser Kopie gelöscht. Startet der Nutzer das Programm bei einer späteren Sitzung erneut, wird er gefragt, ob die Bearbeitung dort fortgesetzt werden soll, wo zuletzt aufgehört wurde. Dazu wird auf die Kopie der Ereignisliste zugegriffen. Die Abbildung \ref{fig:VeriBearbFortsetz} zeigt das Fenster, welches Abfragt ob die letzte Bearbeitung fortgesetzt werden soll. 
-
-\emptyFigure{Abfrage des Nutzers, ob er die letzte Bearbeitung fortsetzten möchte.}{fig:VeriBearbFortsetz}
-\todo{Abbildung fehlt}
+\begin{wrapfigure}{l}{0.5\textwidth}
+    \begin{center}
+        \vspace*{-9mm}
+        \includegraphics[width=0.5\textwidth]{img/Verifikationstool/Verifikation Abfrage Letze Bearbeitung fortsetzen.png}
+        \vspace*{-10mm}
+        \caption{Abfrage des Nutzers, ob er die letzte Bearbeitung fortsetzten möchte.}
+        \label{fig:VeriBearbFortsetz}
+    \end{center}
+\end{wrapfigure}
+Da die Verifizierung der Ereignisse zeitaufwendig ist, wird erwartet, dass mehrere sitzungen notwendig sind, um alle Ereignisse zu bearbeiten. Es soll sichergestellt werden, dass jedes Ereignis bearbeitet wird und auch das kein Ereignis doppelt bearbeitet wird. Aus diesem Grund wird in der Interface-Ebene, dass Abspeichern eines Zwischenstands implementiert. Es wird eine Kopie der Ereignisliste angefertigt, die der Nutzer bei Programmbeginn auswählt. Während der Verifizierung, werden die bearbeiteten Ereignisse aus dieser Kopie gelöscht. Startet der Nutzer das Programm bei einer späteren Sitzung erneut, wird er gefragt, ob die Bearbeitung dort fortgesetzt werden soll, wo zuletzt aufgehört wurde. Dazu wird auf die Kopie der Ereignisliste zugegriffen. Die Abbildung \ref{fig:VeriBearbFortsetz} zeigt das Fenster, welches Abfragt ob die letzte Bearbeitung fortgesetzt werden soll. \par
 
 Um Datenverlust zu verhinder ist ein Backup-Mechanismus implementiert. Wird das Programm ordnungsgemäß beendet, dann wird eine Kopie der Liste der verifizierten Ereignisse erstellt. Diese Kopie wird nach dem aktuellen Datum und der Uhrzeit benannt, um den Stand zu kennzeichnen. Sollte bei einer Sitzung Fehler passieren, oder aus sonstigen Gründen die Integrität der Verifikationen aus den letzten Sitzungen fraglich sein, dann kann jeder Zeit zu einem früheren Stand zurückgekehrt werden. Das Risiko eines vollständigen Datenverlusts ist somit Reduziert. Das ist wichtig, da die manuelle Verifizierung zeitaufwendig ist und da der Zeitrahmen begrenzt ist. Ein vollständiger Datenverlust kann kritisch werden für die Umsetzung der Arbeit. 

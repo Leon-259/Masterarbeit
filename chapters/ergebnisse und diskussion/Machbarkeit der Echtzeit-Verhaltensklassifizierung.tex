@@ -11,12 +11,16 @@ Die Auswertung der erfolgt manuell. Die Videos zu den ausgewählten Daten werden
 
 Die Abbildung \ref{fig:HistGesamt} zeigt ein Histogramm der Gesamtlaufzeiten der Verarbeitung des Moduls.  
 
-\emptyFigure{Histogramm der Gesamtlaufzeiten der Verarbeitung.}{fig:HistGesamt}
-\todo{Abbildung fehlt}
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/Plots/Simulation/Auswertung Runtimes Histogram gesamte auswertung mit Frames.png}
+    \caption{Histogramm der Gesamtlaufzeiten der Verarbeitung.}
+    \label{fig:HistGesamt}
+\end{figure}
 
 Im Mittel benötigt die Verarbeitung 4,14 Sekunden. Mittelwert und Median liegen dicht bei einander. Die maximale gemessene Verarbeitungsdauer beträgt 5,23 Sekunden. Diese Werte bestätigen, dass eine lückenlose Abtastung des Stallgeschehens realisiert ist. Im Schnitt überlappen die Intervalle fast 36 Sekunden. Das sollte in einer geringen Diskrepanz zwischen dem Auftreten eines Ereignisses und der Erkennung resultieren. Die Verarbeitungszeit bestimmt die Abtastrate des Moduls. Es wird somit alle 4,14 Sekunden abgetastet. \par
 
-Mit diesem Wissen lässt sich die minimale und maximale Dauer bestimmen, die es benötigt, ein Ereignis zu erkennen. Durch die Vorgaben, dass ein Intervall 40 Sekunden umfasst und dass ein Ereignis 30 Sekunden davon einnehmen muss, um erkannt zu werden, lässt sich der Ausdruck in \ref{eq:deltTErkenn} formulieren. \(D\) ist die Laufzeit des Ereignisses bei einem Abtastzeitpunkt und \(T\) ist die Dauer der Verarbeitung. Läuft das Ereignis exakt 30 Sekunden, umfasst es die Minimalanforderung, um erkannt zu werden. In diesem Fall wird das Ereignis so früh wie für das Modul möglich erkannt. Fällt die Abtastung so, dass das Ereignis gerade so keine 30 Sekunden umfasst, dann resultiert dies in der maximalen Erkennungsdauer. Ausgehend von der maximalen und minimalen Verarbeitungsdauer des Moduls, wird ein Ereignis frühstens nach 33,33 Sekunden erkannt und spätestens nach 40,46 Sekunden.
+Mit diesem Wissen lässt sich die minimale und maximale Dauer bestimmen, die es benötigt, ein Ereignis zu erkennen. Durch die Vorgaben, dass ein Intervall 40 Sekunden umfasst und dass ein Ereignis 30 Sekunden davon einnehmen muss, um erkannt zu werden, lässt sich der Ausdruck in \autoref{eq:deltTErkenn} formulieren. \(D\) ist die Laufzeit des Ereignisses bei einem Abtastzeitpunkt und \(T\) ist die Dauer der Verarbeitung. Läuft das Ereignis exakt 30 Sekunden, umfasst es die Minimalanforderung, um erkannt zu werden. In diesem Fall wird das Ereignis so früh wie für das Modul möglich erkannt. Fällt die Abtastung so, dass das Ereignis gerade so keine 30 Sekunden umfasst, dann resultiert dies in der maximalen Erkennungsdauer. Ausgehend von der maximalen und minimalen Verarbeitungsdauer des Moduls, wird ein Ereignis frühstens nach 33,33 Sekunden erkannt und spätestens nach 40,46 Sekunden.
 
 \begin{equation}
     \label{eq:deltTErkenn}
@@ -31,10 +35,41 @@ Mit diesem Wissen lässt sich die minimale und maximale Dauer bestimmen, die es 
 
 
 \subsection{Evaluation der Verhaltensklassifikation}
-Die Abbildung \ref{fig:KonfMatSim} zeigt die Konfusionsmatritzen der beiden ausgewerteten Tage. 
+Die Tabellen \ref{tab:KonfMatSim 1} und \ref{tab:KonfMatSim 2} zeigen die Konfusionsmatritzen der beiden ausgewerteten Tage. 
 
-\emptyFigure{Konfusionsmatritzen der Auswertung der Simulation.}{fig:KonfMatSim}
-\todo{Abbildung fehlt}
+\begin{table}[htbp]
+    \centering
+    \caption{Konfusionsmatrix der Auswertung der Simulation vom 31.05.21 Kamera 4.}
+    \label{tab:KonfMatSim 1}
+    \begin{tabular}{l|rrr|r}
+        \toprule
+        \multirow{1}{*}{\textbf{Echtes Verhalten}} & \multicolumn{3}{c|}{\textbf{Geschätztes Verhalten}} & {\textbf{Gesamt}}\\
+        %\cmidrule(lr){2-4}
+         & Kampf & Kontrollgang & Normalverhalten & \\
+        \midrule
+        Kampf                & 0,5\, \% &  0,5\, \% & 99,0\, \% & 100 \%\\
+        Kontrollgang         & 0,0\, \% & 94,0\, \% &  6,0\, \% & 100 \%\\
+        Normalverhalten      & 0,3\, \% &  3,7\, \% & 96,0\, \% & 100 \%\\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \caption{Konfusionsmatrix der Auswertung der Simulation vom 31.05.21 Kamera 3}
+    \label{tab:KonfMatSim 2}
+    \begin{tabular}{l|rrr|r}
+        \toprule
+        \multirow{1}{*}{\textbf{Echtes Verhalten}} & \multicolumn{3}{c|}{\textbf{Geschätztes Verhalten}} & {\textbf{Gesamt}}\\
+        %\cmidrule(lr){2-4}
+         & Kampf & Kontrollgang & Normalverhalten & \\
+        \midrule
+        Kampf                & 0,0\, \% &  0,0\, \% & 100,0\, \% & 100 \%\\
+        Kontrollgang         & 0,0\, \% & 97,0\, \% &   3,0\, \% & 100 \%\\
+        Normalverhalten      & 0,3\, \% & 11,3\, \% &  88,4\, \% & 100 \%\\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
 Es ist zu sehen, dass die Verhaltensklassifikation die Ereignisse nicht zuverlässig schätzt. Gerade die Kämpfe werden nicht erkannt. Relativ zuverlässig werden die Kontrollgänge erkannt. Kontrollgänge weise die prägnantesten Charakteristiken auf. Dass diese zuverlässig erkannt werden, bestätigt, dass prinzipielle eine Verhaltensklassifizierung mit den durchgeführten Methoden realisieren lässt. \par
 
@@ -42,12 +77,27 @@ In einigen Fällen wurde Normalverhalten fälschlicherweise als Kontrollgang erk
 
 Die Abbildung \ref{fig:zeitStrahlen} zeigt Zeitstrahlen, welche jeweils die geschätzte Verhaltensweise und die manuell bestimmte Verhaltensweisen gegenüberstellen.  
 
-\emptyFigure{Zeitstrahelen des vergleichs von Klassifikation und Referenz.}{fig:zeitStrahlen}
-\todo{Abbildung fehlt}
+\begin{sidewaysfigure}[htbp]
+     \centering
+     \begin{subfigure}[b]{0.9\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{img/Plots/Simulation/Zeitstrahl Vergleich 31.05.21 cam 4.png}
+         \caption{31.05.21 Kamera 4}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.9\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{img/Plots/Simulation/Zeitstrahl Vergleich 31.05.21 cam 3.png}
+         \caption{31.05.21 Kamera 3}
+     \end{subfigure}
+     \caption{Zeitstrahlen des Vergleichs von Klassifikation und Referenz.}
+     \label{fig:zeitStrahlen}
+\end{sidewaysfigure}
+
 
 In der Abbildung \ref{fig:zeitStrahlen} ist gut zu sehen, dass die Kontrollgänge korrekt erkannt werden, jedoch auch, dass gerade nachmittags eine Überempfindlichkeit auftritt. Normalverhalten wird als Kontrollgang erkannt. Ebenfalls fällt auf, dass das Normalverhalten das Stallgeschehen dominiert. Das war zu erwarten, jedoch kann dies die Auswertung verzerren. Ein Modell, welches immer Normalverhalten schätzt, liegt dadurch trotzdem die meiste Zeit richtig. Die Bewertung ist somit zugunsten der Erkennung von Normalverhalten verzerrt. \par
 
-Da die Trainingsdatenenge nicht besonders hoch ist, kann es sein, dass die Kampfereignisse nicht repräsentativ genug sind, um eine Generalisierung zu ermöglichen. Da die Evaluierung des Modells kein Overfitting aufweist (\ref{sec:ErgebModSelEval}) ist es möglich, dass ein ungewollter Bias im Datensatz vorhanden ist, welcher durch geringe Varianz entsteht. Auch kann die geringe Datenmenge dafür sorgen, dass das Evaluationsergebnis nicht repräsentativ ist. Die Menge im Testdatensatz kann eine zu geringe Varianz haben, um die Generalisierung des Modells aussagekräftig zu prüfen. Die deutlichen Schwankungen in der Accuracy beim Validieren, können darauf hindeuten.\par
+Da die Trainingsdatenenge nicht besonders hoch ist, kann es sein, dass die Kampfereignisse nicht repräsentativ genug sind, um eine Generalisierung zu ermöglichen. Da die Evaluierung des Modells kein Overfitting aufweist (\autoref{sec:ErgebModSelEval}) ist es möglich, dass ein ungewollter Bias im Datensatz vorhanden ist, welcher durch geringe Varianz entsteht. Auch kann die geringe Datenmenge dafür sorgen, dass das Evaluationsergebnis nicht repräsentativ ist. Die Menge im Testdatensatz kann eine zu geringe Varianz haben, um die Generalisierung des Modells aussagekräftig zu prüfen. Die deutlichen Schwankungen in der Accuracy beim Validieren, können darauf hindeuten.\par
 
 Zusätzlich ist es möglich, dass die Features nicht gut darin sind, die eindeutigen Charakteristiken der Kämpfe einzufangen. Viele der Features zielen auf die Gruppendynamik ab. Für die Identifikation der lokalen Dynamiken sind eventuell spezieller Features notwendig. Ein weiteres Hindernis für die Erkennung von lokalen Dynamiken kann die Komprimierung der Zeitreihen sein. Da bei Kämpfen ein Großteil der Tiere sich eher normal verhält, kann es sein, dass die Kampf-Merkmale nicht deutlich genug zum Vorschein kommen. \par
 

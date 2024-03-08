@@ -1,5 +1,5 @@
 \section{Analysen zum MOT-System}\label{sec:Ergebnisse MOT}
-Die Analysen zum MOT-System erfolgen wie in \ref{sec:Meth MOT} beschrieben. Es werde die beiden Assoziationsalgorithmen verglichen. Dazu wird die Gesamtperformance mit beiden Ground Truths gemessen. Anschließend wird die Performance in Abhängigkeit der Verhaltensweise beurteilt. Abschließen tut die Analyse mit einer Auswertung der Laufzeiten der beiden Assoziationsalgorithmen. \par
+Die Analysen zum MOT-System erfolgen wie in \autoref{sec:Meth MOT} beschrieben. Es werde die beiden Assoziationsalgorithmen verglichen. Dazu wird die Gesamtperformance mit beiden Ground Truths gemessen. Anschließend wird die Performance in Abhängigkeit der Verhaltensweise beurteilt. Abschließen tut die Analyse mit einer Auswertung der Laufzeiten der beiden Assoziationsalgorithmen. \par
 
 Ziel ist die Auswahl des besten Algorithmus, die Bewertung der Erfolgsaussichten, aussagekräftige Features aus den Trajektorien generieren zu können und die Beurteilung, wie sich die Laufzeit der Assoziation auf das Modul auswirken kann. \par
 
@@ -10,8 +10,22 @@ Die Ergebnisse der Untersuchungen werden jeweils in einem eigenen Abschnitt vorg
 
 In der Abbildung \ref{fig:ErgebGesamtMOT} ist der Verlauf der \textit{HOTA}-Wertungen über \(\alpha\) zu sehen. Die Tabelle \ref{tab:verglHOTA} zeigt einen Vergleich der Wertungen zu den beiden Algorithmen.
 
-\emptyFigure{Verlauf der \textit{HOTA}-Wertungen der Gesamtperformance der Assoziationsalgorithmen.}{fig:ErgebGesamtMOT}
-\todo{Abbildung fehlt}
+\begin{figure}[htbp]
+     \centering
+     \begin{subfigure}[b]{0.9\textwidth}
+         \centering
+         \includegraphics[width=\textwidth, height=11cm]{img/Plots/MOT Evaluation/HOTA SORT Gesamt.png}
+         \caption{HOTA Gesamtevaluation des SORT Algorithmus.}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.9\textwidth}
+         \centering
+         \includegraphics[width=\textwidth, height=11cm]{img/Plots/MOT Evaluation/HOTA CrockGrier Gesamt.png}
+         \caption{HOTA Gesamtevaluation des Cocker-Grier Linking Algorithmus.}
+     \end{subfigure}
+     \caption{Verlauf der \textit{HOTA}-Wertungen der Gesamtperformance der Assoziationsalgorithmen.}
+     \label{fig:ErgebGesamtMOT}
+\end{figure}
 
 \begin{table}[htbp]
 \centering
@@ -47,10 +61,26 @@ auch wenn auf den gleichen Detektionen gearbeitet wurde, sind die Detektionsmetr
 
 Bei Betrachtung der DetRe und DetPr Wertungen ist zu sehen, dass der Crocker-Grier Linking Algorithmus mehr falsch positive Fehler macht, wie auch mehr falsch Negative als SORT. Eine Erklärung für die bessere Detection Precision kann sein, dass SORTs Vorgehen neue Trajektorien zu initialisieren, dafür sorgt, dass falsch positive Detektionen herausgefiltert werden. Eine andere Erklärung ist, dass der Verifizierungsmechanismus des modifizierten Crocker-Grier Linking Algorithmus dafür sorgt, dass sowohl mehr richtige Detektionen verworfen werden, als auch dafür, dass mehr falsche Detektionen assoziiert werden als bei SORT. \par
 
-Bei beiden Algorithmen ist der DetRe Wert niedriger. Das Detektionsmodul ist anfälliger für falsch negative Detektionen als für falsch Positive. Das bedeutet, es werden nicht alle Tiere erkannt. Es ist jedoch davon auszugehen, dass sie die Mehrdeutigkeiten in der Ground Truth Erstellung gerade hier negativ auswirken. Teilweise Verdeckungen bei den Futterbahen, oder bei den Randbereichen des Kameraausschnitts wurden in der Ground Truth strenger markiert, als es das Detektionsmodul in der Praxis umgesetzt hat. Das zeigt ein Vergleich der bounding Boxen in der Ground Truth und denen des Detektionsmoduls. In der Abbildung \ref{fig:GTvsDetsComp} sind ausgewählte Bildbereiche miteinander verglichen. Sie stammen aus dem gleichen Frame. 
-
-\emptyFigure{Vergleich der bounding Boxen der Ground Truth und des Detektionsmoduls.}{fig:GTvsDetsComp}
-\todo{Abbildung fehlt}
+\begin{wrapfigure}{l}{0.5\textwidth}
+    \begin{center}
+        \vspace*{-9mm}
+        \begin{subfigure}[b]{0.5\textwidth}
+             \centering
+             \includegraphics[width=\textwidth]{img/Vergleich GT_Track GT.png}
+             \caption{Ground Truth}
+         \end{subfigure}
+         \hfill
+         \begin{subfigure}[b]{0.5\textwidth}
+             \centering         
+             \includegraphics[width=\textwidth]{img/Vergleich GT_Track Tracking.png}
+             \caption{Detektionsergebnis}
+         \end{subfigure}
+        \vspace*{-10mm}
+        \caption{Vergleich der Ground Truth und des Detektionsmoduls.}
+        \label{fig:GTvsDetsComp}
+    \end{center}
+\end{wrapfigure}
+Bei beiden Algorithmen ist der DetRe Wert niedriger. Das Detektionsmodul ist anfälliger für falsch negative Detektionen als für falsch Positive. Das bedeutet, es werden nicht alle Tiere erkannt. Es ist jedoch davon auszugehen, dass sie die Mehrdeutigkeiten in der Ground Truth Erstellung gerade hier negativ auswirken. Teilweise Verdeckungen bei den Futterbahen, oder bei den Randbereichen des Kameraausschnitts wurden in der Ground Truth strenger markiert, als es das Detektionsmodul in der Praxis umgesetzt hat. Das zeigt ein Vergleich der bounding Boxen in der Ground Truth und denen des Detektionsmoduls. In der Abbildung \ref{fig:GTvsDetsComp} sind ausgewählte Bildbereiche miteinander verglichen. Sie stammen aus dem gleichen Frame. \par
 
 Somit ist die Bewertung des DetRe Wert nicht als falsch zu beurteilen, es ist jedoch zu vermuten, dass hier eine Verzerrung entsteht, da das Detektionsmodul vermutlich einen anderen Umgang mit diesen Situationen gelernt hat.\par
 
@@ -99,11 +129,39 @@ Es sind zwei Ground Truths vorhanden. Eine beinhaltet ein Kampfereignis und die 
 
 Die Abbildung \ref{fig:SORTHOTAEREIG} zeigt die Verläufe der \textit{HOTA}-Metriken zum SORT Algorithmus. Es ist die Bewertung beider Ereignisse dargestellt. Abbildung \ref{fig:CROCKHOTAEreig} zeigt dies für die Bewertung des Crocker-Grier Linking Algorithmus. Die Tabelle \ref{tab:HOTAübersEreig} zeigt eine Übersicht über die Ergebnisse.
 
-\emptyFigure{Verlauf der \textit{HOTA}-Wertungen von SORT zu den unterschiedlichen Ereignissen.}{fig:SORTHOTAEREIG}
-\todo{Abbildung fehlt}
+\begin{figure}[htbp]
+     \centering
+     \begin{subfigure}[b]{0.9\textwidth}
+         \centering
+         \includegraphics[width=\textwidth, height=11cm]{img/Plots/MOT Evaluation/HOTA SORT Kampf.png}
+         \caption{Evaluation mit dem Kampfereignis.}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.9\textwidth}
+         \centering
+         \includegraphics[width=\textwidth, height=11cm]{img/Plots/MOT Evaluation/HOTA SORT Kontrollgang.png}
+         \caption{Evaluation mit dem Kontrollgang.}
+     \end{subfigure}
+     \caption{Evaluation des SORT Algorithmus in Bezug auf die Verhaltensweise.}
+     \label{fig:SORTHOTAEREIG}
+\end{figure}
 
-\emptyFigure{Verlauf der \textit{HOTA}-Wertungen vom Crocker-Grier Linking Algorithmus zu den unterschiedlichen Ereignissen.}{fig:CROCKHOTAEreig}
-\todo{Abbildung fehlt}
+\begin{figure}[htbp]
+     \centering
+     \begin{subfigure}[b]{0.9\textwidth}
+         \centering
+         \includegraphics[width=\textwidth, height=11cm]{img/Plots/MOT Evaluation/HOTA CrockGrier Kampf.png}
+         \caption{Evaluation mit dem Kampfereignis.}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.9\textwidth}
+         \centering
+         \includegraphics[width=\textwidth, height=11cm]{img/Plots/MOT Evaluation/HOTA CrockGrier Kontrollgang.png}
+         \caption{Evaluation mit dem Kontrollgang.}
+     \end{subfigure}
+     \caption{Evaluation des Crocker-Grier Linking Algorithmus in Bezug auf die Verhaltensweise.}
+     \label{fig:CROCKHOTAEreig}
+\end{figure}
 
 \begin{table}[htbp]
 \centering
@@ -112,22 +170,22 @@ Die Abbildung \ref{fig:SORTHOTAEREIG} zeigt die Verläufe der \textit{HOTA}-Metr
 \begin{tabular}{
   l
   l
-  S[table-format=2.3]
-  S[table-format=2.3]
-  S[table-format=2.3]
-  S[table-format=2.3]
-  S[table-format=2.3]
-  S[table-format=2.3]
-  S[table-format=2.3]
-  S[table-format=2.3]
+  S[table-format=2.2]
+  S[table-format=2.2]
+  S[table-format=2.2]
+  S[table-format=2.2]
+  S[table-format=2.2]
+  S[table-format=2.2]
+  S[table-format=2.2]
+  S[table-format=2.2]
 }
 \toprule
 {Algorithmus} & {Ereignis} & {HOTA} & {DetA} & {AssA} & {DetRe} & {DetPr} & {AssRe} & {AssPr} & {LocA} \\
 \midrule
-SORT          & Kampf      & 49,537 & 44,506 & 56,636 & 49,103  & 64,659  & 60,287  & 75,641  & 74,495 \\
-SORT          & Kontrollgang & 28,379 & 25,432 & 33,733 & 29,224  & 50,071  & 36,662  & 69,090  & 70,202 \\
-Crocker-Grier & Kampf      & 48,673 & 45,284 & 53,406 & 51,125  & 62,369  & 57,539  & 72,086  & 73,976 \\
-Crocker-Grier & Kontrollgang & 28,379 & 25,432 & 33,733 & 29,224  & 50,071  & 36,662  & 69,090  & 70,202 \\
+SORT          & Kampf      & 49,53 & 44,50 & 56,63 & 49,10  & 64,65  & 60,28  & 75,64  & 74,49 \\
+SORT          & Kontrollgang & 28,37 & 25,43 & 33,73 & 29,22  & 50,07  & 36,66  & 69,09  & 70,20 \\
+Crocker-Grier & Kampf      & 48,67 & 45,28 & 53,40 & 51,12  & 62,36  & 57,53  & 72,08  & 73,97 \\
+Crocker-Grier & Kontrollgang & 28,37 & 25,43 & 33,73 & 29,22  & 50,07  & 36,66  & 69,09  & 70,20 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -181,8 +239,12 @@ Insgesamt ist der Performance stark Ereignis, bzw. Dynamik abhängig. Das Tracki
 \subsection{Vergleich und Auswertung der Laufzeiten}
 Die Laufzeiten der beiden Algorithmen sind für unterschiedliche Ereignislängen ermittelt worden. In der Abbildung \ref{fig:plotRunTMOT} sind die Laufzeiten in Abhängigkeit der Ereignisdauer geplottet.
 
-\emptyFigure{Darstellung der Laufzeiten der Assoziaitonsalgorithmen in Abhängigkeit der Ereignisdauer.}{fig:plotRunTMOT}
-\todo{Abbildung fehlt}
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/Plots/MOT Evaluation/Assoziationsalgorithmen Laufzeiten.png}  
+    \caption{Laufzeiten der Assoziation in Abhängigkeit der Ereignisdauer.}
+    \label{fig:plotRunTMOT}
+\end{figure}
 
 Es ist zu sehen, dass der Crocker-Grier Linking Algorithmus besser skaliert, jedoch weist er ein klein bisschen mehr Overhead auf. Durch den Overhead ist der zeitliche Vorteil für kleine Ereignislängen von weniger als 30 Sekunden nicht signifikant. Die Trendlinien der beiden Algorithmen zeigen, dass die Laufzeiten für Ereignisse, die kürzer als 5 Minuten sind, annähernd linear skalieren. Beide Trendlinien habe eine Steigung kleiner eins aufweisen. Das ist Grundvoraussetzung für die Anwendung im Modul. Sonst kann keine lückenlose Abtastung des Stallgeschehens erfolgen. Nach der Auswahl einer Intervallgröße für die Ereignisse, kann über die zeitliche Skalierung der Laufzeit eingeschätzt werden, wie viel Zeit die restliche Verarbeitung in Anspruch nehmen darf, um eine lückenlose Abtastung zu erreichen.  \dubpar
 

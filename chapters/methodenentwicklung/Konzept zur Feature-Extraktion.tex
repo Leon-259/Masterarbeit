@@ -1,13 +1,17 @@
 \section{Konzept zur Feature-Extraktion} \label{sec:Meth FeatExtr}
-Für die Feature-Extraktion stehen Detektionsdatensätze, und die Videos zur Verfügung. Mittels dem Assoziationsmodul lassen sich Trajektorien generieren, aus denen sich ebenfalls Features extrahieren lassen. Grundlage für die Feature-Extraktion ist der Ereignisdatensatz auf den sich die Tabelle \ref{tab:DatasetFeatExtr} bezieht. Ziel des Konzepts zur Feature-Extraktion ist es einen Trainigsdatensatz zu generieren. Ebenfalls ist das Konzept so zu entwerfen, dass es sich modular in die Vorverarbeitung des Gesamtkonzepts integrieren lässt (\ref{sec:Meth gesamtkonzept}). Das Konzept zur Generierung des Trainigsdatensatzes ist als Blockdiagramm in der Abbildung \ref{fig:KonzeptFeatExtr} zu sehen. Anschließend werden die einzelnen Module im Detail beschrieben.
+Für die Feature-Extraktion stehen Detektionsdatensätze, und die Videos zur Verfügung. Mittels dem Assoziationsmodul lassen sich Trajektorien generieren, aus denen sich ebenfalls Features extrahieren lassen. Grundlage für die Feature-Extraktion ist der Ereignisdatensatz auf den sich die Tabelle \ref{tab:DatasetFeatExtr} bezieht. Ziel des Konzepts zur Feature-Extraktion ist es einen Trainigsdatensatz zu generieren. Ebenfalls ist das Konzept so zu entwerfen, dass es sich modular in die Vorverarbeitung des Gesamtkonzepts integrieren lässt (\autoref{sec:Meth gesamtkonzept}). Das Konzept zur Generierung des Trainigsdatensatzes ist als Blockdiagramm in der Abbildung \ref{fig:KonzeptFeatExtr} zu sehen. Anschließend werden die einzelnen Module im Detail beschrieben.
 
-\emptyFigure{Blockdiagramm des Konzepts zur Generierung des Trainingsdatensatzes. Das Konzept lässt sich in 5 Module unterteilen. Die Datenbeschaffung, die Datenzuordnung, eine Vorverarbeitung, die Feature-Extraktion und die Datensicherung. Als Input erhalten die Module den Ereignisdatensatz.}{fig:KonzeptFeatExtr}
-\todo{Abbildung fehlt}
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\textwidth]{img/Grafiken/Konzept Feature-Extraktion.png}
+    \caption[Blockdiagramm des Konzepts zur Feature-Extraktion.]{Blockdiagramm des Konzepts zur Feature-Extraktion. Das Konzept lässt sich in 5 Module unterteilen. Die Datenbeschaffung, die Datenzuordnung, eine Vorverarbeitung, die Feature-Extraktion und die Datensicherung. Als Eingabe erhalten die Module den Ereignisdatensatz.}
+    \label{fig:KonzeptFeatExtr}
+\end{figure}
 
 \begin{quote}
 \par
 \textbf{Datenbeschaffung}\par
-Die Aufgabe der Datenbeschaffung ist es die passenden Dateien zu einem Ereignis herauszusuchen. Es ist das gleiche Hilfsmodul wie in der Ereignisverifizierung (\ref{sec:Meth Labeling}) verwendet wird. Als Eingabe erhält es den Startzeitpunkt eines Ereignisses. Als Ausgabe gibt es den Dateipfad zu der Videodatei, und dem Detektionsdatensatz zurück, die zu dem Zeitpunkt passen. \dubpar
+Die Aufgabe der Datenbeschaffung ist es die passenden Dateien zu einem Ereignis herauszusuchen. Es ist das gleiche Hilfsmodul wie in der Ereignisverifizierung (\autoref{sec:Meth Labeling}) verwendet wird. Als Eingabe erhält es den Startzeitpunkt eines Ereignisses. Als Ausgabe gibt es den Dateipfad zu der Videodatei, und dem Detektionsdatensatz zurück, die zu dem Zeitpunkt passen. \dubpar
 
 \textbf{Zuordnung der Daten zu dem Ereignis}\par
 In der Zuordnung werden aus Dateien, welche in der Datenbeschaffung herausgesucht wurden, die passenden Einträge herausgesucht. Der Detektionsdatei werden basierend auf den Zeitstempeln die Einträge herausgesucht, welche zu dem Zeitraum des Ereignisses passen. In diesen Einträgen findet sich die ID der Frames zum dazugehörigen Video. Darüber lassen sich die passenden Frames identifizieren. Als Eingabe benötigt das Modul den Dateipfad zu einer Videodatei, den Dateipfad zu einem Detektionsdatensatz, einen Startzeitpunkt und einen Endzeitpunkt eines Ereignisses. Die Ausgabe der Zuordnung sind die zum Ereignis passenden Detektionseinträge und Frames. \dubpar
