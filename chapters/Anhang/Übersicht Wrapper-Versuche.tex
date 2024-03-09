@@ -1,0 +1,112 @@
+\clearpage
+\section*{Übersicht über die Versuche mit den Wrapper Methoden}
+
+\vspace*{-3mm}
+
+\begin{table}[H]
+\centering
+\caption{Vorwärtsauswahl mit Anzahl-Kriterium}
+\renewcommand{\arraystretch}{0.8}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+& \multicolumn{5}{c|}{\thead{Feature-Kategorien}} & \multicolumn{5}{c|}{\thead{Modelle}} \\
+\hline
+\thead{ID} & \thead{Basis} & \thead{Inter-\\aktion} & \thead{Box-\\Cox} & \thead{Log10} & \thead{Quantil} & \thead{Rand.\\ Forest} & \thead{Hist. G.\\ Boost.} & \thead{Linear\\ SVM} & \thead{Poly.\\ SVM} & \thead{Logi.\\ Reg.} \\
+\hline
+000 & X & - & - & - & - & X & X & X & - & X \\
+001 & X & - & - & - & X & X & X & X & - & X \\
+002 & X & - & - & X & - & X & X & X & - & X \\
+003 & X & - & - & X & X & X & X & X & - & X \\
+004 & X & - & X & - & - & X & X & X & - & X \\
+005 & X & - & X & - & X & X & X & X & - & X \\
+006 & X & - & X & X & - & X & X & X & - & X \\
+007 & X & - & X & X & X & X & X & X & - & X \\
+008 & X & X & - & - & - & - & - & - & - & X \\
+\hline
+\end{tabular}
+\end{table}
+
+\vspace*{-5mm}
+
+\begin{table}[H]
+\centering
+\caption{Rückwärtsauswahl mit Anzahl-Kriterium}
+\renewcommand{\arraystretch}{0.8}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+& \multicolumn{5}{c|}{\thead{Feature-Kategorien}} & \multicolumn{5}{c|}{\thead{Modelle}} \\
+\hline
+\thead{ID} & \thead{Basis} & \thead{Inter-\\aktion} & \thead{Box-\\Cox} & \thead{Log10} & \thead{Quantil} & \thead{Rand.\\ Forest} & \thead{Hist. G.\\ Boost.} & \thead{Linear\\ SVM} & \thead{Poly.\\ SVM} & \thead{Logi.\\ Reg.} \\
+\hline
+200 & X & - & - & - & - & X & X & X & X & X \\
+201 & X & - & - & - & X & X & X & X & X & X \\
+202 & X & - & - & X & - & X & X & X & X & X \\
+203 & X & - & - & X & X & X & X & X & X & X \\
+204 & X & - & X & - & - & X & X & X & X & X \\
+205 & X & - & X & - & X & X & X & X & X & X \\
+206 & X & - & X & X & - & X & X & X & X & X \\
+207 & X & - & X & X & X & X & X & X & X & X \\
+208 & X & X & - & - & - & - & - & - & - & X \\
+\hline
+\end{tabular}
+\end{table}
+
+\vspace*{-5mm}
+
+\begin{table}[H]
+\centering
+\caption{Rückwärtsauswahl mit Toleranz-Kriterium}
+\renewcommand{\arraystretch}{0.8}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+& \multicolumn{5}{c|}{\thead{Feature-Kategorien}} & \multicolumn{5}{c|}{\thead{Modelle}} \\
+\hline
+\thead{ID} & \thead{Basis} & \thead{Inter-\\aktion} & \thead{Box-\\Cox} & \thead{Log10} & \thead{Quantil} & \thead{Rand.\\ Forest} & \thead{Hist. G.\\ Boost.} & \thead{Linear\\ SVM} & \thead{Poly.\\ SVM} & \thead{Logi.\\ Reg.} \\
+\hline
+200 & X & - & - & - & - & X & X & X & X & X \\
+201 & X & - & - & - & X & X & X & X & X & X \\
+202 & X & - & - & X & - & X & X & X & X & X \\
+203 & X & - & - & X & X & X & X & X & X & X \\
+204 & X & - & X & - & - & X & X & X & X & X \\
+205 & X & - & X & - & X & X & X & X & X & X \\
+206 & X & - & X & X & - & X & X & X & X & X \\
+207 & X & - & X & X & X & X & X & X & X & X \\
+208 & X & X & - & - & - & X & - & - & - & - \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\begin{minipage}{\textwidth}
+\begin{table}[H]
+\centering
+\caption{Vorwärtsauswahl mit Toleranz-Kriterium}
+\renewcommand{\arraystretch}{0.8}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+& \multicolumn{5}{c|}{\thead{Feature-Kategorien}} & \multicolumn{5}{c|}{\thead{Modelle}} \\
+\hline
+\thead{ID} & \thead{Basis} & \thead{Inter-\\aktion} & \thead{Box-\\Cox} & \thead{Log10} & \thead{Quantil} & \thead{Rand.\\ Forest} & \thead{Hist. G.\\ Boost.} & \thead{Linear\\ SVM} & \thead{Poly.\\ SVM} & \thead{Logi.\\ Reg.} \\
+\hline
+100 & X & - & - & - & - & X & X & X & - & X \\
+101 & X & - & - & - & X & X & X & X & - & X \\
+102 & X & - & - & X & - & X & X & X & - & X \\
+103 & X & - & - & X & X & X & X & X & - & X \\
+104 & X & - & X & - & - & X & X & X & - & X \\
+105 & X & - & X & - & X & X & X & X & - & X \\
+106 & X & - & X & X & - & X & X & X & - & X \\
+107 & X & - & X & X & X & X & X & X & - & X \\
+108 & X & X & - & - & - & X & X & X & - & X \\
+109 & X & X & - & - & X & X & X & X & - & X \\
+110 & X & X & - & X & - & X & X & X & - & X \\
+111 & X & X & - & X & X & X & X & X & - & X \\
+112 & X & X & X & - & - & X & X & X & - & X \\
+113 & X & X & X & - & X & X & X & X & - & X \\
+114 & X & X & X & X & - & X & X & X & - & X \\
+115 & X & X & X & X & X & X & X & X & - & X \\
+\hline
+\end{tabular}
+\end{table}
+\end{minipage}
+
+

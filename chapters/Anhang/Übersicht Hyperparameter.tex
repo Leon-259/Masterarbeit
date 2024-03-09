@@ -1,0 +1,73 @@
+\clearpage
+\section*{Übersicht über die Hyperparametersuche}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{2.8cm} >{\raggedright\arraybackslash}p{5.8cm} >{\raggedright\arraybackslash}p{5.2cm} >{\raggedright\arraybackslash}p{1.4cm}}
+\caption{Hyperparameter für verschiedene Modelle, Konfiguration für die Random Search und gefundene Einstellungen.} \\
+\toprule
+\textbf{Parameter} & \textbf{Verteilung/Menge} & \textbf{Beschreibung} & \textbf{Ergebnis}\\
+\midrule
+\endfirsthead
+\multicolumn{4}{c}%
+{\tablename\ \thetable\ -- \textit{Fortsetzung von vorheriger Seite}} \\
+\toprule
+\textbf{Parameter} & \textbf{Verteilung/Menge} & \textbf{Beschreibung} & \textbf{Ergebnis}\\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{\textit{Fortsetzung auf der nächsten Seite}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+\multicolumn{4}{l}{\textbf{Random Forest}} \\
+\hline
+\addlinespace[0.7em]
+n\_estimators & Log-Gleichverteilung [1;100] & Baumanzahl & 55\\
+\addlinespace[0.7em]
+max\_depth & Gleichverteilung [2;10] & Baumtiefe & 8\\
+\addlinespace[0.7em]
+ccp\_alpha & Log-Gleichverteilung [0,01;1] & Einstellung der Regularisierung & 0,017\\
+\addlinespace[0.7em]
+\addlinespace
+\hline
+\multicolumn{4}{l}{\textbf{Histografisches Gradient Boosting}} \\
+\hline
+\addlinespace[0.7em]
+learning\_rate & Log-Gleichverteilung [0,001;1] & Einstellung der Lernrate & 0,106\\
+\addlinespace[0.7em]
+max\_iter & Log-Gleichverteilung [10;100]  & Baumanzahl & 71\\
+\addlinespace[0.7em]
+max\_depth & Gleichverteilung [2;10] & Baumtiefe & 9\\
+\addlinespace[0.7em]
+l2\_regularization & Log-Gleichverteilung [0,01;100] & Einstellung der Regularisierung & 0,305\\
+\addlinespace[0.7em]
+\addlinespace
+\hline
+\multicolumn{4}{l}{\textbf{Logistische Regression}} \\
+\hline
+\addlinespace[0.7em]
+penalty & [l1, l2] & Regularisierungsmethode & l1\\
+\addlinespace[0.7em]
+C & Log-Gleichverteilung [0,1;1000] & Einstellung der Regularisierung & 5,749\\
+\addlinespace[0.7em]
+\addlinespace
+\hline
+\multicolumn{4}{l}{\textbf{Polynomial SVM}}\\
+\hline
+\addlinespace[0.7em]
+degree & Gleichverteilung [2;6] & Polynomgrad & 2\\
+\addlinespace[0.7em]
+C & Log-Gleichverteilung [0,1;1000] & Einstellung der Regularisierung & 0,224\\
+\addlinespace[0.7em]
+decision\_function\_shape & [ovo, ovr] & Auswahl des Verfahrens zur Mehrklassenklassifikation & ovo\\
+\addlinespace[0.7em]
+\addlinespace
+\hline
+\multicolumn{4}{l}{\textbf{Lineare SVM}} \\
+\hline
+\addlinespace[0.7em]
+penalty & [l1, l2] & Regularisierungsmethode & l1\\
+\addlinespace[0.7em]
+C & Log-Gleichverteilung [0,1;1000] & Einstellung der Regularisierung & 187,796\\
+
+\end{longtable}

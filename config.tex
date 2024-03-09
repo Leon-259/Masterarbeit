@@ -33,6 +33,7 @@
 \usepackage{wrapfig}
 \usepackage{multirow}
 \usepackage{rotating}
+\usepackage{makecell}
 
 \restylefloat{figure}
 \captionsetup{format=plain,indention=0cm}
@@ -48,6 +49,13 @@
 %\bibliographystyle{ieeetr}
 
 \makeglossaries
+
+
+\renewcommand\theadalign{bc} % Zentrierung im Spaltenkopf
+\renewcommand\theadfont{\bfseries} % Fette Schrift im Spaltenkopf
+\renewcommand\theadgape{\Gape[4pt]} % Abstand nach oben im Spaltenkopf
+\newcommand\rot{\rotatebox{90}} % Kurzbefehl für das Rotieren
+
 
 \makenomenclature
 \renewcommand{\nomname}{Mathematische Notation}
@@ -157,14 +165,6 @@
 \newcommand{\thetitle}{Entwicklung eines Moduls zur automatischen Klassifikation von Verhaltensweisen von Mastputen mittels Machine-Learning-Methoden}
 \newcommand{\thedate}{11.03.2024}
 
-\newcommand{\emptyFigure}[2]{
-    \begin{figure}[htbp]
-        \centering
-        \frame{\includegraphics[width=\textwidth, height=3cm]{img/EMPTY.png}}
-        \caption{#1}
-        \label{#2}
-    \end{figure}
-}
 
 % Command to create a glossary entry with correspondent acronym.
 % Args : 1: acronym/name, 2: long name, 3: description
@@ -207,6 +207,15 @@
     caption=#2,
     captionpos=b,
     label=#3,
+    #1
+  }
+}{}
+
+\lstnewenvironment{pythoncodeAnhang}[2][]{
+  \lstset{
+    language=Python,
+    caption=#2,
+    captionpos=b,
     #1
   }
 }{}
