@@ -144,40 +144,42 @@ description={Die genauen Detektionen, Positionen und Assoziationen der Objekte i
 \newglossaryentrywithacronym
 {EP}
 {Echt positive Detektion}
-{Eine Detektion, die korrekterweise ein tatsächliches Objekt im Bild oder Video identifiziert. Dies zeigt an, dass das Tracking-System erfolgreich ein Objekt erfasst hat, das tatsächlich vorhanden ist.}
+{Es ist eine korrekte Detektion. Eine echt positive Detektion tritt auf, wenn ein MOT System ein Objekt detektiert, welches wirklich existiert.}
 
 \newglossaryentrywithacronym
 {FP}
 {Falsch positive Detektion}
-{Eine Detektion, bei der das Tracking-System irrtümlich ein Objekt identifiziert, das nicht vorhanden ist. Diese Art von Fehlern führt zu einer Überschätzung der tatsächlich vorhandenen Objekte.}
+{Ein Detektionsfehler. Eine falsch positive Detektion tritt auf, wenn ein MOT System ein Objekt detektiert, welches in Wirklichkeit nicht da ist.}
 
 \newglossaryentrywithacronym
 {FN}
 {Falsch negative Detektion}
-{Ein Fall, in dem das Tracking-System ein tatsächlich vorhandenes Objekt nicht erkennt. Dies führt zu einer Unterschätzung der tatsächlich vorhandenen Objekte und kann die Genauigkeit der Objektverfolgung beeinträchtigen.}
+{Ein Detektionsfehler. Eine falsch negative Detektion tritt auf, wenn ein MOT System ein Objekt, welches in Wirklichkeit da ist, nich detektiert.}
 
 \newglossaryentry{Fragmentation}
 {
 name=Fragmentation,
-description={Ein Phänomen im Multi-Object Tracking, bei dem die Trajektorie eines Objekts in mehrere unzusammenhängende Segmente aufgeteilt wird, was oft durch Verdeckungen oder Detektionsfehler verursacht wird.}
+description={Ein Assoziationsfehler. Eine Fragmentation tritt auf, wenn ein Objekt in den vergangenen Frames eine ID \(a\) zugewiesen bekommen hat und im aktuellen Frame eine ID \(b\) erhält. Die korrekte Trajektorie des Objektes besteht aus dem Fragment mit der ID \(a\) und \(b\). Eine Unvollständige Trajektorie zählt ebenfalls als Fragmentation.}
 }
 
 \newglossaryentry{Merging Fehler}
 {
 name=Merging Fehler,
-description={Ein Fehler, der auftritt, wenn das Tracking-System fälschlicherweise annimmt, dass zwei oder mehr separate Objekte ein einziges Objekt sind, was zu einer Verschmelzung ihrer Trajektorien führt.}
+description={Ein Assoziationsfehler. Ein Merging Fehler ist das gegenstück zur Fragmentation. Er tritt auf, wenn zwei Objekte, Objekt \(a\) und Objekt \(b\) vom System die gleiche ID erhalten. Das System hält die beiden Objekte für ein einzelnes Objekt.}
 }
 
 \newglossaryentry{Lokalisationsfehler}
 {
 name=Lokalisationsfehler,
-description={Ein Fehler bei der Bestimmung der genauen Position eines Objekts. Lokalisationsfehler treten auf, wenn die vom Tracking-System bereitgestellte Position eines Objekts erheblich von seiner tatsächlichen Position abweicht.}
+description={Eine Abweichung von der genauen Position des detektierten Objekts.}
 }
 
 \newglossaryentrywithacronym
 {IDSW}
 {Identity Switch}
-{Ein Fehler, der auftritt, wenn die Identität eines Objekts während der Verfolgung fälschlicherweise von einem Objekt auf ein anderes gewechselt wird. Identity Switches beeinträchtigen die Konsistenz der Objektverfolgung und können die Interpretation der Bewegungspfade erschweren.}
+{Fehler eines MOT Systems. Ein Identity Switch tritt auf, wenn sich die Identifikationsnummer (ID) eines Objektes ändert, obwohl sie konstant bleiben sollte. Dabei berücksichtigt eine Identity Switch jedoch keine unvollständigen Trajektorie. Wird eine Trajektorie
+abgebrochen, obwohl sich das Objekt weiter im Ereignis befindet, gibt es keine ID die sich
+ändern kann.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %-----------------------MOT Metriken-----------------------------------------
@@ -186,78 +188,78 @@ description={Ein Fehler bei der Bestimmung der genauen Position eines Objekts. L
 \newglossaryentrywithacronym
 {MOTP}
 {Multiple Object Tracking Precision}
-{Ein Maß für die Präzision, mit der ein MOT-System die Positionen der verfolgten Objekte bestimmt. MOTP bewertet, wie genau die Lokalisierung der Objekte durch das System erfolgt, indem die durchschnittliche Distanz zwischen den vorhergesagten und den tatsächlichen Positionen der Objekte über alle Detektionen hinweg berechnet wird.}
+{Teil der \textit{\acrshort{CLEAR} \gls{MOT}} Metriken. Es ist ein Maß für die Präzision, mit der Lokalisation eines MOT Systems. MOTP berechnet sich über den Mittelwert der \(IoU\) aller echt positiven Detektionen.}
 
 \newglossaryentrywithacronym
 {MOTA}
 {Multiple Object Tracking Accuracy}
-{Ein Maß für die Gesamtgenauigkeit eines MOT-Systems, das die Anzahl der korrekten Detektionen (True Positives), die Fehldetektionen (False Negatives) und die Identitätswechsel (Identity Switches) berücksichtigt, um die Leistung des Systems in der Verfolgung mehrerer Objekte zu bewerten.}
+{Teil der \textit{\acrshort{CLEAR} \gls{MOT}} Metriken. Es ist ein Maß für die Gesamtgenauigkeit eines MOT-Systems, das die Anzahl der echt positiven Detektionen, die falsch negativen Detektionen und die IDSWs berücksichtigt.}
 
 \newglossaryentrywithacronym
 {MODA}
 {Multiple Object Detection Accuracy}
-{Eine Metrik, die die Genauigkeit der Objekterkennung innerhalb eines MOT-Systems bewertet. MODA berücksichtigt sowohl die Anzahl der korrekten Detektionen als auch die falsch positiven und falsch negativen Detektionen, um ein umfassendes Bild der Detektionsleistung zu geben.}
+{Teil der \textit{\acrshort{CLEAR} \gls{MOT}} Metriken. Es ist ein Maß für die Genauigkeit der Detektion. Die Berechnung erfolgt wie bei MOTA, nur ohne die Berücksichtigung der IDSWs.}
 
 \newglossaryentry{IDF1}
 {
 name=IDF1,
-description={Eine Metrik zur Bewertung der Identifikationsgenauigkeit in Multi-Object Tracking-Systemen. Sie misst das Verhältnis der korrekt identifizierten Detektionen zur Gesamtzahl der Detektionen und zur Anzahl der Ground-Truth-Objekte, um die Genauigkeit der Identitätszuordnung zu quantifizieren.}
+description={Es ist ein Maß für die Gesamtgenauigkeit eines MOT-Systems. Sie misst das Verhältnis der korrekt Assoziierten Detektionen zur Gesamtzahl der System-Detektionen und der Anzahl der Ground Truth Detektionen.}
 }
 
 \newglossaryentrywithacronym
 {HOTA}
 {Higher Order Tracking Accuracy}
-{Eine fortgeschrittene Metrik für die Bewertung von Multi-Object Tracking-Systemen, die sowohl die Detektions- als auch die Assoziationsleistung berücksichtigt. HOTA ist darauf ausgerichtet, ein ausgewogenes Maß für die Fähigkeit eines Systems zu bieten, Objekte korrekt zu detektieren und über Zeit korrekt zuzuordnen.}
+{Eine fortgeschrittene Metrik für die Bewertung von MOT Systemen, die sowohl die Detektions- als auch die Assoziationsgenaigkeit berücksichtigt. HOTA ist darauf ausgerichtet, die Teilkomponenten eines MOT Systems fair zu bewerten. Es ermöglicht eine ausführliche Systemanalyse mittels Submetriken.}
 
 \newglossaryentrywithacronym
 {DetA}
 {Detection Accuracy}
-{Die Genauigkeit, mit der ein System Objekte innerhalb eines Frames erkennt. DetA bewertet, wie effektiv das System in der Lage ist, relevante Objekte von nicht relevanten Hintergrundelementen zu unterscheiden.}
+{Submetrik der HOTA Metrik. Es ist ein Maß für die Gesamtgenauigkeit der Detektion. DetA berücksichtigt den Einfluss von unterschiedlichen Detektionsfehlern gleichwertig.}
 
 \newglossaryentrywithacronym
 {AssA}
 {Association Accuracy}
-{Die Genauigkeit der Zuordnung von Detektionen zu den richtigen Objektidentitäten über aufeinanderfolgende Frames hinweg in einem Multi-Object Tracking-System.}
+{Submetrik der HOTA Metrik. Es ist ein Maß für die Gesamtgenauigkeit der Assoziation. AssA berücksichtigt den Einfluss von unterschiedlichen Assoziationsfehlern gleichwertig.}
 
 \newglossaryentrywithacronym
 {DetRe}
 {Detection Recall}
-{Ein Maß für die Fähigkeit eines Systems, alle relevanten Objekte in einem Frame zu erfassen. DetRe bewertet den Anteil der korrekt detektierten Objekte im Verhältnis zur Gesamtzahl der tatsächlichen Objekte.}
+{Submetrik der HOTA Metrik. Es ist ein Maß für die Fehleranfälligkeit des MOT Systems für falsch negative Detektionen.}
 
 \newglossaryentrywithacronym
 {DetPr}
 {Detection Precision}
-{Die Präzision, mit der ein System Objekte innerhalb eines Frames detektiert. DetPr gibt an, welcher Anteil der vom System als Objekte identifizierten Detektionen tatsächlich korrekt ist.}
+{Submetrik der HOTA Metrik. Es ist ein Maß für die Fehleranfälligkeit des MOT Systems für falsch positive Detektionen.}
 
 \newglossaryentrywithacronym
 {AssRe}
 {Association Recall}
-{Ein Maß für die Fähigkeit eines MOT-Systems, über die Zeit korrekte Assoziationen zwischen den Detektionen und den tatsächlichen Objektidentitäten aufrechtzuerhalten.}
+{Submetrik der HOTA Metrik. Es ist ein Maß für die Fehleranfälligkeit des MOT Systems für falsch negative Assoziationen. AssRe erfasst die Häufung von Fragemntationsfehlern.}
 
 \newglossaryentrywithacronym
 {AssPr}
 {Association Precision}
-{Die Präzision der Zuordnung von Detektionen zu den korrekten Objektidentitäten über aufeinanderfolgende Frames hinweg in einem Multi-Object Tracking-System.}
+{Submetrik der HOTA Metrik. Es ist ein Maß für die Fehleranfälligkeit des MOT Systems für falsch positive Assoziationen. AssPr erfasst die Häufung von Merging Fehlern.}
 
 \newglossaryentrywithacronym
 {LocA}
 {Localization Accuracy}
-{Ein Maß für die Genauigkeit der Lokalisierung von Objekten durch ein MOT-System, das bewertet, wie genau die Positionen der detektierten Objekte mit ihren tatsächlichen Positionen übereinstimmen.}
+{Submetrik der HOTA Metrik. Es ist ein Maß für die Gesamtgenauigkeit der Lokalisation eines MOT Systems.}
 
 \newglossaryentrywithacronym
 {EPA}
 {Echt positive Assoziation}
-{Eine korrekt hergestellte Verbindung zwischen einer Detektion und der entsprechenden Identität eines Objekts über aufeinanderfolgende Frames hinweg.}
+{Teil des Assoziationskonzepts, welches die HOTA Metrik verwendet, zur Assoziationsevaluation. Die echt positiven Assoziationen \(EPA(e)\) einer echt positiven Detektion \(e\) sind alle EP , welche die gleiche ID wie \(e\) besitzen.}
 
 \newglossaryentrywithacronym
 {FPA}
 {Falsch positive Assoziation}
-{Eine fälschlicherweise hergestellte Verbindung zwischen einer Detektion und einer Objektidentität, bei der das System irrtümlich annimmt, dass eine Detektion einem bestimmten Objekt zugeordnet ist.}
+{Teil des Assoziationskonzepts, welches die HOTA Metrik verwendet, zur Assoziationsevaluation. Die falsch positiven Assoziationen \(FPA(e)\) einer echt positiven Detektion \(e\) sind alle System-Detektionen, welche die gleiche ID wie \(e\) besitzen, wo jedoch die Ground Truth ID eine andere ist.}
 
 \newglossaryentrywithacronym
 {FNA}
 {Falsch negative Assoziation}
-{Ein Fall, in dem das System versäumt, eine korrekte Verbindung zwischen einer Detektion und der entsprechenden Objektidentität über aufeinanderfolgende Frames hinweg herzustellen.}
+{Teil des Assoziationskonzepts, welches die HOTA Metrik verwendet, zur Assoziationsevaluation. Die falsch negativen Assoziationen \(FNA(e)\) einer echt positiven Detektion \(e\) sind alle  Ground-Truth-Detektionen, welche die gleiche ID wie \(e\) besitzen, wo jedoch die ID der System-Detektionen eine andere ist.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %------------------Machine Learning---------------------------------
@@ -267,211 +269,212 @@ description={Eine Metrik zur Bewertung der Identifikationsgenauigkeit in Multi-O
 {
         name=Maschinelles Lernen,
         text=maschinelles Lernen,
-        description={A mathematical expression}
-}
+        description={Ein Bereich der künstlichen Intelligenz. Lern-Algorithmen sind in der Lage eigenständig herauszufinden, was sie tun sollen. Ein Computerprogramm ist Lernfähig, wenn es sich durch Erfahrung \(E\) in seiner Performance \(P\) im Bezug auf die Bewältigung einer Aufgabe \(A\) verbessert.}
+} 
 
 \newglossaryentry{Feature}
 {
         name=Feature,
-        description={A mathematical expression}
+        description={Features sind die Erfahrung \(E\), mit welcher Lern-Algorithmen herausfinden was sie tun sollen. Es sind Merkmale, welche Informationen zu der zu lernenden Aufgabe \(A\) besitzen. I.d.r drücken Features ihre Informatin numerisch aus. Kategorische Features sind jedoch ebenfalls üblich.}
 }
 
 \newglossaryentry{Datenmatrix}
 {
         name=Datenmatrix,
-        description={A mathematical expression}
+        description={Die Darstellung der Features des Trainingsdatensatzes in tabelarischer Form. Jede Zeile beinhaltet die Features zu einr Probe.}
 }
 
 \newglossaryentry{Zielvektor}
 {
         name=Zielvektor,
-        description={A mathematical expression}
+        description={Ein Vektor in einem Datensatz, der die zu vorhersagenden oder zu klassifizierenden Ausgaben enthält.}
 }
 
 \newglossaryentry{Labelvektor}
 {
         name=Labelvektor,
-        description={A mathematical expression}
+        description={Ein Vektor, der die tatsächlichen Kategorien oder Ergebnisse für Trainingsdaten in einem überwachten Lernprozess enthält.}
 }
 
 \newglossaryentry{Featurevektor}
 {
         name=Featurevektor,
-        description={A mathematical expression}
+        description={Ein Vektor, der alle Merkmale (Features) eines Datenelements repräsentiert, oft verwendet als Eingabe in maschinelle Lernmodelle.}
 }
 
 \newglossaryentry{Modellparameter}
 {
         name=Modellparameter,
-        description={A mathematical expression}
+        description={Modellparameter sind die Parameter, welche ein Modell während des Trainingsprozesses selbstständig erlernt.}
 }
+
 
 \newglossaryentry{Hyperparameter}
 {
         name=Hyperparameter,
-        description={A mathematical expression}
+        description={Hyperparameter sind die Parameter, welche ein Nutzer vor dem Modelltraining Einstellen muss. Das Modell nimmt auf die Hyperparameter keinen Einfluss währen des Trainings. Über die Hyperparameter kann der Trainingsprozess beeinflusst werden.}
 }
 
 \newglossaryentry{Modelltraining}
 {
         name=Modelltraining,
-        description={A mathematical expression}
+        description={Der Prozess, in dem ein maschinelles Lernmodell aus den Features lernt und die Modellparameter anpasst, um eine Zielfunktion zu minimieren oder zu maximieren.}
 }
 
 \newglossaryentrywithacronym
 {MSE}
 {Mittlerer quadratischer Fehler}
-{Beschreibung folgt}
+{Ein Maß für die durchschnittliche quadratische Differenz zwischen den vorhergesagten und den tatsächlichen Werten eines maschinellen Lernmodells. Häufig verwendet als Verlustfunktion, um Modelle zu trainieren.}
 
 \newglossaryentry{Verlustfunktion}
 {
         name=Verlustfunktion,
-        description={A mathematical expression}
+        description={Eine Funktion, die den Fehler eines Modells quantifiziert; das Ziel des Trainings ist es, diese Funktion zu minimieren.}
 }
 
 \newglossaryentry{Zielfunktion}
 {
         name=Zielfunktion,
-        description={A mathematical expression}
+        description={Eine Funktion, für welche ein maschinelles Lernmodell im Training ein Optimum sucht, um die Modellparameter zu ermitteln.}
 }
 
 \newglossaryentry{Gradientenverfahren}
 {
         name=Gradientenverfahren,
-        description={A mathematical expression}
+        description={Ein Optimierungsverfahren zum lösen der Zielfunktion eines maschinellen Lernmodells durch schrittweise Anpassung der Modellparameter in Richtung des steilsten Abstiegs. Es wird nach dem Minimum gesucht.}
 }
 
 \newglossaryentry{Klassifikation}
 {
         name=Klassifikation,
-        description={A mathematical expression}
+        description={Ein maschinelles Lernverfahren, bei dem das Modell einer unbekannten Probe eine Klasse zuteilt. Das geschieht in Form eines Labels.}
 }
+
 
 \newglossaryentry{Mehrklassen Klassifizierung}
 {
         name=Mehrklassen Klassifizierung,
-        description={A mathematical expression}
+        description={Ein maschinelles Lernverfahren der Klassifikation, bei dem das Modell zwischen mehr als zwei Klassen unterschieden können muss. Viele Modelle sind nur auf die binäre Klassifikation ausgelegt.}
 }
 
 \newglossaryentry{Label}
 {
         name=Label,
-        description={A mathematical expression}
+        description={Ein Label ist eine Bezeichnung, die einer Probe in einem überwachten Lernprozess zugeordnet wird. Sie dient im Lernprozess dem Modell als Referenz, um das Schätzen einer Klasse oder eines Wert zu erlernen.}
 }
 
 \newglossaryentry{überwachtes Lernen}
 {
         name=überwachtes Lernen,
-        description={A mathematical expression}
+        description={Ein Lernverfahren, bei dem das Modell aus einem Datensatz lernt, der sowohl Features als auch dazu gehörige Labels enthält.}
 }
 
 \newglossaryentry{unüberwachtes Lernen}
 {
         name=unüberwachtes Lernen,
-        description={A mathematical expression}
+        description={Ein Lernverfahren,  bei dem das Modell aus einem Datensatz lernt, der nur Features enthält. Labels werden nicht verwendet. Es wird versucht, Muster zu finden, ohne dass Referenzen gegeben werden, wie diese Muster ausehen.}
 }
 
 \newglossaryentry{Deep Learning}
 {
         name=Deep Learning,
-        description={A mathematical expression}
+        description={Ein Teilbereich des maschinellen Lernens, der Netzwerke mit vielen Schichten verwendet, um komplexe Muster in Daten zu erkennen. Es nutzt einfachen Lern-Algorithmen, um komplexe Modelle aufzubauen.}
 }
 
 \newglossaryentry{Generalisierung}
 {
         name=Generalisierung,
-        description={A mathematical expression}
+        description={Die Fähigkeit eines maschinellen Lernmodells, auf neuen, unbekannten Daten gut zu performen, nachdem es auf einem Trainingsdatensatz gelernt hat.}
 }
 
 \newglossaryentry{Overfitting}
 {
         name=Overfitting,
-        description={A mathematical expression}
+        description={Ein Modell lernt beim Training die Trainingsdaten auswendig. Es ist dadurch nicht in der Lage zu generalisieren.}
 }
 
 \newglossaryentry{Underfitting}
 {
         name=Underfitting,
-        description={A mathematical expression}
+        description={Ein Modell lernt beim Training die Trainingsdaten unzureichend. Der Sachverhalt wird nicht gut vom Modell erfasst. Es ist dadurch nicht in der Lage zu generalisieren. Auch die Performance auf den Trainingsdaten ist schlecht.}
 }
 
 \newglossaryentry{Regularisierung}
 {
         name=Regularisierung,
-        description={A mathematical expression}
+        description={Eine Technik zur Vermeidung von Overfitting, indem die Komplexität des Modells eingeschränkt wird. Regularisierung kann über Hyperparameter eingestellt werden.}
 }
 
 \newglossaryentry{Bias}
 {
         name=Bias,
-        description={A mathematical expression}
+        description={Bias ist eine Voreingenommenheit des Modells. Unerkannt kann Bias eine Verzerrung der Schätzung des Modells verursachen, worunter die Performance leidet. Gezielt eingesetzt kann Bias helfen eine spezifische Aufgabe besser zu Modellieren.}
 }
 
 \newglossaryentry{Leakage}
 {
         name=Leakage,
-        description={A mathematical expression}
+        description={Das Auftreten von Informationen im Trainingsdatensatz, die bei der Modellerstellung nicht zur Verfügung stehen sollten, was zu einer überoptimistischen Schätzung der Modellleistung führt. Befinden sich Daten des Testdatensatzes auch im Trainingsdatensatz, tritt Leakage auf.}
 }
 
 \newglossaryentry{Machine Learning Workflow}
 {
         name=Machine Learning Workflow,
-        description={A mathematical expression}
+        description={Der systematisch Prozess zur entwicklung, Evaluierung und Anwendung von Algorithmen des maschinellen Lernens.}
 }
 
 \newglossaryentry{Wrapper Methoden}
 {
         name=Wrapper Methode,
-        description={A mathematical expression}
+        description={Methode zur Feature-Auswahl im Machine Learning Workflow. Die Features werden multivariat und modellabhängig beurteilt. Der Auswahlprozess ist Iterativ. Verschieden Feature-Kombinationen werden getestet und anhand der Modellperformance ausgewählt. }
 }
 
 \newglossaryentry{Filter Methoden}
 {
         name=Filter Methoden,
-        description={A mathematical expression}
+        description={Methode zur Feature-Auswahl im Machine Learning Workflow. Die Features werden univariat und modellunabhängig mit statistischen Methoden beurteilt. }
 }
 
 \newglossaryentry{Embedded Methoden}
 {
         name=Embedded Methoden,
-        description={A mathematical expression}
+        description={Methode zur Feature-Auswahl im Machine Learning Workflow. Die Features werden multivariat und modellabhängig beurteilt. Die Auswahl findet wärend des Trainings statt. Embedded Methoden sind im Modell selbst implementiert.}
 }
 
 \newglossaryentry{Testdatensatz}
 {
         name=Testdatensatz,
-        description={A mathematical expression}
+        description={Ein Datensatz, der zur Bewertung der Performance eines maschinellen Lernmodells verwendet wird, nachdem es mit einem Trainingsdatensatz trainiert wurde.}
 }
 
 \newglossaryentry{Trainingsdatensatz}
 {
         name=Trainingsdatensatz,
-        description={A mathematical expression}
+        description={Ein Datensatz, der zum Trainieren eines maschinellen Lernmodells verwendet wird, um Muster in den Daten zu erlernen.}
 }
 
 \newglossaryentry{Accuracy}
 {
         name=Accuracy,
-        description={A mathematical expression}
+        description={Eine Evaluationsmetrik für maschinelle Lernmodelle. Die Genauigkeit eines Modells, gemessen als Verhältnis der korrekt klassifizierten Proben zur der Gesamtanzahl aller Proben.}
 }
 
 \newglossaryentry{Konfusionsmatrix}
 {
         name=Konfusionsmatrix,
-        description={A mathematical expression}
+        description={Eine Evaluationsmetrik für maschinelle Lernmodelle. Eine Konfusionsmatrix bietet Einblick in die Fehler die das Modell macht. Sie zeigt, welche Verwechslungen passieren. Sie stellt die Evaluation tabellarisch dar.}
 }
 
 \newglossaryentry{Cross-Validation}
 {
         name=Cross-Validation,
-        description={A mathematical expression}
+        description={Eine Evaluationsmethode für maschinelle Lernmodelle, mit der kein zusätzlicher Validierungsdaten satz benötigt wird. Der Trainingsdatensatz wird in kleinere Teile aufgeteilt. Das Modell wird auf einem Teil des Datensatzes trainiert und auf einem anderen validiert. Dies wird mit allen Teile wiederholt. Das mittlere Validierungsergbnis ist das Gesamtergebnis.}
 }
-
 
 \newglossaryentrywithacronym
 {IMDB}
 {In-Memory-Datenbank}
-{Beschreibung folgt}
+{Ein Datenbanksystem, das Daten im Arbeitsspeicher eines Computers speichert, um schnellere Zugriffszeiten im Vergleich zu datenträgerbasierten Datenbanken zu erreichen.}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -481,13 +484,13 @@ description={Eine Metrik zur Bewertung der Identifikationsgenauigkeit in Multi-O
 \newglossaryentry{Python}
 {
         name=Python,
-        description={A mathematical expression}
+        description={Python ist eine höhere Programmiersprache. Sie arbeitet mit einem Codeinterpreter und ist objektorientiert. Python zeichnet sich durch eine klare und gut lesbare Syntax aus \cite{Pythondocumentation.20240309}.}
 }
 
 \newglossaryentry{Bibliothek}
 {
         name=Bibliothek,
-        description={A mathematical expression}
+        description={In der Programmierung eine Sammlung von Unterprogrammen, die für die Entwicklung von Software verwendet werden können, um bestimmte Aufgaben zu erleichtern. Oft bieten Bibliotheken  spezialisierte Funktionalität. \cite{Burkov.2019}}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
