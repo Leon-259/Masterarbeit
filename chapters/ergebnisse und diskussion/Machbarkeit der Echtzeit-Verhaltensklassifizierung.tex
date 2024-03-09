@@ -31,7 +31,7 @@ Mit diesem Wissen lässt sich die minimale und maximale Dauer bestimmen, die es 
     \end{cases}
 \end{equation}
 
- Echtzeitfähigkeit bedeutet, dass ein System innerhalb einer festgelegten Zeitspanne auf den Eingang reagiert. Das Ergebnis muss nach einer vorgegebenen Dauer feststehen \cite{Scholz.2005}. Für das Modul sind im Vorfeld keine harten Zeitschranken definiert worden, die einzuhalten sind. Jedoch ist über die Anforderung der lückenlose Abtastung indirekt eine Vorgabe an die Verarbeitungszeit formuliert. Die Dauer der Ermittelung des Ergebnisses muss kürzer sein, als der Ereignisintervall. Da diese Anforderung erfüllt wird, ist das Modul, als Echtzeitfähig zu bewerten. 
+ Die Echtzeitfähigkeit des Moduls ist gewährleistet, wenn das Klassifikationsergebnis vorliegt, während das Ereignis noch stattfindet. In \autoref{fig:EreignisDauer} sind die Ereignislängen dargestellt. Die Mittelwerte und Mediane der Längen der Verhaltensweisen liegen alle deutlich über 40,46 Sekunden. Die minimale Dauer eines Kampfes und eines Kontrollgangs liegen jedoch deutlich unterhalb. Somit lässt sich sagen, dass das Modul für die meisten Ereignisse Echtzeitfähig ist. Auf besonders kurze Kämpfe oder Kontrollgänge kein Einfluss genommen werden. In diesen Fällen ist die Forderung nach Echtzeitfähigkeit nicht erfüllt.
 
 
 \subsection{Evaluation der Verhaltensklassifikation}
@@ -103,6 +103,6 @@ Zusätzlich ist es möglich, dass die Features nicht gut darin sind, die eindeut
 
 
 \subsection{Fazit der Simulationsauswertung}
-Das Modul ist auf Basis der Anforderungen als Echtzeitfähig einzustufen. Zwischen Beginn eines Ereignisses und der Erkennung liegen zwischen 33,33 Sekunden und 40,46 Sekunden. Die Abtastrate beträgt im Mittel 4,14 Sekunden. Das Modul läuft stabil und kann konstant den Datenstrom eines Kamerabereichs von einem ganzen Tag verarbeiten. \par
+Das Modul ist auf Basis der Anforderungen als großteils Echtzeitfähig einzustufen. Die meisten Ereignisse können in Echtzeit erfasst werden. Zwischen Beginn eines Ereignisses und der Erkennung liegen zwischen 33,33 Sekunden und 40,46 Sekunden. Die Abtastrate beträgt im Mittel 4,14 Sekunden. Das Modul läuft stabil und kann konstant den Datenstrom eines Kamerabereichs von einem ganzen Tag verarbeiten. \par
 
 Die Verhaltensklassifizierung ist unzuverlässig. Kämpfe werden nicht erkannt. Hauptgrund sind vermutlich die geringe Datenmenge, unzureichende Features und die Komprimierung der Zeitreihen. Kontrollgänge werden zuverlässig erkannt, wenn auch eine Überempfindlichkeit vorhanden ist. Das bestätigt jedoch, dass eine Verhaltenserkennung möglich ist. Die Auswertung der Simulationsergebnisse besitzt eine Verzerrung zugunsten des Normalverhaltens. 

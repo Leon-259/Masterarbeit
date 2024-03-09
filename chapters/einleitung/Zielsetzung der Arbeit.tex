@@ -6,24 +6,26 @@ Die zentrale Forschungsfrage dieser Arbeit lautet:
     \textit{Wie kann unter Anwendung von Methoden des maschinellen Lernens ein System entwickelt werden, das die Detektion unerwünschten Verhaltens ermöglicht?}
 \end{quote}
 
-Durch die Frage wird die Relevanz der unerwünschten Verhaltensweisen verdeutlicht. Dabei handelt es sich um die Verhaltensweisen, bei denen wirtschaftliche Verluste entstehen und bei denen Tiere zu Schaden kommen. 
-Im Fokus dieser Arbeit stehen Kämpfe und Kontrollgänge. Explizit wird maschinelles Lernen genannt. Dadurch wird deutlich, dass der Fokus auf moderne Technologien gelegt wird und dass ein Ansatz für die Präzisionstierhaltung verfolgt wird. \par
+Durch die Formulierung wird der Fokus auf die unerwünschten Verhaltensweisen gelegt. Dabei handelt es sich um die Verhaltensweisen, bei denen wirtschaftliche Verluste entstehen und bei denen Tiere zu Schaden kommen. Im Fokus dieser Arbeit stehen Kämpfe und Kontrollgänge. Kontrollgänge sind eine Stresssituation für die Puten und in Kämpfen entstehen Verletzungen. Beide Verhaltensweisen können den Ausschuss erhöhen.
+Die Frage grenzt die Methodenauswahl ein. Es soll die Verwendung von maschinellem Lernen untersucht werden. Dadurch wird deutlich, dass der Fokus auf moderne Technologien gelegt wird und dass ein Ansatz für die Präzisionstierhaltung verfolgt wird. \par
 
-Aus dieser Fragestellung und dem Hintergrund lassen sich Ziele ableiten, welche in dieser Arbeit verfolgt werden sollen. Hauptziel ist die Realisierung einer Verhaltensklassifikation. Diese soll zuverlässig das Verhalten im Mastputenstall erkennen können. Direkt aus der Fragestellung geht hervor, dass dazu maschinelle Lernmethoden verwendet werden sollen. Relevant ist dabei vor allem die Anwendung in der industriellen Geflügelhaltung. Aus diesem Grund soll die Verhaltenserkennung in Echtzeit erfolgen. Wie in \autoref{sec:Hintergrund} dargestellt ist dies elementar, um Einfluss auf das Tierverhalten zu nehmen. Eine solche Einflussnahme kann im Rahmen eines umfangreichen Stallmanagmentsystems erfolgen. Um die Verhaltenserkennung für solche übergeordneten Systeme nutzen zu können, wird sie als Modul entwickelt. Dadurch ist sie leicht integrierbar. Dafür muss das Modul das Verhalten automatisiert erkennen können.\par
+Aus dieser Fragestellung und dem Hintergrund lassen sich Ziele ableiten, welche in dieser Arbeit verfolgt werden sollen. Hauptziel ist die Realisierung einer Verhaltensklassifikation von Mastputen. Diese soll zuverlässig das Verhalten im Mastputenstall erkennen können. Direkt aus der Fragestellung geht hervor, dass dazu maschinelle Lernmethoden verwendet werden sollen. Ziel ist dabei vor allem die Anwendung in der industriellen Geflügelhaltung. Aus diesem Grund soll die Verhaltenserkennung in Echtzeit erfolgen. Wie in \autoref{sec:Hintergrund} dargestellt ist dies elementar, um Einfluss auf das Tierverhalten zu nehmen. Eine solche Einflussnahme kann im Rahmen eines automatischen Stallmanagments erfolgen. Um die Verhaltenserkennung für solche übergeordneten Systeme nutzen zu können, wird sie als Modul entwickelt. Dadurch ist sie leicht integrierbar. Dafür muss das Modul das Verhalten automatisiert erkennen können.\par
+
+Echtzeitfähigkeit wird hier im Kontext von Software verwendet. Es bedeutet, dass ein System innerhalb einer festgelegten Zeitspanne auf den Eingang reagiert. Das Ergebnis muss nach einer vorgegebenen Dauer feststehen \cite{Scholz.2005}. Ziel ist es, dass das Modul eine Reaktion auf das Putenverhalten ermöglicht. Das Klassifikationsergebnis muss somit vorliegen, bevor das Ereignis vorbei ist.
 
 Zusammengefasst lassen sich folgende Ziele für die Arbeit formulieren.
 
 \begin{itemize}
     \item \textbf{Modularität}: \\
-    Es soll ein Modul entwickelt werden. 
+    Die Verhaltenserkennung soll als Modul entwickelt werden.
     \item \textbf{Echtzeitfähigkeit}: \\
-    Die Datenverarbeitung soll in Echtzeit möglich sein.
+    Die Datenverarbeitung soll in Echtzeit möglich sein. Das Klassifikationsergebnis muss vorliegen, bevor das Ereignis vorbei ist.
     \item \textbf{Verhaltenserkennung}: \\
-    Das Verhalten der Mastputen muss korrekt erkannt werden.
+    Die Verhaltensweisen der Mastputen müssen korrekt erkannt werden.
     \item \textbf{Verwendung von maschinellem Lernen}: \\
     Methoden des maschinellen Lernens sind anzuwenden.
     \item \textbf{Zuverlässigkeit}: \\
-    Die Verarbeitung soll zuverlässig und konstant laufen.
+    Die Verarbeitung soll zuverlässig laufen.
     \item \textbf{Automation}: \\
     Das Modul soll Daten automatisiert verarbeiten. 
 \end{itemize}
