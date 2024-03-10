@@ -17,7 +17,7 @@
 \newglossaryentry{Frame}
 {
         name=Frame,
-        description={Im Kontext von Video bezieht sich Frame auf ein einzelnes Bild in einer Reihe von Bildern, die zusammen eine Video bilden.}
+        description={Im Kontext von Videos bezieht sich Frame auf ein einzelnes Bild in einer Reihe von Bildern, die zusammen ein Video bilden.}
 }
 
 \newglossaryentry{Mid-Level Aufgabe}
@@ -35,7 +35,7 @@
 \newglossaryentry{Brownsche Bewegung}
 {
         name=Brownsche Bewegung,
-        description={Ist eine zufällige Bewegung von Teilchen in einer Flüssigkeit oder in einem Gas, die auf Stöße mit den Molekülen des Mediums zurückzuführen ist. Die Bewegungen sind Zufällig.}
+        description={Ist eine zufällige Bewegung von Teilchen in einer Flüssigkeit oder in einem Gas, die auf Stöße mit den Molekülen des Mediums zurückzuführen ist. Die Bewegungen sind zufällig.}
 }
 
 \newglossaryentrywithacronym
@@ -69,7 +69,7 @@
 \newglossaryentrywithacronym
 {MOT}
 {Multi-Object Tracking}
-{Ein Teilbereich des maschinellen Sehens, das darauf abzielt, mehrere Objekte in einem Video zu detektieren, lokalisieren und über die Zeit so zu Assozieieren, dass die Identitäten konstant zugeordnet bleiben \cite{HOTA}.}
+{Ein Teilbereich des maschinellen Sehens, das darauf abzielt, mehrere Objekte in einem Video zu detektieren, lokalisieren und über die Zeit so zu assoziieren, dass die Identitäten konstant zugeordnet bleiben \cite{HOTA}.}
 
 \newglossaryentry{Tracking}
 {
@@ -86,13 +86,13 @@ description={Ein Ansatz im Multi-Object Tracking, bei dem Objekte zunächst in j
 \newglossaryentry{Detektion}
 {
 name=Detektion,
-description={Das erkennen und markieren von Objekten in Frames, vorallem im Kontext des Multi-Objekt Trackings.}
+description={Das Erkennen und Markieren von Objekten in Frames, vorallem im Kontext des Multi-Objekt Trackings.}
 }
 
 \newglossaryentry{Assoziation}
 {
 name=Assoziation,
-description={Die Zuordnung von erkannten Objekten über aufeinanderfolgende Frames, um die  Identitäten der Objekt konstant zu halten. Vorallem im Kontext des Multi-Objekt Trackings verwendet.}
+description={Die Zuordnung von erkannten Objekten über aufeinanderfolgende Frames, um die  Identitäten der Objekte konstant zu halten. Vorallem im Kontext des Multi-Objekt Trackings verwendet.}
 }
 
 \newglossaryentry{Lokalisation}
@@ -110,7 +110,7 @@ description={Ein Tracking-Verfahren, bei dem alle Daten vor der Verarbeitung zur
 \newglossaryentry{Online Tracking}
 {
 name=Online Tracking,
-description={Ein Tracking-Verfahren, das die Daten sequenziell verarbeitet, ohne auf zukünftige Frames zuzugreifen, ideal für Echtzeitanwendungen.}
+description={Ein Tracking-Verfahren, das die Daten sequenziell verarbeitet, ohne auf zukünftige Frames zuzugreifen. Ideal für Echtzeitanwendungen.}
 }
 
 \newglossaryentry{Trajektorie}
@@ -159,13 +159,13 @@ description={Die genauen Detektionen, Positionen und Assoziationen der Objekte i
 \newglossaryentry{Fragmentation}
 {
 name=Fragmentation,
-description={Ein Assoziationsfehler. Eine Fragmentation tritt auf, wenn ein Objekt in den vergangenen Frames eine ID \(a\) zugewiesen bekommen hat und im aktuellen Frame eine ID \(b\) erhält. Die korrekte Trajektorie des Objektes besteht aus dem Fragment mit der ID \(a\) und \(b\). Eine Unvollständige Trajektorie zählt ebenfalls als Fragmentation.}
+description={Ein Assoziationsfehler. Eine Fragmentation tritt auf, wenn ein Objekt in den vergangenen Frames eine ID \(a\) zugewiesen bekommen hat und im aktuellen Frame eine ID \(b\) erhält. Die korrekte Trajektorie des Objektes besteht aus dem Fragment mit der ID \(a\) und \(b\). Eine unvollständige Trajektorie zählt ebenfalls als Fragmentation.}
 }
 
 \newglossaryentry{Merging Fehler}
 {
 name=Merging Fehler,
-description={Ein Assoziationsfehler. Ein Merging Fehler ist das gegenstück zur Fragmentation. Er tritt auf, wenn zwei Objekte, Objekt \(a\) und Objekt \(b\) vom System die gleiche ID erhalten. Das System hält die beiden Objekte für ein einzelnes Objekt.}
+description={Ein Assoziationsfehler. Ein Merging Fehler ist das Gegenstück zur Fragmentation. Er tritt auf, wenn zwei Objekte, Objekt \(a\) und Objekt \(b\) vom System die gleiche ID erhalten. Das System hält die beiden Objekte für ein einzelnes Objekt.}
 }
 
 \newglossaryentry{Lokalisationsfehler}
@@ -203,13 +203,13 @@ abgebrochen, obwohl sich das Objekt weiter im Ereignis befindet, gibt es keine I
 \newglossaryentry{IDF1}
 {
 name=IDF1,
-description={Es ist ein Maß für die Gesamtgenauigkeit eines MOT-Systems. Sie misst das Verhältnis der korrekt Assoziierten Detektionen zur Gesamtzahl der System-Detektionen und der Anzahl der Ground Truth Detektionen.}
+description={Es ist ein Maß für die Gesamtgenauigkeit eines MOT-Systems. Sie misst das Verhältnis der korrekt assoziierten Detektionen zur Gesamtzahl der System-Detektionen und der Anzahl der Ground Truth Detektionen.}
 }
 
 \newglossaryentrywithacronym
 {HOTA}
 {Higher Order Tracking Accuracy}
-{Eine fortgeschrittene Metrik für die Bewertung von MOT Systemen, die sowohl die Detektions- als auch die Assoziationsgenaigkeit berücksichtigt. HOTA ist darauf ausgerichtet, die Teilkomponenten eines MOT Systems fair zu bewerten. Es ermöglicht eine ausführliche Systemanalyse mittels Submetriken.}
+{Eine fortgeschrittene Metrik für die Bewertung von MOT Systemen, die sowohl die Detektions- als auch die Assoziationsgenauigkeit berücksichtigt. HOTA ist darauf ausgerichtet, die Teilkomponenten eines MOT Systems fair zu bewerten. Es ermöglicht eine ausführliche Systemanalyse mittels Submetriken.}
 
 \newglossaryentrywithacronym
 {DetA}
@@ -234,7 +234,7 @@ description={Es ist ein Maß für die Gesamtgenauigkeit eines MOT-Systems. Sie m
 \newglossaryentrywithacronym
 {AssRe}
 {Association Recall}
-{Submetrik der HOTA Metrik. Es ist ein Maß für die Fehleranfälligkeit des MOT Systems für falsch negative Assoziationen. AssRe erfasst die Häufung von Fragemntationsfehlern.}
+{Submetrik der HOTA Metrik. Es ist ein Maß für die Fehleranfälligkeit des MOT Systems für falsch negative Assoziationen. AssRe erfasst die Häufung von Fragementationsfehlern.}
 
 \newglossaryentrywithacronym
 {AssPr}
@@ -269,19 +269,19 @@ description={Es ist ein Maß für die Gesamtgenauigkeit eines MOT-Systems. Sie m
 {
         name=Maschinelles Lernen,
         text=maschinelles Lernen,
-        description={Ein Bereich der künstlichen Intelligenz. Lern-Algorithmen sind in der Lage eigenständig herauszufinden, was sie tun sollen. Ein Computerprogramm ist Lernfähig, wenn es sich durch Erfahrung \(E\) in seiner Performance \(P\) im Bezug auf die Bewältigung einer Aufgabe \(A\) verbessert.}
+        description={Ein Bereich der künstlichen Intelligenz. Lern-Algorithmen sind in der Lage eigenständig herauszufinden, was sie tun sollen. Ein Computerprogramm ist lernfähig, wenn es sich durch Erfahrung \(E\) in seiner Performance \(P\) im Bezug auf die Bewältigung einer Aufgabe \(A\) verbessert.}
 } 
 
 \newglossaryentry{Feature}
 {
         name=Feature,
-        description={Features sind die Erfahrung \(E\), mit welcher Lern-Algorithmen herausfinden was sie tun sollen. Es sind Merkmale, welche Informationen zu der zu lernenden Aufgabe \(A\) besitzen. I.d.r drücken Features ihre Informatin numerisch aus. Kategorische Features sind jedoch ebenfalls üblich.}
+        description={Features sind die Erfahrung \(E\), mit welcher Lern-Algorithmen herausfinden was sie tun sollen. Es sind Merkmale, welche Informationen zu der zu lernenden Aufgabe \(A\) besitzen. I.d.R drücken Features ihre Information numerisch aus. Kategorische Features sind jedoch ebenfalls üblich.}
 }
 
 \newglossaryentry{Datenmatrix}
 {
         name=Datenmatrix,
-        description={Die Darstellung der Features des Trainingsdatensatzes in tabelarischer Form. Jede Zeile beinhaltet die Features zu einr Probe.}
+        description={Die Darstellung der Features des Trainingsdatensatzes in tabelarischer Form. Jede Zeile beinhaltet die Features zu einer Probe.}
 }
 
 \newglossaryentry{Zielvektor}
@@ -312,7 +312,7 @@ description={Es ist ein Maß für die Gesamtgenauigkeit eines MOT-Systems. Sie m
 \newglossaryentry{Hyperparameter}
 {
         name=Hyperparameter,
-        description={Hyperparameter sind die Parameter, welche ein Nutzer vor dem Modelltraining Einstellen muss. Das Modell nimmt auf die Hyperparameter keinen Einfluss währen des Trainings. Über die Hyperparameter kann der Trainingsprozess beeinflusst werden.}
+        description={Hyperparameter sind die Parameter, welche ein Nutzer vor dem Modelltraining einstellen muss. Das Modell nimmt auf die Hyperparameter währen des Trainings keinen Einfluss. Über die Hyperparameter kann der Trainingsprozess beeinflusst werden.}
 }
 
 \newglossaryentry{Modelltraining}
@@ -341,7 +341,7 @@ description={Es ist ein Maß für die Gesamtgenauigkeit eines MOT-Systems. Sie m
 \newglossaryentry{Gradientenverfahren}
 {
         name=Gradientenverfahren,
-        description={Ein Optimierungsverfahren zum lösen der Zielfunktion eines maschinellen Lernmodells durch schrittweise Anpassung der Modellparameter in Richtung des steilsten Abstiegs. Es wird nach dem Minimum gesucht.}
+        description={Ein Optimierungsverfahren zum Lösen der Zielfunktion eines maschinellen Lernmodells durch schrittweise Anpassung der Modellparameter in Richtung des steilsten Abstiegs. Es wird nach dem Minimum gesucht.}
 }
 
 \newglossaryentry{Klassifikation}
@@ -354,7 +354,7 @@ description={Es ist ein Maß für die Gesamtgenauigkeit eines MOT-Systems. Sie m
 \newglossaryentry{Mehrklassen Klassifizierung}
 {
         name=Mehrklassen Klassifizierung,
-        description={Ein maschinelles Lernverfahren der Klassifikation, bei dem das Modell zwischen mehr als zwei Klassen unterschieden können muss. Viele Modelle sind nur auf die binäre Klassifikation ausgelegt.}
+        description={Ein maschinelles Lernverfahren der Klassifikation, bei dem das Modell zwischen mehr als zwei Klassen unterscheiden können muss. Viele Modelle sind nur auf die binäre Klassifikation ausgelegt.}
 }
 
 \newglossaryentry{Label}
@@ -408,7 +408,7 @@ description={Es ist ein Maß für die Gesamtgenauigkeit eines MOT-Systems. Sie m
 \newglossaryentry{Bias}
 {
         name=Bias,
-        description={Bias ist eine Voreingenommenheit des Modells. Unerkannt kann Bias eine Verzerrung der Schätzung des Modells verursachen, worunter die Performance leidet. Gezielt eingesetzt kann Bias helfen eine spezifische Aufgabe besser zu Modellieren.}
+        description={Bias ist eine Voreingenommenheit des Modells. Unerkannt kann Bias eine Verzerrung der Schätzung des Modells verursachen, worunter die Performance leidet. Gezielt eingesetzt kann Bias helfen eine spezifische Aufgabe besser zu modellieren.}
 }
 
 \newglossaryentry{Leakage}
@@ -420,13 +420,13 @@ description={Es ist ein Maß für die Gesamtgenauigkeit eines MOT-Systems. Sie m
 \newglossaryentry{Machine Learning Workflow}
 {
         name=Machine Learning Workflow,
-        description={Der systematisch Prozess zur entwicklung, Evaluierung und Anwendung von Algorithmen des maschinellen Lernens.}
+        description={Der systematische Prozess zur Entwicklung, Evaluierung und Anwendung von Algorithmen des maschinellen Lernens.}
 }
 
 \newglossaryentry{Wrapper Methoden}
 {
         name=Wrapper Methode,
-        description={Methode zur Feature-Auswahl im Machine Learning Workflow. Die Features werden multivariat und modellabhängig beurteilt. Der Auswahlprozess ist Iterativ. Verschieden Feature-Kombinationen werden getestet und anhand der Modellperformance ausgewählt. }
+        description={Methode zur Feature-Auswahl im Machine Learning Workflow. Die Features werden multivariat und modellabhängig beurteilt. Der Auswahlprozess ist iterativ. Verschieden Feature-Kombinationen werden getestet und anhand der Modellperformance ausgewählt. }
 }
 
 \newglossaryentry{Filter Methoden}
@@ -468,7 +468,7 @@ description={Es ist ein Maß für die Gesamtgenauigkeit eines MOT-Systems. Sie m
 \newglossaryentry{Cross-Validation}
 {
         name=Cross-Validation,
-        description={Eine Evaluationsmethode für maschinelle Lernmodelle, mit der kein zusätzlicher Validierungsdaten satz benötigt wird. Der Trainingsdatensatz wird in kleinere Teile aufgeteilt. Das Modell wird auf einem Teil des Datensatzes trainiert und auf einem anderen validiert. Dies wird mit allen Teile wiederholt. Das mittlere Validierungsergbnis ist das Gesamtergebnis.}
+        description={Eine Evaluationsmethode für maschinelle Lernmodelle, mit der kein zusätzlicher Validierungsdatensatz benötigt wird. Der Trainingsdatensatz wird in kleinere Teile aufgeteilt. Das Modell wird auf einem Teil des Datensatzes trainiert und auf einem anderen validiert. Dies wird mit allen Teilen wiederholt. Das mittlere Validierungsergbnis ist das Gesamtergebnis.}
 }
 
 \newglossaryentrywithacronym

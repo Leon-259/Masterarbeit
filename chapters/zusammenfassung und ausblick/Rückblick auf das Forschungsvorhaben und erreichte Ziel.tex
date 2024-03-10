@@ -6,7 +6,7 @@ Der Machine Learning Workflow diente als Leitpfaden für das Vorgehen. Innerhalb
 
 Von großem Vorteil für die Arbeit war Fachwissen über die Verhaltensweisen und ihre charakteristischen Merkmale. Im Rahmen des \acrshort{OptiLiMa} Projekts wurde sich bereits intensiv mit dem Verhalten der Tiere befasst. Dadurch konnte auf Wissen, Anwendungen und Daten zurückgegriffen werden (\ref{sec:Meth RohDat}). Das sorgte für eine große Zeitersparnis in vielerlei Hinsicht. Auch ermöglichte das Fachwissen eine sehr spezifische Feature-Extraktion und Konstruktion. \par
 
-Von Beginn an war bekannt, dass die Datenmenge sehr klein ist für Lern-Algorithmen. Durch Vorerfahrung war jedoch die Zeitlaufwendigkeit der manuellen Suche nach Kämpfen abschätzbar. Aus diesem Grund wurden keine weiteren Daten ermittelt. Stattdessen fiel der Fokus auf die Verifizierung der vorhandenen Daten und damit auf die Sicherstellung der Datenqualität. Der verfolgte Ansatz war somit Qualität über Quantität. Die Erkennung der Kontrollgänge gibt diesem Ansatz recht, während die Erkennung der Kämpfe zeigt, dass maschinelles Lernen nicht ganz ohne Quantität funktioniert. \par
+Von Beginn an war bekannt, dass die Datenmenge, für Lern-Algorithmen sehr klein ist. Durch Vorerfahrung war jedoch der Zeitaufwand der manuellen Suche nach Kämpfen abschätzbar. Aus diesem Grund wurden keine weiteren Daten ermittelt. Stattdessen fiel der Fokus auf die Verifizierung der vorhandenen Daten und damit auf die Sicherstellung der Datenqualität. Der verfolgte Ansatz war somit Qualität über Quantität. Die Erkennung der Kontrollgänge gibt diesem Ansatz recht, während die Erkennung der Kämpfe zeigt, dass maschinelles Lernen nicht ganz ohne Quantität funktioniert. \par
 
 Ein weiterer Faktor, welcher die Zeitplanung negativ beeinflusste, war die Bewertung des MOT Systems. Dies war ursprünglich nicht als Teil dieser Arbeit vorgesehen. Die Evaluation sollte im Rahmen einer anderen Arbeit stattfinden. Diese Arbeit brachte jedoch keine Ergebnisse hervor. Da eine Einschätzung der Qualität der Trajektorien große Relevanz für das Feature-Engineering hatte und generell für das \acrshort{OptiLiMa} Projekt, wurde sich dafür entschieden, die Zeit aufzubringen, um die Evaluation durchzuführen. Die meiste Zeit floss dabei in die Recherche zu den MOT Metriken. Vorteilhaft war, dass die Ground Truths durch die andere Arbeit vorhanden waren, sonst wäre eine Evaluation zeitlich nicht möglich gewesen.\par
 
@@ -24,7 +24,7 @@ Im Folgenden werden die einzelnen Ziele gesondert betrachtet.
 Die Modularität ist erfüllt, das zeigt das entwickelte Konzept in \autoref{sec:Meth FinalKonzept} und auch in der Umsetzung des Moduls (\autoref{sec:umse ModulKonzept}) wird die modulare Integration in eine Datenverarbeitungskette deutlich. Somit ist es einfach in ein automatisches Stallmanagment einzufügen.\par
 
 \textbf{Echtzeitfähigkeit}\\
-Die Echtzeitfähigkeit ist weitgehend gegeben. Das Modul erfasst ein Ereignis nach spätestens 40,46 Sekunden und erfüllt die zeitlichen Anforderungen, dass ein Ereignis noch läuft, zum Eintreffen des Klassifikationsergebnisses. Das ist in \autoref{sec:Ergeb Sim} dargestellt. Sehr kurze Kämpfe und Kontrollgänge werden nicht rechtzeitig erkannt.\par
+Die Echtzeitfähigkeit ist weitgehend gegeben. Das Modul erfasst ein Ereignis nach spätestens 40,46 Sekunden und erfüllt die zeitlichen Anforderungen, dass ein Ereignis, zum Eintreffen des Klassifikationsergebnisses noch läuft. Das ist in \autoref{sec:Ergeb Sim} dargestellt. Sehr kurze Kämpfe und Kontrollgänge werden nicht rechtzeitig erkannt.\par
 
 \textbf{Verhaltenserkennung}\\
 Die Verhaltenserkennung erfüllt das Ziel nicht zufriedenstellend. Zwar zeigt die Erkennung der Kontrollgänge, dass das Modul Verhalten teilweise richtig erkennen kann, jedoch scheitert es an den Kampfereignissen. Das Modul kann einen Kampf nicht von Normalverhalten unterscheiden. \par
@@ -33,7 +33,7 @@ Die Verhaltenserkennung erfüllt das Ziel nicht zufriedenstellend. Zwar zeigt di
 Das Ziel wurde erfolgreich umgesetzt. Die ausführliche Darstellung der Anwendung des Machine Learning Workflows zeigt, wie im Kontext einer Verhaltensklassifizierung von Mastputen maschinelles Lernen verwendet wird. Somit ist eine maschinelle Verhaltensinterpretation realisiert. \par
 
 \textbf{Zuverlässigkeit}\\
-Das Modul konnte in der Simulation ohne Fehler im Programmablauf zwei volle Tage auswerten. Somit ist die Zuverlässigkeit des Konzepts bestätigt. Langzeittests sind jedoch nicht durchgeführt worden. Somit ist das Ziel mit Vorbehalt als erreicht zu beurteilen. 
+Das Modul konnte in der Simulation, ohne Fehler im Programmablauf zwei volle Tage auswerten. Somit ist die Zuverlässigkeit des Konzepts bestätigt. Langzeittests wurden jedoch nicht durchgeführt. Somit ist das Ziel mit Vorbehalt als erreicht zu beurteilen. 
 \par
 
 \textbf{Automation}\\
