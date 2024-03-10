@@ -1,11 +1,11 @@
 \section{Feature-Auswahl, Hyperparametersuche und Modellauswahl} \label{sec:Ergeb FeatSel,Hyp,ModSel}
-Um eine optimale Feature-Menge zu finden, wird aus einer Reihe von Versuchen mit Wrapper-Methoden eine Feature-Rangfolge abgeleitet. Um die Feature-Menge unabhängig vom Modell zu beurteilen, wird die Accuracy von mehreren Modellen validiert und anschließend gemittelt. In diesem Kapitel werden die Feature-Rangfolgen der Filter-Methoden betrachtet. Damit wird die konstruierte Rangfolge aus dem Wrapper-Score verglichen. Es wird untersucht, ob sich das Entfernen von Features, die auf dem gleichen Basis-Feature aufbauen, positive auswirkt. Ebenfalls wird untersucht, ob alle Feature-Kategorien benötigt werden. Abschließen tut das Kapitel mit dem Vergleich der betrachteten Modelle und dem finalen Test des ausgewählten Modells.\par
+Um eine optimale Feature-Menge zu finden, wird aus einer Reihe von Versuchen mit Wrapper-Methoden eine Feature-Rangfolge abgeleitet. Um die Feature-Menge unabhängig vom Modell zu beurteilen, wird die Accuracy von mehreren Modellen validiert und anschließend gemittelt. In diesem Kapitel werden die Feature-Rangfolgen der Filter-Methoden betrachtet. Damit wird die konstruierte Rangfolge aus dem Wrapper-Score verglichen. Es wird untersucht, ob sich das Entfernen von Features, die auf dem gleichen Basis-Feature aufbauen, positive auswirkt. Ebenfalls wird untersucht, ob alle Feature-Kategorien benötigt werden. Abschließend vergleicht das Kapitel die betrachteten Modelle und führt den finalen Test des ausgewählten Modells durch.\par
 
-Ziel der Untersuchung ist es, für das Modul das bestmögliche Modell zu schaffen. Zu suchen ist eine Feature-Menge und ein Modell, welche besser performen, als andere Feature-Mengen oder Modelle. Zu berücksichtigen ist die Verarbeitungszeit. Für das Modul ist eine kleine Feature-Menge vorteilhafter für die Echtzeitfunktionalität. \par
+Das Ziel der Untersuchung besteht darin, das bestmögliche Modell für das Modul zu entwickeln. Dabei wird nach einer Feature-Menge und einem Modell gesucht, die besser performen als andere Feature-Mengen oder Modelle. Dabei ist es wichtig, auch die Verarbeitungszeit zu berücksichtigen. Für das Modul ist eine kleine Feature-Menge vorteilhafter, um die Echtzeitfunktionalität zu gewährleisten. \par
 
 
 \subsection{Vergleich der Filter-Methoden mit der entworfenen Rangfolge}
-Die Plots in der Abbildung \ref{fig:plotMethVergl} zeigen den Verlauf der Accuracy in Bezug zur Feature-Menge gemäß der jeweiligen Rangfolge. Dargestellt sind die Varianzanalyse, die gegenseitige Information und der Wrapper-Score. Zur besseren Vergleichbarkeit sind die Sättigungskurve eingezeichnet. Die Tabelle \ref{tab:FiltVsWrap} zeigt einen tabellarischen Vergleich.
+Die Plots in Abbildung \ref{fig:plotMethVergl} zeigen den Verlauf der Accuracy in Bezug auf die Feature-Menge gemäß der jeweiligen Rangfolge. Dabei sind die Varianzanalyse, die gegenseitige Information und der Wrapper-Score dargestellt. Zur besseren Vergleichbarkeit sind die Sättigungskurve eingezeichnet. Die Tabelle \ref{tab:FiltVsWrap} zeigt einen tabellarischen Vergleich der Ergebnisse.
 
 \begin{figure}[htbp]
      \centering
@@ -43,9 +43,9 @@ Wrapper-Score & 85 & 36 \\
 \end{tabular}
 \end{table}
 
-Es ist zu sehen, dass die Rangfolge nach dem Wrapper-Score im besten Verlauf der Accuracy resultiert. Die Sättigung wird mit der kleinsten Feature-Menge erreicht und die Accuracy ist im Vergleich am höchsten. Das legitimiert das Vorgehen. \par
+Es ist zu sehen, dass die Rangfolge nach dem Wrapper-Score zu einem optimalen Verlauf der Accuracy resultiert. Die Sättigung wird mit der kleinsten Feature-Menge erreicht und die Accuracy ist im Vergleich am höchsten. Das legitimiert das angewandte Vorgehen. \par
 
-Wie in \autoref{sec:Meth KonstrFeatures} dargestellt, liegt die Feature-Anzahl bei 3114. Die Plots zeigen, dass nur ein Bruchteil dieser Menge notwendig ist, um die Sättigung zu erreichen. Das spricht für viel Redundanz in den Features.
+Wie in \autoref{sec:Meth KonstrFeatures} dargestellt, liegt die Feature-Anzahl bei 3114. Die Plots zeigen, dass nur ein Bruchteil dieser Menge notwendig ist, um die Sättigung zu erreichen. Das deutet auf eine hohe Redundanz in den Features hin.
 
 
 \subsection{Auswirkungen der Entfernung von Features gleicher Basis} \label{sec:Ergeb FeatKategories}
@@ -84,7 +84,7 @@ Wie in \autoref{sec:Meth KonstrFeatures} dargestellt, liegt die Feature-Anzahl b
      \label{fig:plotRIPsame Bais Wrap}
 \end{figure}
 
-Die Rangfolgen werden bearbeitet. Von den Features, die auf dem gleichen Basis-Feature aufbauen, befindet sich schließlich nur noch das Höchstrangige in der Rangfolge. Dadurch soll Redundanz reduziert werden. In der Abbildung \ref{fig:plotRIPsame Bais} sind die entsprechenden Plots zu den Rangfolgen der Filter-Methoden zu sehen und in der Abbildung \ref{fig:plotRIPsame Bais Wrap} sind die des Wrapper-Scores zu sehen. In der Tabelle \ref{tab:entfSameBasis} befindet sich ein tabellarischer Vergleich.
+Die Rangfolgen werden überarbeitet, wobei nur das am höchsten bewertete Feature, das auf dem gleichen Basis-Feature aufbaut in der Rangfolge verbleibt Dadurch soll Redundanz reduziert werden. In der Abbildung \ref{fig:plotRIPsame Bais} sind die entsprechenden Plots zu den Rangfolgen der Filter-Methoden zu sehen und in Abbildung \ref{fig:plotRIPsame Bais Wrap} sind die des Wrapper-Scores zu sehen. In Tabelle \ref{tab:entfSameBasis} befindet sich ein tabellarischer Vergleich.
 
 \begin{table}[htbp]
 \centering
@@ -105,11 +105,11 @@ Wrapper-Score & 86 & 34 \\
 \end{tabular}
 \end{table}
 
-Es ist zu sehen, dass sich das Entfernen von Features, mit gleicher Basis, auf alle Feature-Rangfolgen positiv ausgewirkt. Es wird eine bessere Accuracy mit weniger Features erreicht. Somit lässt sich sagen, dass tatsächlich Redundanzen entfernt werden, wodurch eine Feature-Menge entsteht, welche dem Modell mehr Information bietet als zuvor.
+Es ist zu sehen, dass sich das Entfernen von Features mit gleicher Basis auf alle Feature-Rangfolgen positiv ausgewirkt. Es wird eine bessere Accuracy mit weniger Features erreicht. Somit lässt sich sagen, dass tatsächlich Redundanzen entfernt werden, wodurch eine Feature-Menge entsteht, welche dem Modell mehr Information bietet als zuvor.
 
 \clearpage
 \subsection{Performancevergleich der Feature-Kategorien}
-Aus der Rangfolge des Wrapper-Scores werden nur bestimmte Feature-Kategorien und Kombinationen von Kategorien getestet. Die Verläufe der Accuracy sind in der Abbildung \ref{fig:plotCompKateg} zu sehen. Eine tabellarische Darstellung befindet sich in der Tabelle \ref{tab:comKate}.
+Aus der Rangfolge des Wrapper-Scores werden nur bestimmte Feature-Kategorien und Kombinationen von Kategorien getestet. Die Verläufe der Accuracy sind in Abbildung \ref{fig:plotCompKateg} zu sehen. Eine tabellarische Darstellung befindet sich in Tabelle \ref{tab:comKate}.
 
 \begin{figure}[htb]
      \centering
@@ -184,13 +184,11 @@ Basis-Interaktion-Quantil-Log-BoxCox & 85 & 30 \\
 \end{tabular}
 \end{table}
 
-Es ist zu sehen, dass die höchste Accuracy mit der Kombination aus den Basis-Features, den Interaktionsfeatures und den Quantil-Features erreicht wird, oder mit der gleichen Kombination, mit den logarithmischen Features zusätzlich. Im zweiten Fall wird die Sättigung mit einem Feature weniger erreicht. Um die Berechnung der logarithmischen Features einzusparen, wird sich für die erste Kombination entschieden.\par
-
-Die Box-Cox-Features und die logarithmischen Features werden nicht verwendet für das Modul.
+Es ist zu sehen, dass die höchste Accuracy mit der Kombination aus den Basis-Features, den Interaktionsfeatures und den Quantil-Features erreicht wird. Das Hinzufügen logarithmischen Features verschlechtert die Wertung nicht, jedoch zeigt dies auch, dass auf die logarithmischen Features verzichtet werden kann. Auf die Box-Cox-Features werden für das Modul nicht verwendet.\par
 
 
 \subsection{Untersuchungen zur Modellauswahl} \label{sec:ErgebModSelEval}
-Die Abbildung \ref{fig:plotCompModel} zeigt die Plots der Accuracy zu den unterschiedlichen Modellen. In der Tabelle \ref{tab:compModel} ist der Vergleich der Sättigungspunkte zu sehen.
+Die Abbildung \ref{fig:plotCompModel} zeigt die Plots der Accuracy zu den unterschiedlichen Modellen. In Tabelle \ref{tab:compModel} ist der Vergleich der Sättigungspunkte zu sehen.
 
 \begin{figure}[p]
      \centering
@@ -251,9 +249,9 @@ Histografisches Gradient Boosting & 86 & 21 \\
 \end{tabular}
 \end{table}
 
-Es ist zu sehen, dass Unterschiede in der Performance zwischen den Modellen, nach der Hyperparametersuche kaum vorhanden sind. Die niedrigste Feature-Anzahl benötigt die logistische Regression. Bei Betrachtung der Abbildung \ref{fig:plotCompModel} wirkt es jedoch so, dass die Sättigungskurve hier den Verlauf nicht richtig approximiert. Der tatsächliche Sättigungspunkt wird ebenfalls bei ca. 20 Features erreicht. Am besten schneiden die SVMs ab. Die polynomiale SVM erreicht die Sättigung mit einer etwas kleineren Feature-Anzahl als die lineare SVM. Aus diesem Grund fällt die Entscheidung auf die polynomiale SVM.
+Es ist zu sehen, dass nach der Hyperparameter-Suche kaum Unterschiede in der Performance der Modelle vorhanden ist. Die niedrigste Feature-Anzahl benötigt die logistische Regression. Bei  der Betrachtung von Abbildung \ref{fig:plotCompModel} wirkt es jedoch so, dass die Sättigungskurve hier den Verlauf nicht richtig approximiert. Der tatsächliche Sättigungspunkt wird ebenfalls bei ca. 20 Features erreicht. Am besten schneiden die SVMs ab. Die polynomiale SVM erreicht die Sättigung mit einer etwas kleineren Feature-Anzahl als die lineare SVM. Aus diesem Grund fällt die Entscheidung auf die polynomiale SVM.
 
-Die Abbildung \ref{fig:plotTrainTestFinal} zeigt den Vergleich der Accuracy des Trainings, der Validierung und des Testens. Es ist zu sehen, dass die Wertungen nah aneinander verlaufen. Dadurch ist auszuschließen, dass das Modell overfittet. Dass der Trainingswert etwas besser ist, als der Validierungswert und der Testwert ist üblich und zu erwarten. 
+Die Abbildung \ref{fig:plotTrainTestFinal} zeigt den Vergleich der Accuracy des Trainings, der Validierung und des Testens. Es ist zu sehen, dass die Werte eng beieinander  verlaufen. Dadurch ist auszuschließen, dass das Modell overfittet. Es ist üblich und zu erwarten, dass der Trainingswert etwas besser ist als der Validierungswert und der Testwert. 
 
 \begin{figure}[htb]
     \centering
@@ -283,4 +281,4 @@ Die Tabelle \ref{tab:KonfMatr} zeigt die Konfusionsmatrix des finalen Tests.
 
 \clearpage
 \subsection{Fazit der Untersuchungen zur Feature-Auswahl und der Modellauswahl}
-Die Ermittlung der Feature-Rangfolge über den Wrapper-Score übertrifft die der Filter-Methoden. Dadurch ist bestätigt, dass multivariate Einflüsse Modell unabhängig berücksichtigt werden. Das Entfernen von Features, die sich die Basis teilen, reduziert Redundanz und verbesser die Feature-Rangfolge. Für eine gute Performance ist es ausreichend nur die Basis-Features, die Quantil-Features und die Interaktionsfeatures zu ermitteln. Mit dieser Rangfolge und den eingestellten Hyperparametern sind nur kleine Unterschiede in der Performance der Modelle festzustellen. Mit der polynomialen SVM lässt sich laut den Daten die beste Accuracy mit der kleinsten Feature-Anzahl erreichen. Dieses Modell wird ausgewählt. Um stabiler in der Sättigung zu liegen wird die Feature-Anzahl auf 40 vergrößert.
+Die Verwendung des Wrapper-Scores zur Ermittlung der Feature-Rangfolge hat sich als überlegen gegenüber den Filter-Methoden erwiesen. Dies bestätigt, dass der Wrapper-Score multivariate Einflüsse unabhängig vom Modell berücksichtigt. Das Entfernen von Features, die sich die Basis teilen, reduziert Redundanz und verbessert die Feature-Rangfolge. Für eine gute Performance ist es ausreichend nur die Basis-Features, die Quantil-Features und die Interaktionsfeatures zu ermitteln. Mit dieser Rangfolge und den eingestellten Hyperparametern sind nur kleine Unterschiede in der Performance der Modelle festzustellen. Mit der polynomialen SVM lässt sich laut den Daten die beste Accuracy mit der kleinsten Feature-Anzahl erreichen. Dieses Modell wird ausgewählt. Um stabiler in der Sättigung zu liegen, wird die Feature-Anzahl auf 40 vergrößert.
