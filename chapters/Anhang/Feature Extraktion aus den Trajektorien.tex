@@ -2,13 +2,29 @@
 \section*{Feature-Extraktion aus den Trajektoiren}
 
 \begin{pythoncodeAnhang}{Feature-Extraktino aus den Trajektorien mit \textit{Numba} just-in-time Kompilierung.}
-@staticmethod
+#Initialisierung der Just-in-Time kompilierung
 @jit(nopython=True, parallel=True, cache=True)
-def __get_features(self, trajIDs, frames, unixtimestamps, x_vals, y_vals):
+
+#Funktion zur Feature-Extraktion
+#Jeder Eintrag der Arrays bezieht sich auf eine Detektion
+
+#trajIDs:        Array der IDs der Trajektorien
+#frames:         Array mit den Nummern der Frames
+#unixtimestamps: Array mit den Unixzeitstempeln zu den Frames
+#x_vals:         Array mit den X werten zu den Detektionen
+#y_vals:         Array mit den X werten zu den Detektionen
+def __get_features(self, trajIDs, frames, unixtimestamps, 
+                x_vals, y_vals):
+    
+    #Höchste Trajektorien ID. Wird für die Iteration benötigt
     trajIDmax = np.nanmax(trajIDs)
 
-    geschwindigkeiten = np.full((trajIDmax, 1), np.nan, np.float32)
-    beschleunigungen = np.full((trajIDmax, 1), np.nan, np.float32)
+    #Initalisierungen der Arrays für die Feature-Werte
+    #Für jede Trajektorie wird ein Eintrag initialisiert
+    #Bei der Kompilierung muss vorher feststehen wie viel
+    #Wieviel Speicherplatz benötigt wird.
+    geschwind = np.full((trajIDmax, 1), np.nan, np.float32)
+    beschleun = np.full((trajIDmax, 1), np.nan, np.float32)
     stepCount = np.full((trajIDmax, 1), np.nan, np.float32)
     distanzen = np.full((trajIDmax, 1), np.nan, np.float32)
     strecken = np.full((trajIDmax, 1), np.nan, np.float32)
@@ -16,98 +32,113 @@ def __get_features(self, trajIDs, frames, unixtimestamps, x_vals, y_vals):
     x_geschw = np.full((trajIDmax, 1), np.nan, np.float32)
     y_geschw = np.full((trajIDmax, 1), np.nan, np.float32)
 
+    #Starten der Iterationen durch die Trajektorien
+    #prange: Numba-Funktion, parallelisiert die For-Schleife 
     for id in prange(trajIDmax):
-    #for id in range(trajIDmax):
-        idx = np.atleast_1d(np.where(trajIDs == id)[0]) #hole die indizes der einträge von der trajektorie mit der ID=id
+
+        #ID-Indizes aus trajIDs zu der betrachteten Trajektorie
+        idx = np.atleast_1d(np.where(trajIDs == id)[0])
+
+        #Frame Nummer zu den Einträgen der Trajektorie
+        framesTraj = frames[idx]    
+        #Unixzeiten zu den Einträgen der Trajektorie
+        unixtimestampsTraj = unixtimestamps[idx] 
+        #X-Werte & Y-Werte zu den Einträgen der Trajektorie
+        x_valsTraj = x_vals[idx]
+        y_valsTraj = y_vals[idx]
+
+        #Differenzen zwischen den X-Werten (Y-Werten)
+        #Schrittweiten bzw. Partielle Ableitung nach x (y)
+        x_diffsTraj = np.diff(x_valsTraj)
+        y_diffsTraj = np.diff(y_valsTraj) 
+
+        #Zeitschritte in Sekunden
+        timeDiffsTraj = np.diff(np.divide(unixtimestampsTraj,\
+                                1000))        
+
+        #Zurückgelegte Distanzen in den einzelnen Schritten
+        streckeStepsTraj = np.sqrt((x_diffsTraj**2) + \
+                                    (y_diffsTraj**2))
+
+        #Geschwindigkeiten & Beschleunigung in jedem Schritt
+        geschwindigkeitenTraj = np.divide(streckeStepsTraj, \ 
+                                        timeDiffsTraj)
+        beschleunigungenTraj = np.divide(geschwindigkeitenTraj, \
+                                        timeDiffsTraj)
         
-        if idx.size == 0: continue # wenn keine einträge mit dieser ID vorhanden sind überspringe alles weitere (Nur sicherheitsmasnahme)
+        #Mittlere Geschwindigkeit der Trajektorie
+        geschwind[id] = np.nanmean(geschwindigkeitenTraj)
         
-        framesTraj = frames[idx]                        # FrameIDs zu den Frames, in denen die Trajektorie aktiv war
-        unixtimestampsTraj = unixtimestamps[idx]        # Unixtimestamps in denen die Trajektorie messwerte hat
-        x_valsTraj = x_vals[idx]                        # X-koordinaten der Bbox mittelpunkte der positionen
-        y_valsTraj = y_vals[idx]                        # Y-koordinaten der Bbox mittelpunkte der positionen
-        x_diffsTraj = np.diff(x_valsTraj)               # Differenzen der x koordinaten
-        y_diffsTraj = np.diff(y_valsTraj)               # Differenzen der y koordinaten 
-        timeDiffsTraj = np.diff(np.divide(unixtimestampsTraj, 1000))        # Zeitschritte in sekunden
-        streckeStepsTraj = np.sqrt((x_diffsTraj**2) + (y_diffsTraj**2))     #Zurückgelegte distanzen in den einzelnen schritten
-        geschwindigkeitenTraj = np.divide(streckeStepsTraj, timeDiffsTraj)
-        beschleunigungenTraj = np.divide(geschwindigkeitenTraj, timeDiffsTraj)
+        #Mittlere Beschleunigung der Trajektorie#
+        beschleun[id] = np.nanmean(beschleunigungenTraj)
         
-        ### GESCHWINDIGKEITEN ###
-        if geschwindigkeitenTraj.size == 0:
-            geschwindigkeiten[id] = np.nan  
-        else:  
-            geschwindigkeiten[id] = np.nanmean(geschwindigkeitenTraj)
-        ### BESCHLEUNIGUNGEN ###
-        if beschleunigungenTraj.size == 0:
-            beschleunigungen[id] = np.nan    
-        else:
-            beschleunigungen[id] = np.nanmean(beschleunigungenTraj)
-        ### SCHRITTANZAHL ###
-        if framesTraj.size != 0:
-            stepCount[id] = framesTraj.size 
-        else:
-            stepCount[id] = np.nan
-        ### DISTANZ ###
-        if x_diffsTraj.size == 0 and y_diffsTraj == 0:
-            distanzen[id] = np.nan    
-        else:
-            distanzen[id] = np.sqrt((np.nansum(x_diffsTraj)**2) + (np.nansum(y_diffsTraj)**2))    #Euclidischer abstand von startpunkt zu endpunkt
-        ### STRECKE ###
-        if streckeStepsTraj.size == 0:
-            strecken[id] = np.nan
-        else:    
-            strecken[id] = np.nansum(streckeStepsTraj)
-        ### KURVIGKEIT ###
-        if np.isnan(distanzen[id]) or np.isnan(strecken[id]) or distanzen[id] == 0:
-            kurvigkeiten[id] = np.nan
-        elif strecken[id] < 2*np.max(framesTraj):       #bewegt sich das tier nicht, dann wird keine Kurvigkeit ermittelt. 2 Pix Lokalisationsschwankung pro frame ist die schranke
+        #Schrittanzahl der Trajektorie
+        stepCount[id] = np.nan
+
+        #Distanz: Euklidischer Abstand von Startpunkt zu Endpunkt
+        distanzen[id] = np.sqrt((np.nansum(x_diffsTraj)**2) + \
+                                (np.nansum(y_diffsTraj)**2))  
+        
+        #Strecke: Bewegungslinie der Trajektorie
+        strecken[id] = np.nansum(streckeStepsTraj)
+        
+        #Kurvigkeit: Strecke/Distanz
+        #Ist die Strecke nur auf Schwankungen der Lokalisation 
+        #Zurückzuführen, wird die Kurvigkeit auf 1 gesetzt
+        if strecken[id] < 2*np.max(framesTraj):
             kurvigkeiten[id] = 1
         else:
             kurvigkeiten[id] = strecken[id]/distanzen[id]
-        ### X_GESCHWINDIGKEIT ###
-        if x_diffsTraj.size == 0 or timeDiffsTraj.size == 0:
-            x_geschw[id] = np.nan
-        else:
-            x_geschw[id] = np.nansum(x_diffsTraj)/np.nansum(timeDiffsTraj)
-        ### Y_GESCHWINDIGKEIT ###
-        if y_diffsTraj.size == 0 or timeDiffsTraj.size == 0:
-            y_geschw[id] = np.nan
-        else:
-            y_geschw[id] = np.nansum(y_diffsTraj)/np.nansum(timeDiffsTraj)
 
-    meanGeschwindigkeiten = np.nanmean(geschwindigkeiten)
-    stdGeschwindigkeiten = np.nanstd(geschwindigkeiten)
-    maxGeschwindigkeiten = np.nanmax(geschwindigkeiten)
-    minGeschwindigkeiten = np.nanmin(geschwindigkeiten)
+        #Geschwindigkeit in x (y) Richtung
+        x_geschw[id] = \
+            np.nansum(x_diffsTraj)/np.nansum(timeDiffsTraj)
+        y_geschw[id] = \
+            np.nansum(y_diffsTraj)/np.nansum(timeDiffsTraj)
 
-    meanBeschleunigungen = np.nanmean(beschleunigungen)
-    stdBeschleunigungen = np.nanstd(beschleunigungen)
-    maxBeschleunigungen = np.nanmax(beschleunigungen)
-    minBeschleunigungen = np.nanmin(beschleunigungen)
+    #Feature-Extraktion. Komprimieren der Zeitreihen der 
+    #Trajektorien zu den Features
 
+    #Geschwindigkeitsfeatures
+    meanGeschwindigkeiten = np.nanmean(geschwind)
+    stdGeschwindigkeiten = np.nanstd(geschwind)
+    maxGeschwindigkeiten = np.nanmax(geschwind)
+    minGeschwindigkeiten = np.nanmin(geschwind)
+
+    #Drift-Geschwindigkeit-Feature
+    x_drift = np.nansum(x_geschw)
+    y_drift = np.nansum(y_geschw)
+    drift_geschw = np.sqrt((x_drift**2) + (y_drift**2))
+
+    #Beschleunigungsfeatures
+    meanBeschleunigungen = np.nanmean(beschleun)
+    stdBeschleunigungen = np.nanstd(beschleun)
+    maxBeschleunigungen = np.nanmax(beschleun)
+    minBeschleunigungen = np.nanmin(beschleun)
+
+    #Schrittanzahl-Features
     meanStepCount = np.nanmean(stepCount)
     stdStepCount = np.nanstd(stepCount)
     minStepCount = np.nanmin(stepCount)
 
+    #Distanz-Features
     meanDistanzen = np.nanmean(distanzen)
     stdDistanzen = np.nanstd(distanzen)
     maxDistanzen = np.nanmax(distanzen)
 
+    #Strecke-Features
     meanStrecken = np.nanmean(strecken)
     stdStrecken = np.nanstd(strecken)
     maxStrecken = np.nanmax(strecken)
     minStrecken = np.nanmin(strecken)
     totalStrecke = np.nansum(strecken)
 
+    #Kurvigkeit-Features
     meanKurvigkeiten = np.nanmean(kurvigkeiten)
     stdKurvigkeiten = np.nanstd(kurvigkeiten)
     maxKurvigkeiten = np.nanmax(kurvigkeiten)
 
-    x_drift = np.nansum(x_geschw)
-    y_drift = np.nansum(y_geschw)
-    drift_geschw = np.sqrt((x_drift**2) + (y_drift**2))
-
+    #Rückgabe der Feature-Werte
     return  meanGeschwindigkeiten, \
             stdGeschwindigkeiten, \
             maxGeschwindigkeiten, \
