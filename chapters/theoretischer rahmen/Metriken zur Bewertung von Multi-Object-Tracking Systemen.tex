@@ -4,6 +4,7 @@ Maschinelles Lernen benötigt Merkmale, mit deren Hilfe Zusammenhänge verschied
 
 So wie \gls{MOT} selbst ist auch die Bewertung von \gls{MOT} Systemen ein recht junges Feld. In den vergangenen Jahren wurden einige Verfahren und Metriken für diesen Zweck entwickelt, jedoch hat sich davon keine deutlich gegenüber den anderen durchgesetzt, weshalb in Veröffentlichungen oftmals mehrere Metriken angegeben werden. Deswegen werden auch hier drei Metriken vorgestellt. Geordnet sind sie in ihrer historischen Reihenfolge. Während die  \textit{\acrshort{CLEAR} \gls{MOT}} Metriken \cite{CLEAR.2008} und die \textit{\gls{IDF1}-Metrik} \cite{IDF1} sich inzwischen etabliert haben, ist die \gls{HOTA} \cite{HOTA} der neuste Ansatz von den Dreien und noch weniger etabliert. Bevor die einzelnen Metriken im Detail vorgestellt werden, wird auf einige Grundlagen der Evaluation von \gls{MOT} Systemen eingegangen.
 
+\clearpage
 \subsection{Grundlagen der Bewertung von Multi-Object Tracking Systemen} \label{sec:MOT GT}
 Die Evaluation von \gls{MOT} Systemen funktioniert über ein \glsdisp{Ereignis}{Referenzereignis}. Diese Referenz beinhaltet alle korrekten \gls{Detektion}[en], \gls{Lokalisation}[en] und \gls{Assoziation}[en]. Diese Referenz wird als \gls{Ground Truth} bezeichnet \cite{HOTA}. Das \gls{MOT} System wird auf das \glsdisp{Ereignis}{Referenzereignis} angewendet und gibt ein Ergebnis zurück. Dieses Ergebnis wird mit der \gls{Ground Truth} verglichen. Der Grad der Übereinstimmung ist das Evaluationsergebnis für das \gls{MOT} System. Die verschiedenen Metriken unterscheiden sich in ihrer Berechnung des Übereinstimmungsgrads. Dadurch kommt es zu Unterschieden in der Gewichtung des Einflusses der Fehlertypen (\autoref{sec:MOT Fehlertypen}) und der \gls{Modul}[e] von \gls{MOT} Systemen \cite{HOTA, IDF1, CLEAR.2008}.\par
 
@@ -136,20 +137,20 @@ Da die Zuordnung mit einer Anforderung \(\alpha\) an die \gls{Lokalisation} stat
     HOTA = \int_{0}^{1} HOTA_{\alpha} d\alpha \approx \frac{1}{19} \sum_{\alpha \in (0,05, 0,1, \dots, 0,9, 0,95)} HOTA_{\alpha}
 \end{equation}
 
-Die Zuordnung des \gls{Tracking}[ergebnisses] zur \gls{Ground Truth} wird so optimiert, dass der \gls{HOTA} Wert maximal wird. Dies erfolgt so, dass die ungarische Methode als erstes Kriterium  \(|\gls{EP}|\) maximiert. Als zweites Kriterium wird der Mittelwert von \(A\) maximiert für \(\forall e \in \gls{EP}, A(e)\). Das dritte Kriterium maximiert die mittlere Ähnlichkeit \(s\) über alle \(\forall e \in \gls{EP}, s(e)\). \par
- 
  \begin{wrapfigure}{l}{0.5\textwidth}
     \begin{center}
-        \vspace*{-5mm}
+        \vspace*{-9mm}
         \includegraphics[width=0.5\textwidth]{img/Grafiken/HOTA Submetriken Pyramide.png}
         \vspace*{-10mm}
         \caption{Übersicht über den Zusammenhang der HOTA Submetriken. \cite{HOTA}}
         \label{fig:HOTASubmetrikPyram}
     \end{center}
 \end{wrapfigure}
-
- Der \gls{HOTA} Wert lässt sich in Submetriken zerlegen. Dies ermöglicht eine ausführliche Einsicht in die unterschiedlichen \gls{Modul}[e] eines \gls{MOT} Systems. Die Abbildung \ref{fig:HOTASubmetrikPyram} zeigt den Zusammenhang von \gls{HOTA} und seinen Submetriken. \par 
-
+Die Zuordnung des \gls{Tracking}[ergebnisses] zur \gls{Ground Truth} wird so optimiert, dass der \gls{HOTA} Wert maximal wird. Dies erfolgt so, dass die ungarische Methode als erstes Kriterium  \(|\gls{EP}|\) maximiert. Als zweites Kriterium wird der Mittelwert von \(A\) maximiert für \(\forall e \in \gls{EP}, A(e)\). Das dritte Kriterium maximiert die mittlere Ähnlichkeit \(s\) über alle \(\forall e \in \gls{EP}, s(e)\). \par
+ 
+ Der \gls{HOTA} Wert lässt sich in Submetriken zerlegen. Dies ermöglicht eine ausführliche Einsicht in die unterschiedlichen \gls{Modul}[e] eines \gls{MOT} Systems. Die Abbildung \ref{fig:HOTASubmetrikPyram} zeigt den Zusammenhang von \gls{HOTA} und seinen Submetriken. 
+ 
+\clearpage
 Die Genauigkeit der \glsdisp{Lokalisationsfehler}{Lokalisation} lässt sich über die \gls{LocA} beurteilen. Dies wird nach Formel \ref{eq:LocA} berechnet.
 
 \begin{equation}

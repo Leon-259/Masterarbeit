@@ -28,8 +28,6 @@ Da die Aufzeichnungen im Putenmaststall vor Beginn der Arbeit bereits abgeschlos
 
 Simuliert werden soll die Anwendung des Moduls auf einen ganzen Tag. Die Aufzeichnungen fanden während der Mastdurchläufe täglich von 5:00 Uhr morgens bis 22:20 Uhr abends statt. Das Modul soll einen vollen Tag, mit Rohdaten aus 17 Stunden und 20 Minuten, verarbeiten und die Verhaltensweisen des Stallgeschehens schätzen.\par
 
-Dazu wird ein Detektionsdatensatz benötigt, das die Daten eines ganzen Tages umfasst. Ebenfalls ist das dazugehörige Video herauszusuchen. Video und Detektionsdatensatz werden eingelesen. Der Detektionsdatensatz wird Eintrag für Eintrag chronologisch in die \gls{IMDB} des Puffers geschoben. Vorher wird das Frame aus dem Video ermittelt, das zu dem Eintrag passt. Dieses wird ebenfalls in den Puffer geschoben. Eine Zeitverzögerung ist einzubauen, die die Framerate simuliert. Die tatsächliche mittlere Framerate der Aufzeichnung lässt sich aus dem Detektionsdatensatz bestimmen. Diese wird genutzt, um die Zeitverzögerung einzustellen. So wird der Rohdatenstrom des Moduleingangs simuliert. Das Modul verarbeitet den Datenstrom und gibt die geschätzten Verhaltensweisen als Labels zurück. Diese werden zusammen mit dem Start- und Endzeitpunkt des jeweiligen Intervalls für die Auswertung abgespeichert. Das Blockdiagramm in der Abbildung \ref{fig:ModulKonzeptSim} zeigt das Konzept zur Simulation. 
-
 \begin{figure}[htb]
     \centering
     \includegraphics[width=\textwidth]{img/Grafiken/Konzept Simultaion.png}
@@ -37,6 +35,9 @@ Dazu wird ein Detektionsdatensatz benötigt, das die Daten eines ganzen Tages um
     \label{fig:ModulKonzeptSim}
 \end{figure}
 
+Dazu wird ein Detektionsdatensatz benötigt, das die Daten eines ganzen Tages umfasst. Ebenfalls ist das dazugehörige Video herauszusuchen. Video und Detektionsdatensatz werden eingelesen. Der Detektionsdatensatz wird Eintrag für Eintrag chronologisch in die \gls{IMDB} des Puffers geschoben. Vorher wird das Frame aus dem Video ermittelt, das zu dem Eintrag passt. Dieses wird ebenfalls in den Puffer geschoben. Eine Zeitverzögerung ist einzubauen, die die Framerate simuliert. Die tatsächliche mittlere Framerate der Aufzeichnung lässt sich aus dem Detektionsdatensatz bestimmen. Diese wird genutzt, um die Zeitverzögerung einzustellen. So wird der Rohdatenstrom des Moduleingangs simuliert. Das Modul verarbeitet den Datenstrom und gibt die geschätzten Verhaltensweisen als Labels zurück. Diese werden zusammen mit dem Start- und Endzeitpunkt des jeweiligen Intervalls für die Auswertung abgespeichert. Das Blockdiagramm in der Abbildung \ref{fig:ModulKonzeptSim} zeigt das Konzept zur Simulation. 
+
+\begin{samepage}
 Mit der Simulation sollen folgende Punkte ermittelt werden:
 
 \begin{itemize}
@@ -46,3 +47,4 @@ Mit der Simulation sollen folgende Punkte ermittelt werden:
     \item \textbf{Latenz:} Ermittelt werden soll die maximale Latenz zwischen dem Startpunkt eines Ereignisses und dem Vorliegen des Ergebnisses der Schätzung.
     \item \textbf{Echtzeitfähigkeit:} Am Ende ist zu beurteilen, ob das Modul als echtzeitfähig einzustufen ist.
 \end{itemize}
+\end{samepage}

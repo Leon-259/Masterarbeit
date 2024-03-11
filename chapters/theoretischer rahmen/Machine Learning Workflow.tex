@@ -159,7 +159,7 @@ Hierarchisches Clustering umfasst ebenfalls Algorithmen der Clusteranalyse. Es s
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.9\textwidth]{img/Plots/Dendogramm Hierachisches Clustering.png}
+    \includegraphics[width=0.9\textwidth, height=8cm]{img/Plots/Dendogramm Hierachisches Clustering.png}
     \caption[Dendrogramm zu einem Beispiel des Hierarchisches Clusterings.]{Dendrogramm zu einem Beispiel des Hierarchisches Clusterings. Die horizontalen Linien zeigen, dass über die Cluster-Anzahl entschieden werden kann, durch die Wahl der Trennebene.}
     \label{fig:HiraClust}
 \end{figure}
@@ -168,7 +168,7 @@ Hierarchisches Clustering umfasst ebenfalls Algorithmen der Clusteranalyse. Es s
 \textbf{Logistische Regression} \par
 \begin{wrapfigure}{l}{0.4\textwidth}
     \begin{center}
-        \vspace*{-7mm}
+        \vspace*{-10mm}
         \includegraphics[width=0.4\textwidth, height=4cm]{img/Plots/Logistische Funktion.png}
         \vspace*{-10.5mm}
         \caption[Verlauf der logistischen Funktion.]{Verlauf der logistischen Funktion.}
@@ -245,9 +245,9 @@ Es existieren jedoch einige Komplikationen klassische \acrshort{RNN}[s] anzuwend
     \item Das Ausgangstor bestimmt, welche Informationen aus dem Zustandsspeicher an den Ausgang weitergegeben werden.
 \end{itemize}
 
-Diese Mechanismen erlauben es \acrshort{LSTM}[s]s, sowohl kurzfristige als auch langfristige Datenabhängigkeiten zu lernen und effektiv zwischen relevanten und irrelevanten Informationen zu unterscheiden \cite{Burkov.2019, Goodfellow.2016}. \par
+Diese Mechanismen erlauben es \acrshort{LSTM}[s], sowohl kurzfristige als auch langfristige Datenabhängigkeiten zu lernen und effektiv zwischen relevanten und irrelevanten Informationen zu unterscheiden \cite{Burkov.2019, Goodfellow.2016}. \dubpar
 
-\textbf{Gated Recurrent Unit (\acrshort{GRU})}
+\textbf{Gated Recurrent Unit (\acrshort{GRU})} \par
 Die \acrshort{GRU} lässt sich als vereinfachte Form eines \acrshort{LSTM}[s] betrachten. Sie verwendet ebenfalls Tore für die Handhabung langfristiger und kurzfristiger Abhängigkeiten in sequenziellen Daten. \acrshort{GRU}[s] vereinfachen die Struktur von \acrshort{LSTM}[s], indem sie nur zwei Tore verwenden. Ein Update-Tor und ein Reset-Tor. \par
 
 \begin{itemize}
@@ -293,7 +293,7 @@ Wie bereits in \autoref{sec:Datensätze ML} erwähnt, ist es möglich den Validi
 
 \begin{figure}[htb]
     \raggedright
-    \includegraphics[width=0.9\textwidth]{img/Grafiken/Cross Validation.png}
+    \includegraphics[width=0.9\textwidth, height=7cm]{img/Grafiken/Cross Validation.png}
     \caption[Verfahren der Cross-Validation.]{Verfahren der \gls{Cross-Validation}.  Der \gls{Trainingsdatensatz} wird in 4 Teile zerteilt, wovon jedes einmal als Validierungsdatensatz verwendet wird.}
     \label{fig:CrossVal}
 \end{figure}

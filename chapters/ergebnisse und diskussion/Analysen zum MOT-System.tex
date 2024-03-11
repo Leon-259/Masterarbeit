@@ -63,7 +63,7 @@ Bei Betrachtung der DetRe und DetPr Wertungen ist zu sehen, dass der Crocker-Gri
 
 \begin{wrapfigure}{l}{0.5\textwidth}
     \begin{center}
-        \vspace*{-9mm}
+        \vspace*{-10mm}
         \begin{subfigure}[b]{0.5\textwidth}
              \centering
              \includegraphics[width=\textwidth]{img/Vergleich GT_Track GT.png}
@@ -75,7 +75,7 @@ Bei Betrachtung der DetRe und DetPr Wertungen ist zu sehen, dass der Crocker-Gri
              \includegraphics[width=\textwidth]{img/Vergleich GT_Track Tracking.png}
              \caption{Detektionsergebnis}
          \end{subfigure}
-        \vspace*{-10mm}
+        \vspace*{-11mm}
         \caption{Vergleich der Ground Truth und des Detektionsmoduls.}
         \label{fig:GTvsDetsComp}
     \end{center}
@@ -206,9 +206,10 @@ Der AssRe-Wert zeigt, dass sich im Kontrollgang Fragmentation häuft. Das kann f
 
 \textbf{Präsentation der Metriken}\par
 
-In Tabelle \ref{tab:MetrikenEregins} sind die unterschiedlichen Metriken im Vergleich dargestellt. Angegeben sind sie zu jedem Ereignis und jedem Algorithmus.
+In Tabelle \ref{tab:MetrikenEregins} sind die unterschiedlichen Metriken im Vergleich dargestellt.
 
-\begin{table}[htbp]
+
+\begin{table}[H]
 \centering
 \caption{Übersicht über die Metriken zu der Bewertung der Ereignisse.}
 \label{tab:MetrikenEregins}
@@ -232,6 +233,8 @@ Crocker-Grier & Kontrollgang & 28,379 & 4,4885 & 67,252 & 5,722 & 32,415 \\
 \end{tabular}
 \end{table}
 
+
+\par
 \textbf{Fazit}\par
 Insgesamt hängt die Performance stark von den Ereignissen und der Dynamik ab. Das Trackingergebnis ist bei hoher Dynamik deutlich schlechter. Gerade bei hoher Dynamik erzeilt der SORT Algorithmus eine deutlich bessere Performance als der Crocker-Grier Linking Algorithmus. Korrekte Trajektorien werden in beiden Ereignissen generiert. In der Feature-Auswahl ist zu überprüfen, ob die extrahierten Features einen Kontrollgang so repräsentieren, dass er sich von den anderen Verhaltensweisen unterscheiden lässt.
 
@@ -248,6 +251,7 @@ Die Laufzeiten der beiden Algorithmen sind für unterschiedliche Ereignislängen
 
 Es ist zu sehen, dass der Crocker-Grier Linking Algorithmus besser skaliert, jedoch weist er ein klein bisschen mehr Overhead auf. Durch den Overhead ist der zeitliche Vorteil für kleine Ereignislängen von weniger als 30 Sekunden nicht signifikant. Die Trendlinien beider Algorithmen zeigen, dass die Laufzeiten für Ereignisse, die kürzer als 5 Minuten sind, annähernd linear skalieren. Da Beide Trendlinien eine Steigung kleiner eins aufweisen, erfüllen sie die Grundvoraussetzung für die Anwendung im Modul. Andernfalls könnte keine lückenlose Abtastung des Stallgeschehens erfolgen. Nach der Auswahl einer Intervallgröße für die Ereignisse kann über die zeitliche Skalierung der Laufzeit eingeschätzt werden, wie viel Zeit die restliche Verarbeitung in Anspruch nehmen darf, um eine lückenlose Abtastung zu erreichen.  \dubpar
 
+\clearpage
 \textbf{Fazit}\par
 Die Laufzeit des Crocker-Grier Linking Algorithmus skaliert etwas besser. Für kurze Ereignisse ist der Unterschied jedoch vernachlässigbar. Mit beiden Algorithmen kann eine lückenlose Abtastung des Stallgeschehens erreicht werden.
 
